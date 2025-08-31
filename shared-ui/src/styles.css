@@ -1,0 +1,11 @@
+/* Shared UI Library Styles */
+@import 'tailwindcss';
+
+/* Import the complete theme system */
+@import './styles/theme.css';
+@import './styles/typography.css';
+@import './styles/globals.css';
+
+/* Source paths for component scanning */
+@source "../../apps/**/*.{js,ts,jsx,tsx}";
+@source "../src/**/*.{js,ts,jsx,tsx}";

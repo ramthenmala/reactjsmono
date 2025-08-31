@@ -1,0 +1,492 @@
+<testsuites id="" name="" tests="20" failures="10" skipped="0" errors="0" time="22.937741">
+<testsuite name="../../apps/compass-admin/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="compass-admin-chromium" tests="2" failures="1" skipped="0" time="6.394" errors="0">
+<testcase name="compass-admin homepage" classname="../../apps/compass-admin/e2e/example.spec.ts" time="5.739">
+<failure message="example.spec.ts:3:5 compass-admin homepage" type="FAILURE">
+<![CDATA[  [compass-admin-chromium] › ../../apps/compass-admin/e2e/example.spec.ts:3:5 › compass-admin homepage 
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Compass Admin|compass-admin/
+    Received string:  "CompassAdmin"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "CompassAdmin"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Compass Admin|compass-admin/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-compass-admin-homepage-compass-admin-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-chromium/video.webm]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="compass-admin navigation" classname="../../apps/compass-admin/e2e/example.spec.ts" time="0.655">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/compass-admin/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="compass-admin-firefox" tests="2" failures="1" skipped="0" time="6.777" errors="0">
+<testcase name="compass-admin homepage" classname="../../apps/compass-admin/e2e/example.spec.ts" time="5.912">
+<failure message="example.spec.ts:3:5 compass-admin homepage" type="FAILURE">
+<![CDATA[  [compass-admin-firefox] › ../../apps/compass-admin/e2e/example.spec.ts:3:5 › compass-admin homepage 
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Compass Admin|compass-admin/
+    Received string:  "CompassAdmin"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "CompassAdmin"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Compass Admin|compass-admin/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-compass-admin-homepage-compass-admin-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-firefox/video.webm]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="compass-admin navigation" classname="../../apps/compass-admin/e2e/example.spec.ts" time="0.865">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/compass-admin/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="compass-admin-webkit" tests="2" failures="1" skipped="0" time="8.062" errors="0">
+<testcase name="compass-admin homepage" classname="../../apps/compass-admin/e2e/example.spec.ts" time="6.497">
+<failure message="example.spec.ts:3:5 compass-admin homepage" type="FAILURE">
+<![CDATA[  [compass-admin-webkit] › ../../apps/compass-admin/e2e/example.spec.ts:3:5 › compass-admin homepage 
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Compass Admin|compass-admin/
+    Received string:  "CompassAdmin"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "CompassAdmin"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Compass Admin|compass-admin/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-compass-admin-homepage-compass-admin-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-webkit/video.webm]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="compass-admin navigation" classname="../../apps/compass-admin/e2e/example.spec.ts" time="1.565">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/webclient/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="webclient-chromium" tests="2" failures="1" skipped="0" time="5.692" errors="0">
+<testcase name="webclient homepage" classname="../../apps/webclient/e2e/example.spec.ts" time="5.499">
+<failure message="example.spec.ts:3:5 webclient homepage" type="FAILURE">
+<![CDATA[  [webclient-chromium] › ../../apps/webclient/e2e/example.spec.ts:3:5 › webclient homepage ─────────
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Web Client|webclient/
+    Received string:  "Webclient"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "Webclient"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Web Client|webclient/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-webclient-homepage-webclient-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-webclient-homepage-webclient-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-chromium/video.webm]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="webclient navigation" classname="../../apps/webclient/e2e/example.spec.ts" time="0.193">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/webclient/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="webclient-firefox" tests="2" failures="1" skipped="0" time="7.018" errors="0">
+<testcase name="webclient homepage" classname="../../apps/webclient/e2e/example.spec.ts" time="5.869">
+<failure message="example.spec.ts:3:5 webclient homepage" type="FAILURE">
+<![CDATA[  [webclient-firefox] › ../../apps/webclient/e2e/example.spec.ts:3:5 › webclient homepage ──────────
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Web Client|webclient/
+    Received string:  "Webclient"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "Webclient"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Web Client|webclient/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-webclient-homepage-webclient-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-webclient-homepage-webclient-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-firefox/video.webm]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="webclient navigation" classname="../../apps/webclient/e2e/example.spec.ts" time="1.149">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/webclient/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="webclient-webkit" tests="2" failures="1" skipped="0" time="5.996" errors="0">
+<testcase name="webclient homepage" classname="../../apps/webclient/e2e/example.spec.ts" time="5.589">
+<failure message="example.spec.ts:3:5 webclient homepage" type="FAILURE">
+<![CDATA[  [webclient-webkit] › ../../apps/webclient/e2e/example.spec.ts:3:5 › webclient homepage ───────────
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Web Client|webclient/
+    Received string:  "Webclient"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "Webclient"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Web Client|webclient/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-webclient-homepage-webclient-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-webclient-homepage-webclient-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-webkit/video.webm]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="webclient navigation" classname="../../apps/webclient/e2e/example.spec.ts" time="0.407">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/compass-admin/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="compass-admin-mobile-chrome" tests="2" failures="1" skipped="0" time="5.602" errors="0">
+<testcase name="compass-admin homepage" classname="../../apps/compass-admin/e2e/example.spec.ts" time="5.364">
+<failure message="example.spec.ts:3:5 compass-admin homepage" type="FAILURE">
+<![CDATA[  [compass-admin-mobile-chrome] › ../../apps/compass-admin/e2e/example.spec.ts:3:5 › compass-admin homepage 
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Compass Admin|compass-admin/
+    Received string:  "CompassAdmin"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "CompassAdmin"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Compass Admin|compass-admin/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-mobile-chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-mobile-chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-compass-admin-homepage-compass-admin-mobile-chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-mobile-chrome/test-failed-1.png]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-mobile-chrome/video.webm]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-mobile-chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="compass-admin navigation" classname="../../apps/compass-admin/e2e/example.spec.ts" time="0.238">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/webclient/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="webclient-mobile-chrome" tests="2" failures="1" skipped="0" time="5.532" errors="0">
+<testcase name="webclient homepage" classname="../../apps/webclient/e2e/example.spec.ts" time="5.314">
+<failure message="example.spec.ts:3:5 webclient homepage" type="FAILURE">
+<![CDATA[  [webclient-mobile-chrome] › ../../apps/webclient/e2e/example.spec.ts:3:5 › webclient homepage ────
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Web Client|webclient/
+    Received string:  "Webclient"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "Webclient"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Web Client|webclient/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-mobile-chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-mobile-chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-webclient-homepage-webclient-mobile-chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-webclient-homepage-webclient-mobile-chrome/test-failed-1.png]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-mobile-chrome/video.webm]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-mobile-chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="webclient navigation" classname="../../apps/webclient/e2e/example.spec.ts" time="0.218">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/compass-admin/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="compass-admin-mobile-safari" tests="2" failures="1" skipped="0" time="5.738" errors="0">
+<testcase name="compass-admin homepage" classname="../../apps/compass-admin/e2e/example.spec.ts" time="5.367">
+<failure message="example.spec.ts:3:5 compass-admin homepage" type="FAILURE">
+<![CDATA[  [compass-admin-mobile-safari] › ../../apps/compass-admin/e2e/example.spec.ts:3:5 › compass-admin homepage 
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Compass Admin|compass-admin/
+    Received string:  "CompassAdmin"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "CompassAdmin"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Compass Admin|compass-admin/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-mobile-safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-compass-admin-homepage-compass-admin-mobile-safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-compass-admin-homepage-compass-admin-mobile-safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-mobile-safari/test-failed-1.png]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-mobile-safari/video.webm]]
+
+[[ATTACHMENT|example-compass-admin-homepage-compass-admin-mobile-safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="compass-admin navigation" classname="../../apps/compass-admin/e2e/example.spec.ts" time="0.371">
+</testcase>
+</testsuite>
+<testsuite name="../../apps/webclient/e2e/example.spec.ts" timestamp="2025-08-31T07:52:56.477Z" hostname="webclient-mobile-safari" tests="2" failures="1" skipped="0" time="5.784" errors="0">
+<testcase name="webclient homepage" classname="../../apps/webclient/e2e/example.spec.ts" time="5.418">
+<failure message="example.spec.ts:3:5 webclient homepage" type="FAILURE">
+<![CDATA[  [webclient-mobile-safari] › ../../apps/webclient/e2e/example.spec.ts:3:5 › webclient homepage ────
+
+    Error: expect(page).toHaveTitle(expected) failed
+
+    Expected pattern: /Web Client|webclient/
+    Received string:  "Webclient"
+    Timeout: 5000ms
+
+    Call log:
+      - Expect "toHaveTitle" with timeout 5000ms
+        9 × unexpected value "Webclient"
+
+
+       5 |   
+       6 |   // Expect a title containing the app name or a specific title
+    >  7 |   await expect(page).toHaveTitle(/Web Client|webclient/);
+         |                      ^
+       8 |   
+       9 |   // Check if the main content is visible
+      10 |   await expect(page.locator('body')).toBeVisible();
+        at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-mobile-safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/example-webclient-homepage-webclient-mobile-safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/example-webclient-homepage-webclient-mobile-safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|example-webclient-homepage-webclient-mobile-safari/test-failed-1.png]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-mobile-safari/video.webm]]
+
+[[ATTACHMENT|example-webclient-homepage-webclient-mobile-safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="webclient navigation" classname="../../apps/webclient/e2e/example.spec.ts" time="0.366">
+</testcase>
+</testsuite>
+</testsuites>

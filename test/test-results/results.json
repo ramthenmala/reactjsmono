@@ -1,0 +1,1299 @@
+{
+  "config": {
+    "configFile": "/Users/ramtml/Desktop/learning/compassnew/compassnew/playwright.config.ts",
+    "rootDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/e2e/global-setup.ts",
+    "globalTeardown": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/e2e/global-teardown.ts",
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 6
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        {
+          "outputFolder": "./test/playwright-report"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "./test/test-results/results.json"
+        }
+      ],
+      [
+        "junit",
+        {
+          "outputFile": "./test/test-results/junit.xml"
+        }
+      ],
+      ["list", null]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "compass-admin-chromium",
+        "name": "compass-admin-chromium",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "compass-admin-firefox",
+        "name": "compass-admin-firefox",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "compass-admin-webkit",
+        "name": "compass-admin-webkit",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "webclient-chromium",
+        "name": "webclient-chromium",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "webclient-firefox",
+        "name": "webclient-firefox",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "webclient-webkit",
+        "name": "webclient-webkit",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "compass-admin-mobile-chrome",
+        "name": "compass-admin-mobile-chrome",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "webclient-mobile-chrome",
+        "name": "webclient-mobile-chrome",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "compass-admin-mobile-safari",
+        "name": "compass-admin-mobile-safari",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 6
+        },
+        "id": "webclient-mobile-safari",
+        "name": "webclient-mobile-safari",
+        "testDir": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e",
+        "testIgnore": [],
+        "testMatch": ["**/*.@(spec|test).?(c|m)[jt]s?(x)"],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.55.0",
+    "workers": 6,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "../../apps/compass-admin/e2e/example.spec.ts",
+      "file": "../../apps/compass-admin/e2e/example.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "compass-admin homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-chromium",
+              "projectName": "compass-admin-chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5739,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:52:56.804Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-5323870786c42e4228af",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "compass-admin navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-chromium",
+              "projectName": "compass-admin-chromium",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 655,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:52:56.804Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-a86c36156b886e52308e",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "compass-admin homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-firefox",
+              "projectName": "compass-admin-firefox",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 2,
+                  "status": "failed",
+                  "duration": 5912,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:52:56.807Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-firefox/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-firefox/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-firefox/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-ab9ce3918997e120e88c",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "compass-admin navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-firefox",
+              "projectName": "compass-admin-firefox",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 865,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:52:56.803Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-12a1257487f526b42c8a",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "compass-admin homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-webkit",
+              "projectName": "compass-admin-webkit",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 4,
+                  "status": "failed",
+                  "duration": 6497,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:52:56.807Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-webkit/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-webkit/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-webkit/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-9f1773d783419ba3b77c",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "compass-admin navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-webkit",
+              "projectName": "compass-admin-webkit",
+              "results": [
+                {
+                  "workerIndex": 5,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 1565,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:52:56.803Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-2c766b934402bae10506",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "compass-admin homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-mobile-chrome",
+              "projectName": "compass-admin-mobile-chrome",
+              "results": [
+                {
+                  "workerIndex": 12,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 5364,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:05.243Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-mobile-chrome/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-mobile-chrome/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-mobile-chrome/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-2a72adfa60b2a5c64ca1",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "compass-admin navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-mobile-chrome",
+              "projectName": "compass-admin-mobile-chrome",
+              "results": [
+                {
+                  "workerIndex": 13,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 238,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:05.689Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-716449db428093b14a95",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "compass-admin homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-mobile-safari",
+              "projectName": "compass-admin-mobile-safari",
+              "results": [
+                {
+                  "workerIndex": 16,
+                  "parallelIndex": 5,
+                  "status": "failed",
+                  "duration": 5367,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Compass Admin|compass-admin/\u001b[39m\nReceived string:  \u001b[31m\"CompassAdmin\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"CompassAdmin\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Compass Admin|compass-admin/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:06.821Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-mobile-safari/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-mobile-safari/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-compass-admin-homepage-compass-admin-mobile-safari/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/compass-admin/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-99a14d678962207d1e66",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "compass-admin navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "compass-admin-mobile-safari",
+              "projectName": "compass-admin-mobile-safari",
+              "results": [
+                {
+                  "workerIndex": 17,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 371,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:08.472Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-2c1a15ac617f0c612325",
+          "file": "../../apps/compass-admin/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        }
+      ]
+    },
+    {
+      "title": "../../apps/webclient/e2e/example.spec.ts",
+      "file": "../../apps/webclient/e2e/example.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "webclient homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-chromium",
+              "projectName": "webclient-chromium",
+              "results": [
+                {
+                  "workerIndex": 6,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 5499,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:52:57.811Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-chromium/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-chromium/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-chromium/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-217e2a4857e057551608",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "webclient navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-chromium",
+              "projectName": "webclient-chromium",
+              "results": [
+                {
+                  "workerIndex": 7,
+                  "parallelIndex": 3,
+                  "status": "passed",
+                  "duration": 193,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:01.050Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-67a76b882466b0887a72",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "webclient homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-firefox",
+              "projectName": "webclient-firefox",
+              "results": [
+                {
+                  "workerIndex": 8,
+                  "parallelIndex": 3,
+                  "status": "failed",
+                  "duration": 5869,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:01.579Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-firefox/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-firefox/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-firefox/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-1d41cd5e5f3dfabe7140",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "webclient navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-firefox",
+              "projectName": "webclient-firefox",
+              "results": [
+                {
+                  "workerIndex": 9,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1149,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:02.988Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-b31aa6b7b63ebab39d9a",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "webclient homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-webkit",
+              "projectName": "webclient-webkit",
+              "results": [
+                {
+                  "workerIndex": 10,
+                  "parallelIndex": 1,
+                  "status": "failed",
+                  "duration": 5589,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:03.741Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-webkit/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-webkit/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-webkit/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-ee7e0eba558f941c0a43",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "webclient navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-webkit",
+              "projectName": "webclient-webkit",
+              "results": [
+                {
+                  "workerIndex": 11,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 407,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:04.842Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-fe351c8e80c75c5671d2",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "webclient homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-mobile-chrome",
+              "projectName": "webclient-mobile-chrome",
+              "results": [
+                {
+                  "workerIndex": 14,
+                  "parallelIndex": 2,
+                  "status": "failed",
+                  "duration": 5314,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:05.777Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-mobile-chrome/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-mobile-chrome/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-mobile-chrome/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-60c6f3fb950448d8d50b",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "webclient navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-mobile-chrome",
+              "projectName": "webclient-mobile-chrome",
+              "results": [
+                {
+                  "workerIndex": 15,
+                  "parallelIndex": 5,
+                  "status": "passed",
+                  "duration": 218,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:06.270Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-f85e1eebdff3826b3da3",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        },
+        {
+          "title": "webclient homepage",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-mobile-safari",
+              "projectName": "webclient-mobile-safari",
+              "results": [
+                {
+                  "workerIndex": 18,
+                  "parallelIndex": 3,
+                  "status": "failed",
+                  "duration": 5418,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22",
+                    "location": {
+                      "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                      "column": 22,
+                      "line": 7
+                    },
+                    "snippet": "\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                        "column": 22,
+                        "line": 7
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/Web Client|webclient/\u001b[39m\nReceived string:  \u001b[31m\"Webclient\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"Webclient\"\u001b[22m\n\n\n\u001b[0m \u001b[90m  5 |\u001b[39m   \n \u001b[90m  6 |\u001b[39m   \u001b[90m// Expect a title containing the app name or a specific title\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m  7 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveTitle(\u001b[35m/Web Client|webclient/\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m  8 |\u001b[39m   \n \u001b[90m  9 |\u001b[39m   \u001b[90m// Check if the main content is visible\u001b[39m\n \u001b[90m 10 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m'body'\u001b[39m))\u001b[33m.\u001b[39mtoBeVisible()\u001b[33m;\u001b[39m\u001b[0m\n\u001b[2m    at /Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts:7:22\u001b[22m"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:09.215Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-mobile-safari/test-failed-1.png"
+                    },
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-mobile-safari/video.webm"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/ramtml/Desktop/learning/compassnew/compassnew/test/test-results/example-webclient-homepage-webclient-mobile-safari/error-context.md"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/ramtml/Desktop/learning/compassnew/compassnew/apps/webclient/e2e/example.spec.ts",
+                    "column": 22,
+                    "line": 7
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-5f48f0a38740973c3dc5",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 3,
+          "column": 5
+        },
+        {
+          "title": "webclient navigation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webclient-mobile-safari",
+              "projectName": "webclient-mobile-safari",
+              "results": [
+                {
+                  "workerIndex": 19,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 366,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2025-08-31T07:53:09.818Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "a30a6eba6312f6b87ea5-c541d3262dcf4ea86ecf",
+          "file": "../../apps/webclient/e2e/example.spec.ts",
+          "line": 13,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2025-08-31T07:52:51.841Z",
+    "duration": 22937.740999999998,
+    "expected": 10,
+    "skipped": 0,
+    "unexpected": 10,
+    "flaky": 0
+  }
+}

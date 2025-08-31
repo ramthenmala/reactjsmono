@@ -1,0 +1,28 @@
+services:
+  compass-admin:
+    build:
+      context: .
+      dockerfile: Dockerfile.compass-admin
+    ports:
+      - "8080:3000"  # Maps to port 80 in production via reverse proxy
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - compassnew-network
+
+  webclient:
+    build:
+      context: .
+      dockerfile: Dockerfile.webclient
+    ports:
+      - "8081:3000"  # Maps to port 80 in production via reverse proxy
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - compassnew-network
+
+networks:
+  compassnew-network:
+    driver: bridge

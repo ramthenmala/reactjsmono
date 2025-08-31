@@ -1,0 +1,175 @@
+@import 'tailwindcss';
+@import './theme.css';
+@import './typography.css';
+
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-react-aria-components";
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:where(.dark-mode, .dark-mode *));
+@custom-variant label (& [data-label]);
+@custom-variant focus-input-within (&:has(input:focus));
+
+@utility scrollbar-hide {
+  /* For Webkit-based browsers (Chrome, Safari and Opera) */
+  &::-webkit-scrollbar {
+    display: none;
+    -webkit-appearance: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+@utility transition-inherit-all {
+  transition-property: inherit;
+  transition-duration: inherit;
+  transition-timing-function: inherit;
+}
+
+/* Custom color utilities for button components */
+@utility bg-brand-solid {
+  background-color: var(--background-color-brand-solid);
+}
+@utility bg-brand-solid_hover {
+  background-color: var(--background-color-brand-solid_hover);
+}
+@utility bg-primary {
+  background-color: var(--background-color-primary);
+}
+@utility bg-primary_hover {
+  background-color: var(--background-color-primary_hover);
+}
+@utility bg-secondary {
+  background-color: var(--background-color-secondary);
+}
+@utility bg-secondary_hover {
+  background-color: var(--background-color-secondary_hover);
+}
+@utility bg-error-solid {
+  background-color: var(--background-color-error-solid);
+}
+@utility bg-error-primary {
+  background-color: var(--background-color-error-primary);
+}
+@utility bg-disabled {
+  background-color: var(--background-color-disabled);
+}
+
+@utility text-secondary {
+  color: var(--text-color-secondary);
+}
+@utility text-secondary_hover {
+  color: var(--text-color-secondary_hover);
+}
+@utility text-tertiary {
+  color: var(--text-color-tertiary);
+}
+@utility text-tertiary_hover {
+  color: var(--text-color-tertiary_hover);
+}
+@utility text-primary {
+  color: var(--text-color-primary);
+}
+@utility text-error-primary {
+  color: var(--text-color-error-primary);
+}
+@utility text-error-primary_hover {
+  color: var(--text-color-error-primary_hover);
+}
+@utility text-brand-secondary {
+  color: var(--text-color-brand-secondary);
+}
+@utility text-brand-secondary_hover {
+  color: var(--text-color-brand-secondary_hover);
+}
+
+@utility text-fg-quaternary {
+  color: var(--color-fg-quaternary);
+}
+@utility text-fg-quaternary_hover {
+  color: var(--color-fg-quaternary_hover);
+}
+@utility text-fg-error-secondary {
+  color: var(--color-fg-error-secondary);
+}
+@utility text-fg-error-primary {
+  color: var(--color-fg-error-primary);
+}
+@utility text-fg-brand-secondary_alt {
+  color: var(--color-fg-brand-secondary_alt);
+}
+@utility text-fg-brand-secondary_hover {
+  color: var(--color-fg-brand-secondary_hover);
+}
+
+@utility text-button-primary-icon {
+  color: var(--color-button-primary-icon);
+}
+@utility text-button-primary-icon_hover {
+  color: var(--color-button-primary-icon_hover);
+}
+@utility text-button-destructive-primary-icon {
+  color: var(--color-button-destructive-primary-icon);
+}
+@utility text-button-destructive-primary-icon_hover {
+  color: var(--color-button-destructive-primary-icon_hover);
+}
+
+@utility ring-primary {
+  --tw-ring-color: var(--ring-color-primary);
+}
+@utility ring-disabled_subtle {
+  --tw-ring-color: var(--ring-color-disabled_subtle);
+}
+@utility ring-error_subtle {
+  --tw-ring-color: var(--ring-color-error_subtle);
+}
+
+@utility shadow-xs {
+  box-shadow: var(--shadow-xs);
+}
+@utility shadow-xs-skeumorphic {
+  box-shadow: var(--shadow-xs-skeumorphic);
+}
+
+@utility outline-brand {
+  outline-color: var(--outline-color-brand);
+}
+@utility outline-error {
+  outline-color: var(--outline-color-error);
+}
+
+html,
+body {
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
+  -webkit-font-kerning: normal;
+  font-kerning: normal;
+}
+
+/* Hide the default expand arrow on Safari.  */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Hide default arrows from number inputs. */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Hide the default clear button (X) from search inputs. */
+input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}

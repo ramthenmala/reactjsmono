@@ -4,10 +4,13 @@
   "files": [],
   "references": [
     {
-      "path": "./apps/compassnew-e2e"
+      "path": "./apps/compass-admin"
     },
     {
-      "path": "./apps/compassnew"
+      "path": "./apps/webclient"
+    },
+    {
+      "path": "./shared-ui"
     }
   ]
 }
