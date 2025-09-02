@@ -11,6 +11,7 @@ import { DEFAULT_LOCALE, isValidLocale } from '../constants';
 import { HomePage } from '../../../features/home/HomePage';
 import { ContactPage } from '../../../features/home/ContactPage';
 import { ExploreLandingPage, ExploreListingPage, PropertyDetailPage } from '../../../features/explore/pages';
+import { LanguageProvider } from '../i18n';
 
 // Component to handle locale validation
 const LocaleWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -20,7 +21,7 @@ const LocaleWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     return <Navigate to={`/${DEFAULT_LOCALE}`} replace />;
   }
   
-  return children;
+  return <LanguageProvider>{children}</LanguageProvider>;
 };
 
 // Main App Router component

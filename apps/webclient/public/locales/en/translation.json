@@ -120,5 +120,30 @@
     "sq_m": "m²",
     "sq_ft": "ft²",
     "m3_per_day": "m³/day"
+  },
+  "investor_journey": {
+    "title": "Your Investment Journey",
+    "subtitle": "Follow our streamlined process to secure your industrial investment",
+    "search": {
+      "title": "Search & Filter",
+      "description": "Use our advanced search to find industrial opportunities that match your criteria"
+    },
+    "compare": {
+      "title": "Compare Options", 
+      "description": "Analyze different locations and properties with detailed insights and data"
+    },
+    "visit": {
+      "title": "Schedule Visits",
+      "description": "Arrange site visits and meetings with relevant stakeholders"
+    },
+    "invest": {
+      "title": "Make Investment",
+      "description": "Complete your investment with full support throughout the process"
+    },
+    "cta": {
+      "title": "Ready to Start Your Investment Journey?",
+      "description": "Join hundreds of successful investors who have found their perfect industrial investment opportunity through our platform.",
+      "button": "Get Started Today"
+    }
   }
 }
