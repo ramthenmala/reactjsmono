@@ -1,6 +1,33 @@
-/* Import the complete globals.css which includes everything */
-@import '../../../shared-ui/src/styles/globals.css';
+/* Import the complete shared-ui styles which includes fonts, theme, and globals */
+@import '../../../shared-ui/src/styles.css';
 
 /* Source paths for component scanning */
 @source "./**/*.{js,ts,jsx,tsx}";
 @source "../../../shared-ui/src/**/*.{js,ts,jsx,tsx}";
+
+/* Locale-specific font families */
+html.locale-en {
+  font-family: "DM Sans", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+html.locale-ar {
+  font-family: "IBM Plex Sans Arabic", -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* RTL Layout: Move sidebar to right side for Arabic */
+[dir="rtl"] .lg\:fixed.lg\:left-0 {
+  left: auto !important;
+  right: 0 !important;
+}
+
+/* RTL Layout: Adjust main content area padding */
+[dir="rtl"] .lg\:ps-72 {
+  padding-left: 0 !important;
+  padding-right: 18rem !important;
+}
+
+/* RTL Layout: Fix icon spacing - override the mr-3 class behavior */
+[dir="rtl"] aside svg.mr-3 {
+  margin-right: 0.75rem !important;
+  margin-left: 0 !important;
+}

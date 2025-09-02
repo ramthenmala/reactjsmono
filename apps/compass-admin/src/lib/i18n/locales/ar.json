@@ -1,0 +1,74 @@
+{
+  "welcome": {
+    "title": "مرحباً بعودتك، فيصل",
+    "subtitle": "إليك ما يحدث اليوم"
+  },
+  "navigation": {
+    "overview": "نظرة عامة",
+    "investors": "المستثمرون",
+    "connectRequests": "طلبات الاتصال",
+    "analytics": "التحليلات",
+    "configuration": "الإعدادات",
+    "investorInsights": "رؤى المستثمرين",
+    "industrialCityInsights": "رؤى المدينة الصناعية",
+    "nationalAnalytics": "التحليلات الوطنية",
+    "regionalAnalytics": "التحليلات الإقليمية",
+    "cityLevelMetrics": "مقاييس على مستوى المدينة",
+    "sectorLevelView": "عرض على مستوى القطاع (ISIC)",
+    "filterCriteria": "معايير التصفية",
+    "isicRelevance": "صلة ISIC",
+    "featuredLands": "الأراضي المميزة",
+    "configurationHistory": "تاريخ الإعدادات"
+  },
+  "userMenu": {
+    "viewProfile": "عرض الملف الشخصي",
+    "settings": "الإعدادات",
+    "logOut": "تسجيل الخروج"
+  },
+  "analytics": {
+    "title": "التحليلات",
+    "subtitle": "تحليلات ورؤى شاملة لاتخاذ قرارات مدفوعة بالبيانات.",
+    "investorInsights": {
+      "title": "رؤى المستثمرين",
+      "description": "رؤى مفصلة حول سلوك المستثمرين والاتجاهات"
+    },
+    "industrialCityInsights": {
+      "title": "رؤى المدينة الصناعية",
+      "description": "تحليلات تركز على تطوير المدن الصناعية"
+    },
+    "national": {
+      "title": "التحليلات الوطنية",
+      "description": "إحصائيات وتحليلات على مستوى الدولة"
+    },
+    "regional": {
+      "title": "التحليلات الإقليمية",
+      "description": "تفصيل إقليمي للمقاييس الرئيسية"
+    },
+    "cityMetrics": {
+      "title": "مقاييس على مستوى المدينة",
+      "description": "مؤشرات الأداء لكل مدينة على حدة"
+    },
+    "sectorView": {
+      "title": "عرض على مستوى القطاع (ISIC)",
+      "description": "تحليل القطاعات الصناعية باستخدام تصنيف ISIC"
+    }
+  },
+  "configuration": {
+    "filterCriteria": {
+      "title": "معايير التصفية",
+      "subtitle": "تكوين قواعد وشروط تصفية البيانات للتحليل والتقارير."
+    },
+    "isicRelevance": {
+      "title": "صلة ISIC",
+      "subtitle": "إدارة إعدادات وربط تصنيفات ISIC ذات الصلة."
+    },
+    "featuredLands": {
+      "title": "الأراضي المميزة",
+      "subtitle": "تكوين وإدارة قوائم الأراضي المميزة والأولويات."
+    },
+    "configurationHistory": {
+      "title": "تاريخ الإعدادات",
+      "subtitle": "عرض وتتبع تغييرات الإعدادات وتحديثات النظام."
+    }
+  }
+}

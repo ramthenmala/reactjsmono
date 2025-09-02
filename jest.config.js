@@ -17,8 +17,8 @@ module.exports = {
 
   // Module name mapping for path aliases
   moduleNameMapper: {
-    '^@compassnew/shared-ui$': '<rootDir>/shared-ui/src/index.ts',
-    '^@compassnew/shared-ui/(.*)$': '<rootDir>/shared-ui/src/$1',
+    '^@compass/shared-ui$': '<rootDir>/shared-ui/src/index.ts',
+    '^@compass/shared-ui/(.*)$': '<rootDir>/shared-ui/src/$1',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       'jest-transform-stub',
@@ -47,8 +47,9 @@ module.exports = {
     'node_modules/(?!(.*\\.mjs$|@untitledui|react-aria))',
   ],
 
-  // Coverage configuration - 90% threshold
-  collectCoverage: true,
+  // Coverage configuration - 90% threshold  
+  // Only collect coverage when explicitly requested via CLI
+  collectCoverage: false,
   coverageDirectory: '<rootDir>/coverage',
   coverageReporters: ['text', 'lcov', 'html', 'json'],
 
@@ -104,6 +105,9 @@ module.exports = {
 
   // Verbose output
   verbose: true,
+
+  // Suppress console warnings during tests
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 
   // Handle static assets - merged into moduleNameMapper above
 };

@@ -60,27 +60,27 @@ const DropdownItem = ({
       {(state) => (
         <div
           className={cx(
-            'relative flex items-center rounded-md px-2.5 py-2 outline-focus-ring transition duration-100 ease-linear',
-            !state.isDisabled && 'group-hover:bg-primary_hover',
-            state.isFocused && 'bg-primary_hover',
-            state.isFocusVisible && 'outline-2 -outline-offset-2'
+            'relative flex items-center rounded-md px-2.5 py-2 transition-all duration-200 ease-out',
+            !state.isDisabled && 'group-hover:bg-gray-100 dark:group-hover:bg-gray-700',
+            state.isFocused && 'bg-gray-100 dark:bg-gray-700',
+            state.isFocusVisible && 'outline-2 outline-blue-500 -outline-offset-2'
           )}
         >
           {Icon && (
             <Icon
               aria-hidden="true"
               className={cx(
-                'mr-2 size-4 shrink-0 stroke-[2.25px]',
-                state.isDisabled ? 'text-fg-disabled' : 'text-fg-quaternary'
+                'mr-2 h-4 w-4 shrink-0',
+                state.isDisabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-500 dark:text-gray-400'
               )}
             />
           )}
 
           <span
             className={cx(
-              'grow truncate text-sm font-semibold',
-              state.isDisabled ? 'text-disabled' : 'text-secondary',
-              state.isFocused && 'text-secondary_hover'
+              'flex-1 truncate text-sm font-medium',
+              state.isDisabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-900 dark:text-gray-100',
+              state.isFocused && 'text-gray-900 dark:text-white'
             )}
           >
             {label ||
@@ -90,8 +90,8 @@ const DropdownItem = ({
           {addon && (
             <span
               className={cx(
-                'ml-3 shrink-0 rounded px-1 py-px text-xs font-medium ring-1 ring-secondary ring-inset',
-                state.isDisabled ? 'text-disabled' : 'text-quaternary'
+                'ml-3 shrink-0 rounded px-1 py-px text-xs font-medium ring-1 ring-gray-300 dark:ring-gray-600 ring-inset',
+                state.isDisabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-600 dark:text-gray-400'
               )}
             >
               {addon}
@@ -113,7 +113,7 @@ const DropdownMenu = <T extends object>(props: DropdownMenuProps<T>) => {
       {...props}
       className={(state) =>
         cx(
-          'h-min overflow-y-auto py-1 outline-hidden select-none',
+          'h-min overflow-y-auto py-2 outline-hidden select-none',
           typeof props.className === 'function'
             ? props.className(state)
             : props.className
@@ -132,11 +132,12 @@ const DropdownPopover = (props: DropdownPopoverProps) => {
       {...props}
       className={(state) =>
         cx(
-          'w-62 origin-(--trigger-anchor-point) overflow-auto rounded-lg bg-primary shadow-lg ring-1 ring-secondary_alt will-change-transform',
+          'min-w-48 overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 z-50 transform origin-top transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]',
           state.isEntering &&
-            'duration-150 ease-out animate-in fade-in placement-right:slide-in-from-left-0.5 placement-top:slide-in-from-bottom-0.5 placement-bottom:slide-in-from-top-0.5',
+            'opacity-0 scale-y-0 -translate-y-2',
           state.isExiting &&
-            'duration-100 ease-in animate-out fade-out placement-right:slide-out-to-left-0.5 placement-top:slide-out-to-bottom-0.5 placement-bottom:slide-out-to-top-0.5',
+            'opacity-0 scale-y-0 -translate-y-2',
+          !state.isEntering && !state.isExiting && 'opacity-100 scale-y-100 translate-y-0',
           typeof props.className === 'function'
             ? props.className(state)
             : props.className
@@ -152,7 +153,7 @@ const DropdownSeparator = (props: AriaSeparatorProps) => {
   return (
     <AriaSeparator
       {...props}
-      className={cx('my-1 h-px w-full bg-border-secondary', props.className)}
+      className={cx('my-1 h-px w-full bg-gray-200 dark:bg-gray-700', props.className)}
     />
   );
 };

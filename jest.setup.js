@@ -1,5 +1,12 @@
 import '@testing-library/jest-dom';
 
+// Configure testing-library to use data-qa-id instead of data-testid
+import { configure } from '@testing-library/react';
+
+configure({
+  testIdAttribute: 'data-qa-id',
+});
+
 // Mock CSS imports
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
@@ -29,20 +36,35 @@ global.IntersectionObserver = jest.fn().mockImplementation(() => ({
   disconnect: jest.fn(),
 }));
 
-// Suppress console warnings in tests (optional)
+// Suppress console warnings in tests
 const originalError = console.error;
+const originalWarn = console.warn;
+
 beforeAll(() => {
   console.error = (...args) => {
     if (
       typeof args[0] === 'string' &&
-      args[0].includes('Warning: ReactDOM.render is deprecated')
+      (args[0].includes('Warning: ReactDOM.render is deprecated') ||
+       args[0].includes('React Router Future Flag Warning'))
     ) {
       return;
     }
     originalError.call(console, ...args);
   };
+
+  console.warn = (...args) => {
+    if (
+      typeof args[0] === 'string' &&
+      (args[0].includes('React Router Future Flag Warning') ||
+       args[0].includes('v7_relativeSplatPath'))
+    ) {
+      return;
+    }
+    originalWarn.call(console, ...args);
+  };
 });
 
 afterAll(() => {
   console.error = originalError;
+  console.warn = originalWarn;
 });

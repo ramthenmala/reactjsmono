@@ -19,8 +19,8 @@
     "customConditions": ["development"],
     "baseUrl": ".",
     "paths": {
-      "@compassnew/shared-ui": ["shared-ui/src/index.ts"],
-      "@compassnew/vite-config": ["vite.config.base.ts"]
+      "@compass/shared-ui": ["shared-ui/src/index.ts"],
+      "@compass/vite-config": ["vite.config.base.ts"]
     }
   }
 }

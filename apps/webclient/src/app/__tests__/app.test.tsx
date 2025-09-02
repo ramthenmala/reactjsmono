@@ -18,7 +18,7 @@ describe('Webclient App Component', () => {
   it('displays the correct title for webclient', () => {
     render(<App />);
     expect(
-      screen.getByText('Welcome: @compassnew/webclient')
+      screen.getByText('Welcome: @compass/webclient')
     ).toBeInTheDocument();
   });
 
