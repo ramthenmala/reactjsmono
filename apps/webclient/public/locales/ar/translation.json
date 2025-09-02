@@ -1,0 +1,124 @@
+{
+  "navigation": {
+    "home": "الرئيسية",
+    "explore": "استكشف",
+    "saudi_industrial_landscape": "المناظر الصناعية السعودية",
+    "contact_us": "اتصل بنا"
+  },
+  "common": {
+    "sign_in": "تسجيل الدخول",
+    "compare": "قارن",
+    "share": "مشاركة",
+    "quantity": "الكمية",
+    "view": "عرض",
+    "featured": "مميز",
+    "search": "بحث",
+    "filters": "المرشحات",
+    "sort_by": "ترتيب حسب",
+    "clear_all": "مسح الكل",
+    "clear": "مسح",
+    "apply": "تطبيق",
+    "searching": "جاري البحث...",
+    "results": "النتائج",
+    "showing": "عرض",
+    "of": "من",
+    "connect": "تواصل",
+    "loading": "جاري التحميل...",
+    "try_again": "حاول مرة أخرى"
+  },
+  "hero": {
+    "home": {
+      "title": "مرحباً بكم في منصة بوصلة للاستثمار",
+      "subtitle": "بوابتكم للاستثمار الصناعي في المملكة العربية السعودية، نوجهكم بالرؤى والدعم المتماشي مع رؤية 2030."
+    },
+    "explore": {
+      "title": "استكشف الفرص الاستثمارية",
+      "subtitle": "حدد القطاعات عالية النمو والأراضي الاستراتيجية لمشروعك القادم. اعثر على الموقع الأمثل لمشروعك الصناعي بناءً على متطلباتك المحددة."
+    },
+    "contact": {
+      "title": "اتصل بنا",
+      "subtitle": "تواصل مع متخصصي الاستثمار لدينا لمناقشة الفرص والحصول على التوجيه الشخصي لمشاريعك الصناعية."
+    }
+  },
+  "cta": {
+    "title": "تواصل معنا",
+    "description": "سواء كنت تبحث عن فرص استثمارية أو تحتاج إلى مزيد من المعلومات حول عروضنا الإقليمية، فإن فريقنا هنا لمساعدتك في كل خطوة.",
+    "button": "تواصل معنا"
+  },
+  "search": {
+    "placeholder": "أدخل الموقع أو اسم العقار...",
+    "location": "الموقع",
+    "isic_code": "رمز ISIC",
+    "land_area": "مساحة الأرض (م²)",
+    "select_location": "اختر الموقع",
+    "select_isic": "اختر رموز ISIC",
+    "region": "المنطقة",
+    "sector": "القطاع",
+    "industry_cluster": "تجمع الصناعة",
+    "keyword": "الكلمة المفتاحية",
+    "submit_button": "إرسال",
+    "all_sectors": "جميع القطاعات",
+    "select_region": "اختر المنطقة",
+    "select_city": "اختر المدينة"
+  },
+  "property": {
+    "available": "متاح",
+    "sold": "مُباع",
+    "reserved": "محجوز",
+    "electricity": "كهرباء",
+    "water": "مياه", 
+    "gas": "غاز",
+    "area": "المساحة",
+    "not_found": "العقار غير موجود",
+    "not_found_description": "العقار المطلوب غير موجود."
+  },
+  "property_detail": {
+    "district_map": "خريطة المنطقة والتفاصيل",
+    "establishment_year": "سنة التأسيس",
+    "district": "الحي",
+    "industries_inside": "الصناعات داخل",
+    "lands_factories": "الأراضي والمصانع",
+    "total_land": "إجمالي الأرض",
+    "developed_land": "الأرض المطورة",
+    "undeveloped_land": "الأرض غير المطورة",
+    "occupancy_rate": "معدل الإشغال",
+    "logistic_land_percentage": "نسبة الأرض اللوجستية",
+    "projects_under_construction": "المشاريع قيد الإنشاء",
+    "number_of_factories": "عدد المصانع",
+    "current_workforce": "القوى العاملة الحالية",
+    "infrastructure": "البنية التحتية",
+    "total_electricity_capacity": "إجمالي سعة الكهرباء",
+    "total_water_capacity": "إجمالي سعة المياه",
+    "total_gas_capacity": "إجمالي سعة الغاز",
+    "logistics_services": "الخدمات اللوجستية",
+    "nearby_logistic_centers": "مراكز لوجستية قريبة",
+    "prioritization_results": "نتائج الأولوية",
+    "workforce_talent": "القوى العاملة والمواهب",
+    "infrastructure_utilities": "البنية التحتية والمرافق",
+    "social_community": "الاجتماعية والمجتمعية",
+    "value_chain_clusters": "سلسلة القيمة وتجمعات الصناعة",
+    "environmental": "البيئية",
+    "legal_regulatory": "القانونية والتنظيمية",
+    "market_access_demand": "الوصول للسوق والطلب",
+    "skilled_labor_availability": "توفر العمالة\nالماهرة",
+    "non_skilled_labor_availability": "توفر العمالة\nغير الماهرة",
+    "skilled_labor_salary": "متوسط رواتب العمالة الماهرة (ريال/شهر)",
+    "non_skilled_labor_salary": "متوسط رواتب العمالة غير الماهرة (ريال/شهر)",
+    "content_coming_soon": "المحتوى قريباً"
+  },
+  "footer": {
+    "description": "بوابتك لللاستثمار الصناعي في المملكة العربية السعودية، نوجهك بالرؤى والدعم المتماشي مع رؤية 2030.",
+    "quick_links": "روابط سريعة",
+    "legal": "قانوني",
+    "follow_us": "تابعنا",
+    "terms": "شروط الخدمة",
+    "privacy": "سياسة الخصوصية",
+    "cookies": "سياسة ملفات تعريف الارتباط",
+    "copyright": "©2025 جميع الحقوق محفوظة لوزارة الصناعة والثروة المعدنية"
+  },
+  "units": {
+    "sq_m": "م²",
+    "sq_ft": "قدم²",
+    "m3_per_day": "م³/اليوم"
+  }
+}

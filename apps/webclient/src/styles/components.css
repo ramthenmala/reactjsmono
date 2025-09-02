@@ -1,0 +1,61 @@
+/* Component-specific styles */
+.card {
+  @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+}
+
+.card-header {
+  @apply border-b border-gray-100 pb-4 mb-4;
+}
+
+.card-title {
+  @apply text-lg font-semibold text-gray-900;
+}
+
+.card-description {
+  @apply text-sm text-gray-600 mt-1;
+}
+
+.button-group {
+  @apply flex gap-2;
+}
+
+.form-group {
+  @apply space-y-2;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+.form-input {
+  @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+/* Header */
+.header {
+  @apply z-50 flex h-30 items-end justify-center transition-all duration-300;
+}
+
+.header-section {
+  @apply h-20 w-fit items-center rounded-3xl backdrop-blur-[30px] shadow-[0px_4px_8px_-2px_#1018281A] px-8 py-4 opacity-100 relative;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 70.34%, rgba(255, 255, 255, 0) 140.69%);
+}
+
+.scrolled .header-section {
+  background: linear-gradient(90deg, rgba(105, 93, 194, 0.81) -18.87%, rgba(18, 12, 62, 0.81) 51.29%);
+}
+
+.header-section::before {
+  @apply absolute inset-0 rounded-3xl p-px;
+  content: '';
+  background: linear-gradient(119.15deg, rgba(255, 255, 255, 0.3) 25.72%, rgba(255, 255, 255, 0) 70.96%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+}
+
+.header-nav ul li button,
+.header-nav  ul li a {
+  @apply flex cursor-pointer items-center gap-2 rounded-lg text-md font-medium text-white outline-none transition duration-100 ease-linear hover:text-purple-400 focus-visible:outline-2 focus-visible:outline-offset-2;
+}

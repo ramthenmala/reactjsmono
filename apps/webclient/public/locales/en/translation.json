@@ -1,0 +1,124 @@
+{
+  "navigation": {
+    "home": "Home",
+    "explore": "Explore",
+    "saudi_industrial_landscape": "Saudi Industrial Landscape",
+    "contact_us": "Contact Us"
+  },
+  "common": {
+    "sign_in": "Sign in",
+    "compare": "Compare",
+    "share": "Share",
+    "quantity": "Quantity",
+    "view": "View",
+    "featured": "Featured",
+    "search": "Search",
+    "filters": "Filters",
+    "sort_by": "Sort by",
+    "clear_all": "Clear all",
+    "clear": "Clear",
+    "apply": "Apply",
+    "searching": "Searching...",
+    "results": "results",
+    "showing": "Showing",
+    "of": "of",
+    "connect": "Connect",
+    "loading": "Loading...",
+    "try_again": "Try Again"
+  },
+  "hero": {
+    "home": {
+      "title": "Welcome to Compass Investment Platform",
+      "subtitle": "Your gateway to industrial investment opportunities in Saudi Arabia, guiding you with insights and support aligned with Vision 2030."
+    },
+    "explore": {
+      "title": "Explore Investment Opportunities",
+      "subtitle": "Identify high‑growth sectors and strategic lands for your next venture. Find the optimal location for your industrial project based on your specific requirements."
+    },
+    "contact": {
+      "title": "Contact Us",
+      "subtitle": "Get in touch with our investment specialists to discuss opportunities and receive personalized guidance for your industrial projects."
+    }
+  },
+  "cta": {
+    "title": "Get in Touch with Us",
+    "description": "Whether you're seeking investment opportunities or need more information about our regional offerings, our team is here to assist you every step of the way.",
+    "button": "Connect With Us"
+  },
+  "search": {
+    "placeholder": "Enter location or property name...",
+    "location": "Location",
+    "isic_code": "ISIC Code",
+    "land_area": "Land Area (m²)",
+    "select_location": "Select location",
+    "select_isic": "Select ISIC codes",
+    "region": "Region",
+    "sector": "Sector",
+    "industry_cluster": "Industry Cluster",
+    "keyword": "Keyword",
+    "submit_button": "Submit",
+    "all_sectors": "All Sectors",
+    "select_region": "Select region",
+    "select_city": "Select city"
+  },
+  "property": {
+    "available": "Available",
+    "sold": "Sold", 
+    "reserved": "Reserved",
+    "electricity": "Electricity",
+    "water": "Water",
+    "gas": "Gas",
+    "area": "Area",
+    "not_found": "Property Not Found",
+    "not_found_description": "The requested property could not be found."
+  },
+  "property_detail": {
+    "district_map": "District Map and Details",
+    "establishment_year": "Establishment Year",
+    "district": "District",
+    "industries_inside": "Industries inside",
+    "lands_factories": "Lands and Factories",
+    "total_land": "Total Land",
+    "developed_land": "Developed Land",
+    "undeveloped_land": "Undeveloped Land",
+    "occupancy_rate": "Occupancy Rate",
+    "logistic_land_percentage": "% of Logistic Land",
+    "projects_under_construction": "Projects Under Construction",
+    "number_of_factories": "Number of Factories",
+    "current_workforce": "Current Workforce",
+    "infrastructure": "Infrastructure",
+    "total_electricity_capacity": "Total Electricity Capacity",
+    "total_water_capacity": "Total Water Capacity",
+    "total_gas_capacity": "Total Gas Capacity",
+    "logistics_services": "Logistics Services",
+    "nearby_logistic_centers": "Nearby Logistic Centers",
+    "prioritization_results": "Prioritization Results",
+    "workforce_talent": "Workforce and Talent",
+    "infrastructure_utilities": "Infrastructure and Utilities",
+    "social_community": "Social and Community",
+    "value_chain_clusters": "Value Chain and Industry Clusters",
+    "environmental": "Environmental",
+    "legal_regulatory": "Legal and Regulatory",
+    "market_access_demand": "Market Access and Demand",
+    "skilled_labor_availability": "Availability of Skill\nLabor",
+    "non_skilled_labor_availability": "Availability of\nNon-Skilled Labor",
+    "skilled_labor_salary": "Skilled Labor Average Salaries (SAR/month)",
+    "non_skilled_labor_salary": "Non-Skilled Labor Average Salaries (SAR/month)",
+    "content_coming_soon": "Content coming soon"
+  },
+  "footer": {
+    "description": "Your gateway to industrial investment in Saudi Arabia, guiding you with insights and support aligned with Vision 2030.",
+    "quick_links": "Quick Links",
+    "legal": "Legal",
+    "follow_us": "Follow Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy & Policy",
+    "cookies": "Cookies Policy",
+    "copyright": "©2025 All rights reserved to Ministry of Industries and Mineral Resources (MIM)"
+  },
+  "units": {
+    "sq_m": "m²",
+    "sq_ft": "ft²",
+    "m3_per_day": "m³/day"
+  }
+}

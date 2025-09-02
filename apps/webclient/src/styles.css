@@ -1,6 +1,47 @@
 /* Import the complete globals.css which includes everything */
 @import '../../../shared-ui/src/styles/globals.css';
 
+/* Import fonts and application-specific styles */
+@import './styles/fonts.css';
+@import './styles/components.css';
+
+/* Mapbox GL styles - required for Mapbox to work properly */
+@import 'mapbox-gl/dist/mapbox-gl.css';
+
 /* Source paths for component scanning */
 @source "./**/*.{js,ts,jsx,tsx}";
 @source "../../../shared-ui/src/**/*.{js,ts,jsx,tsx}";
+
+/* Base styles for RTL support */
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+html[dir="ltr"] {
+  direction: ltr;
+}
+
+/* Locale-specific font families */
+.locale-en {
+  font-family: 'IBM Plex Sans', 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.locale-ar {
+  font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* RTL-aware utility classes */
+.rtl .text-left { text-align: right; }
+.rtl .text-right { text-align: left; }
+.rtl .float-left { float: right; }
+.rtl .float-right { float: left; }
+
+/* Custom scrollbar for better UX */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

@@ -26,6 +26,7 @@ export * from './components/base/radio-buttons/radio-buttons';
 export * from './components/base/textarea/textarea';
 export * from './components/base/form/form';
 export * from './components/base/select/select';
+export * from './components/base/select/multi-select';
 export * from './components/base/dropdown/dropdown';
 
 // Base Components - UI Elements

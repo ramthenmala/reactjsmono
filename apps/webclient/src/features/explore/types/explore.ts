@@ -1,0 +1,69 @@
+export interface IExploreLandingResponse {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: {
+    exploreDetails: {
+      bannerImage: string;
+      bannerTitle: string;
+      bannerContent: string;
+      featuredIndustrialCitiesTitle: string;
+      featuredIndustrialCitiesContent: string;
+      compassInvestorJourney: {
+        title: string;
+        content: string;
+        cards: Array<{
+          icon: string;
+          title: string;
+          content: string;
+        }>;
+      };
+      connect: {
+        title: string;
+        content: string;
+        buttonLabel: string;
+      };
+    };
+  };
+}
+
+export type TFeaturedProperty = {
+  id: string;
+  slug: string;
+  city: string; // localized
+  title: string; // localized
+  area: number;
+  image: string;
+  electricity: string; // MW
+  gas: string; // MMSCFD
+  water: string; // m3/day
+  status: "available"; // keep literal type to match sample data
+  featured: true;
+}; 
+
+export interface IProperty {
+  id: string;
+  slug: string;
+  city: string;
+  title: string;
+  area: number;
+  image: string;
+  electricity?: string;
+  water?: string;
+  gas?: string;
+  status: "available" | "sold" | "reserved";
+  featured?: boolean;
+  coordinates?: { lat: number; lng: number };
+}
+
+export interface IPropertyCardProps {
+  property: IProperty;
+  onCompare?: (property: IProperty) => void;
+  onView?: (property: IProperty) => void;
+}
+
+// --- Units ----------------------------------------------------------
+export enum EAreaUnit { SqMeter = 'm2', SqFoot = 'ft2' }
+export enum EPowerUnit { MW = 'MW' }
+export enum EGasFlowUnit { MMSCFD = 'MMSCFD' }
+export enum EWaterFlowUnit { M3PerDay = 'm3/day' }
