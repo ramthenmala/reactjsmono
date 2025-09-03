@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useLocaleTranslation } from '../../shared/lib/i18n';
+import { useLocaleNavigate } from '../../shared/lib/router/routerUtils';
 import { PropertyGrid, ViewControls } from './components';
 import { EViewMode, IProperty } from './types';
 import { Hero } from '../../shared/ui/components/Hero';
+import { useComparison } from './contexts/ComparisonContext';
 
 // Sample data for testing
 const sampleProperties: IProperty[] = [
@@ -62,17 +64,24 @@ const sampleProperties: IProperty[] = [
 
 export function ExplorePage() {
   const { t, currentLanguage } = useLocaleTranslation();
+  const { navigate } = useLocaleNavigate();
+  const { addToComparison } = useComparison();
   const [viewMode, setViewMode] = useState<EViewMode>(EViewMode.split);
   const [properties] = useState<IProperty[]>(sampleProperties);
 
   const handleViewProperty = (property: IProperty) => {
-    console.log('View property:', property);
-    // TODO: Navigate to property detail page
+    navigate(`/explore/city-land/${property.slug}`);
   };
 
   const handleCompareProperty = (property: IProperty) => {
-    console.log('Compare property:', property);
-    // TODO: Add to comparison list
+    const result = addToComparison(property);
+    if (result.success) {
+      // You might want to show a toast notification here
+      console.log(result.message);
+    } else {
+      // Handle error - property already in list or max limit reached
+      console.warn(result.message);
+    }
   };
 
   return (

@@ -1,26 +1,37 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useLocaleTranslation } from '../../../shared/lib/i18n';
+import { useLocaleNavigate } from '../../../shared/lib/router/routerUtils';
 import { Hero } from '../../../shared/ui/components/Hero';
-import { PropertyGrid, ViewControls, SearchPanel } from '../components';
-import { Map } from '../components/Map';
+import { PropertyGrid, ViewControls, SearchPanel, Map } from '../components';
 import { EViewMode, IProperty } from '../types';
 import { IndustrialCitiesService } from '../services/industrialCitiesService';
+import { useComparison } from '../contexts/ComparisonContext';
+import { SearchFilters } from '../../../shared/types';
 
 export function ExploreListingPage() {
   const { t } = useLocaleTranslation();
+  const { navigate } = useLocaleNavigate();
+  const { addToComparison } = useComparison();
   const [viewMode, setViewMode] = useState<EViewMode>(EViewMode.split);
   const [properties, setProperties] = useState<IProperty[]>([]);
+  const [allProperties, setAllProperties] = useState<IProperty[]>([]);
+  const [searchFilters, setSearchFilters] = useState<SearchFilters | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const handleViewProperty = (property: IProperty) => {
-    console.log('View property:', property);
-    // TODO: Navigate to property detail page
+    navigate(`/explore/city-land/${property.slug}`);
   };
 
   const handleCompareProperty = (property: IProperty) => {
-    console.log('Compare property:', property);
-    // TODO: Add to comparison list
+    const result = addToComparison(property);
+    if (result.success) {
+      // You might want to show a toast notification here
+      console.log(result.message);
+    } else {
+      // Handle error - property already in list or max limit reached
+      console.warn(result.message);
+    }
   };
 
   // Fetch properties from API on component mount
@@ -30,6 +41,7 @@ export function ExploreListingPage() {
         setLoading(true);
         setError(null);
         const apiProperties = await IndustrialCitiesService.getProperties();
+        setAllProperties(apiProperties);
         setProperties(apiProperties);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch properties');
@@ -41,6 +53,56 @@ export function ExploreListingPage() {
 
     fetchProperties();
   }, []);
+
+  // Filter properties based on search criteria
+  const filteredProperties = useMemo(() => {
+    if (!searchFilters || allProperties.length === 0) {
+      return allProperties;
+    }
+
+    return allProperties.filter((property) => {
+      // Region/City filter
+      if (searchFilters.region && searchFilters.region !== 'all') {
+        if (!property.city.toLowerCase().includes(searchFilters.region.toLowerCase())) {
+          return false;
+        }
+      }
+
+      // Location (city) filter
+      if (searchFilters.location && searchFilters.location !== 'all') {
+        if (!property.city.toLowerCase().includes(searchFilters.location.toLowerCase())) {
+          return false;
+        }
+      }
+
+      // Area filter
+      if (searchFilters.minArea && property.area < searchFilters.minArea) {
+        return false;
+      }
+      if (searchFilters.maxArea && property.area > searchFilters.maxArea) {
+        return false;
+      }
+
+      // Title/name filter (search in title)
+      if (searchFilters.sector && searchFilters.sector !== 'all') {
+        if (!property.title.toLowerCase().includes(searchFilters.sector.toLowerCase())) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+  }, [allProperties, searchFilters]);
+
+  // Update properties when filters change
+  useEffect(() => {
+    setProperties(filteredProperties);
+  }, [filteredProperties]);
+
+  const handleSearch = (filters?: SearchFilters) => {
+    console.log('Search filters:', filters);
+    setSearchFilters(filters || null);
+  };
 
   return (
     <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
@@ -55,10 +117,7 @@ export function ExploreListingPage() {
       />
 
       {/* Search/Filter Panel */}
-      <SearchPanel onSearch={(filters) => {
-        console.log('Search filters:', filters);
-        // TODO: Filter properties based on search criteria
-      }} />
+      <SearchPanel onSearch={handleSearch} />
 
       {/* Results Section */}
       <section className="container mx-auto px-4 py-8">

@@ -32,6 +32,7 @@ export class CitiesService {
 
     try {
       // TODO: Replace with actual API call when cities endpoint is available
+      // Expected API: GET /api/regions/{regionId}/cities
       // For now, simulate API delay and return mock data
       await new Promise(resolve => setTimeout(resolve, 500));
       

@@ -1,33 +1,124 @@
 import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useLocaleTranslation } from '../../../shared/lib/i18n';
 import { Hero } from '../../../shared/ui/components/Hero';
 import { Button } from '@compass/shared-ui';
 import { Zap, Drop, Plane, MarkerPin02, Phone, Mail01 } from '@untitledui/icons';
-import { Map } from '../components/Map';
+import { Map } from '../components';
 import { IPlotPoint } from '../types/map';
+import { IProperty } from '../types/explore';
+import { IndustrialCitiesService } from '../services/industrialCitiesService';
+
+interface IPropertyDetail extends IProperty {
+  description?: string;
+  amenities?: string[];
+  price?: number;
+}
 
 export function PropertyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useLocaleTranslation();
+  const [property, setProperty] = useState<IPropertyDetail | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // TODO: Fetch property data based on slug
-  const property = {
-    id: '1',
-    slug: slug || '',
-    city: 'Riyadh',
-    title: 'Riyadh Industrial City - Plot A1',
-    area: 5000,
-    image: '/images/land-a.png',
-    electricity: '15',
-    water: '2500',
-    gas: '10',
-    status: 'available' as const,
-    featured: true,
-    description: 'Premium industrial plot located in the heart of Riyadh Industrial City. Perfect for manufacturing, logistics, and heavy industry operations.',
-    amenities: ['24/7 Security', 'Fire Station', 'Medical Center', 'Transportation Hub'],
-    price: 2500000,
-    coordinates: { lat: 24.7136, lng: 46.6753 },
-  };
+  // Fetch property data based on slug
+  useEffect(() => {
+    const fetchProperty = async () => {
+      if (!slug) {
+        setError('No property slug provided');
+        setLoading(false);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        setError(null);
+        
+        // Fetch all properties and find the matching one
+        const properties = await IndustrialCitiesService.getProperties();
+        const foundProperty = properties.find(p => p.slug === slug);
+        
+        if (!foundProperty) {
+          setError('Property not found');
+          setLoading(false);
+          return;
+        }
+
+        // Enhance property with additional details
+        const enhancedProperty: IPropertyDetail = {
+          ...foundProperty,
+          description: `Premium industrial plot located in ${foundProperty.city}. Perfect for manufacturing, logistics, and heavy industry operations with excellent infrastructure and connectivity.`,
+          amenities: ['24/7 Security', 'Fire Station', 'Medical Center', 'Transportation Hub', 'Utilities Ready', 'High-Speed Internet'],
+          price: Math.floor(foundProperty.area * (150 + Math.random() * 100)), // Estimated price per m²
+        };
+
+        setProperty(enhancedProperty);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to fetch property');
+        console.error('Error fetching property:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProperty();
+  }, [slug]);
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
+        <Hero
+          backgroundImage="/images/ExploreBG.jpg"
+          title="Loading..."
+          subtitle="Please wait while we fetch the property details"
+          breadcrumbItems={[
+            { label: t('navigation.explore') || 'Explore', href: '/explore/landing' },
+            { label: t('explore.listing') || 'Properties', href: '/explore/listing' },
+            { label: 'Loading...', href: '#' }
+          ]}
+        />
+        <section className="container mx-auto px-4 py-8 flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+          <span className="ml-3 text-gray-600">Loading property details...</span>
+        </section>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error || !property) {
+    return (
+      <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
+        <Hero
+          backgroundImage="/images/ExploreBG.jpg"
+          title="Property Not Found"
+          subtitle={error || 'The requested property could not be found'}
+          breadcrumbItems={[
+            { label: t('navigation.explore') || 'Explore', href: '/explore/landing' },
+            { label: t('explore.listing') || 'Properties', href: '/explore/listing' },
+            { label: 'Not Found', href: '#' }
+          ]}
+        />
+        <section className="container mx-auto px-4 py-8 text-center">
+          <div className="text-red-500 mb-4">
+            <svg className="mx-auto h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">Property Not Found</h3>
+          <p className="text-gray-600 mb-4">{error || 'The property you are looking for does not exist.'}</p>
+          <Button 
+            onClick={() => window.location.href = '/explore/listing'}
+            color="primary"
+          >
+            Back to Properties
+          </Button>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
@@ -95,35 +186,41 @@ export function PropertyDetailPage() {
               </h2>
               
               <div className="grid md:grid-cols-3 gap-6">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 bg-yellow-100 rounded-lg">
-                    <Zap className="w-6 h-6 text-yellow-600" />
+                {property.electricity && (
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 bg-yellow-100 rounded-lg">
+                      <Zap className="w-6 h-6 text-yellow-600" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">Electricity</p>
+                      <p className="text-gray-600">{property.electricity} MW</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium text-gray-900">Electricity</p>
-                    <p className="text-gray-600">{property.electricity} MW</p>
-                  </div>
-                </div>
+                )}
                 
-                <div className="flex items-center gap-3">
-                  <div className="p-3 bg-blue-100 rounded-lg">
-                    <Drop className="w-6 h-6 text-blue-600" />
+                {property.water && (
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 bg-blue-100 rounded-lg">
+                      <Drop className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">Water</p>
+                      <p className="text-gray-600">{property.water} m³/day</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium text-gray-900">Water</p>
-                    <p className="text-gray-600">{property.water} m³/day</p>
-                  </div>
-                </div>
+                )}
                 
-                <div className="flex items-center gap-3">
-                  <div className="p-3 bg-blue-100 rounded-lg">
-                    <Plane className="w-6 h-6 text-blue-600" />
+                {property.gas && (
+                  <div className="flex items-center gap-3">
+                    <div className="p-3 bg-blue-100 rounded-lg">
+                      <Plane className="w-6 h-6 text-blue-600" />
+                    </div>
+                    <div>
+                      <p className="font-medium text-gray-900">Gas</p>
+                      <p className="text-gray-600">{property.gas} MMSCFD</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="font-medium text-gray-900">Gas</p>
-                    <p className="text-gray-600">{property.gas} MMSCFD</p>
-                  </div>
-                </div>
+                )}
               </div>
 
               <div className="mt-8">
@@ -135,19 +232,21 @@ export function PropertyDetailPage() {
             </div>
 
             {/* Amenities */}
-            <div className="bg-white rounded-xl shadow-sm p-6">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-                Amenities & Features
-              </h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                {property.amenities.map((amenity, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
-                    <span className="text-gray-600">{amenity}</span>
-                  </div>
-                ))}
+            {property.amenities && (
+              <div className="bg-white rounded-xl shadow-sm p-6">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+                  Amenities & Features
+                </h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {property.amenities.map((amenity, index) => (
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-purple-600 rounded-full"></div>
+                      <span className="text-gray-600">{amenity}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
           {/* Sidebar */}

@@ -5,3 +5,4 @@ export * from './ViewControls';
 export * from './SearchPanel';
 export * from './FeaturedIndustrialCities';
 export * from './InvestorJourney';
+export * from './Map';

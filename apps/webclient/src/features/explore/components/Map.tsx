@@ -411,16 +411,16 @@ export function Map({
             // Create a simple container for the React portal
             const popupDiv = document.createElement('div');
             popupDiv.id = 'map-popup-container';
-            popupDiv.style.width = '320px';
-            popupDiv.style.minWidth = '320px';
-            popupDiv.style.maxWidth = '320px';
+            popupDiv.style.width = '380px';
+            popupDiv.style.minWidth = '380px';
+            popupDiv.style.maxWidth = '380px';
 
             // Create and show popup with empty container
             const popup = new mapboxgl.Popup({
               closeButton: false,
               closeOnClick: false, // We'll handle this ourselves
               className: 'property-card-popup',
-              maxWidth: '320px' // Set to 320px as requested
+              maxWidth: '380px' // Increased to 380px for better content fit
             })
               .setLngLat(coordinates)
               .setDOMContent(popupDiv)
@@ -588,18 +588,20 @@ export function Map({
 
       {/* React Portal for PropertyCard popup */}
       {popupProperty && popupContainer && createPortal(
-        <div className="relative">
-          <PropertyCard
-            property={popupProperty}
-            hideDistance={true}
-            onView={() => {
-              closePopup();
-              onMarkerClick?.(popupProperty);
-            }}
-            onCompare={() => {
-              // Handle compare functionality
-            }}
-          />
+        <div className="relative w-full">
+          <div className="w-full min-w-[380px]">
+            <PropertyCard
+              property={popupProperty}
+              hideDistance={true}
+              onView={() => {
+                closePopup();
+                onMarkerClick?.(popupProperty);
+              }}
+              onCompare={() => {
+                // Handle compare functionality
+              }}
+            />
+          </div>
           <button
             onClick={closePopup}
             className="absolute top-3 right-3 z-50 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center text-lg font-bold hover:bg-black/80 transition-all cursor-pointer shadow-md"
