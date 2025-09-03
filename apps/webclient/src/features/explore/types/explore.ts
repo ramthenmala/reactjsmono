@@ -60,6 +60,37 @@ export interface IPropertyCardProps {
   property: IProperty;
   onCompare?: (property: IProperty) => void;
   onView?: (property: IProperty) => void;
+  hideDistance?: boolean;
+}
+
+// --- API Response Types -------------------------------------------
+export interface IIndustrialCityAPI {
+  id: string;
+  name: string;
+  banner: string;
+  cityName: string;
+  regionName: string;
+  totalArea: string; // in km²
+  totalGasCapacity: string;
+  totalWaterCapacity: string;
+  totalElectricityCapacity: string;
+  nearestAirportDistance: string;
+  nearestDryportDistance: string;
+  nearestLandportDistance: string;
+  nearestRailwayDistance: string;
+  nearestSeaportDistance: string;
+}
+
+export interface IIndustrialCitiesResponse {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: {
+    cities: IIndustrialCityAPI[];
+    total: number;
+    page: string;
+    limit: string;
+  };
 }
 
 // --- Units ----------------------------------------------------------

@@ -51,6 +51,7 @@ export * from './components/application/tabs/tabs';
 export * from './components/application/modals/modal';
 export * from './components/application/empty-state/empty-state';
 export * from './components/application/loading-indicator/loading-indicator';
+export { Table, TableCard } from './components/application/table/table';
 
 // Foundation Components
 export * from './components/foundations/featured-icon/featured-icons';

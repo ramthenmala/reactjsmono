@@ -100,7 +100,7 @@ const DistanceCard = memo(({
 ));
 DistanceCard.displayName = 'DistanceCard';
 
-export const PropertyCard = memo(({ property, onCompare, onView }: IPropertyCardProps) => {
+export const PropertyCard = memo(({ property, onCompare, onView, hideDistance = false }: IPropertyCardProps) => {
   const { t } = useLocaleTranslation();
   
   // Memoize formatter function
@@ -111,24 +111,14 @@ export const PropertyCard = memo(({ property, onCompare, onView }: IPropertyCard
 
   // Memoize computed values
   const formattedArea = useMemo(() => 
-    formatMeasure(property.area, EAreaUnit.SqMeter, { formatNumber, t }),
-    [property.area, formatNumber, t]
+    `${formatNumber(property.area)} km²`,
+    [property.area, formatNumber]
   );
 
-  const formattedElectricity = useMemo(() => 
-    property.electricity ? formatMeasure(property.electricity, EPowerUnit.MW, { formatNumber, t }) : null,
-    [property.electricity, formatNumber, t]
-  );
-
-  const formattedGas = useMemo(() => 
-    property.gas ? formatMeasure(property.gas, EGasFlowUnit.MMSCFD, { formatNumber, t }) : null,
-    [property.gas, formatNumber, t]
-  );
-
-  const formattedWater = useMemo(() => 
-    property.water ? formatMeasure(property.water, EWaterFlowUnit.M3PerDay, { formatNumber, t }) : null,
-    [property.water, formatNumber, t]
-  );
+  // API already provides values with units, so use them directly
+  const formattedElectricity = useMemo(() => property.electricity || null, [property.electricity]);
+  const formattedGas = useMemo(() => property.gas || null, [property.gas]);
+  const formattedWater = useMemo(() => property.water || null, [property.water]);
 
   // Memoize event handlers
   const handleCompare = useCallback(() => onCompare?.(property), [onCompare, property]);
@@ -210,20 +200,22 @@ export const PropertyCard = memo(({ property, onCompare, onView }: IPropertyCard
         </div>
 
         {/* Distance Information */}
-        <div className={CARD_STYLES.distanceGrid}>
-          <DistanceCard 
-            icon={<Anchor className={ICON_STYLES.shrink} />} 
-            distance="75 km" 
-          />
-          <DistanceCard 
-            icon={<Train className={ICON_STYLES.shrink} />} 
-            distance="102 km" 
-          />
-          <DistanceCard 
-            icon={<Plane className={ICON_STYLES.shrink} />} 
-            distance="62 km" 
-          />
-        </div>
+        {!hideDistance && (
+          <div className={CARD_STYLES.distanceGrid}>
+            <DistanceCard 
+              icon={<Anchor className={ICON_STYLES.shrink} />} 
+              distance="75 km" 
+            />
+            <DistanceCard 
+              icon={<Train className={ICON_STYLES.shrink} />} 
+              distance="102 km" 
+            />
+            <DistanceCard 
+              icon={<Plane className={ICON_STYLES.shrink} />} 
+              distance="62 km" 
+            />
+          </div>
+        )}
 
         {/* Action Buttons */}
         <div className={CARD_STYLES.buttonGrid}>

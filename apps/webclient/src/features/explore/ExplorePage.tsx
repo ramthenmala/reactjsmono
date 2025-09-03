@@ -62,7 +62,7 @@ const sampleProperties: IProperty[] = [
 
 export function ExplorePage() {
   const { t, currentLanguage } = useLocaleTranslation();
-  const [viewMode, setViewMode] = useState<EViewMode>(EViewMode.list);
+  const [viewMode, setViewMode] = useState<EViewMode>(EViewMode.split);
   const [properties] = useState<IProperty[]>(sampleProperties);
 
   const handleViewProperty = (property: IProperty) => {
@@ -88,7 +88,7 @@ export function ExplorePage() {
       />
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <section className="container mx-auto px-4 py-8">
         {/* Results Header */}
         <div className="mb-6">
           <h2 className="text-2xl font-semibold text-gray-900 mb-2">
@@ -144,7 +144,7 @@ export function ExplorePage() {
             <strong>Properties:</strong> {properties.length} loaded
           </p>
         </div>
-      </main>
+      </section>
     </div>
   );
 }

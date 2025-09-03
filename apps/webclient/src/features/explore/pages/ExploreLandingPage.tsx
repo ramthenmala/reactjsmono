@@ -99,7 +99,7 @@ InvestorJourneySection.displayName = 'InvestorJourneySection';
 // Main page component
 export const ExploreLandingPage = memo(() => {
   return (
-    <main className={`${PAGE_CONFIG.layout.className} ${PAGE_CONFIG.layout.background}`}>
+    <div className={`${PAGE_CONFIG.layout.className} ${PAGE_CONFIG.layout.background}`}>
       {/* Hero Section - Critical, no lazy loading */}
       <HeroSection />
 
@@ -111,7 +111,7 @@ export const ExploreLandingPage = memo(() => {
 
       {/* Investor Journey Section - Bottom section, lowest priority */}
       <InvestorJourneySection />
-    </main>
+    </div>
   );
 });
 

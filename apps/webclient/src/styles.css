@@ -45,3 +45,8 @@ html[dir="ltr"] {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* Remove Mapbox popup content padding for property cards */
+.property-card-popup .mapboxgl-popup-content {
+  padding: 0 !important;
+}

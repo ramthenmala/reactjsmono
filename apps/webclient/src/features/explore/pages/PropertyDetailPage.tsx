@@ -30,7 +30,7 @@ export function PropertyDetailPage() {
   };
 
   return (
-    <main className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
+    <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
       <Hero
         backgroundImage="/images/ExploreBG.jpg"
         title={property.title}
@@ -202,6 +202,6 @@ export function PropertyDetailPage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
