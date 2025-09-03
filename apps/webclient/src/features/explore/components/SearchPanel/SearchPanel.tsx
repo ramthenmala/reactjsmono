@@ -2,7 +2,8 @@ import { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocaleTranslation } from '../../../../shared/lib/i18n';
 import { useCurrentLocale } from '../../../../shared/lib/router';
-import { useSearchData, useSearchFilters } from '../../../../shared/hooks';
+import { useSearchData } from '../../../../shared/hooks';
+import { useSearchFiltersStore } from '../../../../shared/hooks/useSearchFiltersStore';
 import { SearchFilters } from '../../../../shared/types';
 import { createRouteUrl } from '../../../../shared/utils';
 import { SearchForm } from './SearchForm';
@@ -26,7 +27,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
     updateFilters, 
     updateAreaValue, 
     clearFilters 
-  } = useSearchFilters({ 
+  } = useSearchFiltersStore({ 
     initialFilters,
     areaRange,
     onFiltersChange: (newFilters) => {
