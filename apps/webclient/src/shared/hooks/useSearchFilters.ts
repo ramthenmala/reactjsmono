@@ -1,5 +1,5 @@
-import { useState, useCallback, useReducer } from 'react';
-import { SearchFilters, SearchState, SearchAction } from '../types/search';
+import { useState, useCallback, useReducer, useEffect } from 'react';
+import { SearchFilters, SearchState, SearchAction, AreaRange } from '../types/search';
 
 const DEFAULT_FILTERS: SearchFilters = {
   isic: [],
@@ -42,6 +42,7 @@ function searchReducer(state: SearchState, action: SearchAction): SearchState {
 interface UseSearchFiltersOptions {
   initialFilters?: Partial<SearchFilters>;
   onFiltersChange?: (filters: SearchFilters) => void;
+  areaRange?: AreaRange;
 }
 
 interface UseSearchFiltersReturn {
@@ -54,7 +55,7 @@ interface UseSearchFiltersReturn {
 }
 
 export function useSearchFilters(options: UseSearchFiltersOptions = {}): UseSearchFiltersReturn {
-  const { initialFilters = {}, onFiltersChange } = options;
+  const { initialFilters = {}, onFiltersChange, areaRange } = options;
   
   const [state, dispatch] = useReducer(searchReducer, {
     filters: { ...DEFAULT_FILTERS, ...initialFilters },
@@ -62,7 +63,7 @@ export function useSearchFilters(options: UseSearchFiltersOptions = {}): UseSear
     cities: [],
     sectors: [],
     isics: [],
-    areaRange: DEFAULT_AREA_RANGE,
+    areaRange: areaRange || DEFAULT_AREA_RANGE,
     isLoading: false,
   });
 
@@ -70,6 +71,20 @@ export function useSearchFilters(options: UseSearchFiltersOptions = {}): UseSear
     initialFilters.minArea || DEFAULT_FILTERS.minArea,
     initialFilters.maxArea || DEFAULT_FILTERS.maxArea,
   ]);
+
+  // Update area value when areaRange is loaded from API
+  useEffect(() => {
+    if (areaRange && !initialFilters.minArea && !initialFilters.maxArea) {
+      setAreaValue([areaRange.min, areaRange.max]);
+      dispatch({ 
+        type: 'SET_FILTERS', 
+        payload: { 
+          minArea: areaRange.min, 
+          maxArea: areaRange.max 
+        } 
+      });
+    }
+  }, [areaRange, initialFilters.minArea, initialFilters.maxArea]);
 
   const updateFilters = useCallback((updates: Partial<SearchFilters>) => {
     dispatch({ type: 'SET_FILTERS', payload: updates });
@@ -89,9 +104,15 @@ export function useSearchFilters(options: UseSearchFiltersOptions = {}): UseSear
 
   const clearFilters = useCallback(() => {
     dispatch({ type: 'CLEAR_FILTERS' });
-    setAreaValue([DEFAULT_FILTERS.minArea, DEFAULT_FILTERS.maxArea]);
-    onFiltersChange?.(DEFAULT_FILTERS);
-  }, [onFiltersChange]);
+    const clearAreaRange = areaRange ? [areaRange.min, areaRange.max] as [number, number] : [DEFAULT_FILTERS.minArea, DEFAULT_FILTERS.maxArea];
+    setAreaValue(clearAreaRange);
+    const clearedFilters = { 
+      ...DEFAULT_FILTERS, 
+      minArea: areaRange?.min || DEFAULT_FILTERS.minArea,
+      maxArea: areaRange?.max || DEFAULT_FILTERS.maxArea
+    };
+    onFiltersChange?.(clearedFilters);
+  }, [onFiltersChange, areaRange]);
 
   const setAreaFromFilters = useCallback(() => {
     setAreaValue([state.filters.minArea, state.filters.maxArea]);

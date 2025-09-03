@@ -36,33 +36,30 @@ export function MobileSlider({
           <div
             key={step.title}
             className={`
-              bg-white rounded-2xl shadow-lg flex flex-col items-center text-center transition-all duration-300
-              ${idx === activeIndex 
-                ? "pt-6 pb-8 translate-y-0 opacity-95"   // active: less top padding, lifted up
-                : "pt-12 pb-6 translate-y-4 opacity-95"}  // inactive: more padding, shifted down
+              flex flex-col items-center min-h-[290px] p-12 gap-5
+              rounded-[20px] border border-[#EBEDEF] bg-white
+              shadow-[0_12px_16px_-4px_rgba(16,24,40,0.04),0_4px_6px_-2px_rgba(16,24,40,0.02)]
+              backdrop-blur-[7.5px] transition-all duration-300
+              ${idx === activeIndex ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}
             `}
             style={{
               minWidth: "100%",
               maxWidth: "100%",
-              scale: idx === activeIndex ? 1 : 0.95,
             }}
           >
-            <div
-              className="flex items-center justify-center mb-6 mt-6 radius-lg"
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: 10,
-                border: "1px solid #5547B5",
-                background: "#FFF",
-                padding: 8,
-              }}
-            >
-              <img src={step.icon} alt={step.title} style={{ width: 24, height: 24 }} />
+            {/* Icon Container */}
+            <div className="w-12 h-12 rounded-[10px] border border-[#5547B5] bg-white p-2 flex items-center justify-center">
+              <img src={step.icon} alt={step.title} className="w-6 h-6" />
             </div>
-            <div className="px-10">
-              <h3 className="text-lg font-semibold mb-2 text-[#171B23]">{step.title}</h3>
-              <p className="text-gray-500">{step.content}</p>
+            
+            {/* Content Container */}
+            <div className="flex flex-col items-center gap-2 text-center px-4">
+              <h3 className="text-lg font-semibold text-[#171B23] leading-7">
+                {step.title}
+              </h3>
+              <p className="text-sm text-gray-500 leading-5">
+                {step.content}
+              </p>
             </div>
           </div>
         ))}

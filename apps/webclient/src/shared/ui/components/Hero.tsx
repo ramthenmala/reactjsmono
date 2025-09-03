@@ -1,8 +1,10 @@
 import React from "react";
+import { Breadcrumb } from "@compass/shared-ui";
 
 export interface BreadcrumbItem {
   label: string;
   href?: string;
+  current?: boolean;
 }
 
 interface HeroProps {
@@ -36,22 +38,12 @@ export function Hero({
       
       <div className="container mx-auto relative px-4">
         {breadcrumbItems && breadcrumbItems.length > 0 && (
-          <nav className="mb-10">
-            <ol className="flex items-center space-x-2 text-sm text-white/80">
-              {breadcrumbItems.map((item, index) => (
-                <li key={index} className="flex items-center">
-                  {index > 0 && <span className="mx-2">/</span>}
-                  {item.href ? (
-                    <a href={item.href} className="hover:text-white">
-                      {item.label}
-                    </a>
-                  ) : (
-                    <span>{item.label}</span>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </nav>
+          <div className="mb-10">
+            <Breadcrumb 
+              items={breadcrumbItems}
+              showHome={true}
+            />
+          </div>
         )}
         {(title || subtitle) && (
           <div className="mx-auto text-center w-full md:w-1/2 mt-10">
@@ -63,7 +55,7 @@ export function Hero({
               </h1>
             )}
             {subtitle && (
-              <p className="mt-4 text-center font-sans
+              <p className="mt-8 text-center font-sans
                 text-[14px] leading-[20px] font-normal
                 md:text-[18px] md:leading-[28px] md:font-medium
                 tracking-normal text-[#F5F5F6]">

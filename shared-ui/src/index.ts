@@ -27,11 +27,14 @@ export * from './components/base/textarea/textarea';
 export * from './components/base/form/form';
 export * from './components/base/select/select';
 export * from './components/base/select/multi-select';
+export * from './components/base/select/combobox';
+export * from './components/base/select/select-item';
 export * from './components/base/dropdown/dropdown';
 
 // Base Components - UI Elements
 export * from './components/base/avatar/avatar';
 export * from './components/base/badges/badges';
+export * from './components/base/breadcrumb/breadcrumb';
 export * from './components/base/button-group/button-group';
 export * from './components/base/toggle/toggle';
 export * from './components/base/slider/slider';

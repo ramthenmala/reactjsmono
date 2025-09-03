@@ -10,6 +10,7 @@ export interface SearchFilters {
 export interface SelectOption {
   id: string;
   label: string;
+  value: string;
 }
 
 export interface AreaRange {

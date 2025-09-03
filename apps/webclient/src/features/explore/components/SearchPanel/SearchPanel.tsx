@@ -1,5 +1,4 @@
 import { useCallback, useState, useEffect } from 'react';
-import { Button } from "@compass/shared-ui";
 import { useNavigate } from 'react-router-dom';
 import { useLocaleTranslation } from '../../../../shared/lib/i18n';
 import { useCurrentLocale } from '../../../../shared/lib/router';
@@ -20,7 +19,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
   const [isSearching, setIsSearching] = useState(false);
 
   // Use custom hooks for data and filters management
-  const { regions, sectors, isics, cities, loadCities, isLoading: dataLoading } = useSearchData();
+  const { regions, sectors, isics, cities, areaRange, loadCities, isLoading: dataLoading } = useSearchData();
   const { 
     filters, 
     areaValue, 
@@ -29,6 +28,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
     clearFilters 
   } = useSearchFilters({ 
     initialFilters,
+    areaRange,
     onFiltersChange: (newFilters) => {
       // Optional callback when filters change
       console.debug('Filters changed:', newFilters);
@@ -79,17 +79,21 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
   const isLoading = dataLoading || isSearching;
 
   return (
-    <section className="relative z-10 -mt-32 mx-auto w-full max-w-7xl px-4">
-      <div className="relative rounded-2xl border border-white/30 bg-gradient-to-r from-white/10 to-white/5 p-6 shadow-[0px_4px_8px_-2px_#1018281A,0_2px_4px_-2px_#1018280F] backdrop-blur-[15px] overflow-hidden">
-        
-        {/* Glass morphism overlay */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
-        
+    <section className="relative z-10 -mt-[80px] mx-auto w-full max-w-[1280px] px-4">
+      <div 
+        className="relative flex flex-col items-start rounded-[24px] border border-[#EBEDEF] overflow-hidden w-full max-w-[1280px] p-4 md:p-8"
+        style={{
+          background: 'radial-gradient(48.45% 55.71% at 50% 0%, rgba(216, 200, 255, 0.50) 0%, rgba(216, 200, 255, 0.00) 100%), rgba(255, 255, 255, 0.80)',
+          boxShadow: '0 2px 75px 20px rgba(85, 71, 181, 0.20)',
+          backdropFilter: 'blur(50px)',
+        }}
+      >
         {/* Content */}
-        <div className="relative">
+        <div className="w-full">
           <SearchForm
             filters={filters}
             areaValue={areaValue}
+            areaRange={areaRange}
             regions={regions}
             sectors={sectors}
             isics={isics}
@@ -99,32 +103,10 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
             onAreaChangeEnd={handleAreaChangeEnd}
             isLoading={isLoading}
             t={t}
+            onSearch={handleSearch}
+            onClear={handleClearFilters}
+            isSearching={isSearching}
           />
-
-          {/* Action Buttons */}
-          <div className="mt-6 flex justify-between">
-            <Button
-              size="lg"
-              color="secondary"
-              className="min-w-32"
-              onClick={handleClearFilters}
-              disabled={isLoading}
-            >
-              {t('common.clear') || 'Clear'}
-            </Button>
-            <Button
-              size="lg"
-              color="primary"
-              className="h-12 rounded-xl px-[18px] text-white font-semibold text-base leading-6 tracking-normal shadow-sm transition bg-[linear-gradient(90deg,#5547B5_0%,#695DC2_100%)] hover:brightness-105 active:brightness-95"
-              onClick={handleSearch}
-              disabled={isLoading}
-            >
-              {isSearching 
-                ? (t('common.searching') || 'Searching...') 
-                : (t('navigation.explore') || 'Search')
-              }
-            </Button>
-          </div>
         </div>
       </div>
     </section>

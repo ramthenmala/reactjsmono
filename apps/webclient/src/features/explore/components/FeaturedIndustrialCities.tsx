@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useRef } from "react";
 import { PropertyCard } from "./PropertyCard";
-import { useLocaleTranslation } from "../../../shared/lib/i18n";
 import { useCurrentLocale } from "../../../shared/lib/router";
 import { TFeaturedProperty } from "../types/explore";
 import { featuredData } from "../data/exploreLandingData";
@@ -21,7 +20,6 @@ export function FeaturedIndustrialCities({
   const touchStartX = useRef<number | null>(null);
 
   // Detect RTL direction
-  const { t } = useLocaleTranslation();
   const currentLocale = useCurrentLocale();
   const isRTL = currentLocale === 'ar';
 
@@ -58,18 +56,25 @@ export function FeaturedIndustrialCities({
   }, [isRTL, properties]);
 
   return (
-    <section className="w-full bg-transparent pt-8 pb-12 relative" style={{ overflow: "visible" }}>
+    <section 
+      className="w-full flex flex-col justify-center items-center gap-[80px] relative px-4 py-12 md:px-20 md:py-40"
+      style={{ 
+        overflow: "visible",
+        maxWidth: '1440px',
+        margin: '0 auto',
+        background: 'radial-gradient(73.04% 54.31% at 50% 0%, rgba(237, 230, 255, 0.60) 0%, rgba(255, 255, 255, 0.00) 100%)',
+      }}
+    >
       {/* Decorative background pattern */}
       <div
-        className="hidden md:block"
+        className="hidden md:block absolute"
         style={{
-          position: "absolute",
           left: "50%",
           top: "-60px",
           transform: "translateX(-50%)",
           zIndex: 0,
-          width: "700px",
-          height: "400px",
+          width: "1400px",
+          height: "800px",
           pointerEvents: "none",
           userSelect: "none",
         }}
@@ -81,17 +86,15 @@ export function FeaturedIndustrialCities({
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />
       </div>
-      <div className="relative z-10 mx-auto w-full pt-8 max-w-7xl px-4 md:px-0">
-        <h2
-          className="font-semibold text-center
-          text-[36px] leading-[42px] tracking-[-0.02em]
-          md:text-[48px] md:leading-[60px] text-[#5547B5] mb-2"
-        >
-          {title}
-        </h2>
-        <p className="font-medium text-base leading-[22px] tracking-normal text-center md:text-[23px] md:leading-[30px] mb-16 text-gray-600">
-          {subtitle}
-        </p>
+      <div className="relative z-10 w-full flex flex-col items-center gap-[80px]">
+        <div className="text-center">
+          <h2 className="font-semibold text-[36px] leading-[42px] tracking-[-0.02em] md:text-[48px] md:leading-[60px] text-[#5547B5] mb-4">
+            {title}
+          </h2>
+          <p className="font-medium text-base leading-[22px] tracking-normal md:text-[23px] md:leading-[30px] text-gray-600">
+            {subtitle}
+          </p>
+        </div>
         
         {/* Mobile Slider */}
         <div
@@ -140,7 +143,7 @@ export function FeaturedIndustrialCities({
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-4 gap-6 pt-8">
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-4 gap-6 pt-8 items-start">
           {properties.map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}

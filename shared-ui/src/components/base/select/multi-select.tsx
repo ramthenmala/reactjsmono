@@ -319,9 +319,7 @@ const InnerMultiSelect = ({
             key={value.id}
             className="flex items-center rounded-md bg-primary py-0.5 pr-1 pl-1.25 ring-1 ring-primary ring-inset"
           >
-            <Avatar size="xxs" alt={value?.label} src={value?.avatarUrl} />
-
-            <p className="ml-1.25 truncate text-sm font-medium whitespace-nowrap text-secondary select-none">
+            <p className="truncate text-sm font-medium whitespace-nowrap text-secondary select-none">
               {value?.label}
             </p>
 

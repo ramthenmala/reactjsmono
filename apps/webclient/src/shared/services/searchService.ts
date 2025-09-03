@@ -1,70 +1,53 @@
 import { SelectOption } from '../types/search';
-
-// Mock data - replace with actual API calls
-const MOCK_DATA = {
-  regions: [
-    { id: 'riyadh', label: 'Riyadh Region' },
-    { id: 'eastern', label: 'Eastern Province' },
-    { id: 'western', label: 'Western Province' },
-    { id: 'southern', label: 'Southern Region' },
-  ],
-  sectors: [
-    { id: 'manufacturing', label: 'Manufacturing' },
-    { id: 'logistics', label: 'Logistics & Storage' },
-    { id: 'petrochemicals', label: 'Petrochemicals' },
-    { id: 'food', label: 'Food Processing' },
-  ],
-  isics: [
-    { id: '101234', label: '101234' },
-    { id: '101345', label: '101345' },
-    { id: '222100', label: '222100' },
-    { id: '471900', label: '471900' },
-    { id: '620100', label: '620100' },
-  ],
-  cities: {
-    riyadh: [
-      { id: 'riyadh-city', label: 'Riyadh City' },
-      { id: 'industrial-city-1', label: 'Industrial City 1' },
-    ],
-    eastern: [
-      { id: 'dammam', label: 'Dammam' },
-      { id: 'jubail', label: 'Jubail' },
-    ],
-    western: [
-      { id: 'jeddah', label: 'Jeddah' },
-      { id: 'yanbu', label: 'Yanbu' },
-    ],
-    southern: [
-      { id: 'abha', label: 'Abha' },
-      { id: 'najran', label: 'Najran' },
-    ],
-  },
-};
+import { SectorsService } from './sectorsService';
+import { RegionsService } from './regionsService';
+import { CitiesService } from './citiesService';
 
 class SearchService {
-  private delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
   async getRegions(): Promise<SelectOption[]> {
-    await this.delay(300);
-    return MOCK_DATA.regions;
+    try {
+      const regions = await RegionsService.fetchRegions();
+      return regions.map((region) => ({
+        id: region.id,
+        label: region.name,
+        value: region.id
+      }));
+    } catch (error) {
+      console.error('Failed to load regions from API:', error);
+      return [];
+    }
   }
 
   async getSectors(): Promise<SelectOption[]> {
-    await this.delay(300);
-    return MOCK_DATA.sectors;
+    try {
+      const sectors = await SectorsService.fetchSectors();
+      return sectors.map((sector) => ({
+        id: sector.id,
+        label: sector.name,
+        value: sector.id
+      }));
+    } catch (error) {
+      console.error('Failed to load sectors from API:', error);
+      return [];
+    }
   }
 
   async getIsicCodes(): Promise<SelectOption[]> {
-    await this.delay(300);
-    return MOCK_DATA.isics;
+    // ISIC codes are loaded via useIsicSearch hook
+    return [];
   }
 
   async getCitiesByRegion(regionId: string): Promise<SelectOption[]> {
-    await this.delay(400);
-    return MOCK_DATA.cities[regionId as keyof typeof MOCK_DATA.cities] || [];
+    try {
+      return await CitiesService.fetchCitiesByRegion(regionId);
+    } catch (error) {
+      console.error('Failed to load cities:', error);
+      return [];
+    }
   }
 
-  buildSearchUrl(filters: Record<string, any>, locale: string): string {
+  buildSearchUrl(filters: Record<string, string | number | string[]>, locale: string): string {
     const qs = new URLSearchParams();
     
     Object.entries(filters).forEach(([key, value]) => {

@@ -31,24 +31,24 @@ export const styles = sortCx({
   sizes: {
     sm: {
       root: [
-        'gap-1 rounded-lg px-3 py-2 text-sm font-semibold before:rounded-[7px] data-icon-only:p-2',
+        'gap-1 rounded-[12px] px-3 py-2 text-sm font-semibold before:rounded-[11px] data-icon-only:p-2',
         'in-data-input-wrapper:px-3.5 in-data-input-wrapper:py-2.5 in-data-input-wrapper:data-icon-only:p-2.5',
       ].join(' '),
       linkRoot: 'gap-1',
     },
     md: {
       root: [
-        'gap-1 rounded-lg px-3.5 py-2.5 text-sm font-semibold before:rounded-[7px] data-icon-only:p-2.5',
+        'gap-1 rounded-[12px] px-3.5 py-2.5 text-sm font-semibold before:rounded-[11px] data-icon-only:p-2.5',
         'in-data-input-wrapper:gap-1.5 in-data-input-wrapper:px-4 in-data-input-wrapper:text-md in-data-input-wrapper:data-icon-only:p-3',
       ].join(' '),
       linkRoot: 'gap-1',
     },
     lg: {
-      root: 'gap-1.5 rounded-lg px-4 py-2.5 text-md font-semibold before:rounded-[7px] data-icon-only:p-3',
+      root: 'gap-1.5 rounded-[12px] px-4 py-2.5 text-md font-semibold before:rounded-[11px] data-icon-only:p-3',
       linkRoot: 'gap-1.5',
     },
     xl: {
-      root: 'gap-1.5 rounded-lg px-4.5 py-3 text-md font-semibold before:rounded-[7px] data-icon-only:p-3.5',
+      root: 'gap-1.5 rounded-[12px] px-4.5 py-3 text-md font-semibold before:rounded-[11px] data-icon-only:p-3.5',
       linkRoot: 'gap-1.5',
     },
   },
@@ -56,7 +56,9 @@ export const styles = sortCx({
   colors: {
     primary: {
       root: [
-        'bg-brand-solid text-white shadow-xs-skeumorphic ring-1 ring-transparent ring-inset hover:bg-brand-solid_hover data-loading:bg-brand-solid_hover',
+        'text-white shadow-xs-skeumorphic ring-1 ring-transparent ring-inset hover:bg-brand-solid_hover data-loading:bg-brand-solid_hover',
+        // Custom gradient background
+        'bg-gradient-to-r from-[#5547B5] to-[#695DC2]',
         // Inner border gradient
         'before:absolute before:inset-px before:border before:border-white/12 before:mask-b-from-0%',
         // Disabled styles
@@ -67,7 +69,9 @@ export const styles = sortCx({
     },
     secondary: {
       root: [
-        'bg-primary text-secondary shadow-xs-skeumorphic ring-1 ring-primary ring-inset hover:bg-primary_hover hover:text-secondary_hover data-loading:bg-primary_hover',
+        'bg-white text-secondary border border-solid border-[#D2D5DB] hover:bg-primary_hover hover:text-secondary_hover data-loading:bg-primary_hover',
+        // Custom shadow and border radius
+        'shadow-[0_1px_2px_0_rgba(16,24,40,0.05)]',
         // Disabled styles
         'disabled:shadow-xs disabled:ring-disabled_subtle',
         // Icon styles
