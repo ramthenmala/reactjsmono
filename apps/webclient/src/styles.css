@@ -5,9 +5,6 @@
 @import './styles/fonts.css';
 @import './styles/components.css';
 
-/* Mapbox GL styles - required for Mapbox to work properly */
-@import 'mapbox-gl/dist/mapbox-gl.css';
-
 /* Source paths for component scanning */
 @source "./**/*.{js,ts,jsx,tsx}";
 @source "../../../shared-ui/src/**/*.{js,ts,jsx,tsx}";

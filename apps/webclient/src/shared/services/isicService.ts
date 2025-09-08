@@ -1,16 +1,4 @@
-export interface IsicCode {
-  id: string;
-  code: number;
-}
-
-export interface IsicApiResponse {
-  success: boolean;
-  statusCode: number;
-  message: string;
-  data: {
-    isicCodes: IsicCode[];
-  };
-}
+import type { IsicCode, IsicApiResponse } from '../types/isic';
 
 export class IsicService {
   private static readonly API_URL = import.meta.env.VITE_ISIC_API_URL;

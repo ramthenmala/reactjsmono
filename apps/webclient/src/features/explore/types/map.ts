@@ -71,6 +71,58 @@ export interface IPlotPoint {
 
 export type TCityData = Record<string, IPlotPoint[]>;
 
+/** Types for Map component internal data */
+export interface PlotData {
+  id?: string;
+  title?: string;
+  name?: string;
+  city?: string;
+  area?: number;
+  price?: number;
+  type?: string;
+  image?: string;
+  status?: string;
+  electricity?: string;
+  gas?: string;
+  water?: string;
+  [key: string]: unknown;
+}
+
+export interface FeatureProperties {
+  id?: string;
+  title?: string;
+  name?: string;
+  city?: string;
+  type?: string;
+  area?: number;
+  electricity?: string;
+  gas?: string;
+  water?: string;
+  status?: string;
+  plotData?: PlotData;
+  [key: string]: unknown;
+}
+
+export interface PointGeometry {
+  type: 'Point';
+  coordinates: [number, number];
+}
+
+/** City coordinates for map display */
+export const CITY_COORDINATES: Record<string, [number, number]> = {
+  "Riyadh": [46.7749, 24.6775],
+  "Jeddah": [39.2083, 21.5433],
+  "Dammam": [50.0888, 26.4282],
+  "Yanbu": [38.0618, 24.0895],
+  "Jubail": [49.6583, 27.0174]
+};
+
+/** Saudi Arabia bounds for map restriction */
+export const SAUDI_BOUNDS = {
+  southwest: [34.5, 16.0] as [number, number],
+  northeast: [55.7, 32.2] as [number, number]
+};
+
 /** Convert API payload to the CityData shape (filters out null coords). */
 export function toCityData(data: IMapData): TCityData {
   const grouped: TCityData = {};

@@ -1,109 +1,29 @@
-import React, { useRef, useEffect, useState, useMemo } from 'react';
-import { createPortal } from 'react-dom';
+import { useRef, useEffect, useState, useMemo } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { IProperty } from '@/features/explore/types/explore';
 import { 
-  IGeoJSONFeature, 
-  IGeoJSONFeatureCollection, 
   IMapProps,
-  IPlotPoint,
-  TCityData 
+  IPlotPoint
 } from '@/features/explore/types/map';
-import { PropertyCard } from '@/features/explore/components/PropertyCard';
-import { ButtonGroup, ButtonGroupItem } from '@compass/shared-ui';
+import { MapControls } from './MapControls';
+import { MapLegend } from './MapLegend';
+import { MapPopup } from './MapPopup';
+import { MapBackButton } from './MapBackButton';
+import {
+  convertPropertiesToTCityData,
+  convertToCityClusters,
+  convertToIPlotPoints,
+  plotToProperty,
+  PointGeometry
+} from './mapUtils';
+
+// Lazy load Mapbox CSS only when this component is used
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Set Mapbox access token
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
 
-// Types for plot and properties data
-interface PlotData {
-  id?: string;
-  title?: string;
-  name?: string;
-  city?: string;
-  area?: number;
-  price?: number;
-  type?: string;
-  [key: string]: unknown;
-}
-
-interface FeatureProperties {
-  id?: string;
-  title?: string;
-  name?: string;
-  city?: string;
-  type?: string;
-  plotData?: PlotData;
-  [key: string]: unknown;
-}
-
-interface PointGeometry {
-  type: 'Point';
-  coordinates: [number, number];
-}
-
-// Helper function to convert plot data back to IProperty format
-const plotToProperty = (plot: PlotData, properties: FeatureProperties): IProperty => {
-  return {
-    id: properties.id || plot?.id || 'unknown',
-    slug: properties.name?.toLowerCase().replace(/\s+/g, '-') || 'unknown',
-    title: properties.title || properties.name || plot?.title || plot?.name || 'Untitled Plot',
-    city: properties.city || plot?.city || 'Unknown City',
-    area: properties.area || plot?.area || 0,
-    electricity: properties.electricity || plot?.electricity,
-    gas: properties.gas || plot?.gas,
-    water: properties.water || plot?.water,
-    image: plot?.image || '/assets/images/properties/placeholder.png',
-    status: (properties.status || plot?.status || 'available') as "available" | "sold" | "reserved",
-    featured: true // Mark popup cards as featured for styling
-  };
-};
-
-// Convert IProperty to TCityData format
-const convertPropertiesToTCityData = (properties: IProperty[]): TCityData => {
-  const grouped: TCityData = {};
-  
-  properties.forEach((property) => {
-    const cityCoordinates: { [key: string]: [number, number] } = {
-      "Riyadh": [46.7749, 24.6775],
-      "Jeddah": [39.2083, 21.5433],
-      "Dammam": [50.0888, 26.4282],
-      "Yanbu": [38.0618, 24.0895],
-      "Jubail": [49.6583, 27.0174]
-    };
-
-    const baseCoords = cityCoordinates[property.city] || [46.7749, 24.6775];
-    const lng = property.coordinates?.lng || baseCoords[0] + (Math.random() - 0.5) * 0.1;
-    const lat = property.coordinates?.lat || baseCoords[1] + (Math.random() - 0.5) * 0.1;
-
-    const plotPoint: IPlotPoint = {
-      id: property.id || `${property.slug}-${Math.random()}`,
-      city: property.city,
-      latitude: lat,
-      longitude: lng,
-      title: property.title,
-      address: `${property.title}, ${property.city}`,
-      area: property.area,
-      price: 0,
-      type: "industrial",
-      status: "available",
-      image: "",
-      description: "",
-      amenities: [],
-      electricity: property.electricity,
-      gas: property.gas,
-      water: property.water
-    };
-
-    if (!grouped[property.city]) {
-      grouped[property.city] = [];
-    }
-    grouped[property.city].push(plotPoint);
-  });
-
-  return grouped;
-};
+// Map component with extracted subcomponents
 
 export function Map({ 
   points = [], 
@@ -119,7 +39,6 @@ export function Map({
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [popupProperty, setPopupProperty] = useState<IProperty | null>(null);
   const [popupContainer, setPopupContainer] = useState<HTMLDivElement | null>(null);
-  const [showLayerMenu, setShowLayerMenu] = useState(false);
   const [activeMapStyle, setActiveMapStyle] = useState('streets');
 
   const hasToken = !!mapboxgl.accessToken;
@@ -129,75 +48,7 @@ export function Map({
     return convertPropertiesToTCityData(points);
   }, [points]);
 
-  // Convert data to GeoJSON format for city clusters
-  const convertToCityClusters = (cityData: TCityData): IGeoJSONFeatureCollection => {
-    const features: IGeoJSONFeature[] = [];
-
-    Object.entries(cityData).forEach(([cityName, plots]) => {
-      // Calculate city center from all plots
-      const totalLat = plots.reduce((sum, plot) => sum + plot.latitude, 0);
-      const totalLng = plots.reduce((sum, plot) => sum + plot.longitude, 0);
-      const centerLat = totalLat / plots.length;
-      const centerLng = totalLng / plots.length;
-
-      // Add city cluster point
-      features.push({
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates: [centerLng, centerLat]
-        },
-        properties: {
-          id: `city-${cityName}`,
-          name: cityName,
-          type: "city-cluster",
-          count: plots.length,
-          plots: plots
-        }
-      });
-    });
-
-    return {
-      type: "FeatureCollection",
-      features: features
-    };
-  };
-
-  // Convert data to GeoJSON format for individual plots
-  const convertToIPlotPoints = (cityData: TCityData, cityName?: string): IGeoJSONFeatureCollection => {
-    const features: IGeoJSONFeature[] = [];
-
-    if (cityName && cityData[cityName]) {
-      // Show only plots for the selected city
-      cityData[cityName].forEach(plot => {
-        features.push({
-          type: "Feature",
-          geometry: {
-            type: "Point",
-            coordinates: [plot.longitude, plot.latitude]
-          },
-          properties: {
-            id: plot.id,
-            name: plot.title,
-            type: "plot",
-            plotType: plot.type,
-            plotData: plot,
-            city: plot.city,
-            address: plot.address,
-            area: plot.area,
-            electricity: plot.electricity,
-            gas: plot.gas,
-            water: plot.water
-          }
-        });
-      });
-    }
-
-    return {
-      type: "FeatureCollection",
-      features: features
-    };
-  };
+  // Utility functions are now imported from mapUtils
 
   useEffect(() => {
     if (map.current) {
@@ -283,6 +134,20 @@ export function Map({
 
         const allMarkers = [...cityClusterMarkers, ...plotMarkers];
 
+        // Add GeoJSON sources first (before images)
+        map.current.addSource("city-clusters", {
+          type: "geojson",
+          data: cityClustersData
+        });
+
+        map.current.addSource("plot-points", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: []
+          }
+        });
+
         // Wait for images to load before adding layers
         Promise.all(allMarkers.map(({ name, url }) => {
           return new Promise<void>((resolve) => {
@@ -304,7 +169,6 @@ export function Map({
             id: "city-clusters",
             type: "symbol",
             source: "city-clusters",
-            filter: ["!=", ["get", "name"], selectedCity || ""],
             layout: {
               "icon-image": ["concat", "city-cluster-", ["get", "name"]],
               "icon-size": 1,
@@ -334,42 +198,6 @@ export function Map({
 
             const cityName = properties.name;
             setSelectedCity(cityName);
-
-            // Hide all city clusters when a city is selected
-            if (map.current) {
-              map.current.setFilter("city-clusters", ["==", ["get", "name"], ""]);
-            }
-
-            // Show individual plots
-            const plotPointsData = convertToIPlotPoints(data, cityName);
-            const source = map.current?.getSource("plot-points") as mapboxgl.GeoJSONSource;
-            if (source) {
-              source.setData(plotPointsData);
-            }
-
-            // Zoom to city with bounds calculation to show all plots
-            const cityPlots = data[cityName];
-            if (cityPlots && cityPlots.length > 0) {
-              const bounds = new mapboxgl.LngLatBounds();
-              cityPlots.forEach(plot => {
-                bounds.extend([plot.longitude, plot.latitude]);
-              });
-
-              map.current?.fitBounds(bounds, {
-                padding: 50,
-                maxZoom: 14,
-                duration: 1000
-              });
-            } else {
-              // Fallback to center zoom if no plots found
-              const geometry = e.features[0].geometry as PointGeometry;
-              const coordinates = (geometry as { coordinates: [number, number] }).coordinates;
-              map.current?.easeTo({
-                center: coordinates,
-                zoom: 12,
-                duration: 1000
-              });
-            }
           });
 
           // Plot point click handler
@@ -441,21 +269,6 @@ export function Map({
             }
           });
         });
-
-        // Add GeoJSON source for city clusters
-        map.current.addSource("city-clusters", {
-          type: "geojson",
-          data: cityClustersData
-        });
-
-        // Add GeoJSON source for plot points (initially empty)
-        map.current.addSource("plot-points", {
-          type: "geojson",
-          data: {
-            type: "FeatureCollection",
-            features: []
-          }
-        });
       });
     }
 
@@ -465,7 +278,81 @@ export function Map({
         map.current = null;
       }
     };
-  }, [lng, lat, zoom, data, hasToken, selectedCity]);
+  }, [lng, lat, zoom, data, hasToken]); // Intentionally exclude selectedCity to prevent re-initialization
+
+  // Handle selectedCity changes separately
+  useEffect(() => {
+    if (!map.current) return;
+
+    // Wait for map to be loaded before manipulating layers
+    const updateMapForSelectedCity = () => {
+      if (selectedCity) {
+        // Hide city clusters when a city is selected
+        if (map.current?.getLayer("city-clusters")) {
+          map.current.setFilter("city-clusters", ["==", ["get", "name"], ""]);
+        }
+        
+        // Update plot points for the selected city
+        const plotGeoJSON = convertToIPlotPoints(data, selectedCity);
+        
+        const source = map.current?.getSource("plot-points") as mapboxgl.GeoJSONSource;
+        if (source) {
+          source.setData(plotGeoJSON);
+        }
+
+        // Zoom to selected city
+        const cityPlots = data[selectedCity] || [];
+        if (cityPlots.length > 0 && map.current) {
+          const bounds = new mapboxgl.LngLatBounds();
+          cityPlots.forEach((plot: IPlotPoint) => {
+            bounds.extend([plot.longitude, plot.latitude]);
+          });
+          map.current.fitBounds(bounds, {
+            padding: 50,
+            duration: 1000
+          });
+        }
+      } else {
+        // Show all city clusters when no city is selected
+        if (map.current?.getLayer("city-clusters")) {
+          map.current.setFilter("city-clusters", null);
+        }
+        
+        // Clear plot points
+        const source = map.current?.getSource("plot-points") as mapboxgl.GeoJSONSource;
+        if (source) {
+          source.setData({
+            type: "FeatureCollection",
+            features: []
+          });
+        }
+
+        // Zoom back to show all cities
+        if (map.current) {
+          const cityClustersData = convertToCityClusters(data);
+          if (cityClustersData.features.length > 0) {
+            const bounds = new mapboxgl.LngLatBounds();
+            cityClustersData.features.forEach(feature => {
+              const coords = (feature.geometry as PointGeometry).coordinates;
+              bounds.extend(coords);
+            });
+            map.current.fitBounds(bounds, {
+              padding: 50,
+              maxZoom: 8,
+              duration: 1000
+            });
+          }
+        }
+      }
+    };
+
+    // Check if map is loaded, if not wait for it
+    if (map.current.isStyleLoaded()) {
+      updateMapForSelectedCity();
+    } else {
+      map.current.once('load', updateMapForSelectedCity);
+    }
+  }, [selectedCity, data]);
 
   // Add resize handler for map container
   useEffect(() => {
@@ -496,34 +383,8 @@ export function Map({
     setPopupProperty(null);
     setPopupContainer(null);
 
+    // Simply set selectedCity to null - the useEffect will handle the rest
     setSelectedCity(null);
-    if (map.current) {
-      // Show all city clusters by removing the filter
-      map.current.setFilter("city-clusters", null);
-
-      // Clear plot points
-      const source = map.current.getSource("plot-points") as mapboxgl.GeoJSONSource;
-      if (source) {
-        source.setData({
-          type: "FeatureCollection",
-          features: []
-        });
-      }
-
-      // Fit bounds to show all cities
-      const cityClustersData = convertToCityClusters(data);
-      if (cityClustersData.features.length > 0) {
-        const bounds = new mapboxgl.LngLatBounds();
-        cityClustersData.features.forEach((feature) => {
-          bounds.extend(feature.geometry.coordinates);
-        });
-
-        map.current.fitBounds(bounds, {
-          padding: 50,
-          maxZoom: 8
-        });
-      }
-    }
   };
 
   // Close popup handler
@@ -557,7 +418,6 @@ export function Map({
         : 'mapbox://styles/mapbox/light-v11';
       map.current.setStyle(styleUrl);
       setActiveMapStyle(style);
-      setShowLayerMenu(false);
     }
   };
 
@@ -578,141 +438,30 @@ export function Map({
     <div className={`relative w-full ${className || 'h-96'}`}>
       <div ref={mapContainer} className="w-full h-full rounded-xl" />
 
-      {/* Custom Zoom Controls */}
-      <div className="absolute top-4 right-4 z-10">
-        <div className="flex items-center gap-2">
-          {/* Layers Button - Independent */}
-          <div className="relative">
-            <button
-              onClick={() => setShowLayerMenu(!showLayerMenu)}
-              className="bg-white px-3 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center border border-gray-200"
-            >
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="2" y="10" width="12" height="3" rx="0.5" fill="currentColor"/>
-                <rect x="3" y="6" width="10" height="3" rx="0.5" fill="currentColor" opacity="0.7"/>
-                <rect x="4" y="2" width="8" height="3" rx="0.5" fill="currentColor" opacity="0.4"/>
-              </svg>
-            </button>
+      {/* Map Controls Component */}
+      <MapControls
+        onZoomIn={handleZoomIn}
+        onZoomOut={handleZoomOut}
+        onStyleChange={handleMapStyleChange}
+        activeMapStyle={activeMapStyle}
+      />
 
-          {/* Layer Dropdown Menu */}
-          {showLayerMenu && (
-            <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 p-2 min-w-[200px]">
-              <button
-                onClick={() => handleMapStyleChange('streets')}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-50 transition-colors ${
-                  activeMapStyle === 'streets' ? 'bg-blue-50 text-blue-600' : ''
-                }`}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="3" y="3" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
-                  <rect x="11" y="3" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
-                  <rect x="3" y="11" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
-                  <rect x="11" y="11" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
-                </svg>
-                <span className="text-sm font-medium">Streets</span>
-              </button>
-              <button
-                onClick={() => handleMapStyleChange('satellite')}
-                className={`w-full flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-50 transition-colors ${
-                  activeMapStyle === 'satellite' ? 'bg-blue-50 text-blue-600' : ''
-                }`}
-              >
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="10" cy="10" r="7" fill="currentColor" opacity="0.3"/>
-                  <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.6"/>
-                </svg>
-                <span className="text-sm font-medium">Satellite</span>
-              </button>
-            </div>
-          )}
-          </div>
+      {/* Back Button Component */}
+      <MapBackButton 
+        selectedCity={selectedCity}
+        onBackToCities={handleBackToCities}
+      />
 
-          {/* Zoom Controls - ButtonGroup */}
-          <ButtonGroup size="sm" className="bg-white shadow-lg">
-            <ButtonGroupItem id="zoom-in" onClick={handleZoomIn}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M8 3V13M3 8H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-            </ButtonGroupItem>
-            <ButtonGroupItem id="zoom-out" onClick={handleZoomOut}>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 8H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-            </ButtonGroupItem>
-          </ButtonGroup>
-        </div>
-      </div>
+      {/* Map Legend Component */}
+      <MapLegend />
 
-      {/* Back button when a city is selected */}
-      {selectedCity && (
-        <div className="absolute top-4 left-4 z-10 border-2 border-gray-300 rounded-lg">
-          <button
-            onClick={handleBackToCities}
-            className="bg-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center gap-2 cursor-pointer"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M10 12L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            Back to Cities
-          </button>
-        </div>
-      )}
-
-      {/* Map Legend */}
-      <div className="absolute bottom-4 right-4 z-10">
-        <ButtonGroup size="sm" className="bg-white/95 backdrop-blur-sm">
-          <ButtonGroupItem id="industrial" isSelected={true}>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-purple-600"></div>
-              <span>Industrial Cities</span>
-            </div>
-          </ButtonGroupItem>
-          <ButtonGroupItem id="competitors">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-orange-500"></div>
-              <span>Competitors</span>
-            </div>
-          </ButtonGroupItem>
-          <ButtonGroupItem id="suppliers">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-              <span>Suppliers</span>
-            </div>
-          </ButtonGroupItem>
-          <ButtonGroupItem id="consumers">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-teal-500"></div>
-              <span>Consumers</span>
-            </div>
-          </ButtonGroupItem>
-        </ButtonGroup>
-      </div>
-
-      {/* React Portal for PropertyCard popup */}
-      {popupProperty && popupContainer && createPortal(
-        <div className="relative w-full">
-          <div className="w-full min-w-[380px]">
-            <PropertyCard
-              property={popupProperty}
-              hideDistance={true}
-              onView={() => {
-                closePopup();
-                onMarkerClick?.(popupProperty);
-              }}
-              onCompare={() => {
-                // Handle compare functionality
-              }}
-            />
-          </div>
-          <button
-            onClick={closePopup}
-            className="absolute top-3 right-3 z-50 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center text-lg font-bold hover:bg-black/80 transition-all cursor-pointer shadow-md"
-          >
-            ×
-          </button>
-        </div>,
-        popupContainer
-      )}
+      {/* Map Popup Component */}
+      <MapPopup
+        property={popupProperty}
+        container={popupContainer}
+        onClose={closePopup}
+        onView={onMarkerClick}
+      />
     </div>
   );
 }

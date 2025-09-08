@@ -1,16 +1,4 @@
-export interface Region {
-  id: string;
-  name: string;
-}
-
-export interface RegionsApiResponse {
-  success: boolean;
-  statusCode: number;
-  message: string;
-  data: {
-    regions: Region[];
-  };
-}
+import type { Region, RegionsApiResponse } from '../types/regions';
 
 export class RegionsService {
   private static readonly API_URL = import.meta.env.VITE_REGIONS_API_URL;

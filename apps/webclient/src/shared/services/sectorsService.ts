@@ -1,16 +1,4 @@
-export interface Sector {
-  id: string;
-  name: string;
-}
-
-export interface SectorsApiResponse {
-  success: boolean;
-  statusCode: number;
-  message: string;
-  data: {
-    sectors: Sector[];
-  };
-}
+import type { Sector, SectorsApiResponse } from '../types/sectors';
 
 export class SectorsService {
   private static readonly API_URL = import.meta.env.VITE_SECTORS_API_URL;

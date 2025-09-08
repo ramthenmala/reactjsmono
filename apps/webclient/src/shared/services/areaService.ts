@@ -1,16 +1,4 @@
-export interface AreaRange {
-  min: number;
-  max: number;
-}
-
-export interface AreaApiResponse {
-  success: boolean;
-  statusCode: number;
-  message: string;
-  data: {
-    area: AreaRange;
-  };
-}
+import type { AreaRange, AreaApiResponse } from '../types/area';
 
 export class AreaService {
   private static readonly API_URL = import.meta.env.VITE_AREA_API_URL;

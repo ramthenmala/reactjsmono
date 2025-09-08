@@ -1,5 +1,6 @@
 import React from "react";
 import { Breadcrumb } from "@compass/shared-ui";
+import { ImageSection } from "./ImageSection";
 
 export interface BreadcrumbItem {
   label: string;
@@ -23,20 +24,13 @@ export function Hero({
   breadcrumbItems,
 }: HeroProps) {
   return (
-    <section
-      className={`relative isolate overflow-hidden py-40 ${className}`}
+    <ImageSection
+      backgroundImage={backgroundImage}
+      alt="Hero background"
+      className={`py-40 ${className}`}
+      hasOverlay={true}
     >
-      {/* Background Image */}
-      {backgroundImage && (
-        <img 
-          src={backgroundImage} 
-          alt="Hero background" 
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-      )}
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,9,18,0.55),rgba(16,12,26,0.85))]" />
-      
-      <div className="container mx-auto relative px-4">
+      <div className="container mx-auto px-4">
         {breadcrumbItems && breadcrumbItems.length > 0 && (
           <div className="mb-10">
             <Breadcrumb 
@@ -65,6 +59,6 @@ export function Hero({
           </div>
         )}
       </div>
-    </section>
+    </ImageSection>
   );
 }
