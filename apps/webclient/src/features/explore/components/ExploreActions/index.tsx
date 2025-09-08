@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@compass/shared-ui";
 import { Share01 } from "@untitledui/icons";
-import { useLocaleTranslation } from '../../../shared/lib/i18n';
+import { useLocaleTranslation } from '@/shared/lib/i18n';
 
 interface ExploreActionsProps {
   size?: "sm" | "md" | "lg";

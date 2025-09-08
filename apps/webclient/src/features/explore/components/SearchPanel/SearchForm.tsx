@@ -1,8 +1,8 @@
 import React from 'react';
 import { Select, MultiSelect, Slider, Button } from "@compass/shared-ui";
 import { useListData } from 'react-stately';
-import { SearchFilters, SelectOption, AreaRange } from '../../../../shared/types';
-import { useIsicSearch } from '../../../../shared/hooks';
+import { SearchFilters, SelectOption, AreaRange } from '@/shared/types';
+import { useIsicSearch } from '@/shared/hooks';
 
 interface SearchFormProps {
   filters: SearchFilters;

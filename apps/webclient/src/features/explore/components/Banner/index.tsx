@@ -1,6 +1,6 @@
 "use client";
 
-import ExploreActions from "./ExploreActions";
+import { ExploreActions } from "@/features/explore/components/ExploreActions";
 
 export function Banner({ imageSrc }: { imageSrc?: string }) {
   return (

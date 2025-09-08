@@ -1,7 +1,9 @@
 import { memo, Suspense } from 'react';
 import { useLocaleTranslation } from '../../../shared/lib/i18n';
 import { Hero } from '../../../shared/ui/components/Hero';
-import { SearchPanel, FeaturedIndustrialCities, InvestorJourney } from '../components';
+import { SearchPanel } from '../components/SearchPanel';
+import { FeaturedIndustrialCities } from '../components/FeaturedIndustrialCities';
+import { InvestorJourney } from '../components/InvestorJourney';
 import { LoadingSpinner } from '../../../shared/ui/components/LoadingSpinner';
 import { ErrorFallback } from '../../../shared/ui/components/ErrorFallback';
 import { ErrorBoundary } from '../../../shared/ui/components/ErrorBoundary';

@@ -4,7 +4,7 @@ import { useLocaleTranslation } from '../../../shared/lib/i18n';
 import { Hero } from '../../../shared/ui/components/Hero';
 import { Button } from '@compass/shared-ui';
 import { Zap, Drop, Plane, MarkerPin02, Phone, Mail01 } from '@untitledui/icons';
-import { Map } from '../components';
+import { Map } from '../components/Map';
 import { IProperty } from '../types/explore';
 import { IndustrialCitiesService } from '../services/industrialCitiesService';
 

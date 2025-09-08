@@ -1,9 +1,8 @@
 import React, { memo, useMemo, useCallback } from 'react';
 import { Button } from "@compass/shared-ui";
-import { useLocaleTranslation } from '../../../shared/lib/i18n';
+import { useLocaleTranslation } from '@/shared/lib/i18n';
 import { Zap, Drop, Anchor, Train, Plane, MarkerPin02 } from "@untitledui/icons";
-import { formatMeasure } from '../utils/units';
-import { EAreaUnit, EPowerUnit, EGasFlowUnit, EWaterFlowUnit, IPropertyCardProps } from '../types/explore';
+import { IPropertyCardProps } from '@/features/explore/types/explore';
 
 // Constants for reusability and performance
 const CARD_STYLES = {

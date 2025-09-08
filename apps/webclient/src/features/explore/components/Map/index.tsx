@@ -1,60 +1,20 @@
 import React, { useRef, useEffect, useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import mapboxgl from 'mapbox-gl';
-import { IProperty } from '../types/explore';
-import { PropertyCard } from './PropertyCard';
+import { IProperty } from '@/features/explore/types/explore';
+import { 
+  IGeoJSONFeature, 
+  IGeoJSONFeatureCollection, 
+  IMapProps,
+  IPlotPoint,
+  TCityData 
+} from '@/features/explore/types/map';
+import { PropertyCard } from '@/features/explore/components/PropertyCard';
 import { ButtonGroup, ButtonGroupItem } from '@compass/shared-ui';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Set Mapbox access token
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
-
-// GeoJSON Feature type for better type safety
-interface GeoJSONFeature {
-  type: "Feature";
-  geometry: {
-    type: "Point";
-    coordinates: [number, number];
-  };
-  properties: Record<string, unknown>;
-}
-
-// GeoJSON FeatureCollection type
-interface GeoJSONFeatureCollection {
-  type: "FeatureCollection";
-  features: GeoJSONFeature[];
-}
-
-interface PlotPoint {
-  id: string;
-  city: string;
-  latitude: number;
-  longitude: number;
-  title: string;
-  address: string;
-  area: number;
-  price: number;
-  type: "industrial" | "residential" | "commercial" | "logistics";
-  status: "available" | "sold" | "reserved";
-  image: string;
-  description: string;
-  amenities: string[];
-  electricity?: string;
-  gas?: string;
-  water?: string;
-}
-
-interface CityData {
-  [cityName: string]: PlotPoint[];
-}
-
-interface MapProps {
-  points?: IProperty[];
-  center?: [number, number];
-  zoom?: number;
-  className?: string;
-  onMarkerClick?: (point: IProperty) => void;
-}
 
 // Helper function to convert plot data back to IProperty format
 const plotToProperty = (plot: any, properties: any): IProperty => {
@@ -68,13 +28,14 @@ const plotToProperty = (plot: any, properties: any): IProperty => {
     gas: properties.gas || plot?.gas,
     water: properties.water || plot?.water,
     image: plot?.image || '/assets/images/properties/placeholder.png',
+    status: (properties.status || plot?.status || 'available') as "available" | "sold" | "reserved",
     featured: true // Mark popup cards as featured for styling
   };
 };
 
-// Convert IProperty to CityData format
-const convertPropertiesToCityData = (properties: IProperty[]): CityData => {
-  const grouped: CityData = {};
+// Convert IProperty to TCityData format
+const convertPropertiesToTCityData = (properties: IProperty[]): TCityData => {
+  const grouped: TCityData = {};
   
   properties.forEach((property) => {
     const cityCoordinates: { [key: string]: [number, number] } = {
@@ -89,7 +50,7 @@ const convertPropertiesToCityData = (properties: IProperty[]): CityData => {
     const lng = property.coordinates?.lng || baseCoords[0] + (Math.random() - 0.5) * 0.1;
     const lat = property.coordinates?.lat || baseCoords[1] + (Math.random() - 0.5) * 0.1;
 
-    const plotPoint: PlotPoint = {
+    const plotPoint: IPlotPoint = {
       id: property.id || `${property.slug}-${Math.random()}`,
       city: property.city,
       latitude: lat,
@@ -121,7 +82,7 @@ export function Map({
   points = [], 
   className = "w-full h-96",
   onMarkerClick 
-}: MapProps) {
+}: IMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
   const currentPopup = useRef<mapboxgl.Popup | null>(null);
@@ -138,12 +99,12 @@ export function Map({
   
   // Convert data outside useEffect so it can be a proper dependency
   const data = useMemo(() => {
-    return convertPropertiesToCityData(points);
+    return convertPropertiesToTCityData(points);
   }, [points]);
 
   // Convert data to GeoJSON format for city clusters
-  const convertToCityClusters = (cityData: CityData): GeoJSONFeatureCollection => {
-    const features: GeoJSONFeature[] = [];
+  const convertToCityClusters = (cityData: TCityData): IGeoJSONFeatureCollection => {
+    const features: IGeoJSONFeature[] = [];
 
     Object.entries(cityData).forEach(([cityName, plots]) => {
       // Calculate city center from all plots
@@ -176,8 +137,8 @@ export function Map({
   };
 
   // Convert data to GeoJSON format for individual plots
-  const convertToPlotPoints = (cityData: CityData, cityName?: string): GeoJSONFeatureCollection => {
-    const features: GeoJSONFeature[] = [];
+  const convertToIPlotPoints = (cityData: TCityData, cityName?: string): IGeoJSONFeatureCollection => {
+    const features: IGeoJSONFeature[] = [];
 
     if (cityName && cityData[cityName]) {
       // Show only plots for the selected city
@@ -354,7 +315,7 @@ export function Map({
             }
 
             // Show individual plots
-            const plotPointsData = convertToPlotPoints(data, cityName);
+            const plotPointsData = convertToIPlotPoints(data, cityName);
             const source = map.current?.getSource("plot-points") as mapboxgl.GeoJSONSource;
             if (source) {
               source.setData(plotPointsData);
@@ -375,7 +336,7 @@ export function Map({
               });
             } else {
               // Fallback to center zoom if no plots found
-              const geometry = e.features[0].geometry as mapboxgl.GeoJSONGeometry;
+              const geometry = e.features[0].geometry as any;
               const coordinates = (geometry as { coordinates: [number, number] }).coordinates;
               map.current?.easeTo({
                 center: coordinates,
@@ -389,7 +350,7 @@ export function Map({
           map.current.on("click", "plot-points", (e) => {
             if (!e.features?.[0]) return;
 
-            const geometry = e.features[0].geometry as mapboxgl.GeoJSONGeometry;
+            const geometry = e.features[0].geometry as any;
             const coordinates = (geometry as { coordinates: [number, number] }).coordinates.slice() as [number, number];
             const properties = e.features[0].properties;
 

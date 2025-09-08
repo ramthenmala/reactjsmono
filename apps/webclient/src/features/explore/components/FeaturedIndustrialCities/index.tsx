@@ -1,8 +1,8 @@
 import React, { useMemo, useState, useRef } from "react";
-import { PropertyCard } from "./PropertyCard";
-import { useCurrentLocale } from "../../../shared/lib/router";
-import { TFeaturedProperty } from "../types/explore";
-import { featuredData } from "../data/exploreLandingData";
+import { PropertyCard } from "@/features/explore/components/PropertyCard";
+import { useCurrentLocale } from "@/shared/lib/router";
+import { TFeaturedProperty } from "@/features/explore/types/explore";
+import { featuredData } from "@/features/explore/data/exploreLandingData";
 
 const SWIPE_THRESHOLD = 40;
 

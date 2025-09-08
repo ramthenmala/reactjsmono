@@ -1,8 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { Copy01 } from "@untitledui/icons";
 import { ButtonUtility, Table, TableCard } from "@compass/shared-ui";
-import { useLocaleTranslation } from '../../../shared/lib/i18n';
-import { IProperty } from '../types/explore';
+import { IProperty } from '@/features/explore/types/explore';
 
 interface IPropertyTableProps {
   properties: IProperty[];
@@ -23,7 +22,6 @@ export const PropertyTable = memo(({
   onPageChange,
   itemsPerPage = 10
 }: IPropertyTableProps) => {
-  const { t } = useLocaleTranslation();
 
   const handleCompare = useCallback((property: IProperty) => {
     onCompare?.(property);

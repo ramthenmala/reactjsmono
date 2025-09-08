@@ -11,7 +11,20 @@
       "@nx/react/typings/image.d.ts",
       "vite/client"
     ],
-    "rootDir": "src"
+    "rootDir": "src",
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["./components/*"],
+      "@/features/*": ["./features/*"],
+      "@/shared/*": ["./shared/*"],
+      "@/types/*": ["./shared/types/*"],
+      "@/services/*": ["./shared/services/*"],
+      "@/store/*": ["./shared/store/*"],
+      "@/utils/*": ["./shared/utils/*"],
+      "@/lib/*": ["./shared/lib/*"],
+      "@/ui/*": ["./shared/ui/*"]
+    }
   },
   "exclude": [
     "out-tsc",

@@ -1,8 +1,0 @@
-{
-  "greeting": "Hello World",
-  "welcome": "Welcome to our platform",
-  "description": "This is a simple multilingual application",
-  "switch_language": "Switch Language",
-  "current_language": "Current Language: English",
-  "layout_direction": "Layout Direction: Left to Right (LTR)"
-}

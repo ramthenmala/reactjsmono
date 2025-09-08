@@ -1,8 +1,8 @@
 import { Button } from "@compass/shared-ui";
 import { ChevronDown, FilterLines, List, Map01, Map02 } from "@untitledui/icons";
 import { useState } from "react";
-import { EViewMode } from "../types/map";
-import { useLocaleTranslation } from "../../../shared/lib/i18n";
+import { EViewMode } from "@/features/explore/types/map";
+import { useLocaleTranslation } from "@/shared/lib/i18n";
 
 interface ViewControlsProps {
   viewMode: EViewMode;

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { PropertyCard } from "./PropertyCard";
-import { PropertyTable } from "./PropertyTable";
-import { IPropertyGridProps } from "../types/searchFilters";
-import { EViewMode } from "../types/map";
+import { PropertyCard } from "@/features/explore/components/PropertyCard";
+import { PropertyTable } from "@/features/explore/components/PropertyTable";
+import { IPropertyGridProps } from "@/features/explore/types/searchFilters";
+import { EViewMode } from "@/features/explore/types/map";
 
 const ITEMS_PER_PAGE_SPLIT = 4;
 const ITEMS_PER_PAGE_LIST = 10;

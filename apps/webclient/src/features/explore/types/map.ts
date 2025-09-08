@@ -1,4 +1,29 @@
 import type { IApiResponse } from './searchFilters';
+import type { IProperty } from './explore';
+
+/** GeoJSON types for better type safety */
+export interface IGeoJSONFeature {
+  type: "Feature";
+  geometry: {
+    type: "Point";
+    coordinates: [number, number];
+  };
+  properties: Record<string, unknown>;
+}
+
+export interface IGeoJSONFeatureCollection {
+  type: "FeatureCollection";
+  features: IGeoJSONFeature[];
+}
+
+/** Map component props */
+export interface IMapProps {
+  points?: IProperty[];
+  center?: [number, number];
+  zoom?: number;
+  className?: string;
+  onMarkerClick?: (point: IProperty) => void;
+}
 
 /** Raw API models (matches your JSON) */
 export interface IIndustrialCity {
