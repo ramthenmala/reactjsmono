@@ -136,7 +136,7 @@ export function SearchForm({
               onItemInserted={handleIsicItemInserted}
               onItemCleared={handleIsicItemCleared}
             >
-              {(item: any) => (
+              {(item: SelectOption) => (
                 <MultiSelect.Item key={item.id} id={item.id}>
                   {item.label}
                 </MultiSelect.Item>

@@ -4,7 +4,7 @@ import { Hero } from '../../../shared/ui/components/Hero';
 import { SearchPanel } from '../components/SearchPanel';
 import { FeaturedIndustrialCities } from '../components/FeaturedIndustrialCities';
 import { InvestorJourney } from '../components/InvestorJourney';
-import { LoadingSpinner } from '../../../shared/ui/components/LoadingSpinner';
+import { LoadingIndicator } from '@compass/shared-ui';
 import { ErrorFallback } from '../../../shared/ui/components/ErrorFallback';
 import { ErrorBoundary } from '../../../shared/ui/components/ErrorBoundary';
 import { EXPLORE_PAGE_CONFIGS } from '../constants';
@@ -24,7 +24,7 @@ SectionErrorFallback.displayName = 'SectionErrorFallback';
 // Loading component for sections
 const SectionLoading = memo(() => (
   <section className="py-8 px-4 flex justify-center">
-    <LoadingSpinner />
+    <LoadingIndicator size="md" />
   </section>
 ));
 SectionLoading.displayName = 'SectionLoading';

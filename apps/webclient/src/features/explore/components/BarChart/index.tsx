@@ -31,7 +31,13 @@ function WrappedXAxisTick({ x, y, payload }: { x: number; y: number; payload: { 
 }
 
 // Custom tooltip component
-function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: any[]; label?: string }) {
+interface TooltipPayload {
+  value: number;
+  name: string;
+  color: string;
+}
+
+function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: TooltipPayload[]; label?: string }) {
     if (active && payload && payload.length) {
         return (
             <div className="bg-white p-2 border border-gray-200 rounded shadow-lg">

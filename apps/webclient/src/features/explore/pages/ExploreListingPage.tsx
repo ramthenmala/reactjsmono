@@ -104,7 +104,6 @@ export function ExploreListingPage() {
   }, [filteredProperties]);
 
   const handleSearch = (filters?: SearchFilters) => {
-    console.log('Search filters:', filters);
     setSearchFilters(filters || null);
   };
 

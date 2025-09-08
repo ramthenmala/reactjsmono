@@ -32,7 +32,6 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
     areaRange,
     onFiltersChange: (newFilters) => {
       // Optional callback when filters change
-      console.debug('Filters changed:', newFilters);
     }
   });
 

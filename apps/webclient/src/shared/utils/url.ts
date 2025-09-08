@@ -2,7 +2,9 @@
  * URL utility functions
  */
 
-export function buildSearchParams(filters: Record<string, any>): URLSearchParams {
+type FilterValue = string | number | boolean | string[] | number[] | null | undefined;
+
+export function buildSearchParams(filters: Record<string, FilterValue>): URLSearchParams {
   const params = new URLSearchParams();
   
   Object.entries(filters).forEach(([key, value]) => {
@@ -20,8 +22,8 @@ export function buildSearchParams(filters: Record<string, any>): URLSearchParams
   return params;
 }
 
-export function parseSearchParams(searchParams: URLSearchParams): Record<string, any> {
-  const params: Record<string, any> = {};
+export function parseSearchParams(searchParams: URLSearchParams): Record<string, FilterValue> {
+  const params: Record<string, FilterValue> = {};
   
   for (const [key, value] of searchParams.entries()) {
     // Handle comma-separated array values
@@ -37,7 +39,7 @@ export function parseSearchParams(searchParams: URLSearchParams): Record<string,
   return params;
 }
 
-export function createRouteUrl(path: string, locale: string, params?: Record<string, any>): string {
+export function createRouteUrl(path: string, locale: string, params?: Record<string, FilterValue>): string {
   const searchParams = params ? buildSearchParams(params) : null;
   const query = searchParams?.toString();
   

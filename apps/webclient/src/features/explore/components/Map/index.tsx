@@ -16,8 +16,35 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 // Set Mapbox access token
 mapboxgl.accessToken = import.meta.env.VITE_MAPBOX_ACCESS_TOKEN || '';
 
+// Types for plot and properties data
+interface PlotData {
+  id?: string;
+  title?: string;
+  name?: string;
+  city?: string;
+  area?: number;
+  price?: number;
+  type?: string;
+  [key: string]: unknown;
+}
+
+interface FeatureProperties {
+  id?: string;
+  title?: string;
+  name?: string;
+  city?: string;
+  type?: string;
+  plotData?: PlotData;
+  [key: string]: unknown;
+}
+
+interface PointGeometry {
+  type: 'Point';
+  coordinates: [number, number];
+}
+
 // Helper function to convert plot data back to IProperty format
-const plotToProperty = (plot: any, properties: any): IProperty => {
+const plotToProperty = (plot: PlotData, properties: FeatureProperties): IProperty => {
   return {
     id: properties.id || plot?.id || 'unknown',
     slug: properties.name?.toLowerCase().replace(/\s+/g, '-') || 'unknown',
@@ -286,7 +313,6 @@ export function Map({
           });
 
           // Add plot points layer
-          console.log("Adding plot-points layer");
           map.current.addLayer({
             id: "plot-points",
             type: "symbol",
@@ -336,7 +362,7 @@ export function Map({
               });
             } else {
               // Fallback to center zoom if no plots found
-              const geometry = e.features[0].geometry as any;
+              const geometry = e.features[0].geometry as PointGeometry;
               const coordinates = (geometry as { coordinates: [number, number] }).coordinates;
               map.current?.easeTo({
                 center: coordinates,
@@ -350,7 +376,7 @@ export function Map({
           map.current.on("click", "plot-points", (e) => {
             if (!e.features?.[0]) return;
 
-            const geometry = e.features[0].geometry as any;
+            const geometry = e.features[0].geometry as PointGeometry;
             const coordinates = (geometry as { coordinates: [number, number] }).coordinates.slice() as [number, number];
             const properties = e.features[0].properties;
 
@@ -382,7 +408,7 @@ export function Map({
             })
               .setLngLat(coordinates)
               .setDOMContent(popupDiv)
-              .addTo(map.current!);
+              .addTo(map.current as mapboxgl.Map);
 
             // Store references
             currentPopup.current = popup;
@@ -417,14 +443,12 @@ export function Map({
         });
 
         // Add GeoJSON source for city clusters
-        console.log("Adding city-clusters source");
         map.current.addSource("city-clusters", {
           type: "geojson",
           data: cityClustersData
         });
 
         // Add GeoJSON source for plot points (initially empty)
-        console.log("Adding plot-points source");
         map.current.addSource("plot-points", {
           type: "geojson",
           data: {
@@ -441,7 +465,7 @@ export function Map({
         map.current = null;
       }
     };
-  }, [lng, lat, zoom, data, hasToken]);
+  }, [lng, lat, zoom, data, hasToken, selectedCity]);
 
   // Add resize handler for map container
   useEffect(() => {
@@ -451,7 +475,7 @@ export function Map({
       if (map.current) {
         // Small delay to ensure DOM has finished updating
         setTimeout(() => {
-          map.current!.resize();
+          map.current?.resize();
         }, 100);
       }
     });
