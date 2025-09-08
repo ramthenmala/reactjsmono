@@ -142,8 +142,8 @@ export function FeaturedIndustrialCities({
           ))}
         </div>
 
-        {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-4 gap-6 pt-8 items-start">
+        {/* Desktop Grid - Responsive for medium and large screens */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 items-start">
           {properties.map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}

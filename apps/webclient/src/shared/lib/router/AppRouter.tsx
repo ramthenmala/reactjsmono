@@ -38,7 +38,7 @@ export const AppRouter: React.FC = () => {
           <Route path="explore" element={<ExploreLandingPage />} />
           <Route path="explore/landing" element={<ExploreLandingPage />} />
           <Route path="explore/listing" element={<ExploreListingPage />} />
-          <Route path="explore/city-land/:slug" element={<PropertyDetailPage />} />
+          <Route path="explore/property/:slug" element={<PropertyDetailPage />} />
           <Route path="contact" element={<ContactPage />} />
         </Route>
         

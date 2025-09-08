@@ -14,7 +14,7 @@ export function ViewControls({ viewMode, onViewModeChange }: ViewControlsProps) 
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
 
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
       {/* Left side - Filters */}
       <div className="flex flex-wrap items-center gap-2">
         <Button 

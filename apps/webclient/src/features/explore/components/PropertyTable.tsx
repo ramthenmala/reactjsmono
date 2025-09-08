@@ -31,10 +31,11 @@ export const PropertyTable = memo(({
 
   return (
     <TableCard.Root>
-      <Table 
-        aria-label="Industrial Cities" 
-        size="md"
-      >
+      <div className="overflow-x-auto">
+        <Table 
+          aria-label="Industrial Cities" 
+          size="md"
+        >
         <Table.Header>
           <Table.Head id="slNo" label="Sl No." className="w-20" />
           <Table.Head id="title" label="Industrial City" isRowHeader className="w-full max-w-1/4" />
@@ -153,6 +154,7 @@ export const PropertyTable = memo(({
             </svg>
           </button>
         </div>
+      </div>
       </div>
     </TableCard.Root>
   );

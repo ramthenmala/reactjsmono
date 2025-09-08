@@ -70,7 +70,7 @@ export function ExplorePage() {
   const [properties] = useState<IProperty[]>(sampleProperties);
 
   const handleViewProperty = (property: IProperty) => {
-    navigate(`/explore/city-land/${property.slug}`);
+    navigate(`/explore/property/${property.slug}`);
   };
 
   const handleCompareProperty = (property: IProperty) => {

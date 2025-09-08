@@ -5,7 +5,6 @@ import { Hero } from '../../../shared/ui/components/Hero';
 import { Button } from '@compass/shared-ui';
 import { Zap, Drop, Plane, MarkerPin02, Phone, Mail01 } from '@untitledui/icons';
 import { Map } from '../components';
-import { IPlotPoint } from '../types/map';
 import { IProperty } from '../types/explore';
 import { IndustrialCitiesService } from '../services/industrialCitiesService';
 
@@ -129,7 +128,7 @@ export function PropertyDetailPage() {
         breadcrumbItems={[
           { label: t('navigation.explore') || 'Explore', href: '/explore/landing' },
           { label: t('explore.listing') || 'Properties', href: '/explore/listing' },
-          { label: property.title, href: `/explore/city-land/${slug}` }
+          { label: property.title, href: `/explore/property/${slug}` }
         ]}
       />
 
@@ -283,17 +282,8 @@ export function PropertyDetailPage() {
                 Location
               </h3>
               <Map 
-                points={[{
-                  id: property.id,
-                  coordinates: property.coordinates,
-                  property: {
-                    title: property.title,
-                    city: property.city,
-                    area: property.area,
-                    status: property.status
-                  }
-                } as IPlotPoint]}
-                center={[property.coordinates.lng, property.coordinates.lat]}
+                points={[property]}
+                center={property.coordinates ? [property.coordinates.lng, property.coordinates.lat] : undefined}
                 zoom={12}
                 className="aspect-square rounded-lg"
               />

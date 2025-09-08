@@ -20,7 +20,7 @@ export function ExploreListingPage() {
   const [error, setError] = useState<string | null>(null);
 
   const handleViewProperty = (property: IProperty) => {
-    navigate(`/explore/city-land/${property.slug}`);
+    navigate(`/explore/property/${property.slug}`);
   };
 
   const handleCompareProperty = (property: IProperty) => {
@@ -174,14 +174,14 @@ export function ExploreListingPage() {
                 className="min-h-[600px] rounded-lg shadow-sm"
                 onMarkerClick={(point) => {
                   if (point.id) {
-                    window.location.href = `/explore/city-land/${point.id}`;
+                    window.location.href = `/explore/property/${point.id}`;
                   }
                 }}
               />
             </div>
           ) : (
             /* Split and List Views */
-            <div className="flex gap-8">
+            <div className={viewMode === EViewMode.split ? "flex flex-col lg:flex-row gap-8" : ""}>
               {/* Property Grid */}
               <PropertyGrid
                 properties={properties}
@@ -193,13 +193,13 @@ export function ExploreListingPage() {
 
               {/* Map Area (for split view only) */}
               {viewMode === EViewMode.split && (
-                <div className="flex-1">
+                <div className="w-full lg:flex-1 min-h-[400px] lg:min-h-[600px]">
                   <Map 
                     points={properties}
                     className="h-full rounded-lg shadow-sm"
                     onMarkerClick={(point) => {
                       if (point.id) {
-                        window.location.href = `/explore/city-land/${point.id}`;
+                        window.location.href = `/explore/property/${point.id}`;
                       }
                     }}
                   />

@@ -9,22 +9,22 @@ export function useInvestorJourney(steps?: InvestorJourneyCard[]) {
 
   const defaultSteps: InvestorJourneyCard[] = useMemo(() => [
     {
-      icon: '/images/icons/search-icon.svg',
+      icon: '/assets/images/icons/search-icon.svg',
       title: t('investor_journey.search.title') || 'Search & Filter',
       content: t('investor_journey.search.description') || 'Use our advanced search to find industrial opportunities that match your criteria',
     },
     {
-      icon: '/images/icons/compare-icon.svg',
+      icon: '/assets/images/icons/compare-icon.svg',
       title: t('investor_journey.compare.title') || 'Compare Options',
       content: t('investor_journey.compare.description') || 'Analyze different locations and properties with detailed insights and data',
     },
     {
-      icon: '/images/icons/visit-icon.svg',
+      icon: '/assets/images/icons/visit-icon.svg',
       title: t('investor_journey.visit.title') || 'Schedule Visits',
       content: t('investor_journey.visit.description') || 'Arrange site visits and meetings with relevant stakeholders',
     },
     {
-      icon: '/images/icons/invest-icon.svg',
+      icon: '/assets/images/icons/invest-icon.svg',
       title: t('investor_journey.invest.title') || 'Make Investment',
       content: t('investor_journey.invest.description') || 'Complete your investment with full support throughout the process',
     },
