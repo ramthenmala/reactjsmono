@@ -13,9 +13,12 @@ interface AppConfig {
 }
 
 export function createAppConfig(appConfig: AppConfig) {
-  return defineConfig(({ mode }) => {
+  return defineConfig(async ({ mode }) => {
     const env = loadEnv(mode, '../../', '');
     const port = parseInt(env[appConfig.envPortKey] || appConfig.defaultPort);
+
+    // Dynamic import for ESM-only packages
+    const { default: i18nextLoader } = await import('vite-plugin-i18next-loader');
 
     const config: UserConfig = {
       root: appConfig.appPath,
@@ -33,6 +36,10 @@ export function createAppConfig(appConfig: AppConfig) {
       plugins: [
         react(),
         nxViteTsPaths(),
+        i18nextLoader({
+          paths: ['./src/locales'],
+          namespaceResolution: 'relativePath',
+        }),
         eslint({
           cache: false,
           include: ['src/**/*.{ts,tsx}'],

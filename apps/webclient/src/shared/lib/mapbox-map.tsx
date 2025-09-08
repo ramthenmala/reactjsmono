@@ -60,18 +60,7 @@ export function MapboxMap({ data, language }: MapboxMapProps) {
     const [zoom] = useState(5); // Zoomed out to show all points
     const [selectedCity, setSelectedCity] = useState<string | null>(null);
     const [mapError, setMapError] = useState<string | null>(null);
-
-    // Check if Mapbox token is available
-    if (!mapboxgl.accessToken) {
-        return (
-            <div className="flex items-center justify-center h-full bg-gray-100 rounded-xl">
-                <div className="text-center p-6">
-                    <p className="text-gray-600 mb-2">Mapbox configuration required</p>
-                    <p className="text-sm text-gray-500">Please set VITE_MAPBOX_ACCESS_TOKEN</p>
-                </div>
-            </div>
-        );
-    }
+    const [hasValidToken, setHasValidToken] = useState(!!mapboxgl.accessToken);
 
     // Convert data to GeoJSON format for city clusters
     const convertToCityClusters = (cityData: CityData): GeoJSONFeatureCollection => {
@@ -144,6 +133,11 @@ export function MapboxMap({ data, language }: MapboxMapProps) {
     };
 
     useEffect(() => {
+        if (!hasValidToken || !mapboxgl.accessToken) {
+            setHasValidToken(false);
+            return;
+        }
+
         if (map.current) return; // Initialize map only once
 
         if (mapContainer.current) {
@@ -435,7 +429,7 @@ export function MapboxMap({ data, language }: MapboxMapProps) {
                 map.current = null;
             }
         };
-    }, [lng, lat, zoom, data, language]);
+    }, [lng, lat, zoom, data, language, hasValidToken]);
 
     // Update map language when language prop changes
     useEffect(() => {
@@ -480,6 +474,17 @@ export function MapboxMap({ data, language }: MapboxMapProps) {
             }
         }
     };
+
+    if (!hasValidToken) {
+        return (
+            <div className="flex items-center justify-center h-full bg-gray-100 rounded-xl">
+                <div className="text-center p-6">
+                    <p className="text-gray-600 mb-2">Mapbox configuration required</p>
+                    <p className="text-sm text-gray-500">Please set VITE_MAPBOX_ACCESS_TOKEN</p>
+                </div>
+            </div>
+        );
+    }
 
     if (mapError) {
         return (

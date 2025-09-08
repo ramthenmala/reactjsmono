@@ -1,12 +1,10 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import HttpApi from 'i18next-http-backend';
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '../constants';
 
 // Configure i18n
 i18n
-  .use(HttpApi) // Load translations using HTTP backend
   .use(LanguageDetector) // Detect user language
   .use(initReactI18next) // Pass i18n down to react-i18next
   .init({
@@ -17,13 +15,6 @@ i18n
     
     // Debug mode (disable in production)
     debug: process.env.NODE_ENV === 'development',
-    
-    // Backend configuration for loading translations
-    backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
-      addPath: '/locales/{{lng}}/{{ns}}.json',
-      allowMultiLoading: false,
-    },
     
     // Language detection configuration
     detection: {
@@ -54,7 +45,7 @@ i18n
     
     // React specific options
     react: {
-      useSuspense: true, // Enable Suspense for async loading
+      useSuspense: false, // Disable Suspense since we're loading synchronously
       bindI18n: 'languageChanged',
       bindI18nStore: '',
       transEmptyNodeValue: '',

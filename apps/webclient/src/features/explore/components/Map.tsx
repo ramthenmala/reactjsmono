@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import mapboxgl from 'mapbox-gl';
 import { IProperty } from '../types/explore';
 import { PropertyCard } from './PropertyCard';
+import { ButtonGroup, ButtonGroupItem } from '@compass/shared-ui';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Set Mapbox access token
@@ -130,6 +131,8 @@ export function Map({
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [popupProperty, setPopupProperty] = useState<IProperty | null>(null);
   const [popupContainer, setPopupContainer] = useState<HTMLDivElement | null>(null);
+  const [showLayerMenu, setShowLayerMenu] = useState(false);
+  const [activeMapStyle, setActiveMapStyle] = useState('streets');
 
   const hasToken = !!mapboxgl.accessToken;
   
@@ -234,12 +237,6 @@ export function Map({
         doubleClickZoom: true,
         touchZoomRotate: true
       });
-
-      // Add navigation controls
-      map.current.addControl(new mapboxgl.NavigationControl(), "top-left");
-
-      // Add fullscreen control
-      map.current.addControl(new mapboxgl.FullscreenControl(), "top-right");
 
       // Wait for map to load before adding sources and layers
       map.current.on("load", () => {
@@ -554,6 +551,31 @@ export function Map({
     setPopupContainer(null);
   };
 
+  // Zoom handlers
+  const handleZoomIn = () => {
+    if (map.current) {
+      map.current.zoomIn();
+    }
+  };
+
+  const handleZoomOut = () => {
+    if (map.current) {
+      map.current.zoomOut();
+    }
+  };
+
+  // Map style handler
+  const handleMapStyleChange = (style: string) => {
+    if (map.current) {
+      const styleUrl = style === 'satellite' 
+        ? 'mapbox://styles/mapbox/satellite-streets-v12'
+        : 'mapbox://styles/mapbox/light-v11';
+      map.current.setStyle(styleUrl);
+      setActiveMapStyle(style);
+      setShowLayerMenu(false);
+    }
+  };
+
   // Conditional rendering after all hooks
   if (!hasToken) {
     return (
@@ -571,9 +593,74 @@ export function Map({
     <div className={`relative w-full ${className || 'h-96'}`}>
       <div ref={mapContainer} className="w-full h-full rounded-xl" />
 
+      {/* Custom Zoom Controls */}
+      <div className="absolute top-4 right-4 z-10">
+        <div className="flex items-center gap-2">
+          {/* Layers Button - Independent */}
+          <div className="relative">
+            <button
+              onClick={() => setShowLayerMenu(!showLayerMenu)}
+              className="bg-white px-3 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center justify-center border border-gray-200"
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="10" width="12" height="3" rx="0.5" fill="currentColor"/>
+                <rect x="3" y="6" width="10" height="3" rx="0.5" fill="currentColor" opacity="0.7"/>
+                <rect x="4" y="2" width="8" height="3" rx="0.5" fill="currentColor" opacity="0.4"/>
+              </svg>
+            </button>
+
+          {/* Layer Dropdown Menu */}
+          {showLayerMenu && (
+            <div className="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-xl border border-gray-200 p-2 min-w-[200px]">
+              <button
+                onClick={() => handleMapStyleChange('streets')}
+                className={`w-full flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-50 transition-colors ${
+                  activeMapStyle === 'streets' ? 'bg-blue-50 text-blue-600' : ''
+                }`}
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="3" y="3" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
+                  <rect x="11" y="3" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
+                  <rect x="3" y="11" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
+                  <rect x="11" y="11" width="6" height="6" rx="1" fill="currentColor" opacity="0.3"/>
+                </svg>
+                <span className="text-sm font-medium">Streets</span>
+              </button>
+              <button
+                onClick={() => handleMapStyleChange('satellite')}
+                className={`w-full flex items-center gap-3 px-3 py-2 rounded hover:bg-gray-50 transition-colors ${
+                  activeMapStyle === 'satellite' ? 'bg-blue-50 text-blue-600' : ''
+                }`}
+              >
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="10" cy="10" r="7" fill="currentColor" opacity="0.3"/>
+                  <circle cx="10" cy="10" r="3" fill="currentColor" opacity="0.6"/>
+                </svg>
+                <span className="text-sm font-medium">Satellite</span>
+              </button>
+            </div>
+          )}
+          </div>
+
+          {/* Zoom Controls - ButtonGroup */}
+          <ButtonGroup size="sm" className="bg-white shadow-lg">
+            <ButtonGroupItem id="zoom-in" onClick={handleZoomIn}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 3V13M3 8H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </ButtonGroupItem>
+            <ButtonGroupItem id="zoom-out" onClick={handleZoomOut}>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 8H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              </svg>
+            </ButtonGroupItem>
+          </ButtonGroup>
+        </div>
+      </div>
+
       {/* Back button when a city is selected */}
       {selectedCity && (
-        <div className="absolute top-2 left-12 z-10 border-2 border-gray-300 rounded-lg">
+        <div className="absolute top-4 left-4 z-10 border-2 border-gray-300 rounded-lg">
           <button
             onClick={handleBackToCities}
             className="bg-white px-4 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors flex items-center gap-2 cursor-pointer"
@@ -585,6 +672,36 @@ export function Map({
           </button>
         </div>
       )}
+
+      {/* Map Legend */}
+      <div className="absolute bottom-4 right-4 z-10">
+        <ButtonGroup size="sm" className="bg-white/95 backdrop-blur-sm">
+          <ButtonGroupItem id="industrial" isSelected={true}>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-purple-600"></div>
+              <span>Industrial Cities</span>
+            </div>
+          </ButtonGroupItem>
+          <ButtonGroupItem id="competitors">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+              <span>Competitors</span>
+            </div>
+          </ButtonGroupItem>
+          <ButtonGroupItem id="suppliers">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+              <span>Suppliers</span>
+            </div>
+          </ButtonGroupItem>
+          <ButtonGroupItem id="consumers">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-teal-500"></div>
+              <span>Consumers</span>
+            </div>
+          </ButtonGroupItem>
+        </ButtonGroup>
+      </div>
 
       {/* React Portal for PropertyCard popup */}
       {popupProperty && popupContainer && createPortal(
