@@ -66,7 +66,7 @@ const plotToProperty = (plot: any, properties: any): IProperty => {
     electricity: properties.electricity || plot?.electricity,
     gas: properties.gas || plot?.gas,
     water: properties.water || plot?.water,
-    image: plot?.image || '/images/placeholder-industrial.jpg',
+    image: plot?.image || '/assets/images/properties/placeholder.png',
     featured: true // Mark popup cards as featured for styling
   };
 };
@@ -568,7 +568,7 @@ export function Map({
   }
 
   return (
-    <div className={`relative w-full ${className || 'h-full'}`}>
+    <div className={`relative w-full ${className || 'h-96'}`}>
       <div ref={mapContainer} className="w-full h-full rounded-xl" />
 
       {/* Back button when a city is selected */}

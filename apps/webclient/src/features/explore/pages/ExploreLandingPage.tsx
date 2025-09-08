@@ -5,18 +5,7 @@ import { SearchPanel, FeaturedIndustrialCities, InvestorJourney } from '../compo
 import { LoadingSpinner } from '../../../shared/ui/components/LoadingSpinner';
 import { ErrorFallback } from '../../../shared/ui/components/ErrorFallback';
 import { ErrorBoundary } from '../../../shared/ui/components/ErrorBoundary';
-
-// Page configuration constants
-const PAGE_CONFIG = {
-  hero: {
-    backgroundImage: '/images/ExploreBG.jpg',
-    breadcrumbBase: '/explore/landing',
-  },
-  layout: {
-    className: 'flex min-h-dvh flex-col',
-    background: 'bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]',
-  },
-} as const;
+import { EXPLORE_PAGE_CONFIGS } from '../constants';
 
 // Error fallback component for sections
 const SectionErrorFallback = memo(({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => (
@@ -44,13 +33,13 @@ const HeroSection = memo(() => {
   
   return (
     <Hero
-      backgroundImage={PAGE_CONFIG.hero.backgroundImage}
+      backgroundImage={EXPLORE_PAGE_CONFIGS.landing.hero.backgroundImage}
       title={t('hero.explore.title') || 'Explore Industrial Opportunities'}
       subtitle={t('hero.explore.subtitle') || 'Discover investment opportunities across Saudi Arabia\'s industrial landscape'}
       breadcrumbItems={[
         { 
           label: t('navigation.explore') || 'Explore', 
-          href: PAGE_CONFIG.hero.breadcrumbBase,
+          href: EXPLORE_PAGE_CONFIGS.landing.hero.breadcrumbBase,
           current: true
         }
       ]}
@@ -99,7 +88,7 @@ InvestorJourneySection.displayName = 'InvestorJourneySection';
 // Main page component
 export const ExploreLandingPage = memo(() => {
   return (
-    <div className={`${PAGE_CONFIG.layout.className} ${PAGE_CONFIG.layout.background}`}>
+    <div className={`${EXPLORE_PAGE_CONFIGS.landing.layout.className} ${EXPLORE_PAGE_CONFIGS.landing.layout.background}`}>
       {/* Hero Section - Critical, no lazy loading */}
       <HeroSection />
 

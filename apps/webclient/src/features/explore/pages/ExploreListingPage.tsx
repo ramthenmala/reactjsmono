@@ -7,6 +7,7 @@ import { EViewMode, IProperty } from '../types';
 import { IndustrialCitiesService } from '../services/industrialCitiesService';
 import { useComparison } from '../contexts/ComparisonContext';
 import { SearchFilters } from '../../../shared/types';
+import { EXPLORE_PAGE_CONFIGS } from '../constants';
 
 export function ExploreListingPage() {
   const { t } = useLocaleTranslation();
@@ -105,9 +106,9 @@ export function ExploreListingPage() {
   };
 
   return (
-    <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
+    <div className={`${EXPLORE_PAGE_CONFIGS.listing.layout.className} ${EXPLORE_PAGE_CONFIGS.listing.layout.background}`}>
       <Hero
-        backgroundImage="/images/ExploreBG.jpg"
+        backgroundImage={EXPLORE_PAGE_CONFIGS.listing.hero.backgroundImage}
         title={t('hero.explore.title') || 'Find Your Perfect Industrial Plot'}
         subtitle={t('hero.explore.subtitle') || 'Browse available industrial properties and find the ideal location for your business'}
         breadcrumbItems={[
@@ -168,10 +169,10 @@ export function ExploreListingPage() {
         ) : (
           viewMode === EViewMode.map ? (
             /* Full Map View */
-            <div className="w-full">
+            <div className="w-full h-[600px]">
               <Map 
                 points={properties}
-                className="min-h-[600px] rounded-lg shadow-sm"
+                className="h-full rounded-lg shadow-sm"
                 onMarkerClick={(point) => {
                   if (point.id) {
                     window.location.href = `/explore/property/${point.id}`;

@@ -1,6 +1,7 @@
 import { IIndustrialCitiesResponse, IIndustrialCityAPI, IProperty } from '../types/explore';
+import { getPropertyImageByIndex } from '../constants';
 
-const API_URL = 'https://www.jsonkeeper.com/b/IWHDX';
+const API_URL = import.meta.env.VITE_INDUSTRIAL_CITIES_API_URL || 'https://www.jsonkeeper.com/b/IWHDX';
 
 // Service to fetch industrial cities data
 export class IndustrialCitiesService {
@@ -34,7 +35,7 @@ export class IndustrialCitiesService {
       title: city.name,
       // Keep the area as is from the API (it's in km²)
       area: parseFloat(city.totalArea) || 0,
-      image: city.banner || `/images/land-${String.fromCharCode(97 + (index % 4))}.png`, // Use banner or fallback
+      image: city.banner || getPropertyImageByIndex(index), // Use banner or fallback image
       electricity: city.totalElectricityCapacity || undefined,
       water: city.totalWaterCapacity || undefined,
       gas: city.totalGasCapacity || undefined,

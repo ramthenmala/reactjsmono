@@ -81,7 +81,7 @@ export function FeaturedIndustrialCities({
         aria-hidden
       >
         <img
-          src="/images/background-pattern-decorative.png"
+          src="/assets/images/backgrounds/background-pattern-decorative.png"
           alt=""
           style={{ width: "100%", height: "100%", objectFit: "contain" }}
         />

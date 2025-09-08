@@ -14,7 +14,7 @@ const sampleProperties: IProperty[] = [
     city: 'Riyadh',
     title: 'Riyadh Industrial City - Plot A1',
     area: 5000,
-    image: '/images/land-a.png',
+    image: '/assets/images/properties/land-a.png',
     electricity: '15',
     water: '2500',
     gas: '10',
@@ -27,7 +27,7 @@ const sampleProperties: IProperty[] = [
     city: 'Jubail',
     title: 'Jubail Industrial City - Plot B2',
     area: 7500,
-    image: '/images/land-b.png',
+    image: '/assets/images/properties/land-b.png',
     electricity: '25',
     water: '4000',
     gas: '15',
@@ -40,7 +40,7 @@ const sampleProperties: IProperty[] = [
     city: 'Yanbu',
     title: 'Yanbu Industrial City - Plot C3',
     area: 10000,
-    image: '/images/land-c.png',
+    image: '/assets/images/properties/land-c.png',
     electricity: '40',
     water: '6000',
     gas: '20',
@@ -53,7 +53,7 @@ const sampleProperties: IProperty[] = [
     city: 'Dammam',
     title: 'Dammam Industrial City - Plot D4',
     area: 3000,
-    image: '/images/land-d.png',
+    image: '/assets/images/properties/land-d.png',
     electricity: '12',
     water: '1800',
     gas: '8',
@@ -88,7 +88,7 @@ export function ExplorePage() {
     <div className="min-h-screen bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
       {/* Hero Section */}
       <Hero
-        backgroundImage="/images/ExploreBG.jpg"
+        backgroundImage="/assets/images/backgrounds/ExploreBG.jpg"
         title={t('hero.explore.title') || 'Explore Industrial Opportunities'}
         subtitle={t('hero.explore.subtitle') || 'Discover investment opportunities across Saudi Arabia\'s industrial landscape'}
         breadcrumbItems={[
@@ -109,8 +109,8 @@ export function ExplorePage() {
         </div>
 
         {/* View Controls */}
-        <ViewControls 
-          viewMode={viewMode} 
+        <ViewControls
+          viewMode={viewMode}
           onViewModeChange={setViewMode}
         />
 
@@ -127,9 +127,8 @@ export function ExplorePage() {
 
           {/* Map Area (for split and map views) */}
           {(viewMode === EViewMode.split || viewMode === EViewMode.map) && (
-            <div className={`${
-              viewMode === EViewMode.map ? 'w-full' : 'flex-1'
-            } bg-gray-200 rounded-lg min-h-[600px] flex items-center justify-center`}>
+            <div className={`${viewMode === EViewMode.map ? 'w-full' : 'flex-1'
+              } bg-gray-200 rounded-lg min-h-[600px] flex items-center justify-center`}>
               <div className="text-center text-gray-500">
                 <div className="text-4xl mb-4">
                   <span role="img" aria-label="Map">🗺️</span>

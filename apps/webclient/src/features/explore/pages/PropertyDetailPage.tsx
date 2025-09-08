@@ -69,7 +69,7 @@ export function PropertyDetailPage() {
     return (
       <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
         <Hero
-          backgroundImage="/images/ExploreBG.jpg"
+          backgroundImage="/assets/images/backgrounds/ExploreBG.jpg"
           title="Loading..."
           subtitle="Please wait while we fetch the property details"
           breadcrumbItems={[
@@ -91,7 +91,7 @@ export function PropertyDetailPage() {
     return (
       <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
         <Hero
-          backgroundImage="/images/ExploreBG.jpg"
+          backgroundImage="/assets/images/backgrounds/ExploreBG.jpg"
           title="Property Not Found"
           subtitle={error || 'The requested property could not be found'}
           breadcrumbItems={[
@@ -122,7 +122,7 @@ export function PropertyDetailPage() {
   return (
     <div className="flex min-h-dvh flex-col bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]">
       <Hero
-        backgroundImage="/images/ExploreBG.jpg"
+        backgroundImage="/assets/images/backgrounds/ExploreBG.jpg"
         title={property.title}
         subtitle={`${property.area.toLocaleString()} m² • ${property.city}`}
         breadcrumbItems={[

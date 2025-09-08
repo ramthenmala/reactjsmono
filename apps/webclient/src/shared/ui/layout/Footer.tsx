@@ -10,7 +10,7 @@ export function Footer() {
             {/* Background image */}
             <div className="absolute inset-0">
                 <img
-                    src="/assets/images/bg.jpg"
+                    src="/assets/images/backgrounds/bg.jpg"
                     alt="Footer background"
                     className="w-full h-full object-cover"
                 />
@@ -25,7 +25,7 @@ export function Footer() {
                     <div className="lg:col-span-1">
                         <div className="flex items-center gap-2 mb-4">
                             <img
-                                src="/assets/images/logo.svg"
+                                src="/assets/images/brand/logo.svg"
                                 alt="Logo"
                                 width={32}
                                 height={32}
@@ -119,7 +119,7 @@ export function Footer() {
                             {/* Ministry Logo */}
                             <div className="flex items-center gap-3">
                                 <img
-                                    src="/assets/images/ministry-of-industry-and-mineral-resources-seek-logo.svg"
+                                    src="/assets/images/brand/ministry-of-industry-and-mineral-resources-seek-logo.svg"
                                     alt="Ministry of Industry and Mineral Resources"
                                     width={100}
                                     height={32}
@@ -130,7 +130,7 @@ export function Footer() {
                             {/* Vision 2030 Logo */}
                             <div className="flex items-center gap-3">
                                 <img
-                                    src="/assets/images/vision-2030-kingdom-of-saudi-arabia-logo.svg"
+                                    src="/assets/images/brand/vision-2030-kingdom-of-saudi-arabia-logo.svg"
                                     alt="Vision 2030 Kingdom of Saudi Arabia"
                                     width={100}
                                     height={32}
@@ -141,7 +141,7 @@ export function Footer() {
                             {/* Digital Government Authority */}
                             <div className="flex items-center gap-3">
                                 <img
-                                    src="/assets/images/registered-on-digital-government-authority-logo.svg"
+                                    src="/assets/images/brand/registered-on-digital-government-authority-logo.svg"
                                     alt="Digital Government Authority"
                                     width={100}
                                     height={32}

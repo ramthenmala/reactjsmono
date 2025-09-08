@@ -137,7 +137,7 @@ export function Header() {
       <div className="container flex items-end justify-between gap-4">
         {/* Left: Logo always */}
         <div className="header-section flex gap-12">
-          <img src="/assets/images/logo.svg" alt="Compass" className="h-8 w-auto" />
+          <img src="/assets/images/brand/logo.svg" alt="Compass" className="h-8 w-auto" />
           {/* Desktop nav (>= xl) */}
           <nav className="header-nav max-xl:hidden">
             <ul className="flex items-center gap-4">
@@ -171,7 +171,7 @@ export function Header() {
               className="flex cursor-pointer items-center gap-2 rounded-lg py-2 outline-none transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <img 
-                src={currentLocale === "ar" ? "/assets/images/SA.svg" : "/assets/images/US.svg"} 
+                src={currentLocale === "ar" ? "/assets/images/flags/SA.svg" : "/assets/images/flags/US.svg"} 
                 alt="flag" 
                 width={20} 
                 height={20} 
@@ -260,7 +260,7 @@ export function Header() {
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <img 
-                  src={currentLocale === "ar" ? "/assets/images/SA.svg" : "/assets/images/US.svg"} 
+                  src={currentLocale === "ar" ? "/assets/images/flags/SA.svg" : "/assets/images/flags/US.svg"} 
                   alt="flag" 
                   width={20} 
                   height={20} 
