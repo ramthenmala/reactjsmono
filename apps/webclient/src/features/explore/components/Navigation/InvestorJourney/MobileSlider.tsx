@@ -1,5 +1,4 @@
 import React from 'react';
-import { InvestorJourneyCard } from '../../types/investorJourney';
 import type { MobileSliderProps } from '../../types/mobileSlider';
 import { investorJourneyStyles } from './styles';
 

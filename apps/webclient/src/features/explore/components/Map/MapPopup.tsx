@@ -1,5 +1,4 @@
 import { createPortal } from 'react-dom';
-import { IProperty } from '@/features/explore/types/explore';
 import { PropertyCard } from '@/features/explore/components/Property/PropertyCard';
 import type { MapPopupProps } from '../../types/mapPopup';
 import { mapStyles } from './styles';

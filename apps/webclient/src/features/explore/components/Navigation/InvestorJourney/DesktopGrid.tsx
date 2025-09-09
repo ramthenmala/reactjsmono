@@ -1,4 +1,3 @@
-import { InvestorJourneyCard } from '../../types/investorJourney';
 import { cardStyles } from './cardStyles';
 import type { DesktopGridProps } from '../../types/desktopGrid';
 import { investorJourneyStyles } from './styles';

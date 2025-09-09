@@ -4,7 +4,6 @@ import { useLocaleTranslation } from '@/shared/lib/i18n';
 import { useCurrentLocale } from '@/shared/lib/router';
 import { useSearchData } from '@/shared/hooks';
 import { useSearchFiltersStore } from '@/shared/hooks/useSearchFiltersStore';
-import { SearchFilters } from '@/shared/types';
 import { createRouteUrl } from '@/shared/utils';
 import { SearchForm } from './SearchForm';
 import type { SearchPanelProps } from '../../types/searchPanel';

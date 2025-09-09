@@ -1,4 +1,3 @@
-import { InvestorJourneyCard } from '../../types/investorJourney';
 import type { NavigationDotsProps } from '../../types/navigationDots';
 import { investorJourneyStyles } from './styles';
 
