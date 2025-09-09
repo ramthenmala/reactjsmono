@@ -7,15 +7,21 @@ export function StatCard({
   className = '',
   variant = 'default',
   icon,
+  labelStyle,
 }: StatCardProps) {
   const variantClassName = statCardStyles.value.variants[variant || 'default'];
 
   return (
     <div className={`${statCardStyles.container.base} ${className}`}>
       <div className="flex items-start justify-between w-full gap-2">
-        <div className={`${statCardStyles.label} flex-1 min-w-0`}>{label}</div>
+        <div 
+          className={`${statCardStyles.label} flex-1 min-w-0`}
+          style={labelStyle}
+        >
+          {label}
+        </div>
         {icon && variant !== 'logistics' && (
-          <div className="text-[#695DC2] opacity-60 flex-shrink-0">{icon}</div>
+          <div className="text-[#695DC2] flex-shrink-0">{icon}</div>
         )}
       </div>
       <div className={`${variantClassName} ${variant === 'logistics' ? 'flex-wrap' : ''}`}>

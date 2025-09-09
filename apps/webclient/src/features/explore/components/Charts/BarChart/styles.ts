@@ -1,5 +1,5 @@
 export const barChartStyles = {
-  container: 'h-92 w-full',
+  container: 'h-60 w-full',
   xAxisTick: 'text-xs text-gray-600',
   xAxis: 'text-gray-600',
   yAxis: 'text-gray-600 text-xs',

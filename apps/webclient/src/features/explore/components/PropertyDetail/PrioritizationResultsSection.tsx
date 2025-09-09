@@ -90,13 +90,26 @@ export function PrioritizationResultsSection({
           {sections.map((section) => (
             <div
               key={section.id}
-              className="border border-gray-200 rounded-lg overflow-hidden"
+              className="overflow-hidden"
+              style={{
+                borderRadius: 'var(--radius-xl, 12px)',
+                border: '1px solid var(--Colors-Border-border-secondary, #EBEDEF)',
+                background: 'var(--Component-colors-Alpha-alpha-white-30, rgba(255, 255, 255, 0.30))',
+                padding: 'var(--spacing-4xl, 32px)'
+              }}
             >
               <button
                 onClick={() => toggleSection(section.id)}
-                className="w-full px-4 py-3 text-left bg-gray-50 hover:bg-gray-100 flex justify-between items-center"
+                className="w-full text-left flex justify-between items-center"
               >
-                <h3 className="text-lg font-medium text-gray-900">
+                <h3 
+                  className="text-gray-900"
+                  style={{
+                    fontSize: '24px',
+                    fontStyle: 'normal',
+                    fontWeight: '600'
+                  }}
+                >
                   {section.title}
                 </h3>
                 <svg
@@ -116,7 +129,9 @@ export function PrioritizationResultsSection({
                 </svg>
               </button>
               {openSection === section.id && (
-                <div className="px-4 py-3 bg-white">{section.content}</div>
+                <div className="bg-white" style={{ marginTop: 'var(--spacing-4xl, 32px)' }}>
+                  {section.content}
+                </div>
               )}
             </div>
           ))}

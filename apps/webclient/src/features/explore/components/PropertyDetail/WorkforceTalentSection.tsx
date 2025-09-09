@@ -8,6 +8,16 @@ export function WorkforceTalentSection({
   industrialCity,
 }: PropertyDetailComponentProps) {
   const { t } = useLocaleTranslation();
+  
+  const customLabelStyle: React.CSSProperties = {
+    color: 'var(--colors-text-text-tertiary-600, #50555E)',
+    fontFamily: '"General Sans"',
+    fontSize: '18px',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: '21px',
+  };
+
   return (
     <div className={propertyDetailStyles.flexLayout.reverseOnLarge}>
       <div className="lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -37,6 +47,7 @@ export function WorkforceTalentSection({
             value={industrialCity.workforceTalent.skilledLaborAvgSalary}
             variant="large"
             icon={<span className="size-4 md:size-6 text-brand-600">SAR</span>}
+            labelStyle={customLabelStyle}
           />
         )}
         {industrialCity.workforceTalent?.nonSkilledLaborAvgSalary && (
@@ -45,6 +56,7 @@ export function WorkforceTalentSection({
             value={industrialCity.workforceTalent.nonSkilledLaborAvgSalary}
             variant="large"
             icon={<span className="size-4 md:size-6 text-brand-600">SAR</span>}
+            labelStyle={customLabelStyle}
           />
         )}
       </div>

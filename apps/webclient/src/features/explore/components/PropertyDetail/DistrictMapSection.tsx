@@ -10,20 +10,27 @@ export function DistrictMapSection({
   const { t } = useLocaleTranslation();
   return (
     <div className="lg:w-5/12 flex flex-col gap-4">
-      {industrialCity.districtMapAndDetails ? (
-        <>
-          <h2 className={propertyDetailStyles.sectionTitleSmall}>
-            {t('property_detail.district_map')}
-          </h2>
-          <div className={propertyDetailStyles.card.container}>
-            <img
-              src={industrialCity.districtMapAndDetails}
-              alt="District map"
-              className="w-full h-auto"
-            />
+      <h2 className={propertyDetailStyles.sectionTitleSmall}>
+        {t('property_detail.district_map') || 'District Map'}
+      </h2>
+      <div className={propertyDetailStyles.card.container}>
+        {industrialCity.districtMapAndDetails ? (
+          <img
+            src={industrialCity.districtMapAndDetails}
+            alt="District map"
+            className="w-full h-auto"
+          />
+        ) : (
+          <div className="flex items-center justify-center h-48 text-gray-500">
+            <div className="text-center">
+              <svg className="mx-auto h-12 w-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 48 48">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14v6m-3-3h6m-6 4h.01M21 16.5h.01M5 5.5h18m-9-2V2m9-2v2m9 4v18a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h18m-9 2V2" />
+              </svg>
+              <p className="text-sm">District map not available</p>
+            </div>
           </div>
-        </>
-      ) : null}
+        )}
+      </div>
       <div className={propertyDetailStyles.grid.twoColumns}>
         <StatCard
           label={t('property_detail.establishment_year')}

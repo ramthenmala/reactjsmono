@@ -8,4 +8,5 @@ export interface StatCardProps {
   className?: string;
   variant?: StatCardVariant;
   icon?: React.ReactNode;
+  labelStyle?: React.CSSProperties;
 }

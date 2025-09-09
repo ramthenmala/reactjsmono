@@ -17,7 +17,7 @@ import { barChartStyles } from './styles';
 export function BarChart({ data }: BarChartProps) {
   return (
     <div className={barChartStyles.container}>
-      <ResponsiveContainer width="100%" height={240}>
+      <ResponsiveContainer width="100%" height="100%">
         <RechartsBarChart data={data} margin={barChartStyles.margin}>
           <CartesianGrid
             vertical={false}
