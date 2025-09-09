@@ -14,8 +14,10 @@ export const ASSET_PATHS = {
   },
   brand: {
     logo: '/assets/images/brand/logo.svg',
-    ministry: '/assets/images/brand/ministry-of-industry-and-mineral-resources-seek-logo.svg',
-    vision2030: '/assets/images/brand/vision-2030-kingdom-of-saudi-arabia-logo.svg',
+    ministry:
+      '/assets/images/brand/ministry-of-industry-and-mineral-resources-seek-logo.svg',
+    vision2030:
+      '/assets/images/brand/vision-2030-kingdom-of-saudi-arabia-logo.svg',
     dga: '/assets/images/brand/registered-on-digital-government-authority-logo.svg',
   },
   flags: {

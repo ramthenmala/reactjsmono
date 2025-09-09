@@ -50,15 +50,13 @@ export function InvestorJourney({
   const displayContent = content || i18nContent.defaultContent;
 
   return (
-    <section 
+    <section
       className={investorJourneyStyles.section.base}
       style={investorJourneyStyles.section.style}
     >
       <div className={investorJourneyStyles.container}>
         <div className={investorJourneyStyles.header.wrapper}>
-          <h2 className={investorJourneyStyles.header.title}>
-            {displayTitle}
-          </h2>
+          <h2 className={investorJourneyStyles.header.title}>{displayTitle}</h2>
           <p className={investorJourneyStyles.header.content}>
             {displayContent}
           </p>
@@ -83,7 +81,6 @@ export function InvestorJourney({
 
         {/* Desktop Grid */}
         <DesktopGrid cards={cards} />
-
       </div>
     </section>
   );

@@ -1,5 +1,10 @@
 import { useState, useCallback, useReducer, useEffect } from 'react';
-import { SearchFilters, SearchState, SearchAction, AreaRange } from '../types/search';
+import {
+  SearchFilters,
+  SearchState,
+  SearchAction,
+  AreaRange,
+} from '../types/search';
 
 const DEFAULT_FILTERS: SearchFilters = {
   isic: [],
@@ -54,9 +59,11 @@ interface UseSearchFiltersReturn {
   setAreaFromFilters: () => void;
 }
 
-export function useSearchFilters(options: UseSearchFiltersOptions = {}): UseSearchFiltersReturn {
+export function useSearchFilters(
+  options: UseSearchFiltersOptions = {}
+): UseSearchFiltersReturn {
   const { initialFilters = {}, onFiltersChange, areaRange } = options;
-  
+
   const [state, dispatch] = useReducer(searchReducer, {
     filters: { ...DEFAULT_FILTERS, ...initialFilters },
     regions: [],
@@ -76,27 +83,30 @@ export function useSearchFilters(options: UseSearchFiltersOptions = {}): UseSear
   useEffect(() => {
     if (areaRange && !initialFilters.minArea && !initialFilters.maxArea) {
       setAreaValue([areaRange.min, areaRange.max]);
-      dispatch({ 
-        type: 'SET_FILTERS', 
-        payload: { 
-          minArea: areaRange.min, 
-          maxArea: areaRange.max 
-        } 
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: {
+          minArea: areaRange.min,
+          maxArea: areaRange.max,
+        },
       });
     }
   }, [areaRange, initialFilters.minArea, initialFilters.maxArea]);
 
-  const updateFilters = useCallback((updates: Partial<SearchFilters>) => {
-    dispatch({ type: 'SET_FILTERS', payload: updates });
-    
-    const newFilters = { ...state.filters, ...updates };
-    onFiltersChange?.(newFilters);
-    
-    // If region changed, clear location
-    if (updates.region !== undefined) {
-      dispatch({ type: 'SET_FILTERS', payload: { location: '' } });
-    }
-  }, [state.filters, onFiltersChange]);
+  const updateFilters = useCallback(
+    (updates: Partial<SearchFilters>) => {
+      dispatch({ type: 'SET_FILTERS', payload: updates });
+
+      const newFilters = { ...state.filters, ...updates };
+      onFiltersChange?.(newFilters);
+
+      // If region changed, clear location
+      if (updates.region !== undefined) {
+        dispatch({ type: 'SET_FILTERS', payload: { location: '' } });
+      }
+    },
+    [state.filters, onFiltersChange]
+  );
 
   const updateAreaValue = useCallback((value: [number, number]) => {
     setAreaValue(value);
@@ -104,12 +114,14 @@ export function useSearchFilters(options: UseSearchFiltersOptions = {}): UseSear
 
   const clearFilters = useCallback(() => {
     dispatch({ type: 'CLEAR_FILTERS' });
-    const clearAreaRange = areaRange ? [areaRange.min, areaRange.max] as [number, number] : [DEFAULT_FILTERS.minArea, DEFAULT_FILTERS.maxArea];
+    const clearAreaRange = areaRange
+      ? ([areaRange.min, areaRange.max] as [number, number])
+      : [DEFAULT_FILTERS.minArea, DEFAULT_FILTERS.maxArea];
     setAreaValue(clearAreaRange);
-    const clearedFilters = { 
-      ...DEFAULT_FILTERS, 
+    const clearedFilters = {
+      ...DEFAULT_FILTERS,
       minArea: areaRange?.min || DEFAULT_FILTERS.minArea,
-      maxArea: areaRange?.max || DEFAULT_FILTERS.maxArea
+      maxArea: areaRange?.max || DEFAULT_FILTERS.maxArea,
     };
     onFiltersChange?.(clearedFilters);
   }, [onFiltersChange, areaRange]);

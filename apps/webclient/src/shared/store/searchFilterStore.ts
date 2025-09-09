@@ -7,7 +7,7 @@ interface SearchFilterState {
   filters: SearchFilters;
   areaValue: [number, number];
   areaRange: AreaRange;
-  
+
   // Actions
   updateFilters: (updates: Partial<SearchFilters>) => void;
   updateAreaValue: (value: [number, number]) => void;
@@ -49,8 +49,9 @@ export const useSearchFilterStore = create<SearchFilterState>()(
       setAreaRange: (range) => {
         set((state) => {
           // If this is the first time setting the range (initial load from API)
-          const isInitialLoad = state.areaRange.min === 0 && state.areaRange.max === 25000;
-          
+          const isInitialLoad =
+            state.areaRange.min === 0 && state.areaRange.max === 25000;
+
           if (isInitialLoad) {
             // Initialize with the full range
             return {

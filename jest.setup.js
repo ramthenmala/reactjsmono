@@ -45,7 +45,7 @@ beforeAll(() => {
     if (
       typeof args[0] === 'string' &&
       (args[0].includes('Warning: ReactDOM.render is deprecated') ||
-       args[0].includes('React Router Future Flag Warning'))
+        args[0].includes('React Router Future Flag Warning'))
     ) {
       return;
     }
@@ -56,7 +56,7 @@ beforeAll(() => {
     if (
       typeof args[0] === 'string' &&
       (args[0].includes('React Router Future Flag Warning') ||
-       args[0].includes('v7_relativeSplatPath'))
+        args[0].includes('v7_relativeSplatPath'))
     ) {
       return;
     }

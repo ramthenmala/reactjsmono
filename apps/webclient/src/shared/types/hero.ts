@@ -1,5 +1,5 @@
-import React from "react";
-import { BreadcrumbItem } from "./breadcrumb";
+import React from 'react';
+import { BreadcrumbItem } from './breadcrumb';
 
 export interface HeroProps {
   backgroundImage?: string;

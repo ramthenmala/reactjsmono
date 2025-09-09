@@ -79,5 +79,7 @@ export interface FormState<T = Record<string, any>> {
 // Event handler types
 export type EventHandler<T = Event> = (event: T) => void;
 export type ClickHandler = EventHandler<React.MouseEvent>;
-export type ChangeHandler = EventHandler<React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>>;
+export type ChangeHandler = EventHandler<
+  React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+>;
 export type SubmitHandler = EventHandler<React.FormEvent>;

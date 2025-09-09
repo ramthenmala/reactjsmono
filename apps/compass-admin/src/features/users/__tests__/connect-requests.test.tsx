@@ -21,14 +21,14 @@ describe('ConnectRequestsPage', () => {
 
   it('renders page container with correct classes', () => {
     render(<ConnectRequestsPage />);
-    
+
     const page = screen.getByTestId('connect-requests-page');
     expect(page).toHaveClass('space-y-6');
   });
 
   it('renders title with correct translation key', () => {
     render(<ConnectRequestsPage />);
-    
+
     const title = screen.getByTestId('connect-requests-title');
     expect(title).toBeInTheDocument();
     expect(title).toHaveTextContent('navigation.connectRequests');
@@ -36,31 +36,36 @@ describe('ConnectRequestsPage', () => {
 
   it('applies correct CSS classes to title', () => {
     render(<ConnectRequestsPage />);
-    
+
     const title = screen.getByTestId('connect-requests-title');
-    expect(title).toHaveClass('text-3xl', 'font-bold', 'text-gray-900', 'dark:text-white');
+    expect(title).toHaveClass(
+      'text-3xl',
+      'font-bold',
+      'text-gray-900',
+      'dark:text-white'
+    );
   });
 
   it('title is an h1 element', () => {
     render(<ConnectRequestsPage />);
-    
+
     const title = screen.getByTestId('connect-requests-title');
     expect(title.tagName).toBe('H1');
   });
 
   it('calls translation function with correct key', () => {
     render(<ConnectRequestsPage />);
-    
+
     const title = screen.getByTestId('connect-requests-title');
     expect(title).toHaveTextContent('navigation.connectRequests');
   });
 
   it('maintains component structure', () => {
     render(<ConnectRequestsPage />);
-    
+
     const page = screen.getByTestId('connect-requests-page');
     const title = screen.getByTestId('connect-requests-title');
-    
+
     expect(page).toContainElement(title);
   });
 });

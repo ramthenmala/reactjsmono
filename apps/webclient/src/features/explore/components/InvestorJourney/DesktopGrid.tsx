@@ -13,9 +13,13 @@ export function DesktopGrid({ cards }: DesktopGridProps) {
         >
           {/* Icon Container */}
           <div className={cardStyles.icon}>
-            <img src={step.icon} alt={step.title} className={investorJourneyStyles.cardContent.icon.image} />
+            <img
+              src={step.icon}
+              alt={step.title}
+              className={investorJourneyStyles.cardContent.icon.image}
+            />
           </div>
-          
+
           {/* Content Container */}
           <div className={investorJourneyStyles.cardContent.text.wrapper}>
             <h3 className={investorJourneyStyles.cardContent.text.title}>

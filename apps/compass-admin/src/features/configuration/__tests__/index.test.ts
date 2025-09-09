@@ -29,7 +29,9 @@ describe('configuration index', () => {
     expect(configurationIndex.FilterCriteriaPage).toBe(FilterCriteriaPage);
     expect(configurationIndex.IsicRelevancePage).toBe(IsicRelevancePage);
     expect(configurationIndex.FeaturedLandsPage).toBe(FeaturedLandsPage);
-    expect(configurationIndex.ConfigurationHistoryPage).toBe(ConfigurationHistoryPage);
+    expect(configurationIndex.ConfigurationHistoryPage).toBe(
+      ConfigurationHistoryPage
+    );
   });
 
   it('has expected number of exports', () => {

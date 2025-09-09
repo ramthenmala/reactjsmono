@@ -11,7 +11,10 @@ export const createScrollToSection = (locale: string) => {
   };
 };
 
-export const createUrlForSection = (locale: string, sectionId: AnalyticsSectionId): string => {
+export const createUrlForSection = (
+  locale: string,
+  sectionId: AnalyticsSectionId
+): string => {
   return `/${locale}/analytics#${sectionId}`;
 };
 
@@ -20,7 +23,7 @@ export const extractHashFromUrl = (url: string): string => {
 };
 
 export const findActiveSection = (
-  sections: AnalyticsSectionId[], 
+  sections: AnalyticsSectionId[],
   scrollOffset = 100
 ): AnalyticsSectionId | null => {
   const scrollPosition = window.scrollY + scrollOffset;

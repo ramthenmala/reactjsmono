@@ -4,7 +4,12 @@ import { PropertyCard } from '@/features/explore/components/PropertyCard';
 import type { MapPopupProps } from '../../types/mapPopup';
 import { mapStyles } from './styles';
 
-export function MapPopup({ property, container, onClose, onView }: MapPopupProps) {
+export function MapPopup({
+  property,
+  container,
+  onClose,
+  onView,
+}: MapPopupProps) {
   if (!property || !container) return null;
 
   return createPortal(
@@ -22,10 +27,7 @@ export function MapPopup({ property, container, onClose, onView }: MapPopupProps
           }}
         />
       </div>
-      <button
-        onClick={onClose}
-        className={mapStyles.popup.closeButton}
-      >
+      <button onClick={onClose} className={mapStyles.popup.closeButton}>
         ×
       </button>
     </div>,

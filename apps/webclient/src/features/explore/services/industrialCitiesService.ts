@@ -1,24 +1,30 @@
-import { IIndustrialCitiesResponse, IIndustrialCityAPI, IProperty } from '../types/explore';
+import {
+  IIndustrialCitiesResponse,
+  IIndustrialCityAPI,
+  IProperty,
+} from '../types/explore';
 import { getPropertyImageByIndex } from '../constants';
 
-const API_URL = import.meta.env.VITE_INDUSTRIAL_CITIES_API_URL || 'https://www.jsonkeeper.com/b/IWHDX';
+const API_URL =
+  import.meta.env.VITE_INDUSTRIAL_CITIES_API_URL ||
+  'https://www.jsonkeeper.com/b/IWHDX';
 
 // Service to fetch industrial cities data
 export class IndustrialCitiesService {
   static async fetchIndustrialCities(): Promise<IIndustrialCityAPI[]> {
     try {
       const response = await fetch(API_URL);
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const data: IIndustrialCitiesResponse = await response.json();
-      
+
       if (!data.success) {
         throw new Error(data.message || 'Failed to fetch industrial cities');
       }
-      
+
       return data.data.cities;
     } catch (error) {
       console.error('Error fetching industrial cities:', error);

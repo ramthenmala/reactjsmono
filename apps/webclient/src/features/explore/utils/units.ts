@@ -1,16 +1,27 @@
-import { EAreaUnit, EPowerUnit, EGasFlowUnit, EWaterFlowUnit } from '../types/explore';
+import {
+  EAreaUnit,
+  EPowerUnit,
+  EGasFlowUnit,
+  EWaterFlowUnit,
+} from '../types/explore';
 
 export type EUnit = EAreaUnit | EPowerUnit | EGasFlowUnit | EWaterFlowUnit;
 
 export function unitLabel(unit: EUnit, t?: (k: string) => string) {
   const tr = t ?? ((s: string) => s);
   switch (unit) {
-    case EAreaUnit.SqMeter:   return tr('units.sq_m');        // "m²"
-    case EAreaUnit.SqFoot:    return tr('units.sq_ft');       // "ft²"
-    case EPowerUnit.MW:       return 'MW';
-    case EGasFlowUnit.MMSCFD: return 'MMSCFD';
-    case EWaterFlowUnit.M3PerDay: return tr('units.m3_per_day'); // "m³/day"
-    default: return '';
+    case EAreaUnit.SqMeter:
+      return tr('units.sq_m'); // "m²"
+    case EAreaUnit.SqFoot:
+      return tr('units.sq_ft'); // "ft²"
+    case EPowerUnit.MW:
+      return 'MW';
+    case EGasFlowUnit.MMSCFD:
+      return 'MMSCFD';
+    case EWaterFlowUnit.M3PerDay:
+      return tr('units.m3_per_day'); // "m³/day"
+    default:
+      return '';
   }
 }
 

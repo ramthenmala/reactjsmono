@@ -37,9 +37,9 @@ export type TFeaturedProperty = {
   electricity: string; // MW
   gas: string; // MMSCFD
   water: string; // m3/day
-  status: "available"; // keep literal type to match sample data
+  status: 'available'; // keep literal type to match sample data
   featured: true;
-}; 
+};
 
 export interface IProperty {
   id: string;
@@ -51,7 +51,7 @@ export interface IProperty {
   electricity?: string;
   water?: string;
   gas?: string;
-  status: "available" | "sold" | "reserved";
+  status: 'available' | 'sold' | 'reserved';
   featured?: boolean;
   coordinates?: { lat: number; lng: number };
 }
@@ -94,7 +94,16 @@ export interface IIndustrialCitiesResponse {
 }
 
 // --- Units ----------------------------------------------------------
-export enum EAreaUnit { SqMeter = 'm2', SqFoot = 'ft2' }
-export enum EPowerUnit { MW = 'MW' }
-export enum EGasFlowUnit { MMSCFD = 'MMSCFD' }
-export enum EWaterFlowUnit { M3PerDay = 'm3/day' }
+export enum EAreaUnit {
+  SqMeter = 'm2',
+  SqFoot = 'ft2',
+}
+export enum EPowerUnit {
+  MW = 'MW',
+}
+export enum EGasFlowUnit {
+  MMSCFD = 'MMSCFD',
+}
+export enum EWaterFlowUnit {
+  M3PerDay = 'm3/day',
+}

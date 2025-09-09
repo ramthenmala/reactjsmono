@@ -1,18 +1,19 @@
-import React, { useMemo, useState, useRef } from "react";
-import { PropertyCard } from "@/features/explore/components/PropertyCard";
-import { useCurrentLocale } from "@/shared/lib/router";
-import { TFeaturedProperty } from "@/features/explore/types/explore";
-import { featuredData } from "@/features/explore/data/exploreLandingData";
-import { featuredCitiesStyles } from "./styles";
+import React, { useMemo, useState, useRef } from 'react';
+import { PropertyCard } from '@/features/explore/components/PropertyCard';
+import { useCurrentLocale } from '@/shared/lib/router';
+import { TFeaturedProperty } from '@/features/explore/types/explore';
+import { featuredData } from '@/features/explore/data/exploreLandingData';
+import { featuredCitiesStyles } from './styles';
 
 const SWIPE_THRESHOLD = 40;
 
 // Utils
-const clamp = (val: number, min: number, max: number) => Math.min(max, Math.max(min, val));
+const clamp = (val: number, min: number, max: number) =>
+  Math.min(max, Math.max(min, val));
 
 export function FeaturedIndustrialCities({
-  title = "Featured Industrial Cities",
-  subtitle = "Site Selection Roadmap to Navigate, Compare, Invest - Seamlessly.",
+  title = 'Featured Industrial Cities',
+  subtitle = 'Site Selection Roadmap to Navigate, Compare, Invest - Seamlessly.',
 }: {
   title?: string;
   subtitle?: string;
@@ -57,7 +58,7 @@ export function FeaturedIndustrialCities({
   }, [isRTL, properties]);
 
   return (
-    <section 
+    <section
       className={featuredCitiesStyles.section.base}
       style={featuredCitiesStyles.section.style}
     >
@@ -75,14 +76,12 @@ export function FeaturedIndustrialCities({
       </div>
       <div className={featuredCitiesStyles.content.wrapper}>
         <div className={featuredCitiesStyles.content.header.container}>
-          <h2 className={featuredCitiesStyles.content.header.title}>
-            {title}
-          </h2>
+          <h2 className={featuredCitiesStyles.content.header.title}>{title}</h2>
           <p className={featuredCitiesStyles.content.header.subtitle}>
             {subtitle}
           </p>
         </div>
-        
+
         {/* Mobile Slider */}
         <div
           className={featuredCitiesStyles.mobileSlider.container}
@@ -97,7 +96,9 @@ export function FeaturedIndustrialCities({
             {properties.map((property, idx) => (
               <div
                 key={property.id}
-                style={featuredCitiesStyles.mobileSlider.slide(idx === activeIndex)}
+                style={featuredCitiesStyles.mobileSlider.slide(
+                  idx === activeIndex
+                )}
               >
                 <PropertyCard property={property} />
               </div>
@@ -110,7 +111,9 @@ export function FeaturedIndustrialCities({
           {visibleOrder.map((actualIdx) => (
             <button
               key={actualIdx}
-              className={featuredCitiesStyles.dots.button(activeIndex === actualIdx)}
+              className={featuredCitiesStyles.dots.button(
+                activeIndex === actualIdx
+              )}
               onClick={() => setActiveIndex(actualIdx)}
               aria-label={`Go to card ${actualIdx + 1}`}
               style={featuredCitiesStyles.dots.buttonStyle}

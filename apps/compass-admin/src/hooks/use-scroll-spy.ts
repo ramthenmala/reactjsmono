@@ -1,13 +1,19 @@
 import { useEffect, useState, useRef } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import type { AnalyticsSectionId, ScrollSpyConfig } from '../types/features';
-import { findActiveSection, createUrlForSection, extractHashFromUrl } from '../utils/scroll-spy';
+import {
+  findActiveSection,
+  createUrlForSection,
+  extractHashFromUrl,
+} from '../utils/scroll-spy';
 
 export const useScrollSpy = (config: ScrollSpyConfig) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { locale } = useParams<{ locale: string }>();
-  const [activeSection, setActiveSection] = useState<AnalyticsSectionId | ''>('');
+  const [activeSection, setActiveSection] = useState<AnalyticsSectionId | ''>(
+    ''
+  );
   const isUserScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
 
@@ -20,7 +26,7 @@ export const useScrollSpy = (config: ScrollSpyConfig) => {
         isUserScrollingRef.current = true;
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         setActiveSection(sectionId as AnalyticsSectionId);
-        
+
         if (scrollTimeoutRef.current) {
           clearTimeout(scrollTimeoutRef.current);
         }
@@ -36,14 +42,14 @@ export const useScrollSpy = (config: ScrollSpyConfig) => {
     const handleClick = (e: Event) => {
       const target = e.target as HTMLElement;
       const anchor = target.closest('a[href*="#"]');
-      
+
       if (anchor && anchor.getAttribute('href')?.includes('analytics#')) {
         isUserScrollingRef.current = true;
-        
+
         if (scrollTimeoutRef.current) {
           clearTimeout(scrollTimeoutRef.current);
         }
-        
+
         scrollTimeoutRef.current = setTimeout(() => {
           isUserScrollingRef.current = false;
         }, config.userScrollTimeout);
@@ -51,7 +57,7 @@ export const useScrollSpy = (config: ScrollSpyConfig) => {
     };
 
     document.addEventListener('click', handleClick);
-    
+
     return () => {
       document.removeEventListener('click', handleClick);
       if (scrollTimeoutRef.current) {
@@ -69,8 +75,11 @@ export const useScrollSpy = (config: ScrollSpyConfig) => {
 
       clearTimeout(debounceTimeout);
       debounceTimeout = setTimeout(() => {
-        const newActiveSection = findActiveSection(config.sections, config.scrollOffset);
-        
+        const newActiveSection = findActiveSection(
+          config.sections,
+          config.scrollOffset
+        );
+
         if (newActiveSection && newActiveSection !== activeSection) {
           setActiveSection(newActiveSection);
           const newUrl = createUrlForSection(locale || 'en', newActiveSection);
@@ -88,7 +97,14 @@ export const useScrollSpy = (config: ScrollSpyConfig) => {
       window.removeEventListener('scroll', handleScroll);
       clearTimeout(debounceTimeout);
     };
-  }, [activeSection, location.pathname, location.hash, navigate, locale, config]);
+  }, [
+    activeSection,
+    location.pathname,
+    location.hash,
+    navigate,
+    locale,
+    config,
+  ]);
 
   return { activeSection };
 };

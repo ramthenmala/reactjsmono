@@ -6,11 +6,11 @@ import { Locale, DEFAULT_LOCALE, isValidLocale } from '../constants';
  */
 export const useCurrentLocale = (): Locale => {
   const { locale } = useParams<{ locale: string }>();
-  
+
   if (!locale || !isValidLocale(locale)) {
     return DEFAULT_LOCALE;
   }
-  
+
   return locale;
 };
 
@@ -21,23 +21,26 @@ export const useLocaleNavigate = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentLocale = useCurrentLocale();
-  
-  const navigateWithLocale = (path: string, options?: { replace?: boolean }) => {
+
+  const navigateWithLocale = (
+    path: string,
+    options?: { replace?: boolean }
+  ) => {
     const fullPath = path.startsWith('/') ? path : `/${path}`;
     const localeAwarePath = `/${currentLocale}${fullPath}`;
     navigate(localeAwarePath, options);
   };
-  
+
   const changeLocale = (newLocale: Locale) => {
     const currentPath = location.pathname;
-    
+
     // Replace current locale with new locale in path
     const pathWithoutLocale = currentPath.replace(`/${currentLocale}`, '');
     const newPath = `/${newLocale}${pathWithoutLocale}`;
-    
+
     navigate(newPath, { replace: true });
   };
-  
+
   return {
     navigate: navigateWithLocale,
     changeLocale,
@@ -60,11 +63,11 @@ export const getLocaleUrl = (path: string, locale?: Locale): string => {
 export const getLocaleFromPathname = (pathname: string): Locale => {
   const segments = pathname.split('/');
   const potentialLocale = segments[1];
-  
+
   if (isValidLocale(potentialLocale)) {
     return potentialLocale;
   }
-  
+
   return DEFAULT_LOCALE;
 };
 

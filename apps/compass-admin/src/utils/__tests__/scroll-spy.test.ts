@@ -13,7 +13,10 @@ const mockGetElementById = jest.fn();
 
 // Store original implementations
 const originalGetElementById = document.getElementById;
-const originalWindowScrollY = Object.getOwnPropertyDescriptor(window, 'scrollY');
+const originalWindowScrollY = Object.getOwnPropertyDescriptor(
+  window,
+  'scrollY'
+);
 
 describe('scroll-spy utilities', () => {
   beforeEach(() => {
@@ -21,7 +24,7 @@ describe('scroll-spy utilities', () => {
     jest.clearAllMocks();
     mockScrollIntoView.mockClear();
     mockGetElementById.mockClear();
-    
+
     // Mock document.getElementById
     document.getElementById = mockGetElementById;
   });
@@ -39,23 +42,26 @@ describe('scroll-spy utilities', () => {
       const mockElement = {
         scrollIntoView: mockScrollIntoView,
       } as unknown as HTMLElement;
-      
+
       mockGetElementById.mockReturnValue(mockElement);
-      
+
       const scrollToSection = createScrollToSection('en');
       const result = scrollToSection('test-section');
-      
+
       expect(mockGetElementById).toHaveBeenCalledWith('test-section');
-      expect(mockScrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth', block: 'start' });
+      expect(mockScrollIntoView).toHaveBeenCalledWith({
+        behavior: 'smooth',
+        block: 'start',
+      });
       expect(result).toBe(true);
     });
 
     it('returns false when element does not exist', () => {
       mockGetElementById.mockReturnValue(null);
-      
+
       const scrollToSection = createScrollToSection('en');
       const result = scrollToSection('non-existent-section');
-      
+
       expect(mockGetElementById).toHaveBeenCalledWith('non-existent-section');
       expect(mockScrollIntoView).not.toHaveBeenCalled();
       expect(result).toBe(false);
@@ -65,22 +71,22 @@ describe('scroll-spy utilities', () => {
       const mockElement = {
         scrollIntoView: mockScrollIntoView,
       } as unknown as HTMLElement;
-      
+
       mockGetElementById.mockReturnValue(mockElement);
-      
+
       const scrollToSectionAr = createScrollToSection('ar');
       const result = scrollToSectionAr('section-ar');
-      
+
       expect(mockGetElementById).toHaveBeenCalledWith('section-ar');
       expect(result).toBe(true);
     });
 
     it('handles empty section id', () => {
       mockGetElementById.mockReturnValue(null);
-      
+
       const scrollToSection = createScrollToSection('en');
       const result = scrollToSection('');
-      
+
       expect(mockGetElementById).toHaveBeenCalledWith('');
       expect(result).toBe(false);
     });
@@ -104,10 +110,10 @@ describe('scroll-spy utilities', () => {
         'national',
         'regional',
         'city-metrics',
-        'sector-view'
+        'sector-view',
       ];
 
-      sectionIds.forEach(sectionId => {
+      sectionIds.forEach((sectionId) => {
         const result = createUrlForSection('en', sectionId);
         expect(result).toBe(`/en/analytics#${sectionId}`);
       });
@@ -163,64 +169,68 @@ describe('scroll-spy utilities', () => {
 
     it('returns null when no sections match', () => {
       mockGetElementById.mockReturnValue(null);
-      
+
       const sections: AnalyticsSectionId[] = ['investor-insights', 'national'];
       const result = findActiveSection(sections);
-      
+
       expect(result).toBe(null);
     });
 
     it('returns the correct active section', () => {
       const mockElement1 = { offsetTop: 100 } as HTMLElement;
       const mockElement2 = { offsetTop: 300 } as HTMLElement;
-      
+
       mockGetElementById
         .mockReturnValueOnce(mockElement2) // 'national' - checked first (reverse order)
         .mockReturnValueOnce(mockElement1); // 'investor-insights'
-      
+
       // Set scroll position to 250 (+ default offset 100 = 350)
       Object.defineProperty(window, 'scrollY', { value: 250 });
-      
+
       const sections: AnalyticsSectionId[] = ['investor-insights', 'national'];
       const result = findActiveSection(sections);
-      
+
       expect(result).toBe('national');
     });
 
     it('uses custom scroll offset', () => {
       const mockElement = { offsetTop: 200 } as HTMLElement;
       mockGetElementById.mockReturnValue(mockElement);
-      
+
       Object.defineProperty(window, 'scrollY', { value: 150 });
-      
+
       const sections: AnalyticsSectionId[] = ['investor-insights'];
-      
+
       // With offset 50: scrollPosition = 150 + 50 = 200, equals offsetTop
       const resultWithOffset = findActiveSection(sections, 50);
       expect(resultWithOffset).toBe('investor-insights');
-      
+
       // With offset 30: scrollPosition = 150 + 30 = 180, less than offsetTop
       const resultWithSmallOffset = findActiveSection(sections, 30);
       expect(resultWithSmallOffset).toBe(null);
     });
 
     it('handles multiple sections and returns the most relevant one', () => {
-      const sections: AnalyticsSectionId[] = ['investor-insights', 'national', 'regional'];
-      
+      const sections: AnalyticsSectionId[] = [
+        'investor-insights',
+        'national',
+        'regional',
+      ];
+
       // Mock elements with increasing offsetTop values
       const mockElements = [
         { offsetTop: 500 }, // regional
-        { offsetTop: 300 }, // national  
+        { offsetTop: 300 }, // national
         { offsetTop: 100 }, // investor-insights
       ];
-      
+
       mockGetElementById
         .mockReturnValueOnce(mockElements[0] as HTMLElement) // regional (checked first)
         .mockReturnValueOnce(mockElements[1] as HTMLElement) // national
         .mockReturnValueOnce(mockElements[2] as HTMLElement); // investor-insights
-      
+
       Object.defineProperty(window, 'scrollY', { value: 250 }); // + 100 offset = 350
-      
+
       const result = findActiveSection(sections);
       expect(result).toBe('national'); // offsetTop 300 <= scrollPosition 350
     });
@@ -229,12 +239,15 @@ describe('scroll-spy utilities', () => {
       mockGetElementById
         .mockReturnValueOnce(null) // first section doesn't exist
         .mockReturnValue({ offsetTop: 100 } as HTMLElement); // second section exists
-      
+
       Object.defineProperty(window, 'scrollY', { value: 150 });
-      
-      const sections: AnalyticsSectionId[] = ['non-existent', 'investor-insights'];
+
+      const sections: AnalyticsSectionId[] = [
+        'non-existent',
+        'investor-insights',
+      ];
       const result = findActiveSection(sections);
-      
+
       expect(result).toBe('investor-insights');
     });
 
@@ -274,7 +287,9 @@ describe('scroll-spy utilities', () => {
     });
 
     it('handles special characters', () => {
-      expect(isAnalyticsAnchor('/en/analytics#investor-insights-2024')).toBe(true);
+      expect(isAnalyticsAnchor('/en/analytics#investor-insights-2024')).toBe(
+        true
+      );
       expect(isAnalyticsAnchor('/ar/analytics#city_metrics')).toBe(true);
     });
   });

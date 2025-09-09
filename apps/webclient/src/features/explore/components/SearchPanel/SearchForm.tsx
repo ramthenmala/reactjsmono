@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, MultiSelect, Slider, Button } from "@compass/shared-ui";
+import { Select, MultiSelect, Slider, Button } from '@compass/shared-ui';
 import { useListData } from 'react-stately';
 import { SearchFilters, SelectOption, AreaRange } from '@/shared/types';
 import { useIsicSearch } from '@/shared/hooks';
@@ -30,7 +30,7 @@ export function SearchForm({
 
     // If user has 5 or more selections, only show already selected items
     if (selectedIds.size >= 5) {
-      return isicOptions.filter(item => selectedIds.has(item.id));
+      return isicOptions.filter((item) => selectedIds.has(item.id));
     }
 
     // Otherwise show all items
@@ -45,28 +45,31 @@ export function SearchForm({
   // Sync selectedIsic with form filters whenever they change
   React.useEffect(() => {
     if (isicOptions.length > 0) {
-      const selectedItems = isicOptions.filter(item => filters.isic.includes(item.id));
-      const currentSelectedIds = selectedIsic.items.map(item => item.id);
+      const selectedItems = isicOptions.filter((item) =>
+        filters.isic.includes(item.id)
+      );
+      const currentSelectedIds = selectedIsic.items.map((item) => item.id);
 
       // Only update if there's actually a difference
-      const newIds = selectedItems.map(item => item.id);
+      const newIds = selectedItems.map((item) => item.id);
       const currentIds = new Set(currentSelectedIds);
 
       // Check if sets are different
-      const isDifferent = newIds.length !== currentSelectedIds.length ||
-        newIds.some(id => !currentIds.has(id));
+      const isDifferent =
+        newIds.length !== currentSelectedIds.length ||
+        newIds.some((id) => !currentIds.has(id));
 
       if (isDifferent) {
         // Clear and rebuild - but enforce the limit here too
-        selectedIsic.items.forEach(item => selectedIsic.remove(item.id));
+        selectedIsic.items.forEach((item) => selectedIsic.remove(item.id));
 
         // Only add items up to the limit of 5
         const itemsToAdd = selectedItems.slice(0, 5);
-        itemsToAdd.forEach(item => selectedIsic.append(item));
+        itemsToAdd.forEach((item) => selectedIsic.append(item));
 
         // If we had to truncate, update the form state to match
         if (selectedItems.length > 5) {
-          const truncatedIds = itemsToAdd.map(item => item.id);
+          const truncatedIds = itemsToAdd.map((item) => item.id);
           onFiltersChange({ isic: truncatedIds });
         }
       }
@@ -92,7 +95,7 @@ export function SearchForm({
 
   const handleIsicItemCleared = (key: React.Key) => {
     const currentIsicIds = filters.isic || [];
-    const newIsicIds = currentIsicIds.filter(id => id !== key);
+    const newIsicIds = currentIsicIds.filter((id) => id !== key);
 
     // Only update the form state - let MultiSelect manage its own internal state
     onFiltersChange({ isic: newIsicIds });
@@ -113,7 +116,9 @@ export function SearchForm({
           <div className="flex flex-col gap-1">
             <MultiSelect
               label="ISIC Code"
-              placeholder={`Search ISIC codes... (max 5, selected: ${filters.isic?.length || 0})`}
+              placeholder={`Search ISIC codes... (max 5, selected: ${
+                filters.isic?.length || 0
+              })`}
               selectedItems={selectedIsic}
               items={availableItems}
               onItemInserted={handleIsicItemInserted}
@@ -133,7 +138,9 @@ export function SearchForm({
           </div>
         ) : (
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-gray-700">ISIC Code</label>
+            <label className="text-sm font-medium text-gray-700">
+              ISIC Code
+            </label>
             <input
               type="text"
               placeholder="Loading ISIC codes..."
@@ -149,7 +156,9 @@ export function SearchForm({
           placeholder={t('search.all_sectors') || 'All Sectors'}
           items={sectors}
           selectedKey={filters.sector || null}
-          onSelectionChange={(key) => onFiltersChange({ sector: key as string })}
+          onSelectionChange={(key) =>
+            onFiltersChange({ sector: key as string })
+          }
         >
           {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
         </Select>
@@ -160,7 +169,9 @@ export function SearchForm({
           placeholder={t('search.select_region') || 'Select Region'}
           items={regions}
           selectedKey={filters.region || null}
-          onSelectionChange={(key) => onFiltersChange({ region: key as string })}
+          onSelectionChange={(key) =>
+            onFiltersChange({ region: key as string })
+          }
         >
           {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
         </Select>
@@ -174,7 +185,9 @@ export function SearchForm({
           placeholder={t('search.select_city') || 'Select City'}
           items={cities}
           selectedKey={filters.location || null}
-          onSelectionChange={(key) => onFiltersChange({ location: key as string })}
+          onSelectionChange={(key) =>
+            onFiltersChange({ location: key as string })
+          }
           isDisabled={!filters.region || isLoading}
         >
           {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
@@ -217,9 +230,8 @@ export function SearchForm({
             disabled={isLoading}
           >
             {isSearching
-              ? (t('common.searching') || 'Searching...')
-              : (t('navigation.explore') || 'Search')
-            }
+              ? t('common.searching') || 'Searching...'
+              : t('navigation.explore') || 'Search'}
           </Button>
         </div>
       </div>

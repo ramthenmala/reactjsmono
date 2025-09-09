@@ -18,7 +18,7 @@ const CITIES_BY_REGION: Record<string, SelectOption[]> = {
     { id: 'hail-city', label: 'Hail City', value: 'hail-city' },
     { id: 'jazan-city', label: 'Jazan City', value: 'jazan-city' },
     { id: 'najran', label: 'Najran', value: 'najran' },
-  ]
+  ],
 };
 
 export class CitiesService {
@@ -34,12 +34,14 @@ export class CitiesService {
       // TODO: Replace with actual API call when cities endpoint is available
       // Expected API: GET /api/regions/{regionId}/cities
       // For now, simulate API delay and return mock data
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
       // Return cities for all regions (same list for now)
       // In real implementation, this would filter cities by region
-      const cities = CITIES_BY_REGION.default.sort((a, b) => a.label.localeCompare(b.label));
-      
+      const cities = CITIES_BY_REGION.default.sort((a, b) =>
+        a.label.localeCompare(b.label)
+      );
+
       // Cache the result
       this.cache[regionId] = cities;
       return cities;

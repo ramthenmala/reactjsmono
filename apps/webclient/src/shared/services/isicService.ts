@@ -14,7 +14,7 @@ export class IsicService {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const apiResponse: IsicApiResponse = await response.json();
       this.cache = apiResponse.data.isicCodes;
       return apiResponse.data.isicCodes;
@@ -32,10 +32,15 @@ export class IsicService {
     const allCodes = await this.fetchIsicCodes();
     const queryNumber = parseInt(query);
 
-    return allCodes.filter(item => {
-      const codeStr = item.code.toString();
-      return codeStr.includes(query) || (!isNaN(queryNumber) && item.code === queryNumber);
-    }).slice(0, 50); // Limit results for performance
+    return allCodes
+      .filter((item) => {
+        const codeStr = item.code.toString();
+        return (
+          codeStr.includes(query) ||
+          (!isNaN(queryNumber) && item.code === queryNumber)
+        );
+      })
+      .slice(0, 50); // Limit results for performance
   }
 
   static clearCache(): void {

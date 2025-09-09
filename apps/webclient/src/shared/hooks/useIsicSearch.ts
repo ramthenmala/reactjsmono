@@ -19,7 +19,7 @@ export function useIsicSearch() {
           const options: SelectOption[] = results.map((isic: IsicCode) => ({
             id: isic.code.toString(),
             label: isic.code.toString(),
-            value: isic.code.toString()
+            value: isic.code.toString(),
           }));
           setIsicOptions(options);
         }

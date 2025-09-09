@@ -20,7 +20,7 @@ To create a production bundle:
 
 ```sh
 npx nx build compass-admin
-# or  
+# or
 npx nx build webclient
 ```
 

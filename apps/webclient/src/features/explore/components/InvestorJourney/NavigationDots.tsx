@@ -16,7 +16,9 @@ export function NavigationDots({
         return (
           <button
             key={idx}
-            className={investorJourneyStyles.dots.button(dotIndex === activeIndex)}
+            className={investorJourneyStyles.dots.button(
+              dotIndex === activeIndex
+            )}
             onClick={() => onDotClick(dotIndex)}
             aria-label={`Go to step ${dotIndex + 1}`}
             style={investorJourneyStyles.dots.buttonStyle}

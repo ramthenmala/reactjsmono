@@ -2,7 +2,10 @@
  * Formatting utility functions
  */
 
-export function formatNumber(value: number, options?: Intl.NumberFormatOptions): string {
+export function formatNumber(
+  value: number,
+  options?: Intl.NumberFormatOptions
+): string {
   return value.toLocaleString(undefined, options);
 }
 

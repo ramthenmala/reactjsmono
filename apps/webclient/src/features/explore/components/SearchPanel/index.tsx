@@ -16,20 +16,23 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
   const [isSearching, setIsSearching] = useState(false);
 
   // Use custom hooks for data and filters management
-  const { regions, sectors, isics, cities, areaRange, loadCities, isLoading: dataLoading } = useSearchData();
-  const { 
-    filters, 
-    areaValue, 
-    updateFilters, 
-    updateAreaValue, 
-    clearFilters 
-  } = useSearchFiltersStore({ 
-    initialFilters,
+  const {
+    regions,
+    sectors,
+    isics,
+    cities,
     areaRange,
-    onFiltersChange: (newFilters) => {
-      // Optional callback when filters change
-    }
-  });
+    loadCities,
+    isLoading: dataLoading,
+  } = useSearchData();
+  const { filters, areaValue, updateFilters, updateAreaValue, clearFilters } =
+    useSearchFiltersStore({
+      initialFilters,
+      areaRange,
+      onFiltersChange: (newFilters) => {
+        // Optional callback when filters change
+      },
+    });
 
   // Load cities when region changes
   useEffect(() => {
@@ -49,11 +52,15 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
 
     try {
       // Build the URL with search parameters
-      const searchUrl = createRouteUrl('/explore/listing', currentLocale, filters);
-      
+      const searchUrl = createRouteUrl(
+        '/explore/listing',
+        currentLocale,
+        filters
+      );
+
       // Simulate loading delay
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
+      await new Promise((resolve) => setTimeout(resolve, 500));
+
       navigate(searchUrl);
     } catch (error) {
       console.error('Search failed:', error);
@@ -66,20 +73,30 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
     clearFilters();
   }, [clearFilters]);
 
-  const handleAreaChangeEnd = useCallback((values: number[]) => {
-    const [min, max] = values as [number, number];
-    const sortedValues: [number, number] = [Math.min(min, max), Math.max(min, max)];
-    updateFilters({ minArea: Math.round(sortedValues[0]), maxArea: Math.round(sortedValues[1]) });
-  }, [updateFilters]);
+  const handleAreaChangeEnd = useCallback(
+    (values: number[]) => {
+      const [min, max] = values as [number, number];
+      const sortedValues: [number, number] = [
+        Math.min(min, max),
+        Math.max(min, max),
+      ];
+      updateFilters({
+        minArea: Math.round(sortedValues[0]),
+        maxArea: Math.round(sortedValues[1]),
+      });
+    },
+    [updateFilters]
+  );
 
   const isLoading = dataLoading || isSearching;
 
   return (
     <section className="relative z-10 -mt-[80px] mx-auto w-full max-w-[1280px] px-4">
-      <div 
+      <div
         className="relative flex flex-col items-start rounded-[24px] border border-[#EBEDEF] overflow-hidden w-full max-w-[1280px] p-4 md:p-8"
         style={{
-          background: 'radial-gradient(48.45% 55.71% at 50% 0%, rgba(216, 200, 255, 0.50) 0%, rgba(216, 200, 255, 0.00) 100%), rgba(255, 255, 255, 0.80)',
+          background:
+            'radial-gradient(48.45% 55.71% at 50% 0%, rgba(216, 200, 255, 0.50) 0%, rgba(216, 200, 255, 0.00) 100%), rgba(255, 255, 255, 0.80)',
           boxShadow: '0 2px 75px 20px rgba(85, 71, 181, 0.20)',
           backdropFilter: 'blur(50px)',
         }}

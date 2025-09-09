@@ -10,15 +10,23 @@ import { ErrorBoundary } from '../../../shared/ui/components/ErrorBoundary';
 import { EXPLORE_PAGE_CONFIGS } from '../constants';
 
 // Error fallback component for sections
-const SectionErrorFallback = memo(({ error, resetErrorBoundary }: { error: Error; resetErrorBoundary: () => void }) => (
-  <section className="py-8 px-4">
-    <ErrorFallback 
-      error={error} 
-      resetErrorBoundary={resetErrorBoundary}
-      message="This section failed to load"
-    />
-  </section>
-));
+const SectionErrorFallback = memo(
+  ({
+    error,
+    resetErrorBoundary,
+  }: {
+    error: Error;
+    resetErrorBoundary: () => void;
+  }) => (
+    <section className="py-8 px-4">
+      <ErrorFallback
+        error={error}
+        resetErrorBoundary={resetErrorBoundary}
+        message="This section failed to load"
+      />
+    </section>
+  )
+);
 SectionErrorFallback.displayName = 'SectionErrorFallback';
 
 // Loading component for sections
@@ -32,18 +40,21 @@ SectionLoading.displayName = 'SectionLoading';
 // Hero Section Component
 const HeroSection = memo(() => {
   const { t } = useLocaleTranslation();
-  
+
   return (
     <Hero
       backgroundImage={EXPLORE_PAGE_CONFIGS.landing.hero.backgroundImage}
       title={t('hero.explore.title') || 'Explore Industrial Opportunities'}
-      subtitle={t('hero.explore.subtitle') || 'Discover investment opportunities across Saudi Arabia\'s industrial landscape'}
+      subtitle={
+        t('hero.explore.subtitle') ||
+        "Discover investment opportunities across Saudi Arabia's industrial landscape"
+      }
       breadcrumbItems={[
-        { 
-          label: t('navigation.explore') || 'Explore', 
+        {
+          label: t('navigation.explore') || 'Explore',
           href: EXPLORE_PAGE_CONFIGS.landing.hero.breadcrumbBase,
-          current: true
-        }
+          current: true,
+        },
       ]}
     />
   );
@@ -63,13 +74,16 @@ SearchSection.displayName = 'SearchSection';
 // Featured Cities Section Component
 const FeaturedCitiesSection = memo(() => {
   const { t } = useLocaleTranslation();
-  
+
   return (
     <ErrorBoundary FallbackComponent={SectionErrorFallback}>
       <Suspense fallback={<SectionLoading />}>
         <FeaturedIndustrialCities
           title={t('explore.featured.title') || 'Featured Industrial Cities'}
-          subtitle={t('explore.featured.subtitle') || 'Site Selection Roadmap to Navigate, Compare, Invest - Seamlessly.'}
+          subtitle={
+            t('explore.featured.subtitle') ||
+            'Site Selection Roadmap to Navigate, Compare, Invest - Seamlessly.'
+          }
         />
       </Suspense>
     </ErrorBoundary>
@@ -90,7 +104,9 @@ InvestorJourneySection.displayName = 'InvestorJourneySection';
 // Main page component
 export const ExploreLandingPage = memo(() => {
   return (
-    <div className={`${EXPLORE_PAGE_CONFIGS.landing.layout.className} ${EXPLORE_PAGE_CONFIGS.landing.layout.background}`}>
+    <div
+      className={`${EXPLORE_PAGE_CONFIGS.landing.layout.className} ${EXPLORE_PAGE_CONFIGS.landing.layout.background}`}
+    >
       {/* Hero Section - Critical, no lazy loading */}
       <HeroSection />
 

@@ -16,7 +16,8 @@ export const EXPLORE_PAGE_CONFIGS = {
       },
       subtitle: {
         key: 'hero.explore.subtitle',
-        fallback: 'Discover investment opportunities across Saudi Arabia\'s industrial landscape',
+        fallback:
+          "Discover investment opportunities across Saudi Arabia's industrial landscape",
       },
     },
     layout: {
@@ -24,7 +25,7 @@ export const EXPLORE_PAGE_CONFIGS = {
       background: 'bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]',
     },
   },
-  
+
   listing: {
     hero: {
       backgroundImage: ASSET_PATHS.backgrounds.explore,
@@ -35,7 +36,8 @@ export const EXPLORE_PAGE_CONFIGS = {
       },
       subtitle: {
         key: 'hero.explore.subtitle',
-        fallback: 'Browse available industrial properties and find the ideal location for your business',
+        fallback:
+          'Browse available industrial properties and find the ideal location for your business',
       },
     },
     layout: {
@@ -43,7 +45,7 @@ export const EXPLORE_PAGE_CONFIGS = {
       background: 'bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]',
     },
   },
-  
+
   detail: {
     hero: {
       backgroundImage: ASSET_PATHS.backgrounds.explore,

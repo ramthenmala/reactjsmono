@@ -14,7 +14,7 @@ interface UseSearchFiltersOptions {
  */
 export function useSearchFiltersStore(options: UseSearchFiltersOptions = {}) {
   const { initialFilters = {}, onFiltersChange, areaRange } = options;
-  
+
   const {
     filters,
     areaValue,
@@ -39,7 +39,6 @@ export function useSearchFiltersStore(options: UseSearchFiltersOptions = {}) {
       setAreaRange(areaRange);
     }
   }, [areaRange, setAreaRange]);
-
 
   // Call onFiltersChange when filters change
   useEffect(() => {

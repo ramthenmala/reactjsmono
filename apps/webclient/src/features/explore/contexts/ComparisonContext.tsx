@@ -1,17 +1,28 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  ReactNode,
+} from 'react';
 import { IProperty } from '../types/explore';
 import { ComparisonService } from '../services/comparisonService';
 
 interface IComparisonContext {
   comparisonList: IProperty[];
-  addToComparison: (property: IProperty) => { success: boolean; message: string };
+  addToComparison: (property: IProperty) => {
+    success: boolean;
+    message: string;
+  };
   removeFromComparison: (propertyId: string) => void;
   clearComparison: () => void;
   isInComparison: (propertyId: string) => boolean;
   comparisonCount: number;
 }
 
-const ComparisonContext = createContext<IComparisonContext | undefined>(undefined);
+const ComparisonContext = createContext<IComparisonContext | undefined>(
+  undefined
+);
 
 export const useComparison = (): IComparisonContext => {
   const context = useContext(ComparisonContext);
@@ -25,7 +36,9 @@ interface IComparisonProviderProps {
   children: ReactNode;
 }
 
-export const ComparisonProvider: React.FC<IComparisonProviderProps> = ({ children }) => {
+export const ComparisonProvider: React.FC<IComparisonProviderProps> = ({
+  children,
+}) => {
   const [comparisonList, setComparisonList] = useState<IProperty[]>([]);
 
   // Load initial comparison list from localStorage
@@ -34,7 +47,9 @@ export const ComparisonProvider: React.FC<IComparisonProviderProps> = ({ childre
     setComparisonList(initialList);
   }, []);
 
-  const addToComparison = (property: IProperty): { success: boolean; message: string } => {
+  const addToComparison = (
+    property: IProperty
+  ): { success: boolean; message: string } => {
     const result = ComparisonService.addToComparison(property);
     if (result.success) {
       setComparisonList(result.properties);
@@ -53,7 +68,7 @@ export const ComparisonProvider: React.FC<IComparisonProviderProps> = ({ childre
   };
 
   const isInComparison = (propertyId: string): boolean => {
-    return comparisonList.some(p => p.id === propertyId);
+    return comparisonList.some((p) => p.id === propertyId);
   };
 
   const value: IComparisonContext = {

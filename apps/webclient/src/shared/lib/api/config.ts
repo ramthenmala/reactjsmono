@@ -3,7 +3,12 @@
  * Handles switching between mock and production APIs
  */
 
-export type ApiEndpoint = 'isic' | 'sectors' | 'regions' | 'areas' | 'industrial-cities';
+export type ApiEndpoint =
+  | 'isic'
+  | 'sectors'
+  | 'regions'
+  | 'areas'
+  | 'industrial-cities';
 
 interface ApiConfig {
   baseUrl: string;
@@ -20,19 +25,22 @@ class ApiConfigService {
       baseUrl: import.meta.env.VITE_API_BASE_URL || '',
       useMockApi: import.meta.env.VITE_USE_MOCK_API === 'true',
       mockEndpoints: {
-        'isic': import.meta.env.VITE_MOCK_ISIC_ENDPOINT || '',
-        'sectors': import.meta.env.VITE_MOCK_SECTORS_ENDPOINT || '',
-        'regions': import.meta.env.VITE_MOCK_REGIONS_ENDPOINT || '',
-        'areas': import.meta.env.VITE_MOCK_AREA_ENDPOINT || '',
-        'industrial-cities': import.meta.env.VITE_MOCK_INDUSTRIAL_CITIES_ENDPOINT || '',
+        isic: import.meta.env.VITE_MOCK_ISIC_ENDPOINT || '',
+        sectors: import.meta.env.VITE_MOCK_SECTORS_ENDPOINT || '',
+        regions: import.meta.env.VITE_MOCK_REGIONS_ENDPOINT || '',
+        areas: import.meta.env.VITE_MOCK_AREA_ENDPOINT || '',
+        'industrial-cities':
+          import.meta.env.VITE_MOCK_INDUSTRIAL_CITIES_ENDPOINT || '',
       },
       prodEndpoints: {
-        'isic': import.meta.env.VITE_PROD_ISIC_ENDPOINT || '/api/isic',
-        'sectors': import.meta.env.VITE_PROD_SECTORS_ENDPOINT || '/api/sectors',
-        'regions': import.meta.env.VITE_PROD_REGIONS_ENDPOINT || '/api/regions',
-        'areas': import.meta.env.VITE_PROD_AREA_ENDPOINT || '/api/areas',
-        'industrial-cities': import.meta.env.VITE_PROD_INDUSTRIAL_CITIES_ENDPOINT || '/api/industrial-cities',
-      }
+        isic: import.meta.env.VITE_PROD_ISIC_ENDPOINT || '/api/isic',
+        sectors: import.meta.env.VITE_PROD_SECTORS_ENDPOINT || '/api/sectors',
+        regions: import.meta.env.VITE_PROD_REGIONS_ENDPOINT || '/api/regions',
+        areas: import.meta.env.VITE_PROD_AREA_ENDPOINT || '/api/areas',
+        'industrial-cities':
+          import.meta.env.VITE_PROD_INDUSTRIAL_CITIES_ENDPOINT ||
+          '/api/industrial-cities',
+      },
     };
   }
 
@@ -41,7 +49,7 @@ class ApiConfigService {
    */
   getApiUrl(endpoint: ApiEndpoint): string {
     const { baseUrl, useMockApi, mockEndpoints, prodEndpoints } = this.config;
-    
+
     if (useMockApi) {
       const mockEndpoint = mockEndpoints[endpoint];
       return `${baseUrl}/${mockEndpoint}`;

@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist",
-    "tsBuildInfoFile": "dist/tsconfig.spec.tsbuildinfo", 
+    "tsBuildInfoFile": "dist/tsconfig.spec.tsbuildinfo",
     "jsx": "react-jsx",
     "lib": ["dom"],
     "types": [
@@ -19,7 +19,7 @@
   "include": [
     "src/**/*.test.ts",
     "src/**/*.test.tsx",
-    "src/**/*.spec.ts", 
+    "src/**/*.spec.ts",
     "src/**/*.spec.tsx",
     "src/**/*.ts",
     "src/**/*.tsx"

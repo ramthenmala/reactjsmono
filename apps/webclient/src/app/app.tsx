@@ -7,11 +7,13 @@ import '../shared/lib/i18n/i18n';
 
 export function App() {
   return (
-    <Suspense fallback={
-      <div className="flex items-center justify-center min-h-screen">
-        <LoadingIndicator size="lg" label="Loading application..." />
-      </div>
-    }>
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <LoadingIndicator size="lg" label="Loading application..." />
+        </div>
+      }
+    >
       <AppRouter />
     </Suspense>
   );

@@ -10,28 +10,38 @@
 @source "../../../shared-ui/src/**/*.{js,ts,jsx,tsx}";
 
 /* Base styles for RTL support */
-html[dir="rtl"] {
+html[dir='rtl'] {
   direction: rtl;
 }
 
-html[dir="ltr"] {
+html[dir='ltr'] {
   direction: ltr;
 }
 
 /* Locale-specific font families */
 .locale-en {
-  font-family: 'IBM Plex Sans', 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'IBM Plex Sans', 'General Sans', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .locale-ar {
-  font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 /* RTL-aware utility classes */
-.rtl .text-left { text-align: right; }
-.rtl .text-right { text-align: left; }
-.rtl .float-left { float: right; }
-.rtl .float-right { float: left; }
+.rtl .text-left {
+  text-align: right;
+}
+.rtl .text-right {
+  text-align: left;
+}
+.rtl .float-left {
+  float: right;
+}
+.rtl .float-right {
+  float: left;
+}
 
 /* Custom scrollbar for better UX */
 .scrollbar-hide {

@@ -16,7 +16,9 @@ export function FooterLogo({ navigationData }: FooterLogoProps) {
         />
       </div>
       <p className="text-white font-medium text-base leading-6 leading-relaxed max-w-[320px]">
-        {navigationData?.footer?.footerContent || t('footer.description') || 'Your gateway to industrial investment in Saudi Arabia.'}
+        {navigationData?.footer?.footerContent ||
+          t('footer.description') ||
+          'Your gateway to industrial investment in Saudi Arabia.'}
       </p>
     </div>
   );

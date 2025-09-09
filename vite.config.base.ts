@@ -18,7 +18,9 @@ export function createAppConfig(appConfig: AppConfig) {
     const port = parseInt(env[appConfig.envPortKey] || appConfig.defaultPort);
 
     // Dynamic import for ESM-only packages
-    const { default: i18nextLoader } = await import('vite-plugin-i18next-loader');
+    const { default: i18nextLoader } = await import(
+      'vite-plugin-i18next-loader'
+    );
 
     const config: UserConfig = {
       root: appConfig.appPath,

@@ -47,7 +47,7 @@ module.exports = {
     'node_modules/(?!(.*\\.mjs$|@untitledui|react-aria))',
   ],
 
-  // Coverage configuration - 90% threshold  
+  // Coverage configuration - 90% threshold
   // Only collect coverage when explicitly requested via CLI
   collectCoverage: false,
   coverageDirectory: '<rootDir>/coverage',

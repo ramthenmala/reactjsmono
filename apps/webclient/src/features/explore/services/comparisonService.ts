@@ -26,15 +26,19 @@ export class ComparisonService {
     return this.getStoredProperties();
   }
 
-  static addToComparison(property: IProperty): { success: boolean; message: string; properties: IProperty[] } {
+  static addToComparison(property: IProperty): {
+    success: boolean;
+    message: string;
+    properties: IProperty[];
+  } {
     const currentList = this.getStoredProperties();
-    
+
     // Check if already in comparison
-    if (currentList.some(p => p.id === property.id)) {
-      return { 
-        success: false, 
+    if (currentList.some((p) => p.id === property.id)) {
+      return {
+        success: false,
         message: 'Property already in comparison list',
-        properties: currentList 
+        properties: currentList,
       };
     }
 
@@ -43,30 +47,34 @@ export class ComparisonService {
       return {
         success: false,
         message: `Maximum ${MAX_COMPARISON_ITEMS} properties can be compared`,
-        properties: currentList
+        properties: currentList,
       };
     }
 
     const newList = [...currentList, property];
     this.saveProperties(newList);
-    
+
     return {
       success: true,
       message: 'Property added to comparison',
-      properties: newList
+      properties: newList,
     };
   }
 
-  static removeFromComparison(propertyId: string): { success: boolean; message: string; properties: IProperty[] } {
+  static removeFromComparison(propertyId: string): {
+    success: boolean;
+    message: string;
+    properties: IProperty[];
+  } {
     const currentList = this.getStoredProperties();
-    const newList = currentList.filter(p => p.id !== propertyId);
-    
+    const newList = currentList.filter((p) => p.id !== propertyId);
+
     this.saveProperties(newList);
-    
+
     return {
       success: true,
       message: 'Property removed from comparison',
-      properties: newList
+      properties: newList,
     };
   }
 
@@ -75,7 +83,7 @@ export class ComparisonService {
   }
 
   static isInComparison(propertyId: string): boolean {
-    return this.getStoredProperties().some(p => p.id === propertyId);
+    return this.getStoredProperties().some((p) => p.id === propertyId);
   }
 
   static getComparisonCount(): number {

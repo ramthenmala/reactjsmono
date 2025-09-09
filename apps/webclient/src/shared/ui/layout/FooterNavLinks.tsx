@@ -15,7 +15,7 @@ export function FooterNavLinks({ navigationData }: FooterNavLinksProps) {
           className="font-semibold mb-4 text-sm leading-5"
           style={{
             color: '#D8C8FF',
-            fontFamily: '"General Sans"'
+            fontFamily: '"General Sans"',
           }}
         >
           {t('footer.quick_links') || 'Quick Links'}
@@ -41,7 +41,7 @@ export function FooterNavLinks({ navigationData }: FooterNavLinksProps) {
           className="font-semibold mb-4 text-sm leading-5"
           style={{
             color: '#D8C8FF',
-            fontFamily: '"General Sans"'
+            fontFamily: '"General Sans"',
           }}
         >
           {t('footer.legal') || 'Legal'}

@@ -16,7 +16,10 @@ import {
 } from '@untitledui/icons';
 import type { NavItemType } from '@compass/shared-ui';
 
-export const getNavigationItems = (locale = 'en', t: (key: string) => string): NavItemType[] => [
+export const getNavigationItems = (
+  locale = 'en',
+  t: (key: string) => string
+): NavItemType[] => [
   {
     label: t('navigation.overview'),
     href: `/${locale}/overview`,
@@ -52,10 +55,10 @@ export const getNavigationItems = (locale = 'en', t: (key: string) => string): N
         href: `/${locale}/analytics#national`,
         icon: Globe01,
       },
-      { 
-        label: t('navigation.regionalAnalytics'), 
-        href: `/${locale}/analytics#regional`, 
-        icon: Map01 
+      {
+        label: t('navigation.regionalAnalytics'),
+        href: `/${locale}/analytics#regional`,
+        icon: Map01,
       },
       {
         label: t('navigation.cityLevelMetrics'),

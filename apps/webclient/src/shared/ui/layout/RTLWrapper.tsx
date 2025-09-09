@@ -11,21 +11,21 @@ interface RTLWrapperProps {
  * RTLWrapper component that automatically handles RTL/LTR layout
  * This component wraps content and applies appropriate classes for RTL support
  */
-export const RTLWrapper: React.FC<RTLWrapperProps> = ({ 
-  children, 
-  className 
+export const RTLWrapper: React.FC<RTLWrapperProps> = ({
+  children,
+  className,
 }) => {
   const { isRTL, direction } = useLanguage();
-  
+
   return (
-    <div 
+    <div
       className={clsx(
         // Base classes
         'rtl-wrapper',
         // Direction-specific classes
         {
-          'rtl': isRTL,
-          'ltr': !isRTL,
+          rtl: isRTL,
+          ltr: !isRTL,
         },
         className
       )}

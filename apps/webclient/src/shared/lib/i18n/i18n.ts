@@ -12,26 +12,26 @@ i18n
     lng: DEFAULT_LOCALE,
     fallbackLng: DEFAULT_LOCALE,
     supportedLngs: [...SUPPORTED_LOCALES],
-    
+
     // Debug mode (disable in production)
     debug: process.env.NODE_ENV === 'development',
-    
+
     // Language detection configuration
     detection: {
       // Order of detection methods
       order: ['path', 'localStorage', 'htmlTag', 'navigator'],
-      
+
       // Look for language in URL path
       lookupFromPathIndex: 0,
       checkWhitelist: true,
-      
+
       // Cache user language preference
       caches: ['localStorage'],
-      
+
       // HTML tag configuration
       htmlTag: document.documentElement,
     },
-    
+
     // Interpolation configuration
     interpolation: {
       escapeValue: false, // React already does escaping
@@ -42,7 +42,7 @@ i18n
         return value;
       },
     },
-    
+
     // React specific options
     react: {
       useSuspense: false, // Disable Suspense since we're loading synchronously
@@ -52,27 +52,29 @@ i18n
       transSupportBasicHtmlNodes: true,
       transKeepBasicHtmlNodesFor: ['br', 'strong', 'i'],
     },
-    
+
     // Default namespace
     defaultNS: 'translation',
     ns: ['translation'],
-    
+
     // Key separation
     keySeparator: '.',
     nsSeparator: ':',
-    
+
     // Pluralization
     pluralSeparator: '_',
     contextSeparator: '_',
-    
+
     // Missing key handling
     saveMissing: process.env.NODE_ENV === 'development',
     missingKeyHandler: (lngs, ns, key) => {
       if (process.env.NODE_ENV === 'development') {
-        console.warn(`Missing translation key: ${key} for languages: ${lngs.join(', ')}`);
+        console.warn(
+          `Missing translation key: ${key} for languages: ${lngs.join(', ')}`
+        );
       }
     },
-    
+
     // Postprocessing
     postProcess: false,
   });

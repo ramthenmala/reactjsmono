@@ -25,7 +25,7 @@ describe('Components Index', () => {
     // We know AdminLayout and AdminHeader should be exported from layout
     expect(ComponentsIndex.AdminLayout).toBeDefined();
     expect(typeof ComponentsIndex.AdminLayout).toBe('function');
-    
+
     expect(ComponentsIndex.AdminHeader).toBeDefined();
     expect(typeof ComponentsIndex.AdminHeader).toBe('function');
   });
@@ -34,10 +34,10 @@ describe('Components Index', () => {
     // We know getNavigationItems should be exported from navigation
     expect(ComponentsIndex.getNavigationItems).toBeDefined();
     expect(typeof ComponentsIndex.getNavigationItems).toBe('function');
-    
+
     expect(ComponentsIndex.navigationItems).toBeDefined();
     expect(Array.isArray(ComponentsIndex.navigationItems)).toBe(true);
-    
+
     expect(ComponentsIndex.LanguageSwitcher).toBeDefined();
     expect(typeof ComponentsIndex.LanguageSwitcher).toBe('function');
   });
@@ -47,10 +47,10 @@ describe('Components Index', () => {
     const { AnalyticsSection } = ComponentsIndex;
     expect(AnalyticsSection).toBeDefined();
     expect(typeof AnalyticsSection).toBe('function');
-    
+
     // Test that it's a React component (no prototype = functional component)
     expect(AnalyticsSection.prototype).toBeUndefined();
-    
+
     // Test that it takes the expected number of parameters (props object)
     expect(AnalyticsSection.length).toBe(1);
   });
@@ -97,11 +97,11 @@ describe('Components Index', () => {
 
   it('checks that exports are not undefined or null', () => {
     const exportEntries = Object.entries(ComponentsIndex);
-    
+
     exportEntries.forEach(([exportName, exportValue]) => {
       expect(exportValue).toBeDefined();
       expect(exportValue).not.toBeNull();
-      
+
       // Most exports should be functions (React components or utility functions)
       if (exportName !== 'navigationItems') {
         expect(typeof exportValue).toBe('function');
@@ -112,30 +112,32 @@ describe('Components Index', () => {
   it('maintains export consistency across re-exports', () => {
     // Test that re-exported items are the same as their original exports
     const { AnalyticsSection } = ComponentsIndex;
-    
+
     // Import directly from the source with correct path
-    const { AnalyticsSection: DirectAnalyticsSection } = require('../ui/AnalyticsSection');
-    
+    const {
+      AnalyticsSection: DirectAnalyticsSection,
+    } = require('../ui/AnalyticsSection');
+
     expect(AnalyticsSection).toBe(DirectAnalyticsSection);
   });
 
   it('provides a comprehensive component API', () => {
     const exportKeys = Object.keys(ComponentsIndex);
-    
+
     // Should have multiple exports
     expect(exportKeys.length).toBeGreaterThan(3);
-    
+
     // Should include key component categories
     const expectedExports = [
       'AnalyticsSection',
-      'AdminLayout', 
+      'AdminLayout',
       'AdminHeader',
       'getNavigationItems',
       'navigationItems',
-      'LanguageSwitcher'
+      'LanguageSwitcher',
     ];
-    
-    expectedExports.forEach(expectedExport => {
+
+    expectedExports.forEach((expectedExport) => {
       expect(exportKeys).toContain(expectedExport);
     });
   });

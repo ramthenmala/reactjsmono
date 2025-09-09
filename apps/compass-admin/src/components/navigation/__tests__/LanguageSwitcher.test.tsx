@@ -55,7 +55,9 @@ describe('LanguageSwitcher', () => {
 
   it('shows English as default selection', () => {
     renderWithRouter();
-    const select = screen.getByTestId('language-switcher-select') as HTMLSelectElement;
+    const select = screen.getByTestId(
+      'language-switcher-select'
+    ) as HTMLSelectElement;
     expect(select.value).toBe('en');
   });
 
@@ -74,16 +76,16 @@ describe('LanguageSwitcher', () => {
   it('calls changeLanguage and navigate when language is changed', () => {
     renderWithRouter();
     const select = screen.getByTestId('language-switcher-select');
-    
+
     fireEvent.change(select, { target: { value: 'ar' } });
-    
+
     expect(mockChangeLanguage).toHaveBeenCalledWith('ar');
     expect(mockNavigate).toHaveBeenCalledWith('/ar/dashboard');
   });
 
   it('handles Arabic locale by displaying Arabic option', () => {
     renderWithRouter(['/ar/dashboard']);
-    
+
     // Verify Arabic option exists and can be selected
     const arabicOption = screen.getByTestId('language-option-ar');
     expect(arabicOption).toBeInTheDocument();
@@ -93,9 +95,9 @@ describe('LanguageSwitcher', () => {
   it('switching language calls navigate with correct path', () => {
     renderWithRouter();
     const select = screen.getByTestId('language-switcher-select');
-    
+
     fireEvent.change(select, { target: { value: 'ar' } });
-    
+
     // Verify navigation is called (path will depend on mocked location)
     expect(mockNavigate).toHaveBeenCalled();
     expect(mockChangeLanguage).toHaveBeenCalledWith('ar');

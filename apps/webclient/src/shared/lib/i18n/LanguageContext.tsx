@@ -12,17 +12,21 @@ interface LanguageContextType {
   isLoading: boolean;
 }
 
-const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined
+);
 
 interface LanguageProviderProps {
   children: React.ReactNode;
 }
 
-export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({
+  children,
+}) => {
   const { i18n } = useTranslation();
   const currentLocale = useCurrentLocale();
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const currentLanguage = currentLocale;
   const isRTLLang = isRTL(currentLanguage);
   const direction = getDirection(currentLanguage);
@@ -40,13 +44,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   // Update document attributes for RTL support
   useEffect(() => {
     const html = document.documentElement;
-    
+
     // Set direction
     html.setAttribute('dir', direction);
-    
+
     // Set lang attribute
     html.setAttribute('lang', currentLanguage);
-    
+
     // Add/remove RTL class for styling
     if (isRTLLang) {
       html.classList.add('rtl');
@@ -55,11 +59,10 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       html.classList.add('ltr');
       html.classList.remove('rtl');
     }
-    
+
     // Add locale-specific class for font loading
     html.classList.remove('locale-en', 'locale-ar');
     html.classList.add(`locale-${currentLanguage}`);
-    
   }, [currentLanguage, direction, isRTLLang]);
 
   const changeLanguage = async (locale: Locale): Promise<void> => {
@@ -101,7 +104,7 @@ export const useLanguage = (): LanguageContextType => {
 export const useLocaleTranslation = () => {
   const { t, ready } = useTranslation();
   const { currentLanguage, isRTL, direction, isLoading } = useLanguage();
-  
+
   return {
     t,
     ready: ready && !isLoading,

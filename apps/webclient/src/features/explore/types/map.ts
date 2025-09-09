@@ -3,16 +3,16 @@ import type { IProperty } from './explore';
 
 /** GeoJSON types for better type safety */
 export interface IGeoJSONFeature {
-  type: "Feature";
+  type: 'Feature';
   geometry: {
-    type: "Point";
+    type: 'Point';
     coordinates: [number, number];
   };
   properties: Record<string, unknown>;
 }
 
 export interface IGeoJSONFeatureCollection {
-  type: "FeatureCollection";
+  type: 'FeatureCollection';
   features: IGeoJSONFeature[];
 }
 
@@ -48,7 +48,11 @@ export type TGetMapDataResponse = IApiResponse<IMapData>;
 
 /** ---- Shape expected by MapView (already grouped by city) ---- */
 export type PlotStatus = 'available' | 'sold' | 'reserved';
-export type PlotType = 'industrial' | 'residential' | 'commercial' | 'logistics';
+export type PlotType =
+  | 'industrial'
+  | 'residential'
+  | 'commercial'
+  | 'logistics';
 
 export interface IPlotPoint {
   id: string;
@@ -110,17 +114,17 @@ export interface PointGeometry {
 
 /** City coordinates for map display */
 export const CITY_COORDINATES: Record<string, [number, number]> = {
-  "Riyadh": [46.7749, 24.6775],
-  "Jeddah": [39.2083, 21.5433],
-  "Dammam": [50.0888, 26.4282],
-  "Yanbu": [38.0618, 24.0895],
-  "Jubail": [49.6583, 27.0174]
+  Riyadh: [46.7749, 24.6775],
+  Jeddah: [39.2083, 21.5433],
+  Dammam: [50.0888, 26.4282],
+  Yanbu: [38.0618, 24.0895],
+  Jubail: [49.6583, 27.0174],
 };
 
 /** Saudi Arabia bounds for map restriction */
 export const SAUDI_BOUNDS = {
   southwest: [34.5, 16.0] as [number, number],
-  northeast: [55.7, 32.2] as [number, number]
+  northeast: [55.7, 32.2] as [number, number],
 };
 
 /** Convert API payload to the CityData shape (filters out null coords). */
@@ -128,8 +132,11 @@ export function toCityData(data: IMapData): TCityData {
   const grouped: TCityData = {};
   for (const c of data?.cities ?? []) {
     const points: IPlotPoint[] = (c.industrialCities ?? [])
-      .filter(ic => typeof ic.latitude === 'number' && typeof ic.longitude === 'number')
-      .map(ic => ({
+      .filter(
+        (ic) =>
+          typeof ic.latitude === 'number' && typeof ic.longitude === 'number'
+      )
+      .map((ic) => ({
         id: ic.id,
         city: c.cityName,
         latitude: ic.latitude as number,
@@ -160,10 +167,10 @@ export enum EViewMode {
 export interface IMapViewProps {
   /** Layout mode; default is "map" when used standalone */
   viewMode?: EViewMode;
-  sector?: string,
-  region?: string,
-  location?: string,
-  isic?: string,
-  minArea?: string,
-  maxArea?: string
+  sector?: string;
+  region?: string;
+  location?: string;
+  isic?: string;
+  minArea?: string;
+  maxArea?: string;
 }

@@ -21,7 +21,9 @@ describe('PageHeader', () => {
 
   it('displays the translated title', () => {
     render(<PageHeader {...defaultProps} />);
-    expect(screen.getByTestId('page-header-title')).toHaveTextContent('test.title');
+    expect(screen.getByTestId('page-header-title')).toHaveTextContent(
+      'test.title'
+    );
   });
 
   it('applies custom className', () => {
@@ -32,23 +34,38 @@ describe('PageHeader', () => {
 
   it('shows border by default', () => {
     render(<PageHeader {...defaultProps} />);
-    expect(screen.getByTestId('page-header')).toHaveClass('border-b', 'border-gray-200', 'pb-5');
+    expect(screen.getByTestId('page-header')).toHaveClass(
+      'border-b',
+      'border-gray-200',
+      'pb-5'
+    );
   });
 
   it('hides border when showBorder is false', () => {
     render(<PageHeader {...defaultProps} showBorder={false} />);
-    expect(screen.getByTestId('page-header')).not.toHaveClass('border-b', 'border-gray-200', 'pb-5');
+    expect(screen.getByTestId('page-header')).not.toHaveClass(
+      'border-b',
+      'border-gray-200',
+      'pb-5'
+    );
   });
 
   it('applies dark mode border classes', () => {
     render(<PageHeader {...defaultProps} />);
-    expect(screen.getByTestId('page-header')).toHaveClass('dark:border-gray-700');
+    expect(screen.getByTestId('page-header')).toHaveClass(
+      'dark:border-gray-700'
+    );
   });
 
   it('has correct heading structure', () => {
     render(<PageHeader {...defaultProps} />);
     const title = screen.getByTestId('page-header-title');
     expect(title.tagName).toBe('H1');
-    expect(title).toHaveClass('text-3xl', 'font-bold', 'text-gray-900', 'dark:text-white');
+    expect(title).toHaveClass(
+      'text-3xl',
+      'font-bold',
+      'text-gray-900',
+      'dark:text-white'
+    );
   });
 });

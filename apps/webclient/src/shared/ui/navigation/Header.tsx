@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { Menu01 } from "@untitledui/icons";
+import { useState, useEffect, useRef } from 'react';
+import { Menu01 } from '@untitledui/icons';
 import { useCurrentLocale } from '../../lib/router';
 import { navigationService } from '../../services/navigationService';
 import type { NavigationData } from '../../types/navigation';
@@ -15,7 +15,9 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [navigationData, setNavigationData] = useState<NavigationData | null>(null);
+  const [navigationData, setNavigationData] = useState<NavigationData | null>(
+    null
+  );
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   // Transform API navigation data to include locale prefix and mega menu
@@ -24,18 +26,21 @@ export function Header() {
       return [];
     }
 
-    return navigationData.header.map(item => {
+    return navigationData.header.map((item) => {
       // Add locale prefix to links
-      const href = item.link === '/' ? `/${currentLocale}` : `/${currentLocale}${item.link}`;
-      
+      const href =
+        item.link === '/'
+          ? `/${currentLocale}`
+          : `/${currentLocale}${item.link}`;
+
       // Special handling for Saudi Industrial Landscape to add mega menu
-      if (item.label === "Saudi Industrial Landscape") {
+      if (item.label === 'Saudi Industrial Landscape') {
         return {
           label: item.label,
           href: href,
           hasDropdown: true,
-          dropdownId: "saudi_industrial_landscape",
-          submenu: megaMenuConfig
+          dropdownId: 'saudi_industrial_landscape',
+          submenu: megaMenuConfig,
         };
       }
 
@@ -43,8 +48,10 @@ export function Header() {
         label: item.label,
         href: href,
         hasDropdown: item.hasSubMenu,
-        dropdownId: item.hasSubMenu ? item.label.toLowerCase().replace(/\s+/g, '_') : undefined,
-        submenu: item.subMenu || undefined
+        dropdownId: item.hasSubMenu
+          ? item.label.toLowerCase().replace(/\s+/g, '_')
+          : undefined,
+        submenu: item.subMenu || undefined,
       };
     });
   };
@@ -52,11 +59,12 @@ export function Header() {
   const navigationItems = getNavigationItems();
 
   const toggleDropdown = (dropdownId: string) => {
-    setActiveDropdown(prev => (prev === dropdownId ? null : dropdownId));
+    setActiveDropdown((prev) => (prev === dropdownId ? null : dropdownId));
   };
 
   const getCurrentSubmenu = () => {
-    return navigationItems.find(item => item.dropdownId === activeDropdown)?.submenu;
+    return navigationItems.find((item) => item.dropdownId === activeDropdown)
+      ?.submenu;
   };
 
   const handleLanguageChange = () => {
@@ -74,13 +82,13 @@ export function Header() {
         // Set empty navigation data on failure
         setNavigationData({
           header: [],
-          footer: { 
+          footer: {
             footerContent: '',
             copyrightText: '',
-            quickLinks: [], 
-            legalPages: [], 
-            socialLinks: [] 
-          }
+            quickLinks: [],
+            legalPages: [],
+            socialLinks: [],
+          },
         });
       }
     };
@@ -103,8 +111,11 @@ export function Header() {
     if (!activeDropdown) return;
     const onPointerDown = (event: PointerEvent) => {
       const path = (event.composedPath && event.composedPath()) as Node[];
-      const clickedToggle = path.some(node => {
-        return node instanceof HTMLElement && node.hasAttribute('data-dropdown-toggle');
+      const clickedToggle = path.some((node) => {
+        return (
+          node instanceof HTMLElement &&
+          node.hasAttribute('data-dropdown-toggle')
+        );
       });
       if (clickedToggle) return;
 
@@ -118,12 +129,16 @@ export function Header() {
   }, [activeDropdown]);
 
   return (
-    <header className={`header text-white ${isScrolled ? 'fixed top-0 left-0 right-0 scrolled' : 'relative'}`}>
+    <header
+      className={`header text-white ${
+        isScrolled ? 'fixed top-0 left-0 right-0 scrolled' : 'relative'
+      }`}
+    >
       <div className="container flex items-end justify-between gap-4">
         {/* Left: Logo and Navigation */}
         <div className="header-section flex gap-12">
           <HeaderLogo />
-          <NavigationMenu 
+          <NavigationMenu
             items={navigationItems}
             activeDropdown={activeDropdown}
             onToggleDropdown={toggleDropdown}
@@ -150,14 +165,14 @@ export function Header() {
       </div>
 
       {/* Desktop Mega Menu */}
-      <MegaMenu 
+      <MegaMenu
         ref={menuRef}
         submenu={getCurrentSubmenu()}
         isVisible={!!activeDropdown && !!getCurrentSubmenu()}
       />
 
       {/* Mobile Menu */}
-      <MobileMenu 
+      <MobileMenu
         isOpen={isMobileMenuOpen}
         items={navigationItems}
         onClose={() => setIsMobileMenuOpen(false)}

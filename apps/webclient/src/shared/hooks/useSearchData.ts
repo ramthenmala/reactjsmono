@@ -25,13 +25,14 @@ export function useSearchData(): UseSearchDataReturn {
     const loadInitialData = async () => {
       setIsLoading(true);
       try {
-        const [regionsData, sectorsData, isicsData, areaRangeData] = await Promise.all([
-          searchService.getRegions(),
-          searchService.getSectors(),
-          searchService.getIsicCodes(),
-          AreaService.fetchAreaRange(),
-        ]);
-        
+        const [regionsData, sectorsData, isicsData, areaRangeData] =
+          await Promise.all([
+            searchService.getRegions(),
+            searchService.getSectors(),
+            searchService.getIsicCodes(),
+            AreaService.fetchAreaRange(),
+          ]);
+
         setRegions(regionsData);
         setSectors(sectorsData);
         setIsics(isicsData);

@@ -2,15 +2,18 @@
 import type { WithId, WithTitle, WithOptionalDescription } from './common';
 
 // Analytics feature types
-export type AnalyticsSectionId = 
+export type AnalyticsSectionId =
   | 'investor-insights'
-  | 'industrial-city-insights'  
+  | 'industrial-city-insights'
   | 'national'
   | 'regional'
   | 'city-metrics'
   | 'sector-view';
 
-export interface AnalyticsSection extends WithId, WithTitle, WithOptionalDescription {
+export interface AnalyticsSection
+  extends WithId,
+    WithTitle,
+    WithOptionalDescription {
   id: AnalyticsSectionId;
 }
 
@@ -32,7 +35,7 @@ export interface ConfigurationPageProps {
   subtitleKey?: string;
 }
 
-// Dashboard feature types  
+// Dashboard feature types
 export interface DashboardProps {
   className?: string;
 }

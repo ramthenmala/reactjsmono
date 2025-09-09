@@ -45,7 +45,9 @@ export function FooterBottom({ navigationData }: FooterBottomProps) {
 
         {/* Copyright */}
         <div className="text-sm text-white font-medium text-base leading-6 text-center lg:text-right">
-          {navigationData?.footer?.copyrightText || t('footer.copyright') || '© 2024 Compass. All rights reserved.'}
+          {navigationData?.footer?.copyrightText ||
+            t('footer.copyright') ||
+            '© 2024 Compass. All rights reserved.'}
         </div>
       </div>
     </div>

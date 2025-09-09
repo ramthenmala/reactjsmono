@@ -12,13 +12,14 @@ export const LocaleWrapper = ({ children }: LocaleWrapperProps) => {
   useEffect(() => {
     // Supported locales
     const supportedLocales = ['en', 'ar'];
-    
+
     // If no locale in URL or unsupported locale, redirect to English
     if (!locale || !supportedLocales.includes(locale)) {
       const currentPath = location.pathname;
-      const newPath = currentPath.startsWith('/en') || currentPath.startsWith('/ar') 
-        ? currentPath.replace(/^\/[a-z]{2}/, '/en')
-        : `/en${currentPath}`;
+      const newPath =
+        currentPath.startsWith('/en') || currentPath.startsWith('/ar')
+          ? currentPath.replace(/^\/[a-z]{2}/, '/en')
+          : `/en${currentPath}`;
       navigate(newPath, { replace: true });
       return;
     }
@@ -31,7 +32,7 @@ export const LocaleWrapper = ({ children }: LocaleWrapperProps) => {
     // Set document direction, lang attribute, and locale class
     document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = locale;
-    
+
     // Remove any existing locale classes and add the current one
     document.documentElement.classList.remove('locale-en', 'locale-ar');
     document.documentElement.classList.add(`locale-${locale}`);

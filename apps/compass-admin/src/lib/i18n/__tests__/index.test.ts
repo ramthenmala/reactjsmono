@@ -14,7 +14,7 @@ describe('i18n index', () => {
   it('has expected resources structure', () => {
     expect(i18nIndex.resources).toHaveProperty('en');
     expect(i18nIndex.resources).toHaveProperty('ar');
-    
+
     expect(i18nIndex.resources.en).toHaveProperty('translation');
     expect(i18nIndex.resources.ar).toHaveProperty('translation');
   });

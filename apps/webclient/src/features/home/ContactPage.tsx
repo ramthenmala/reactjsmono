@@ -12,15 +12,20 @@ export function ContactPage() {
             {t('contact.title') || 'Contact Us'}
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            {t('contact.subtitle') || 'Get in touch with our industrial investment experts'}
+            {t('contact.subtitle') ||
+              'Get in touch with our industrial investment experts'}
           </p>
-          
+
           <div className="bg-gray-50 p-8 rounded-lg">
             <p className="text-gray-600 mb-4">
-              Current Language: <span className="font-semibold">{currentLanguage.toUpperCase()}</span>
+              Current Language:{' '}
+              <span className="font-semibold">
+                {currentLanguage.toUpperCase()}
+              </span>
             </p>
             <p className="text-gray-600">
-              This is the Contact page placeholder. Full contact form and functionality will be implemented in Phase 2.
+              This is the Contact page placeholder. Full contact form and
+              functionality will be implemented in Phase 2.
             </p>
           </div>
         </div>

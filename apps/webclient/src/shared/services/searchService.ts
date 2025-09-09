@@ -4,14 +4,13 @@ import { RegionsService } from './regionsService';
 import { CitiesService } from './citiesService';
 
 class SearchService {
-
   async getRegions(): Promise<SelectOption[]> {
     try {
       const regions = await RegionsService.fetchRegions();
       return regions.map((region) => ({
         id: region.id,
         label: region.name,
-        value: region.id
+        value: region.id,
       }));
     } catch (error) {
       console.error('Failed to load regions from API:', error);
@@ -25,7 +24,7 @@ class SearchService {
       return sectors.map((sector) => ({
         id: sector.id,
         label: sector.name,
-        value: sector.id
+        value: sector.id,
       }));
     } catch (error) {
       console.error('Failed to load sectors from API:', error);
@@ -47,9 +46,12 @@ class SearchService {
     }
   }
 
-  buildSearchUrl(filters: Record<string, string | number | string[]>, locale: string): string {
+  buildSearchUrl(
+    filters: Record<string, string | number | string[]>,
+    locale: string
+  ): string {
     const qs = new URLSearchParams();
-    
+
     Object.entries(filters).forEach(([key, value]) => {
       if (value === undefined || value === null || value === '') return;
       if (Array.isArray(value)) {

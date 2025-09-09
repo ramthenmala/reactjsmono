@@ -63,7 +63,7 @@
   },
   "property": {
     "available": "Available",
-    "sold": "Sold", 
+    "sold": "Sold",
     "reserved": "Reserved",
     "electricity": "Electricity",
     "water": "Water",
@@ -129,7 +129,7 @@
       "description": "Use our advanced search to find industrial opportunities that match your criteria"
     },
     "compare": {
-      "title": "Compare Options", 
+      "title": "Compare Options",
       "description": "Analyze different locations and properties with detailed insights and data"
     },
     "visit": {

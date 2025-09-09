@@ -28,17 +28,17 @@ export const Layout: React.FC = () => {
         <div className="absolute inset-x-0 top-0 z-50">
           <Header />
         </div>
-        
+
         {/* Main Content Area */}
         <main className="flex-1">
           <Suspense fallback={<Loading />}>
             <Outlet />
           </Suspense>
         </main>
-        
+
         {/* CTA Section - Appears on every page */}
         <CTASection />
-        
+
         {/* Footer */}
         <Footer />
       </RTLWrapper>

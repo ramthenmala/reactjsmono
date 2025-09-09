@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { ExploreActions } from "@/features/explore/components/ExploreActions";
-import { ImageSection } from "@/shared/ui/components/ImageSection";
-import type { BannerProps } from "../../types/banner";
-import { bannerStyles } from "./styles";
+import { ExploreActions } from '@/features/explore/components/ExploreActions';
+import { ImageSection } from '@/shared/ui/components/ImageSection';
+import type { BannerProps } from '../../types/banner';
+import { bannerStyles } from './styles';
 
 export function Banner({ imageSrc }: BannerProps) {
   return (

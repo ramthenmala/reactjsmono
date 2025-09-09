@@ -27,9 +27,12 @@ export const LAYOUT_CLASSES = {
 // Color and gradient configurations
 export const GRADIENT_STYLES = {
   purple: 'bg-gradient-to-b from-white via-[#FAF9FF] to-[#FAF9FF]',
-  purpleRadial: 'radial-gradient(73.04% 54.31% at 50% 0%, rgba(237, 230, 255, 0.60) 0%, rgba(255, 255, 255, 0.00) 100%)',
-  investorJourney: 'radial-gradient(134.48% 100% at 50% 100%, rgba(216, 200, 255, 0.50) 0%, rgba(255, 255, 255, 0.00) 100%)',
-  searchPanel: 'radial-gradient(48.45% 55.71% at 50% 0%, rgba(216, 200, 255, 0.50) 0%, rgba(216, 200, 255, 0.00) 100%), rgba(255, 255, 255, 0.80)',
+  purpleRadial:
+    'radial-gradient(73.04% 54.31% at 50% 0%, rgba(237, 230, 255, 0.60) 0%, rgba(255, 255, 255, 0.00) 100%)',
+  investorJourney:
+    'radial-gradient(134.48% 100% at 50% 100%, rgba(216, 200, 255, 0.50) 0%, rgba(255, 255, 255, 0.00) 100%)',
+  searchPanel:
+    'radial-gradient(48.45% 55.71% at 50% 0%, rgba(216, 200, 255, 0.50) 0%, rgba(216, 200, 255, 0.00) 100%), rgba(255, 255, 255, 0.80)',
   overlay: {
     dark: 'absolute inset-0 bg-[linear-gradient(180deg,rgba(10,9,18,0.55),rgba(16,12,26,0.85))]',
     light: 'absolute inset-0 bg-black/30',
@@ -53,8 +56,10 @@ export const COMPONENT_STYLES = {
     content: 'relative z-10 text-white',
   },
   propertyCard: {
-    container: 'overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200 flex flex-col h-full group',
-    image: 'object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-110',
+    container:
+      'overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-gray-200 flex flex-col h-full group',
+    image:
+      'object-cover w-full h-full transition-transform duration-300 ease-in-out group-hover:scale-110',
     badge: 'absolute top-3 left-3 z-10',
   },
   searchPanel: {

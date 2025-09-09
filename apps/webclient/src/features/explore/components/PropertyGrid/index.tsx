@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { PropertyCard } from "@/features/explore/components/PropertyCard";
-import { PropertyTable } from "@/features/explore/components/PropertyTable";
-import { IPropertyGridProps } from "@/features/explore/types/searchFilters";
-import { EViewMode } from "@/features/explore/types/map";
+import { useState } from 'react';
+import { PropertyCard } from '@/features/explore/components/PropertyCard';
+import { PropertyTable } from '@/features/explore/components/PropertyTable';
+import { IPropertyGridProps } from '@/features/explore/types/searchFilters';
+import { EViewMode } from '@/features/explore/types/map';
 import { propertyGridStyles } from './styles';
 
 const ITEMS_PER_PAGE_SPLIT = 4;
 const ITEMS_PER_PAGE_LIST = 10;
 
-export function PropertyGrid({ 
-  properties, 
+export function PropertyGrid({
+  properties,
   totalResults,
   viewMode,
-  onCompare, 
-  onView 
+  onCompare,
+  onView,
 }: IPropertyGridProps) {
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -22,7 +22,8 @@ export function PropertyGrid({
   }
 
   // Calculate pagination based on view mode
-  const itemsPerPage = viewMode === EViewMode.list ? ITEMS_PER_PAGE_LIST : ITEMS_PER_PAGE_SPLIT;
+  const itemsPerPage =
+    viewMode === EViewMode.list ? ITEMS_PER_PAGE_LIST : ITEMS_PER_PAGE_SPLIT;
   const totalPages = Math.ceil(properties.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -48,7 +49,7 @@ export function PropertyGrid({
       </div>
     );
   }
-  
+
   // Use card grid for split mode - also implement pagination
   return (
     <div className={propertyGridStyles.container.split}>
@@ -62,7 +63,7 @@ export function PropertyGrid({
           />
         ))}
       </div>
-      
+
       {/* Pagination for cards */}
       {totalPages > 1 && (
         <div className={propertyGridStyles.pagination.wrapper}>
@@ -71,17 +72,27 @@ export function PropertyGrid({
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
               className={`${propertyGridStyles.pagination.navButton.base} ${
-                currentPage === 1 
+                currentPage === 1
                   ? propertyGridStyles.pagination.navButton.disabled
                   : propertyGridStyles.pagination.navButton.enabled
               }`}
             >
-              <svg className={propertyGridStyles.pagination.icons.prev} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              <svg
+                className={propertyGridStyles.pagination.icons.prev}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
               Previous
             </button>
-            
+
             <div className={propertyGridStyles.pagination.numbers.container}>
               {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
                 let pageNumber;
@@ -95,11 +106,13 @@ export function PropertyGrid({
                   pageNumber = currentPage - 2 + i;
                 }
                 return pageNumber;
-              }).map(page => (
+              }).map((page) => (
                 <button
                   key={page}
                   onClick={() => handlePageChange(page)}
-                  className={`${propertyGridStyles.pagination.numbers.button.base} ${
+                  className={`${
+                    propertyGridStyles.pagination.numbers.button.base
+                  } ${
                     currentPage === page
                       ? propertyGridStyles.pagination.numbers.button.active
                       : propertyGridStyles.pagination.numbers.button.inactive
@@ -110,10 +123,16 @@ export function PropertyGrid({
               ))}
               {totalPages > 5 && currentPage < totalPages - 2 && (
                 <>
-                  <span className={propertyGridStyles.pagination.numbers.ellipsis}>...</span>
+                  <span
+                    className={propertyGridStyles.pagination.numbers.ellipsis}
+                  >
+                    ...
+                  </span>
                   <button
                     onClick={() => handlePageChange(totalPages)}
-                    className={`${propertyGridStyles.pagination.numbers.button.base} ${
+                    className={`${
+                      propertyGridStyles.pagination.numbers.button.base
+                    } ${
                       currentPage === totalPages
                         ? propertyGridStyles.pagination.numbers.button.active
                         : propertyGridStyles.pagination.numbers.button.inactive
@@ -124,19 +143,29 @@ export function PropertyGrid({
                 </>
               )}
             </div>
-            
+
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
               className={`${propertyGridStyles.pagination.navButton.base} ${
-                currentPage === totalPages 
+                currentPage === totalPages
                   ? propertyGridStyles.pagination.navButton.disabled
                   : propertyGridStyles.pagination.navButton.enabled
               }`}
             >
               Next
-              <svg className={propertyGridStyles.pagination.icons.next} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              <svg
+                className={propertyGridStyles.pagination.icons.next}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </button>
           </div>
