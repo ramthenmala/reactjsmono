@@ -1,14 +1,11 @@
 import { WorkforceTalentSection } from './WorkforceTalentSection';
 import { useLocaleTranslation } from '../../../../shared/lib/i18n';
 import { useState } from 'react';
-
-interface PrioritizationResultsSectionProps {
-  industrialCity: any;
-}
+import type { PropertyDetailComponentProps } from '../../types/industrialCity';
 
 export function PrioritizationResultsSection({
   industrialCity,
-}: PrioritizationResultsSectionProps) {
+}: PropertyDetailComponentProps) {
   const { t } = useLocaleTranslation();
   const [openSection, setOpenSection] = useState('workforce');
 

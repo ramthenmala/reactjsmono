@@ -1,6 +1,6 @@
 import React from 'react';
 
-export type StatCardVariant = 'default' | 'regular' | 'large';
+export type StatCardVariant = 'default' | 'regular' | 'large' | 'logistics';
 
 export interface StatCardProps {
   label: React.ReactNode;

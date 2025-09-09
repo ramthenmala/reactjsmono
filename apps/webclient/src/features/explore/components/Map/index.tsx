@@ -88,7 +88,9 @@ export function Map({
         if (cityClustersData.features.length > 0) {
           const bounds = new mapboxgl.LngLatBounds();
           cityClustersData.features.forEach((feature) => {
-            bounds.extend(feature.geometry.coordinates);
+            if (feature) {
+              bounds.extend(feature.geometry.coordinates as [number, number]);
+            }
           });
 
           // Fit map to bounds with padding
@@ -144,7 +146,7 @@ export function Map({
         // Add GeoJSON sources first (before images)
         map.current.addSource('city-clusters', {
           type: 'geojson',
-          data: cityClustersData,
+          data: cityClustersData as any,
         });
 
         map.current.addSource('plot-points', {
@@ -310,7 +312,7 @@ export function Map({
           'plot-points'
         ) as mapboxgl.GeoJSONSource;
         if (source) {
-          source.setData(plotGeoJSON);
+          source.setData(plotGeoJSON as any);
         }
 
         // Zoom to selected city
@@ -348,8 +350,10 @@ export function Map({
           if (cityClustersData.features.length > 0) {
             const bounds = new mapboxgl.LngLatBounds();
             cityClustersData.features.forEach((feature) => {
-              const coords = (feature.geometry as PointGeometry).coordinates;
-              bounds.extend(coords);
+              if (feature) {
+                const coords = (feature.geometry as PointGeometry).coordinates;
+                bounds.extend(coords);
+              }
             });
             map.current.fitBounds(bounds, {
               padding: 50,

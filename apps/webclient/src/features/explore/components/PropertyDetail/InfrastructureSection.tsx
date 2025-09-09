@@ -1,39 +1,34 @@
 import { StatCard } from '../UI/StatCard';
-import { useLocaleTranslation } from '../../../../shared/lib/i18n';
-
-interface InfrastructureSectionProps {
-  industrialCity: any;
-}
+import { Zap, Drop, Settings01 } from '@untitledui/icons';
+import type { PropertyDetailComponentProps } from '../../types/industrialCity';
+import { propertyDetailStyles } from '../../utils/propertyDetailUtils';
 
 export function InfrastructureSection({
   industrialCity,
-}: InfrastructureSectionProps) {
-  const { t } = useLocaleTranslation();
+}: PropertyDetailComponentProps) {
   return (
-    <>
-      <h2 className="text-md md:text-2xl font-semibold">
-        {t('property_detail.infrastructure')}
+    <div className={propertyDetailStyles.section}>
+      <h2 className={propertyDetailStyles.sectionTitle}>
+        Infrastructure
       </h2>
-      <div className="grid grid-cols-3 gap-4">
-        {industrialCity.infrastructure?.totalElectricityCapacity && (
-          <StatCard
-            label={t('property_detail.total_electricity_capacity')}
-            value={industrialCity.infrastructure.totalElectricityCapacity}
-          />
-        )}
-        {industrialCity.infrastructure?.totalWaterCapacity && (
-          <StatCard
-            label={t('property_detail.total_water_capacity')}
-            value={industrialCity.infrastructure.totalWaterCapacity}
-          />
-        )}
-        {industrialCity.infrastructure?.totalGasCapacity && (
-          <StatCard
-            label={t('property_detail.total_gas_capacity')}
-            value={industrialCity.infrastructure.totalGasCapacity}
-          />
-        )}
+      
+      <div className={propertyDetailStyles.grid.threeColumns}>
+        <StatCard
+          label="Electricity Daily Capacity (MW)"
+          value="174 MW"
+          icon={<Zap className="w-5 h-5" />}
+        />
+        <StatCard
+          label="Gas Daily Capacity (MMW)"
+          value="N/A MMSCFD"
+          icon={<Settings01 className="w-5 h-5" />}
+        />
+        <StatCard
+          label="Water Daily Capacity (m³/day)"
+          value="17,500 m³/day"
+          icon={<Drop className="w-5 h-5" />}
+        />
       </div>
-    </>
+    </div>
   );
 }

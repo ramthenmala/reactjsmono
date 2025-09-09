@@ -1,12 +1,9 @@
 'use client';
 
 import { Banner } from '../Banner';
+import type { PropertyDetailComponentProps } from '../../types/industrialCity';
 
-interface PropertyHeaderProps {
-  industrialCity: any;
-}
-
-export function PropertyHeader({ industrialCity }: PropertyHeaderProps) {
+export function PropertyHeader({ industrialCity }: PropertyDetailComponentProps) {
   return (
     <>
       <Banner imageSrc={industrialCity.banner} />

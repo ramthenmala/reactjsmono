@@ -1,23 +1,21 @@
 import { StatCard } from '../UI/StatCard';
 import { BarChart } from '../Charts/BarChart';
 import { useLocaleTranslation } from '../../../../shared/lib/i18n';
-
-interface DistrictMapSectionProps {
-  industrialCity: any;
-}
+import type { PropertyDetailComponentProps } from '../../types/industrialCity';
+import { propertyDetailStyles } from '../../utils/propertyDetailUtils';
 
 export function DistrictMapSection({
   industrialCity,
-}: DistrictMapSectionProps) {
+}: PropertyDetailComponentProps) {
   const { t } = useLocaleTranslation();
   return (
     <div className="lg:w-5/12 flex flex-col gap-4">
       {industrialCity.districtMapAndDetails ? (
         <>
-          <h2 className="text-md md:text-2xl font-semibold">
+          <h2 className={propertyDetailStyles.sectionTitleSmall}>
             {t('property_detail.district_map')}
           </h2>
-          <div className="rounded-2xl border border-[var(--Colors-Border-border-secondary,_rgba(235,237,239,1))] bg-white/60 py-6 overflow-hidden">
+          <div className={propertyDetailStyles.card.container}>
             <img
               src={industrialCity.districtMapAndDetails}
               alt="District map"
@@ -26,7 +24,7 @@ export function DistrictMapSection({
           </div>
         </>
       ) : null}
-      <div className="grid grid-cols-2 gap-4">
+      <div className={propertyDetailStyles.grid.twoColumns}>
         <StatCard
           label={t('property_detail.establishment_year')}
           value={industrialCity.estYear}
@@ -38,8 +36,8 @@ export function DistrictMapSection({
           variant="regular"
         />
       </div>
-      <div className="rounded-2xl border border-[var(--Colors-Border-border-secondary,_rgba(235,237,239,1))] bg-white/60 py-6 overflow-hidden flex flex-col gap-8 p-6">
-        <h3 className="text-sm font-medium text-gray-600">
+      <div className={propertyDetailStyles.card.withPadding}>
+        <h3 className={propertyDetailStyles.text.cardSubtitle}>
           {t('property_detail.industries_inside')} {industrialCity.name}
         </h3>
         {(() => {
