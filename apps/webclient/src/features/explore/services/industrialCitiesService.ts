@@ -4,7 +4,6 @@ import {
   IProperty,
 } from '../types/explore';
 import { getPropertyImageByIndex } from '../constants';
-import { localizeApiDataArray } from '@/shared/utils/i18nApi';
 import { createApiRequest } from '@/shared/utils/apiHeaders';
 
 const API_URL =
@@ -13,9 +12,9 @@ const API_URL =
 
 // Service to fetch industrial cities data
 export class IndustrialCitiesService {
-  static async fetchIndustrialCities(currentLanguage = 'en'): Promise<IIndustrialCityAPI[]> {
+  static async fetchIndustrialCities(): Promise<IIndustrialCityAPI[]> {
     try {
-      const response = await createApiRequest(API_URL, { currentLanguage });
+      const response = await createApiRequest(API_URL);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -35,11 +34,11 @@ export class IndustrialCitiesService {
   }
 
   // Transform API data to IProperty format for consistency with existing components
-  static transformToProperties(cities: IIndustrialCityAPI[], currentLanguage = 'en'): IProperty[] {
-    // Localize the cities data based on current language
-    const localizedCities = localizeApiDataArray(cities, ['name', 'cityName', 'regionName'], currentLanguage);
+  static transformToProperties(cities: IIndustrialCityAPI[]): IProperty[] {
+    // API already returns localized content based on accept-language header
+    // No need for client-side localization anymore
     
-    return localizedCities.map((city, index) => ({
+    return cities.map((city, index) => ({
       id: city.id,
       slug: city.name.toLowerCase().replace(/\s+/g, '-'),
       city: city.cityName,
@@ -62,8 +61,8 @@ export class IndustrialCitiesService {
   }
 
   // Main method to get properties ready for the UI
-  static async getProperties(currentLanguage = 'en'): Promise<IProperty[]> {
-    const cities = await this.fetchIndustrialCities(currentLanguage);
-    return this.transformToProperties(cities, currentLanguage);
+  static async getProperties(): Promise<IProperty[]> {
+    const cities = await this.fetchIndustrialCities();
+    return this.transformToProperties(cities);
   }
 }

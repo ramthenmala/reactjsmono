@@ -46,7 +46,7 @@ export function ExploreListingPage() {
       try {
         setLoading(true);
         setError(null);
-        const apiProperties = await IndustrialCitiesService.getProperties(currentLanguage);
+        const apiProperties = await IndustrialCitiesService.getProperties();
         setAllProperties(apiProperties);
         setProperties(apiProperties);
       } catch (err) {
