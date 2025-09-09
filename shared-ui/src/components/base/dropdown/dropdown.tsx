@@ -47,7 +47,7 @@ const DropdownItem = ({
   return (
     <AriaMenuItem
       {...props}
-      className={(state) =>
+      className={state =>
         cx(
           'group block cursor-pointer px-1.5 py-px outline-hidden',
           state.isDisabled && 'cursor-not-allowed',
@@ -57,21 +57,25 @@ const DropdownItem = ({
         )
       }
     >
-      {(state) => (
+      {state => (
         <div
           className={cx(
             'relative flex items-center rounded-md px-2.5 py-2 transition-all duration-200 ease-out',
-            !state.isDisabled && 'group-hover:bg-gray-100 dark:group-hover:bg-gray-700',
+            !state.isDisabled &&
+              'group-hover:bg-gray-100 dark:group-hover:bg-gray-700',
             state.isFocused && 'bg-gray-100 dark:bg-gray-700',
-            state.isFocusVisible && 'outline-2 outline-blue-500 -outline-offset-2'
+            state.isFocusVisible &&
+              'outline-2 outline-blue-500 -outline-offset-2'
           )}
         >
           {Icon && (
             <Icon
-              aria-hidden="true"
+              aria-hidden='true'
               className={cx(
                 'mr-2 h-4 w-4 shrink-0',
-                state.isDisabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-500 dark:text-gray-400'
+                state.isDisabled
+                  ? 'text-gray-400 dark:text-gray-600'
+                  : 'text-gray-500 dark:text-gray-400'
               )}
             />
           )}
@@ -79,7 +83,9 @@ const DropdownItem = ({
           <span
             className={cx(
               'flex-1 truncate text-sm font-medium',
-              state.isDisabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-900 dark:text-gray-100',
+              state.isDisabled
+                ? 'text-gray-400 dark:text-gray-600'
+                : 'text-gray-900 dark:text-gray-100',
               state.isFocused && 'text-gray-900 dark:text-white'
             )}
           >
@@ -91,7 +97,9 @@ const DropdownItem = ({
             <span
               className={cx(
                 'ml-3 shrink-0 rounded px-1 py-px text-xs font-medium ring-1 ring-gray-300 dark:ring-gray-600 ring-inset',
-                state.isDisabled ? 'text-gray-400 dark:text-gray-600' : 'text-gray-600 dark:text-gray-400'
+                state.isDisabled
+                  ? 'text-gray-400 dark:text-gray-600'
+                  : 'text-gray-600 dark:text-gray-400'
               )}
             >
               {addon}
@@ -109,9 +117,9 @@ const DropdownMenu = <T extends object>(props: DropdownMenuProps<T>) => {
   return (
     <AriaMenu
       disallowEmptySelection
-      selectionMode="single"
+      selectionMode='single'
       {...props}
-      className={(state) =>
+      className={state =>
         cx(
           'h-min overflow-y-auto py-2 outline-hidden select-none',
           typeof props.className === 'function'
@@ -128,16 +136,16 @@ interface DropdownPopoverProps extends AriaPopoverProps {}
 const DropdownPopover = (props: DropdownPopoverProps) => {
   return (
     <AriaPopover
-      placement="bottom right"
+      placement='bottom right'
       {...props}
-      className={(state) =>
+      className={state =>
         cx(
           'min-w-48 overflow-hidden rounded-lg bg-white dark:bg-gray-800 shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 z-50 transform origin-top transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)]',
-          state.isEntering &&
-            'opacity-0 scale-y-0 -translate-y-2',
-          state.isExiting &&
-            'opacity-0 scale-y-0 -translate-y-2',
-          !state.isEntering && !state.isExiting && 'opacity-100 scale-y-100 translate-y-0',
+          state.isEntering && 'opacity-0 scale-y-0 -translate-y-2',
+          state.isExiting && 'opacity-0 scale-y-0 -translate-y-2',
+          !state.isEntering &&
+            !state.isExiting &&
+            'opacity-100 scale-y-100 translate-y-0',
           typeof props.className === 'function'
             ? props.className(state)
             : props.className
@@ -153,7 +161,10 @@ const DropdownSeparator = (props: AriaSeparatorProps) => {
   return (
     <AriaSeparator
       {...props}
-      className={cx('my-1 h-px w-full bg-gray-200 dark:bg-gray-700', props.className)}
+      className={cx(
+        'my-1 h-px w-full bg-gray-200 dark:bg-gray-700',
+        props.className
+      )}
     />
   );
 };
@@ -164,8 +175,8 @@ const DropdownDotsButton = (
   return (
     <AriaButton
       {...props}
-      aria-label="Open menu"
-      className={(state) =>
+      aria-label='Open menu'
+      className={state =>
         cx(
           'cursor-pointer rounded-md text-fg-quaternary outline-focus-ring transition duration-100 ease-linear',
           (state.isPressed || state.isHovered) && 'text-fg-quaternary_hover',
@@ -177,7 +188,7 @@ const DropdownDotsButton = (
         )
       }
     >
-      <DotsVertical className="size-5 transition-inherit-all" />
+      <DotsVertical className='size-5 transition-inherit-all' />
     </AriaButton>
   );
 };

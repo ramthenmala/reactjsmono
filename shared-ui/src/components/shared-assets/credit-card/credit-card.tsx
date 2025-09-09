@@ -208,25 +208,25 @@ export const CreditCard = ({
       >
         {/* Horizontal strip */}
         {STRIP_TYPES.includes(type as (typeof STRIP_TYPES)[number]) && (
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-1/2 bg-gray-800"></div>
+          <div className='pointer-events-none absolute inset-x-0 bottom-0 z-0 h-1/2 bg-gray-800'></div>
         )}
         {/* Vertical stripe */}
         {VERTICAL_STRIP_TYPES.includes(
           type as (typeof VERTICAL_STRIP_TYPES)[number]
         ) && (
-          <div className="pointer-events-none absolute inset-y-0 right-22 left-0 z-0 bg-gray-800"></div>
+          <div className='pointer-events-none absolute inset-y-0 right-22 left-0 z-0 bg-gray-800'></div>
         )}
         {/* Gradient diffusor */}
         {type === 'transparent-gradient' && (
-          <div className="absolute -top-4 -left-4 grid grid-cols-2 blur-3xl">
-            <div className="size-20 rounded-tl-full bg-pink-500 opacity-30 mix-blend-normal" />
-            <div className="size-20 rounded-tr-full bg-orange-500 opacity-50 mix-blend-normal" />
-            <div className="size-20 rounded-bl-full bg-blue-500 opacity-30 mix-blend-normal" />
-            <div className="size-20 rounded-br-full bg-success-500 opacity-30 mix-blend-normal" />
+          <div className='absolute -top-4 -left-4 grid grid-cols-2 blur-3xl'>
+            <div className='size-20 rounded-tl-full bg-pink-500 opacity-30 mix-blend-normal' />
+            <div className='size-20 rounded-tr-full bg-orange-500 opacity-50 mix-blend-normal' />
+            <div className='size-20 rounded-bl-full bg-blue-500 opacity-30 mix-blend-normal' />
+            <div className='size-20 rounded-br-full bg-success-500 opacity-30 mix-blend-normal' />
           </div>
         )}
 
-        <div className="relative flex items-start justify-between px-1 pt-1">
+        <div className='relative flex items-start justify-between px-1 pt-1'>
           <div
             className={cx(
               'text-md leading-[normal] font-semibold',
@@ -239,9 +239,9 @@ export const CreditCard = ({
           <PaypassIcon className={styles[type].paypassIcon} />
         </div>
 
-        <div className="relative flex items-end justify-between gap-3">
-          <div className="flex min-w-0 flex-col gap-2">
-            <div className="flex items-end gap-1">
+        <div className='relative flex items-end justify-between gap-3'>
+          <div className='flex min-w-0 flex-col gap-2'>
+            <div className='flex items-end gap-1'>
               <p
                 style={{
                   wordBreak: 'break-word',
@@ -271,7 +271,7 @@ export const CreditCard = ({
               {cardNumber}
 
               {/* This is just a placeholder to always keep the space for card number even if there's no card number yet. */}
-              <span className="pointer-events-none invisible inline-block w-0 max-w-0 opacity-0">
+              <span className='pointer-events-none invisible inline-block w-0 max-w-0 opacity-0'>
                 1
               </span>
             </div>

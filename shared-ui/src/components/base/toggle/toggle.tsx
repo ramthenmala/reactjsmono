@@ -121,7 +121,7 @@ export const Toggle = ({
   return (
     <AriaSwitch
       {...ariaSwitchProps}
-      className={(renderProps) =>
+      className={renderProps =>
         cx(
           'flex w-max items-start',
           renderProps.isDisabled && 'cursor-not-allowed',
@@ -157,7 +157,7 @@ export const Toggle = ({
               {hint && (
                 <span
                   className={cx('text-tertiary', sizes[size].hint)}
-                  onClick={(event) => event.stopPropagation()}
+                  onClick={event => event.stopPropagation()}
                 >
                   {hint}
                 </span>

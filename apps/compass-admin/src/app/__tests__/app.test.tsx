@@ -4,7 +4,7 @@ import App from '../app';
 
 // Mock the AdminRoutes component
 jest.mock('../../lib/router', () => ({
-  AdminRoutes: () => <div data-qa-id="admin-routes">Admin Routes</div>,
+  AdminRoutes: () => <div data-qa-id='admin-routes'>Admin Routes</div>,
 }));
 
 // Mock the i18n module

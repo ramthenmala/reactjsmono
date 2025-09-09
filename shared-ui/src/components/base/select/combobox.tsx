@@ -82,13 +82,13 @@ const ComboBoxValue = ({
     >
       {({ isDisabled }) => (
         <>
-          <SearchIcon className="pointer-events-none size-5 text-fg-quaternary" />
+          <SearchIcon className='pointer-events-none size-5 text-fg-quaternary' />
 
-          <div className="relative flex w-full items-center gap-2">
+          <div className='relative flex w-full items-center gap-2'>
             {inputValue && (
               <span
-                className="absolute top-1/2 z-0 inline-flex w-full -translate-y-1/2 gap-2 truncate"
-                aria-hidden="true"
+                className='absolute top-1/2 z-0 inline-flex w-full -translate-y-1/2 gap-2 truncate'
+                aria-hidden='true'
               >
                 <p
                   className={cx(
@@ -113,7 +113,7 @@ const ComboBoxValue = ({
 
             <AriaInput
               placeholder={placeholder}
-              className="z-10 w-full appearance-none bg-transparent text-md text-transparent caret-alpha-black/90 placeholder:text-placeholder focus:outline-hidden disabled:cursor-not-allowed disabled:text-disabled disabled:placeholder:text-disabled"
+              className='z-10 w-full appearance-none bg-transparent text-md text-transparent caret-alpha-black/90 placeholder:text-placeholder focus:outline-hidden disabled:cursor-not-allowed disabled:text-disabled disabled:placeholder:text-disabled'
             />
           </div>
 
@@ -131,7 +131,7 @@ const ComboBoxValue = ({
                   'pointer-events-none rounded px-1 py-px text-xs font-medium text-quaternary ring-1 ring-secondary select-none ring-inset',
                   isDisabled && 'bg-transparent text-disabled'
                 )}
-                aria-hidden="true"
+                aria-hidden='true'
               >
                 ⌘K
               </span>
@@ -172,9 +172,9 @@ export const ComboBox = ({
 
   return (
     <SelectContext.Provider value={{ size }}>
-      <AriaComboBox menuTrigger="focus" {...otherProps}>
-        {(state) => (
-          <div className="flex flex-col gap-1.5">
+      <AriaComboBox menuTrigger='focus' {...otherProps}>
+        {state => (
+          <div className='flex flex-col gap-1.5'>
             {otherProps.label && (
               <Label isRequired={state.isRequired} tooltip={otherProps.tooltip}>
                 {otherProps.label}
@@ -199,7 +199,7 @@ export const ComboBox = ({
               style={{ width: popoverWidth }}
               className={otherProps.popoverClassName}
             >
-              <AriaListBox items={items} className="size-full outline-hidden">
+              <AriaListBox items={items} className='size-full outline-hidden'>
                 {children}
               </AriaListBox>
             </Popover>

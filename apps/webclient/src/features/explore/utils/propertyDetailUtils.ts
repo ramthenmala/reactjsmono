@@ -43,8 +43,10 @@ export const propertyDetailStyles = {
     rounded: 'lg:w-5/12 h-auto rounded-2xl',
   },
   card: {
-    container: 'rounded-2xl border border-[var(--Colors-Border-border-secondary,_rgba(235,237,239,1))] bg-white/60 py-6 overflow-hidden',
-    withPadding: 'rounded-2xl border border-[var(--Colors-Border-border-secondary,_rgba(235,237,239,1))] bg-white/60 py-6 overflow-hidden flex flex-col gap-4 md:gap-8 p-6',
+    container:
+      'rounded-2xl border border-[var(--Colors-Border-border-secondary,_rgba(235,237,239,1))] bg-white/60 py-6 overflow-hidden',
+    withPadding:
+      'rounded-2xl border border-[var(--Colors-Border-border-secondary,_rgba(235,237,239,1))] bg-white/60 py-6 overflow-hidden flex flex-col gap-4 md:gap-8 p-6',
   },
   text: {
     cardSubtitle: 'text-sm font-medium text-gray-600',

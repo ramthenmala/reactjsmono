@@ -36,9 +36,9 @@ export const CheckboxBase = ({
       )}
     >
       <svg
-        aria-hidden="true"
-        viewBox="0 0 14 14"
-        fill="none"
+        aria-hidden='true'
+        viewBox='0 0 14 14'
+        fill='none'
         className={cx(
           'pointer-events-none absolute h-3 w-2.5 text-fg-white opacity-0 transition-inherit-all',
           size === 'md' && 'size-3.5',
@@ -47,18 +47,18 @@ export const CheckboxBase = ({
         )}
       >
         <path
-          d="M2.91675 7H11.0834"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d='M2.91675 7H11.0834'
+          stroke='currentColor'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
       </svg>
 
       <svg
-        aria-hidden="true"
-        viewBox="0 0 14 14"
-        fill="none"
+        aria-hidden='true'
+        viewBox='0 0 14 14'
+        fill='none'
         className={cx(
           'pointer-events-none absolute size-3 text-fg-white opacity-0 transition-inherit-all',
           size === 'md' && 'size-3.5',
@@ -67,11 +67,11 @@ export const CheckboxBase = ({
         )}
       >
         <path
-          d="M11.6666 3.5L5.24992 9.91667L2.33325 7"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          d='M11.6666 3.5L5.24992 9.91667L2.33325 7'
+          stroke='currentColor'
+          strokeWidth='2'
+          strokeLinecap='round'
+          strokeLinejoin='round'
         />
       </svg>
     </div>
@@ -111,7 +111,7 @@ export const Checkbox = ({
   return (
     <AriaCheckbox
       {...ariaCheckboxProps}
-      className={(state) =>
+      className={state =>
         cx(
           'flex items-start',
           state.isDisabled && 'cursor-not-allowed',
@@ -147,7 +147,7 @@ export const Checkbox = ({
               {hint && (
                 <span
                   className={cx('text-tertiary', sizes[size].hint)}
-                  onClick={(event) => event.stopPropagation()}
+                  onClick={event => event.stopPropagation()}
                 >
                   {hint}
                 </span>

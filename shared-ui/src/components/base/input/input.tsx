@@ -155,7 +155,7 @@ export const InputBase = ({
 
       {/* Tooltip and help icon */}
       {tooltip && !isInvalid && (
-        <Tooltip title={tooltip} placement="top">
+        <Tooltip title={tooltip} placement='top'>
           <TooltipTrigger
             className={cx(
               'absolute cursor-pointer text-fg-quaternary transition duration-200 hover:text-fg-quaternary_hover focus:text-fg-quaternary_hover',
@@ -164,7 +164,7 @@ export const InputBase = ({
               tooltipClassName
             )}
           >
-            <HelpCircle className="size-4" />
+            <HelpCircle className='size-4' />
           </TooltipTrigger>
         </Tooltip>
       )}
@@ -194,7 +194,7 @@ export const InputBase = ({
               'pointer-events-none rounded px-1 py-px text-xs font-medium text-quaternary ring-1 ring-secondary select-none ring-inset',
               isDisabled && 'bg-transparent text-disabled'
             )}
-            aria-hidden="true"
+            aria-hidden='true'
           >
             {typeof shortcut === 'string' ? shortcut : '⌘K'}
           </span>
@@ -235,7 +235,7 @@ export const TextField = ({ className, ...props }: TextFieldProps) => {
       <AriaTextField
         {...props}
         data-input-wrapper
-        className={(state) =>
+        className={state =>
           cx(
             'group flex h-max w-full flex-col items-start justify-start gap-1.5',
             typeof className === 'function' ? className(state) : className

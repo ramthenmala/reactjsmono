@@ -68,7 +68,7 @@ export function ExploreListingPage() {
       return allProperties;
     }
 
-    return allProperties.filter((property) => {
+    return allProperties.filter(property => {
       // Region/City filter
       if (searchFilters.region && searchFilters.region !== 'all') {
         if (
@@ -150,18 +150,18 @@ export function ExploreListingPage() {
       <SearchPanel onSearch={handleSearch} />
 
       {/* Results Section */}
-      <section className="container mx-auto px-4 py-8">
+      <section className='container mx-auto px-4 py-8'>
         {/* Results Header */}
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+        <div className='mb-6'>
+          <h2 className='text-2xl font-semibold text-gray-900 mb-2'>
             {t('explore.results.title') || 'Available Industrial Cities'}
           </h2>
           {loading ? (
-            <p className="text-gray-600">Loading properties...</p>
+            <p className='text-gray-600'>Loading properties...</p>
           ) : error ? (
-            <p className="text-red-600">Error: {error}</p>
+            <p className='text-red-600'>Error: {error}</p>
           ) : (
-            <p className="text-gray-600">
+            <p className='text-gray-600'>
               {t('explore.results.count', { count: properties.length }) ||
                 `${properties.length} industrial cities found`}
             </p>
@@ -173,47 +173,47 @@ export function ExploreListingPage() {
 
         {/* Content Area */}
         {loading ? (
-          <div className="flex items-center justify-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-            <span className="ml-3 text-gray-600">
+          <div className='flex items-center justify-center py-12'>
+            <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600'></div>
+            <span className='ml-3 text-gray-600'>
               Loading industrial cities...
             </span>
           </div>
         ) : error ? (
-          <div className="text-center py-12">
-            <div className="text-red-500 mb-4">
+          <div className='text-center py-12'>
+            <div className='text-red-500 mb-4'>
               <svg
-                className="mx-auto h-16 w-16"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                className='mx-auto h-16 w-16'
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  d='M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
                 />
               </svg>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            <h3 className='text-lg font-semibold text-gray-900 mb-2'>
               Failed to Load Data
             </h3>
-            <p className="text-gray-600 mb-4">{error}</p>
+            <p className='text-gray-600 mb-4'>{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              className='bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors'
             >
               Try Again
             </button>
           </div>
         ) : viewMode === EViewMode.map ? (
           /* Full Map View */
-          <div className="w-full h-[600px]">
+          <div className='w-full h-[600px]'>
             <Map
               points={properties}
-              className="h-full rounded-lg shadow-sm"
-              onMarkerClick={(point) => {
+              className='h-full rounded-lg shadow-sm'
+              onMarkerClick={point => {
                 if (point.id) {
                   window.location.href = `/explore/property/${point.id}`;
                 }
@@ -240,11 +240,11 @@ export function ExploreListingPage() {
 
             {/* Map Area (for split view only) */}
             {viewMode === EViewMode.split && (
-              <div className="w-full lg:flex-1 min-h-[400px] lg:min-h-[600px]">
+              <div className='w-full lg:flex-1 min-h-[400px] lg:min-h-[600px]'>
                 <Map
                   points={properties}
-                  className="h-full rounded-lg shadow-sm"
-                  onMarkerClick={(point) => {
+                  className='h-full rounded-lg shadow-sm'
+                  onMarkerClick={point => {
                     if (point.id) {
                       window.location.href = `/explore/property/${point.id}`;
                     }

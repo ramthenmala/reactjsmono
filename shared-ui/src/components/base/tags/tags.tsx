@@ -129,13 +129,13 @@ export const Tag = ({
 
   const leadingContent = avatarSrc ? (
     <Avatar
-      size="xxs"
+      size='xxs'
       src={avatarSrc}
-      alt="Avatar"
+      alt='Avatar'
       contrastBorder={avatarContrastBorder}
     />
   ) : dot ? (
-    <Dot className={cx('text-fg-success-secondary', dotClassName)} size="sm" />
+    <Dot className={cx('text-fg-success-secondary', dotClassName)} size='sm' />
   ) : null;
 
   return (
@@ -143,7 +143,7 @@ export const Tag = ({
       id={id}
       isDisabled={isDisabled}
       textValue={typeof children === 'string' ? children : undefined}
-      className={(state) =>
+      className={state =>
         cx(
           'flex cursor-default items-center gap-0.75 rounded-md bg-primary text-secondary ring-1 ring-primary ring-inset focus:outline-hidden focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus-ring',
           styles[context.size].root.base,

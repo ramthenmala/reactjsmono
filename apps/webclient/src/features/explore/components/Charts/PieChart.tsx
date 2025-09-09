@@ -24,14 +24,14 @@ export const PieChart = ({
           isAnimationActive={false}
           startAngle={-270}
           endAngle={-630}
-          stroke="none"
+          stroke='none'
           data={[
-            { value: value, className: 'text-utility-brand-600' },
+            { value, className: 'text-utility-brand-600' },
             { value: 100 - value, className: 'text-utility-gray-200' },
           ]}
-          dataKey="value"
-          nameKey="name"
-          fill="currentColor"
+          dataKey='value'
+          nameKey='name'
+          fill='currentColor'
           innerRadius={Math.round(size * 0.33)}
           outerRadius={Math.round(size * 0.5)}
         />
@@ -41,8 +41,8 @@ export const PieChart = ({
 
   return (
     <>
-      <div className="block md:hidden">{renderChart(mobileSize)}</div>
-      <div className="hidden md:block">{renderChart(desktopSize)}</div>
+      <div className='block md:hidden'>{renderChart(mobileSize)}</div>
+      <div className='hidden md:block'>{renderChart(desktopSize)}</div>
     </>
   );
 };

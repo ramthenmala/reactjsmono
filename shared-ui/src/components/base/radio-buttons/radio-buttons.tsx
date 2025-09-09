@@ -90,7 +90,7 @@ export const RadioButton = ({
   return (
     <AriaRadio
       {...ariaRadioProps}
-      className={(renderProps) =>
+      className={renderProps =>
         cx(
           'flex items-start',
           renderProps.isDisabled && 'cursor-not-allowed',
@@ -125,7 +125,7 @@ export const RadioButton = ({
               {hint && (
                 <span
                   className={cx('text-tertiary', sizes[size].hint)}
-                  onClick={(event) => event.stopPropagation()}
+                  onClick={event => event.stopPropagation()}
                 >
                   {hint}
                 </span>

@@ -12,11 +12,11 @@ interface PopoverProps extends AriaPopoverProps, RefAttributes<HTMLElement> {
 export const Popover = (props: PopoverProps) => {
   return (
     <AriaPopover
-      placement="bottom"
+      placement='bottom'
       containerPadding={0}
       offset={4}
       {...props}
-      className={(state) =>
+      className={state =>
         cx(
           'max-h-64! w-(--trigger-width) origin-(--trigger-anchor-point) overflow-x-hidden overflow-y-auto rounded-lg bg-primary py-1 shadow-lg ring-1 ring-secondary_alt outline-hidden will-change-transform',
 

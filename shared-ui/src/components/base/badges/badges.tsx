@@ -237,7 +237,7 @@ export const BadgeWithDot = <T extends BadgeTypes>(
         className
       )}
     >
-      <Dot className={colors.styles[color].addon} size="sm" />
+      <Dot className={colors.styles[color].addon} size='sm' />
       {children}
     </span>
   );
@@ -377,7 +377,7 @@ export const BadgeWithFlag = <T extends BadgeTypes>(
     >
       <img
         src={`https://www.untitledui.com/images/flags/${flag}.svg`}
-        className="size-4 max-w-none rounded-full"
+        className='size-4 max-w-none rounded-full'
         alt={`${flag} flag`}
       />
       {children}
@@ -433,8 +433,8 @@ export const BadgeWithImage = <T extends BadgeTypes>(
     >
       <img
         src={imgSrc}
-        className="size-4 max-w-none rounded-full"
-        alt="Badge image"
+        className='size-4 max-w-none rounded-full'
+        alt='Badge image'
       />
       {children}
     </span>
@@ -498,7 +498,7 @@ export const BadgeWithButton = <T extends BadgeTypes>(
     >
       {children}
       <button
-        type="button"
+        type='button'
         aria-label={buttonLabel}
         onClick={props.onButtonClick}
         className={cx(
@@ -507,7 +507,7 @@ export const BadgeWithButton = <T extends BadgeTypes>(
           type === 'pill-color' ? 'rounded-full' : 'rounded-[3px]'
         )}
       >
-        <Icon className="size-3 stroke-[3px] transition-inherit-all" />
+        <Icon className='size-3 stroke-[3px] transition-inherit-all' />
       </button>
     </span>
   );

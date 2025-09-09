@@ -13,8 +13,8 @@ export const AdminLayout = ({ children, activeUrl }: AdminLayoutProps) => {
 
   return (
     <div
-      data-qa-id="admin-layout"
-      className="min-h-screen bg-gray-50 dark:bg-gray-900"
+      data-qa-id='admin-layout'
+      className='min-h-screen bg-gray-50 dark:bg-gray-900'
     >
       <SidebarNavigationSimple
         activeUrl={activeUrl}
@@ -24,20 +24,20 @@ export const AdminLayout = ({ children, activeUrl }: AdminLayoutProps) => {
 
       {/* Main content area - positioned to account for fixed sidebar */}
       <div
-        data-qa-id="admin-layout-content"
-        className="lg:ps-72 flex flex-col min-h-screen"
+        data-qa-id='admin-layout-content'
+        className='lg:ps-72 flex flex-col min-h-screen'
       >
         <AdminHeader
           title={t('welcome.title')}
           subtitle={t('welcome.subtitle')}
-          userName="Faisal"
-          userRole="Govt. Admin"
+          userName='Faisal'
+          userRole='Govt. Admin'
           trailingContent={<LanguageSwitcher />}
           hideBorder={false}
         />
         <main
-          data-qa-id="admin-layout-main"
-          className="flex-1 px-4 py-8 sm:px-6 lg:px-8"
+          data-qa-id='admin-layout-main'
+          className='flex-1 px-4 py-8 sm:px-6 lg:px-8'
         >
           {children}
         </main>

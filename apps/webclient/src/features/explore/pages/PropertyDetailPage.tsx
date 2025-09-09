@@ -9,7 +9,6 @@ import { ApiDownNotice } from '../components/UI/ApiDownNotice';
 import { IIndustrialCityModel } from '../types/industrialCity';
 import { fetchIndustrialCityById } from '../utils/industrialCityService';
 
-
 export function PropertyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useLocaleTranslation();
@@ -39,10 +38,10 @@ export function PropertyDetailPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-dvh items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading property details...</p>
+      <main className='flex min-h-dvh items-center justify-center'>
+        <div className='text-center'>
+          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4'></div>
+          <p className='text-gray-600'>Loading property details...</p>
         </div>
       </main>
     );
@@ -53,20 +52,20 @@ export function PropertyDetailPage() {
   }
 
   return (
-    <main className="flex min-h-dvh flex-col bg-[radial-gradient(50%_50%_at_100%_50%,rgba(85,71,181,0.2)_0%,rgba(216,200,255,0)_100%)]">
+    <main className='flex min-h-dvh flex-col bg-[radial-gradient(50%_50%_at_100%_50%,rgba(85,71,181,0.2)_0%,rgba(216,200,255,0)_100%)]'>
       {/* Hero Section */}
       <Hero
-        backgroundImage="/assets/images/backgrounds/ExploreBG.jpg"
+        backgroundImage='/assets/images/backgrounds/ExploreBG.jpg'
         breadcrumbItems={[
           { label: t('navigation.explore') || 'Explore', href: '/explore' },
           { label: industrialCity.district, href: `/explore/property/${slug}` },
         ]}
-        className="pb-28 md:pb-40"
+        className='pb-28 md:pb-40'
       />
 
-      <section className="md:hidden mx-auto -mt-20 mb-11">
-        <div className="end-4 top-4 z-10 flex items-center gap-3">
-          <ExploreActions size="sm" variant="light" />
+      <section className='md:hidden mx-auto -mt-20 mb-11'>
+        <div className='end-4 top-4 z-10 flex items-center gap-3'>
+          <ExploreActions size='sm' variant='light' />
         </div>
       </section>
 

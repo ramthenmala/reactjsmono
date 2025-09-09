@@ -5,7 +5,6 @@ export class RegionsService {
   private static cache: Region[] | null = null;
 
   static async fetchRegions(currentLanguage = 'en'): Promise<Region[]> {
-    const cacheKey = `regions_${currentLanguage}`;
     if (this.cache && this.cache.length > 0) {
       return this.cache;
     }
@@ -13,8 +12,8 @@ export class RegionsService {
     try {
       const response = await fetch(this.API_URL, {
         headers: {
-          'accept': '*/*',
-          'x-user-agent': 'InvestorPortal', 
+          accept: '*/*',
+          'x-user-agent': 'InvestorPortal',
           'x-signature': 'secret456',
           'accept-language': currentLanguage,
         },

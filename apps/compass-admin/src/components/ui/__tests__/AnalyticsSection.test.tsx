@@ -40,7 +40,7 @@ describe('AnalyticsSection', () => {
     render(<AnalyticsSection section={mockSectionWithDescription} />);
 
     expect(
-      screen.getByTestId('analytics-section-national')
+      screen.getByTestId('analytics-section-national'),
     ).toBeInTheDocument();
   });
 
@@ -64,7 +64,7 @@ describe('AnalyticsSection', () => {
     render(<AnalyticsSection section={mockSectionWithDescription} />);
 
     const description = screen.getByTestId(
-      'analytics-section-description-national'
+      'analytics-section-description-national',
     );
     expect(description).toHaveTextContent('National level insights and data');
     expect(description.tagName).toBe('P');
@@ -74,7 +74,7 @@ describe('AnalyticsSection', () => {
     render(<AnalyticsSection section={mockSectionWithoutDescription} />);
 
     expect(
-      screen.queryByTestId('analytics-section-description-regional')
+      screen.queryByTestId('analytics-section-description-regional'),
     ).not.toBeInTheDocument();
   });
 
@@ -94,7 +94,7 @@ describe('AnalyticsSection', () => {
       'font-bold',
       'text-gray-900',
       'dark:text-white',
-      'mb-4'
+      'mb-4',
     );
   });
 
@@ -102,12 +102,12 @@ describe('AnalyticsSection', () => {
     render(<AnalyticsSection section={mockSectionWithDescription} />);
 
     const description = screen.getByTestId(
-      'analytics-section-description-national'
+      'analytics-section-description-national',
     );
     expect(description).toHaveClass(
       'text-gray-600',
       'dark:text-gray-400',
-      'mb-6'
+      'mb-6',
     );
   });
 
@@ -129,23 +129,23 @@ describe('AnalyticsSection', () => {
       },
     ];
 
-    sections.forEach((section, index) => {
+    sections.forEach((section, _index) => {
       const { unmount } = render(<AnalyticsSection section={section} />);
 
       expect(
-        screen.getByTestId(`analytics-section-${section.id}`)
+        screen.getByTestId(`analytics-section-${section.id}`),
       ).toBeInTheDocument();
       expect(
-        screen.getByTestId(`analytics-section-title-${section.id}`)
+        screen.getByTestId(`analytics-section-title-${section.id}`),
       ).toBeInTheDocument();
 
       if (section.description) {
         expect(
-          screen.getByTestId(`analytics-section-description-${section.id}`)
+          screen.getByTestId(`analytics-section-description-${section.id}`),
         ).toBeInTheDocument();
       } else {
         expect(
-          screen.queryByTestId(`analytics-section-description-${section.id}`)
+          screen.queryByTestId(`analytics-section-description-${section.id}`),
         ).not.toBeInTheDocument();
       }
 
@@ -155,18 +155,18 @@ describe('AnalyticsSection', () => {
 
   it('handles isActive prop (currently unused but part of interface)', () => {
     const { unmount } = render(
-      <AnalyticsSection section={mockSectionWithDescription} isActive={true} />
+      <AnalyticsSection section={mockSectionWithDescription} isActive={true} />,
     );
     expect(
-      screen.getByTestId('analytics-section-national')
+      screen.getByTestId('analytics-section-national'),
     ).toBeInTheDocument();
     unmount();
 
     render(
-      <AnalyticsSection section={mockSectionWithDescription} isActive={false} />
+      <AnalyticsSection section={mockSectionWithDescription} isActive={false} />,
     );
     expect(
-      screen.getByTestId('analytics-section-national')
+      screen.getByTestId('analytics-section-national'),
     ).toBeInTheDocument();
   });
 
@@ -180,10 +180,10 @@ describe('AnalyticsSection', () => {
     render(<AnalyticsSection section={sectionWithUnknownKeys} />);
 
     expect(
-      screen.getByTestId('analytics-section-title-national')
+      screen.getByTestId('analytics-section-title-national'),
     ).toHaveTextContent('unknown.title.key');
     expect(
-      screen.getByTestId('analytics-section-description-national')
+      screen.getByTestId('analytics-section-description-national'),
     ).toHaveTextContent('unknown.description.key');
   });
 
@@ -197,7 +197,7 @@ describe('AnalyticsSection', () => {
       'sector-view',
     ] as const;
 
-    sectionIds.forEach((id) => {
+    sectionIds.forEach(id => {
       const section: AnalyticsSectionType = {
         id,
         title: `Title for ${id}`,
@@ -208,10 +208,10 @@ describe('AnalyticsSection', () => {
 
       expect(screen.getByTestId(`analytics-section-${id}`)).toBeInTheDocument();
       expect(
-        screen.getByTestId(`analytics-section-title-${id}`)
+        screen.getByTestId(`analytics-section-title-${id}`),
       ).toHaveTextContent(`Title for ${id}`);
       expect(
-        screen.getByTestId(`analytics-section-description-${id}`)
+        screen.getByTestId(`analytics-section-description-${id}`),
       ).toHaveTextContent(`Description for ${id}`);
 
       unmount();
@@ -229,7 +229,7 @@ describe('AnalyticsSection', () => {
 
     // Empty string is falsy, so description should not be rendered
     expect(
-      screen.queryByTestId('analytics-section-description-national')
+      screen.queryByTestId('analytics-section-description-national'),
     ).not.toBeInTheDocument();
   });
 
@@ -246,10 +246,10 @@ describe('AnalyticsSection', () => {
     render(<AnalyticsSection section={sectionWithLongContent} />);
 
     expect(
-      screen.getByTestId('analytics-section-title-national')
+      screen.getByTestId('analytics-section-title-national'),
     ).toHaveTextContent(longTitle);
     expect(
-      screen.getByTestId('analytics-section-description-national')
+      screen.getByTestId('analytics-section-description-national'),
     ).toHaveTextContent(longDescription);
   });
 
@@ -259,7 +259,7 @@ describe('AnalyticsSection', () => {
     const section = screen.getByTestId('analytics-section-national');
     const title = screen.getByTestId('analytics-section-title-national');
     const description = screen.getByTestId(
-      'analytics-section-description-national'
+      'analytics-section-description-national',
     );
 
     expect(section.tagName).toBe('SECTION');

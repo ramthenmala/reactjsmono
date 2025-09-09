@@ -17,7 +17,7 @@ import { barChartStyles } from './styles';
 export function BarChart({ data }: BarChartProps) {
   return (
     <div className={barChartStyles.container}>
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width='100%' height='100%'>
         <RechartsBarChart data={data} margin={barChartStyles.margin}>
           <CartesianGrid
             vertical={false}
@@ -30,7 +30,7 @@ export function BarChart({ data }: BarChartProps) {
             tickLine={false}
             tickMargin={11}
             interval={0}
-            dataKey="label"
+            dataKey='label'
             tick={<WrappedXAxisTick x={0} y={0} payload={{ value: '' }} />}
             className={barChartStyles.xAxis}
           />
@@ -38,15 +38,15 @@ export function BarChart({ data }: BarChartProps) {
           <YAxis
             axisLine={false}
             tickLine={false}
-            interval="preserveStartEnd"
-            tickFormatter={(value) => Number(value).toLocaleString()}
+            interval='preserveStartEnd'
+            tickFormatter={value => Number(value).toLocaleString()}
             className={barChartStyles.yAxis}
           />
 
           <Tooltip content={<CustomTooltip />} cursor={barChartStyles.cursor} />
 
           <Bar
-            dataKey="quantity"
+            dataKey='quantity'
             fill={barChartStyles.bar.fill}
             maxBarSize={barChartStyles.bar.maxBarSize}
             radius={barChartStyles.bar.radius}

@@ -133,10 +133,10 @@ export function toCityData(data: IMapData): TCityData {
   for (const c of data?.cities ?? []) {
     const points: IPlotPoint[] = (c.industrialCities ?? [])
       .filter(
-        (ic) =>
+        ic =>
           typeof ic.latitude === 'number' && typeof ic.longitude === 'number'
       )
-      .map((ic) => ({
+      .map(ic => ({
         id: ic.id,
         city: c.cityName,
         latitude: ic.latitude as number,

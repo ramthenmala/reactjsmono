@@ -15,7 +15,7 @@ export const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
 
   const currentLanguage =
-    languages.find((lang) => lang.code === locale) || languages[0];
+    languages.find(lang => lang.code === locale) || languages[0];
 
   const switchLanguage = (newLocale: string) => {
     const currentPath = location.pathname;
@@ -27,19 +27,19 @@ export const LanguageSwitcher = () => {
   };
 
   return (
-    <div data-qa-id="language-switcher" className="relative">
-      <div className="flex items-center gap-2">
+    <div data-qa-id='language-switcher' className='relative'>
+      <div className='flex items-center gap-2'>
         <Globe01
-          data-qa-id="language-switcher-icon"
-          className="h-4 w-4 text-gray-500"
+          data-qa-id='language-switcher-icon'
+          className='h-4 w-4 text-gray-500'
         />
         <select
-          data-qa-id="language-switcher-select"
+          data-qa-id='language-switcher-select'
           value={currentLanguage.code}
-          onChange={(e) => switchLanguage(e.target.value)}
-          className="bg-transparent border-none text-sm text-gray-700 dark:text-gray-300 focus:ring-0 cursor-pointer"
+          onChange={e => switchLanguage(e.target.value)}
+          className='bg-transparent border-none text-sm text-gray-700 dark:text-gray-300 focus:ring-0 cursor-pointer'
         >
-          {languages.map((language) => (
+          {languages.map(language => (
             <option
               key={language.code}
               value={language.code}

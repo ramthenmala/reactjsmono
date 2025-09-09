@@ -23,65 +23,65 @@ export const PropertyTable = memo(
 
     return (
       <TableCard.Root>
-        <div className="overflow-x-auto">
-          <Table aria-label="Industrial Cities" size="md">
+        <div className='overflow-x-auto'>
+          <Table aria-label='Industrial Cities' size='md'>
             <Table.Header>
-              <Table.Head id="slNo" label="Sl No." className="w-20" />
+              <Table.Head id='slNo' label='Sl No.' className='w-20' />
               <Table.Head
-                id="title"
-                label="Industrial City"
+                id='title'
+                label='Industrial City'
                 isRowHeader
-                className="w-full max-w-1/4"
+                className='w-full max-w-1/4'
               />
-              <Table.Head id="city" label="City" />
-              <Table.Head id="area" label="Available Land" />
-              <Table.Head id="electricity" label="Electricity" />
-              <Table.Head id="gas" label="Gas" />
-              <Table.Head id="water" label="Water" />
-              <Table.Head id="actions" />
+              <Table.Head id='city' label='City' />
+              <Table.Head id='area' label='Available Land' />
+              <Table.Head id='electricity' label='Electricity' />
+              <Table.Head id='gas' label='Gas' />
+              <Table.Head id='water' label='Water' />
+              <Table.Head id='actions' />
             </Table.Header>
 
             <Table.Body items={properties}>
-              {(property) => {
-                const index = properties.findIndex((p) => p.id === property.id);
+              {property => {
+                const index = properties.findIndex(p => p.id === property.id);
                 const serialNumber =
                   (currentPage - 1) * itemsPerPage + index + 1;
                 return (
                   <Table.Row id={property.id}>
                     <Table.Cell>
-                      <span className="text-sm font-medium text-primary">
+                      <span className='text-sm font-medium text-primary'>
                         {serialNumber}.
                       </span>
                     </Table.Cell>
                     <Table.Cell>
                       <button
                         onClick={() => onView?.(property)}
-                        className="text-sm font-medium text-primary hover:text-brand-600 transition-colors text-left"
+                        className='text-sm font-medium text-primary hover:text-brand-600 transition-colors text-left'
                       >
                         {property.title}
                       </button>
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap">
+                    <Table.Cell className='whitespace-nowrap'>
                       {property.city}
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap">
+                    <Table.Cell className='whitespace-nowrap'>
                       {property.area.toLocaleString()} km²
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap">
+                    <Table.Cell className='whitespace-nowrap'>
                       {property.electricity || '-'}
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap">
+                    <Table.Cell className='whitespace-nowrap'>
                       {property.gas || '-'}
                     </Table.Cell>
-                    <Table.Cell className="whitespace-nowrap">
+                    <Table.Cell className='whitespace-nowrap'>
                       {property.water || '-'}
                     </Table.Cell>
-                    <Table.Cell className="px-4">
-                      <div className="flex justify-end">
+                    <Table.Cell className='px-4'>
+                      <div className='flex justify-end'>
                         <ButtonUtility
-                          size="xs"
-                          color="tertiary"
-                          tooltip="Compare"
+                          size='xs'
+                          color='tertiary'
+                          tooltip='Compare'
                           icon={Copy01}
                           onClick={() => handleCompare(property)}
                         />
@@ -94,34 +94,34 @@ export const PropertyTable = memo(
           </Table>
 
           {/* Pagination */}
-          <div className="px-6 py-4 bg-white border-t border-gray-200">
-            <div className="flex items-center justify-between">
+          <div className='px-6 py-4 bg-white border-t border-gray-200'>
+            <div className='flex items-center justify-between'>
               <button
                 onClick={() => onPageChange?.(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className='flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
               >
                 <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  className='w-5 h-5'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                     strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
+                    d='M15 19l-7-7 7-7'
                   />
                 </svg>
                 Previous
               </button>
 
-              <div className="flex items-center gap-2">
+              <div className='flex items-center gap-2'>
                 {Array.from(
                   { length: Math.min(totalPages, 10) },
                   (_, i) => i + 1
-                ).map((page) => (
+                ).map(page => (
                   <button
                     key={page}
                     onClick={() => onPageChange?.(page)}
@@ -136,7 +136,7 @@ export const PropertyTable = memo(
                 ))}
                 {totalPages > 10 && (
                   <>
-                    <span className="text-gray-500">...</span>
+                    <span className='text-gray-500'>...</span>
                     <button
                       onClick={() => onPageChange?.(totalPages)}
                       className={`px-3 py-1 text-sm font-medium rounded-md transition-colors cursor-pointer ${
@@ -154,20 +154,20 @@ export const PropertyTable = memo(
               <button
                 onClick={() => onPageChange?.(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className='flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer'
               >
                 Next
                 <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  className='w-5 h-5'
+                  fill='none'
+                  stroke='currentColor'
+                  viewBox='0 0 24 24'
                 >
                   <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                     strokeWidth={2}
-                    d="M9 5l7 7-7 7"
+                    d='M9 5l7 7-7 7'
                   />
                 </svg>
               </button>

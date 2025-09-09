@@ -34,7 +34,7 @@ export class ComparisonService {
     const currentList = this.getStoredProperties();
 
     // Check if already in comparison
-    if (currentList.some((p) => p.id === property.id)) {
+    if (currentList.some(p => p.id === property.id)) {
       return {
         success: false,
         message: 'Property already in comparison list',
@@ -67,7 +67,7 @@ export class ComparisonService {
     properties: IProperty[];
   } {
     const currentList = this.getStoredProperties();
-    const newList = currentList.filter((p) => p.id !== propertyId);
+    const newList = currentList.filter(p => p.id !== propertyId);
 
     this.saveProperties(newList);
 
@@ -83,7 +83,7 @@ export class ComparisonService {
   }
 
   static isInComparison(propertyId: string): boolean {
-    return this.getStoredProperties().some((p) => p.id === propertyId);
+    return this.getStoredProperties().some(p => p.id === propertyId);
   }
 
   static getComparisonCount(): number {

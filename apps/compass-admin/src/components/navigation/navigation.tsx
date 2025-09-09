@@ -18,7 +18,7 @@ import type { NavItemType } from '@compass/shared-ui';
 
 export const getNavigationItems = (
   locale = 'en',
-  t: (key: string) => string
+  t: (key: string) => string,
 ): NavItemType[] => [
   {
     label: t('navigation.overview'),

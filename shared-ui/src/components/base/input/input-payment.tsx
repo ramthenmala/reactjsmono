@@ -62,7 +62,7 @@ const detectCardType = (number: string) => {
   const sanitizedNumber = number.replace(/\D/g, '');
 
   // Find the matching card type
-  const card = cardTypes.find((cardType) =>
+  const card = cardTypes.find(cardType =>
     cardType.pattern.test(sanitizedNumber)
   );
 
@@ -101,7 +101,7 @@ export const PaymentInput = ({
   const [cardNumber, setCardNumber] = useControlledState(
     value,
     defaultValue || '',
-    (value) => {
+    value => {
       // Remove all non-numeric characters
       value = value.replace(/\D/g, '');
 
@@ -116,7 +116,7 @@ export const PaymentInput = ({
       aria-label={!label ? props?.placeholder : undefined}
       {...props}
       className={className}
-      inputMode="numeric"
+      inputMode='numeric'
       maxLength={maxLength}
       value={formatCardNumber(cardNumber)}
       onChange={setCardNumber}
@@ -130,8 +130,8 @@ export const PaymentInput = ({
             isDisabled={isDisabled}
             isInvalid={isInvalid}
             icon={card.icon}
-            inputClassName="pl-13"
-            iconClassName="left-2.5 h-6 w-8.5"
+            inputClassName='pl-13'
+            iconClassName='left-2.5 h-6 w-8.5'
           />
 
           {hint && <HintText isInvalid={isInvalid}>{hint}</HintText>}

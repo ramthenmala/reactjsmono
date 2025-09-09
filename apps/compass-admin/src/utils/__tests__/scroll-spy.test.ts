@@ -15,7 +15,7 @@ const mockGetElementById = jest.fn();
 const originalGetElementById = document.getElementById;
 const originalWindowScrollY = Object.getOwnPropertyDescriptor(
   window,
-  'scrollY'
+  'scrollY',
 );
 
 describe('scroll-spy utilities', () => {
@@ -113,7 +113,7 @@ describe('scroll-spy utilities', () => {
         'sector-view',
       ];
 
-      sectionIds.forEach((sectionId) => {
+      sectionIds.forEach(sectionId => {
         const result = createUrlForSection('en', sectionId);
         expect(result).toBe(`/en/analytics#${sectionId}`);
       });
@@ -288,7 +288,7 @@ describe('scroll-spy utilities', () => {
 
     it('handles special characters', () => {
       expect(isAnalyticsAnchor('/en/analytics#investor-insights-2024')).toBe(
-        true
+        true,
       );
       expect(isAnalyticsAnchor('/ar/analytics#city_metrics')).toBe(true);
     });

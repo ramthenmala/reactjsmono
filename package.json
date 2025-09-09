@@ -20,8 +20,8 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ui": "jest --watch --verbose",
-    "test:compass-admin": "jest --testPathPatterns=apps/compass-admin --coverage --collectCoverageFrom='apps/compass-admin/src/**/*.{ts,tsx}' --collectCoverageFrom='!apps/compass-admin/src/**/*.d.ts' --collectCoverageFrom='!apps/compass-admin/src/**/main.tsx' --collectCoverageFrom='!apps/compass-admin/src/**/vite-env.d.ts'",
-    "test:compass-admin:watch": "jest --testPathPatterns=apps/compass-admin --watch --coverage --collectCoverageFrom='apps/compass-admin/src/**/*.{ts,tsx}' --collectCoverageFrom='!apps/compass-admin/src/**/*.d.ts' --collectCoverageFrom='!apps/compass-admin/src/**/main.tsx' --collectCoverageFrom='!apps/compass-admin/src/**/vite-env.d.ts'",
+    "test:compass-admin": "jest --testPathPatterns=apps/compass-admin --coverage --collectCoverageFrom='apps/compass-admin/src/**/*.{ts,tsx}' --collectCoverageFrom='!apps/compass-admin/src/**/*.d.ts' --collectCoverageFrom='!apps/compass-admin/src/**/main.tsx' --collectCoverageFrom='!apps/compass-admin/src/**/vite-env.d.ts' --coverageThreshold='{\"global\":{\"branches\":90,\"functions\":90,\"lines\":90,\"statements\":90}}'",
+    "test:compass-admin:watch": "jest --testPathPatterns=apps/compass-admin --watch --coverage --collectCoverageFrom='apps/compass-admin/src/**/*.{ts,tsx}' --collectCoverageFrom='!apps/compass-admin/src/**/*.d.ts' --collectCoverageFrom='!apps/compass-admin/src/**/main.tsx' --collectCoverageFrom='!apps/compass-admin/src/**/vite-env.d.ts' --coverageThreshold='{\"global\":{\"branches\":90,\"functions\":90,\"lines\":90,\"statements\":90}}'",
     "test:webclient": "jest --testPathPatterns=apps/webclient --coverage --collectCoverageFrom='apps/webclient/src/**/*.{ts,tsx}' --collectCoverageFrom='!apps/webclient/src/**/*.d.ts' --collectCoverageFrom='!apps/webclient/src/**/main.tsx' --collectCoverageFrom='!apps/webclient/src/**/vite-env.d.ts'",
     "test:webclient:watch": "jest --testPathPatterns=apps/webclient --watch --coverage --collectCoverageFrom='apps/webclient/src/**/*.{ts,tsx}' --collectCoverageFrom='!apps/webclient/src/**/*.d.ts' --collectCoverageFrom='!apps/webclient/src/**/main.tsx' --collectCoverageFrom='!apps/webclient/src/**/vite-env.d.ts'",
     "test:ci": "jest --coverage --watchAll=false --passWithNoTests",
@@ -40,10 +40,20 @@
     "lint": "nx run-many --target=lint --projects=compass-admin,webclient",
     "lint:fix": "nx run-many --target=lint --projects=compass-admin,webclient -- --fix",
     "lint:compass-admin": "nx lint compass-admin",
+    "lint:compass-admin:fix": "nx lint compass-admin -- --fix",
     "lint:webclient": "nx lint webclient",
+    "lint:webclient:fix": "nx lint webclient -- --fix",
     "lint:shared-ui": "nx lint shared-ui",
     "format": "prettier --write . --ignore-path .prettierignore",
     "format:check": "prettier --check . --ignore-path .prettierignore",
+    "format:webclient": "prettier --write apps/webclient/src/**/*.{ts,tsx,js,jsx,json,md}",
+    "format:compass-admin": "prettier --write apps/compass-admin/src/**/*.{ts,tsx,js,jsx,json,md}",
+    "quality:check": "npm run type-check && npm run lint && npm run format:check",
+    "quality:fix": "npm run format && npm run lint:fix",
+    "quality:check:webclient": "npm run type-check:webclient && npm run lint:webclient && npm run format:check",
+    "quality:fix:webclient": "npm run format:webclient && npm run lint:webclient:fix",
+    "quality:check:compass-admin": "npm run type-check:compass-admin && npm run lint:compass-admin && npm run format:check",
+    "quality:fix:compass-admin": "npm run format:compass-admin && npm run lint:compass-admin:fix",
     "type-check": "tsc --noEmit -p apps/compass-admin/tsconfig.json && tsc --noEmit -p apps/webclient/tsconfig.json",
     "type-check:compass-admin": "tsc --noEmit -p apps/compass-admin/tsconfig.json",
     "type-check:webclient": "tsc --noEmit -p apps/webclient/tsconfig.json",
@@ -164,8 +174,5 @@
     "vite-plugin-i18next-loader": "^3.1.2",
     "vitest": "^3.0.0"
   },
-  "workspaces": [
-    "apps/*",
-    "shared-ui"
-  ]
+  "workspaces": ["apps/*", "shared-ui"]
 }

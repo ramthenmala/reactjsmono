@@ -7,7 +7,7 @@ class SearchService {
   async getRegions(): Promise<SelectOption[]> {
     try {
       const regions = await RegionsService.fetchRegions();
-      return regions.map((region) => ({
+      return regions.map(region => ({
         id: region.id,
         label: region.name,
         value: region.id,
@@ -21,7 +21,7 @@ class SearchService {
   async getSectors(): Promise<SelectOption[]> {
     try {
       const sectors = await SectorsService.fetchSectors();
-      return sectors.map((sector) => ({
+      return sectors.map(sector => ({
         id: sector.id,
         label: sector.name,
         value: sector.id,

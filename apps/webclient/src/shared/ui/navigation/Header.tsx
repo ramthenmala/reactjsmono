@@ -26,7 +26,7 @@ export function Header() {
       return [];
     }
 
-    return navigationData.header.map((item) => {
+    return navigationData.header.map(item => {
       // Add locale prefix to links
       const href =
         item.link === '/'
@@ -37,7 +37,7 @@ export function Header() {
       if (item.label === 'Saudi Industrial Landscape') {
         return {
           label: item.label,
-          href: href,
+          href,
           hasDropdown: true,
           dropdownId: 'saudi_industrial_landscape',
           submenu: megaMenuConfig,
@@ -46,7 +46,7 @@ export function Header() {
 
       return {
         label: item.label,
-        href: href,
+        href,
         hasDropdown: item.hasSubMenu,
         dropdownId: item.hasSubMenu
           ? item.label.toLowerCase().replace(/\s+/g, '_')
@@ -59,11 +59,11 @@ export function Header() {
   const navigationItems = getNavigationItems();
 
   const toggleDropdown = (dropdownId: string) => {
-    setActiveDropdown((prev) => (prev === dropdownId ? null : dropdownId));
+    setActiveDropdown(prev => (prev === dropdownId ? null : dropdownId));
   };
 
   const getCurrentSubmenu = () => {
-    return navigationItems.find((item) => item.dropdownId === activeDropdown)
+    return navigationItems.find(item => item.dropdownId === activeDropdown)
       ?.submenu;
   };
 
@@ -111,7 +111,7 @@ export function Header() {
     if (!activeDropdown) return;
     const onPointerDown = (event: PointerEvent) => {
       const path = (event.composedPath && event.composedPath()) as Node[];
-      const clickedToggle = path.some((node) => {
+      const clickedToggle = path.some(node => {
         return (
           node instanceof HTMLElement &&
           node.hasAttribute('data-dropdown-toggle')
@@ -134,9 +134,9 @@ export function Header() {
         isScrolled ? 'fixed top-0 left-0 right-0 scrolled' : 'relative'
       }`}
     >
-      <div className="container flex items-end justify-between gap-4">
+      <div className='container flex items-end justify-between gap-4'>
         {/* Left: Logo and Navigation */}
-        <div className="header-section flex gap-12">
+        <div className='header-section flex gap-12'>
           <HeaderLogo />
           <NavigationMenu
             items={navigationItems}
@@ -147,19 +147,19 @@ export function Header() {
 
         {/* Right: Language Selector and Mobile Menu Button */}
         {/* Desktop language selector */}
-        <div className="header-section gap-3 shadow-2xl hidden xl:flex">
+        <div className='header-section gap-3 shadow-2xl hidden xl:flex'>
           <LanguageSelector onLanguageChange={handleLanguageChange} />
         </div>
 
         {/* Mobile menu button */}
-        <div className="header-section gap-3 shadow-2xl xl:hidden flex">
+        <div className='header-section gap-3 shadow-2xl xl:hidden flex'>
           <button
-            type="button"
-            className="flex cursor-pointer items-center gap-2 rounded-lg py-2 outline-none transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 relative z-50"
-            aria-label="Open menu"
+            type='button'
+            className='flex cursor-pointer items-center gap-2 rounded-lg py-2 outline-none transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 relative z-50'
+            aria-label='Open menu'
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <Menu01 className="size-6 pointer-events-none" />
+            <Menu01 className='size-6 pointer-events-none' />
           </button>
         </div>
       </div>

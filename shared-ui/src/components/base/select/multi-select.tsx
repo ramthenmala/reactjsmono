@@ -102,7 +102,7 @@ export const MultiSelectBase = ({
   ...props
 }: MultiSelectProps) => {
   const { contains } = useFilter({ sensitivity: 'base' });
-  const selectedKeys = selectedItems.items.map((item) => item.id);
+  const selectedKeys = selectedItems.items.map(item => item.id);
 
   const filter = useCallback(
     (item: SelectItemType, filterText: string) => {
@@ -182,7 +182,7 @@ export const MultiSelectBase = ({
     >
       <AriaComboBox
         allowsEmptyCollection
-        menuTrigger="focus"
+        menuTrigger='focus'
         items={accessibleList.items}
         onInputChange={onInputChange}
         inputValue={accessibleList.filterText}
@@ -191,8 +191,8 @@ export const MultiSelectBase = ({
         onSelectionChange={onSelectionChange}
         {...props}
       >
-        {(state) => (
-          <div className="flex flex-col gap-1.5">
+        {state => (
+          <div className='flex flex-col gap-1.5'>
             {props.label && (
               <Label isRequired={state.isRequired} tooltip={props.tooltip}>
                 {props.label}
@@ -217,8 +217,8 @@ export const MultiSelectBase = ({
               className={props?.popoverClassName}
             >
               <AriaListBox
-                selectionMode="multiple"
-                className="size-full outline-hidden"
+                selectionMode='multiple'
+                className='size-full outline-hidden'
               >
                 {children}
               </AriaListBox>
@@ -312,23 +312,23 @@ const InnerMultiSelect = ({
   const isSelectionEmpty = comboBoxContext?.selectedItems?.items?.length === 0;
 
   return (
-    <div className="relative flex w-full flex-1 flex-row flex-wrap items-center justify-start gap-1.5">
+    <div className='relative flex w-full flex-1 flex-row flex-wrap items-center justify-start gap-1.5'>
       {!isSelectionEmpty &&
-        comboBoxContext?.selectedItems?.items?.map((value) => (
+        comboBoxContext?.selectedItems?.items?.map(value => (
           <span
             key={value.id}
-            className="flex items-center rounded-md bg-primary py-0.5 pr-1 pl-1.25 ring-1 ring-primary ring-inset"
+            className='flex items-center rounded-md bg-primary py-0.5 pr-1 pl-1.25 ring-1 ring-primary ring-inset'
           >
-            <p className="truncate text-sm font-medium whitespace-nowrap text-secondary select-none">
+            <p className='truncate text-sm font-medium whitespace-nowrap text-secondary select-none'>
               {value?.label}
             </p>
 
             <TagCloseX
-              size="md"
+              size='md'
               isDisabled={isDisabled}
-              className="ml-0.75"
+              className='ml-0.75'
               // For workaround, onKeyDown is added to the button
-              onKeyDown={(event) => handleTagKeyDown(event, value.id)}
+              onKeyDown={event => handleTagKeyDown(event, value.id)}
               onPress={() => comboBoxContext.onRemove(new Set([value.id]))}
             />
           </span>
@@ -345,12 +345,12 @@ const InnerMultiSelect = ({
           placeholder={placeholder}
           onKeyDown={handleInputKeyDown}
           onMouseDown={handleInputMouseDown}
-          className="w-full flex-[1_0_0] appearance-none bg-transparent text-md text-ellipsis text-primary caret-alpha-black/90 outline-none placeholder:text-placeholder focus:outline-hidden disabled:cursor-not-allowed disabled:text-disabled disabled:placeholder:text-disabled"
+          className='w-full flex-[1_0_0] appearance-none bg-transparent text-md text-ellipsis text-primary caret-alpha-black/90 outline-none placeholder:text-placeholder focus:outline-hidden disabled:cursor-not-allowed disabled:text-disabled disabled:placeholder:text-disabled'
         />
 
         {shortcut && (
           <div
-            aria-hidden="true"
+            aria-hidden='true'
             className={cx(
               'absolute inset-y-0.5 right-0.5 z-10 flex items-center rounded-r-[inherit] bg-linear-to-r from-transparent to-bg-primary to-40% pl-8',
               shortcutClassName
@@ -396,7 +396,7 @@ export const MultiSelectTagsValue = ({
       {({ isDisabled }) => (
         <>
           {Icon && (
-            <Icon className="pointer-events-none size-5 text-fg-quaternary" />
+            <Icon className='pointer-events-none size-5 text-fg-quaternary' />
           )}
           <FocusScope contain={false} autoFocus={false} restoreFocus={false}>
             <InnerMultiSelect

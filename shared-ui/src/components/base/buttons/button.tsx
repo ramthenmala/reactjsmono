@@ -258,14 +258,14 @@ export const Button = ({
       {/* Leading icon */}
       {isValidElement(IconLeading) && IconLeading}
       {isReactComponent(IconLeading) && (
-        <IconLeading data-icon="leading" className={styles.common.icon} />
+        <IconLeading data-icon='leading' className={styles.common.icon} />
       )}
 
       {loading && (
         <svg
-          fill="none"
-          data-icon="loading"
-          viewBox="0 0 20 20"
+          fill='none'
+          data-icon='loading'
+          viewBox='0 0 20 20'
           className={cx(
             styles.common.icon,
             !showTextWhileLoading &&
@@ -274,23 +274,23 @@ export const Button = ({
         >
           {/* Background circle */}
           <circle
-            className="stroke-current opacity-30"
-            cx="10"
-            cy="10"
-            r="8"
-            fill="none"
-            strokeWidth="2"
+            className='stroke-current opacity-30'
+            cx='10'
+            cy='10'
+            r='8'
+            fill='none'
+            strokeWidth='2'
           />
           {/* Spinning circle */}
           <circle
-            className="origin-center animate-spin stroke-current"
-            cx="10"
-            cy="10"
-            r="8"
-            fill="none"
-            strokeWidth="2"
-            strokeDasharray="12.5 50"
-            strokeLinecap="round"
+            className='origin-center animate-spin stroke-current'
+            cx='10'
+            cy='10'
+            r='8'
+            fill='none'
+            strokeWidth='2'
+            strokeDasharray='12.5 50'
+            strokeLinecap='round'
           />
         </svg>
       )}
@@ -307,7 +307,7 @@ export const Button = ({
       {/* Trailing icon */}
       {isValidElement(IconTrailing) && IconTrailing}
       {isReactComponent(IconTrailing) && (
-        <IconTrailing data-icon="trailing" className={styles.common.icon} />
+        <IconTrailing data-icon='trailing' className={styles.common.icon} />
       )}
     </Component>
   );

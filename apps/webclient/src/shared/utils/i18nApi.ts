@@ -31,8 +31,8 @@ export function getLocalizedField<T extends Record<string, any>>(
  */
 export function useLocalizedFields<T extends Record<string, any>>(data: T) {
   const { currentLanguage } = useLanguage();
-  
-  return (fieldName: keyof T): string => 
+
+  return (fieldName: keyof T): string =>
     getLocalizedField(data, fieldName, currentLanguage);
 }
 
@@ -49,11 +49,15 @@ export function localizeApiData<T extends Record<string, any>>(
   currentLanguage: string
 ): T {
   const localized = { ...data };
-  
+
   fields.forEach(field => {
-    localized[field] = getLocalizedField(data, field, currentLanguage) as T[keyof T];
+    localized[field] = getLocalizedField(
+      data,
+      field,
+      currentLanguage
+    ) as T[keyof T];
   });
-  
+
   return localized;
 }
 

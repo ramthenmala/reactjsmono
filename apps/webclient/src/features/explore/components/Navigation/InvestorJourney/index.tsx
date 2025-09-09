@@ -18,7 +18,7 @@ export function InvestorJourney({
 
   // Keep activeIndex within bounds if steps length changes
   useEffect(() => {
-    setActiveIndex((i) => Math.min(i, Math.max(0, cards.length - 1)));
+    setActiveIndex(i => Math.min(i, Math.max(0, cards.length - 1)));
   }, [cards.length]);
 
   // Touch handlers for sliding
@@ -31,8 +31,8 @@ export function InvestorJourney({
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX.current;
 
-    const NEXT = () => setActiveIndex((i) => Math.min(i + 1, cards.length - 1));
-    const PREV = () => setActiveIndex((i) => Math.max(i - 1, 0));
+    const NEXT = () => setActiveIndex(i => Math.min(i + 1, cards.length - 1));
+    const PREV = () => setActiveIndex(i => Math.max(i - 1, 0));
 
     if (isRTL) {
       // RTL: swipe right (diff > 40) -> NEXT; swipe left (diff < -40) -> PREV

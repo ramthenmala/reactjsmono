@@ -18,25 +18,25 @@ export const AdminRoutes = () => {
     <LocaleWrapper>
       <AdminLayout activeUrl={location.pathname + location.hash}>
         <Routes>
-          <Route path="/" element={<Navigate to="analytics" replace />} />
-          <Route path="overview" element={<DashboardPage />} />
-          <Route path="investors" element={<UsersPage />} />
-          <Route path="connect-requests" element={<ConnectRequestsPage />} />
-          <Route path="analytics" element={<AnalyticsPage />} />
+          <Route path='/' element={<Navigate to='analytics' replace />} />
+          <Route path='overview' element={<DashboardPage />} />
+          <Route path='investors' element={<UsersPage />} />
+          <Route path='connect-requests' element={<ConnectRequestsPage />} />
+          <Route path='analytics' element={<AnalyticsPage />} />
           <Route
-            path="configuration/filter-criteria"
+            path='configuration/filter-criteria'
             element={<FilterCriteriaPage />}
           />
           <Route
-            path="configuration/isic-relevance"
+            path='configuration/isic-relevance'
             element={<IsicRelevancePage />}
           />
           <Route
-            path="configuration/featured-lands"
+            path='configuration/featured-lands'
             element={<FeaturedLandsPage />}
           />
           <Route
-            path="configuration/history"
+            path='configuration/history'
             element={<ConfigurationHistoryPage />}
           />
         </Routes>

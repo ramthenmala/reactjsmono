@@ -109,14 +109,14 @@ describe('Components Index', () => {
     });
   });
 
-  it('maintains export consistency across re-exports', () => {
+  it('maintains export consistency across re-exports', async () => {
     // Test that re-exported items are the same as their original exports
     const { AnalyticsSection } = ComponentsIndex;
 
     // Import directly from the source with correct path
-    const {
-      AnalyticsSection: DirectAnalyticsSection,
-    } = require('../ui/AnalyticsSection');
+    const { AnalyticsSection: DirectAnalyticsSection } = await import(
+      '../ui/AnalyticsSection'
+    );
 
     expect(AnalyticsSection).toBe(DirectAnalyticsSection);
   });
@@ -137,7 +137,7 @@ describe('Components Index', () => {
       'LanguageSwitcher',
     ];
 
-    expectedExports.forEach((expectedExport) => {
+    expectedExports.forEach(expectedExport => {
       expect(exportKeys).toContain(expectedExport);
     });
   });

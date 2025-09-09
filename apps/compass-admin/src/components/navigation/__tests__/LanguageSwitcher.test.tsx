@@ -29,7 +29,7 @@ const renderWithRouter = (initialEntries = ['/en']) => {
   return render(
     <MemoryRouter initialEntries={initialEntries}>
       <LanguageSwitcher />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 
@@ -56,7 +56,7 @@ describe('LanguageSwitcher', () => {
   it('shows English as default selection', () => {
     renderWithRouter();
     const select = screen.getByTestId(
-      'language-switcher-select'
+      'language-switcher-select',
     ) as HTMLSelectElement;
     expect(select.value).toBe('en');
   });

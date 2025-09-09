@@ -66,7 +66,7 @@ export function Map({
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/light-v11', // Clean light theme
         center: [lng, lat],
-        zoom: zoom,
+        zoom,
         minZoom: 4, // Prevent zooming out too much
         maxZoom: 16, // Allow detailed zoom
         maxBounds: saudiBounds, // Restrict panning to Saudi Arabia
@@ -87,7 +87,7 @@ export function Map({
         // Calculate bounds to fit all city clusters
         if (cityClustersData.features.length > 0) {
           const bounds = new mapboxgl.LngLatBounds();
-          cityClustersData.features.forEach((feature) => {
+          cityClustersData.features.forEach(feature => {
             if (feature) {
               bounds.extend(feature.geometry.coordinates as [number, number]);
             }
@@ -109,14 +109,12 @@ export function Map({
             const count = plots.length;
             return {
               name: `city-cluster-${cityName}`,
-              url:
-                'data:image/svg+xml;charset=utf-8,' +
-                encodeURIComponent(`
+              url: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`
               <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="20" cy="20" r="20" fill="#695DC2"/>
                 <text x="20" y="24" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="12" font-weight="bold">${count}</text>
               </svg>
-            `),
+            `)}`,
             };
           }
         );
@@ -125,9 +123,7 @@ export function Map({
         const plotMarkers = [
           {
             name: 'plot',
-            url:
-              'data:image/svg+xml;charset=utf-8,' +
-              encodeURIComponent(`
+            url: `data:image/svg+xml;charset=utf-8,${encodeURIComponent(`
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g opacity="0.1">
                 <rect width="40" height="40" rx="20" fill="#695DC2"/>
@@ -137,7 +133,7 @@ export function Map({
               </g>
               <rect x="15" y="15" width="10" height="10" rx="5" fill="#695DC2"/>
             </svg>
-          `),
+          `)}`,
           },
         ];
 
@@ -160,7 +156,7 @@ export function Map({
         // Wait for images to load before adding layers
         Promise.all(
           allMarkers.map(({ name, url }) => {
-            return new Promise<void>((resolve) => {
+            return new Promise<void>(resolve => {
               const img = new Image();
               img.onload = () => {
                 if (map.current) {
@@ -201,7 +197,7 @@ export function Map({
 
           // Add event handlers
           // City cluster click handler
-          map.current.on('click', 'city-clusters', (e) => {
+          map.current.on('click', 'city-clusters', e => {
             if (!e.features?.[0]) return;
 
             const properties = e.features[0].properties;
@@ -212,7 +208,7 @@ export function Map({
           });
 
           // Plot point click handler
-          map.current.on('click', 'plot-points', (e) => {
+          map.current.on('click', 'plot-points', e => {
             if (!e.features?.[0]) return;
 
             const geometry = e.features[0].geometry as PointGeometry;
@@ -349,7 +345,7 @@ export function Map({
           const cityClustersData = convertToCityClusters(data);
           if (cityClustersData.features.length > 0) {
             const bounds = new mapboxgl.LngLatBounds();
-            cityClustersData.features.forEach((feature) => {
+            cityClustersData.features.forEach(feature => {
               if (feature) {
                 const coords = (feature.geometry as PointGeometry).coordinates;
                 bounds.extend(coords);

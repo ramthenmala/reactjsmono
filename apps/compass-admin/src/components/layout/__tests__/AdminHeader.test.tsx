@@ -6,27 +6,27 @@ import { AdminHeader } from '../AdminHeader';
 jest.mock('@untitledui/icons', () => ({
   Bell01: ({ className }: { className?: string }) => (
     <svg
-      data-qa-id="bell-icon"
+      data-qa-id='bell-icon'
       className={className}
-      aria-label="Bell notification"
-      role="img"
+      aria-label='Bell notification'
+      role='img'
     />
   ),
   SearchLg: ({ className }: { className?: string }) => (
     <svg
-      data-qa-id="search-icon"
+      data-qa-id='search-icon'
       className={className}
-      aria-label="Search"
-      role="img"
+      aria-label='Search'
+      role='img'
     />
   ),
   Settings01: () => (
-    <svg data-qa-id="settings-icon" aria-label="Settings" role="img" />
+    <svg data-qa-id='settings-icon' aria-label='Settings' role='img' />
   ),
   LogOut01: () => (
-    <svg data-qa-id="logout-icon" aria-label="Log out" role="img" />
+    <svg data-qa-id='logout-icon' aria-label='Log out' role='img' />
   ),
-  User01: () => <svg data-qa-id="user-icon" aria-label="User" role="img" />,
+  User01: () => <svg data-qa-id='user-icon' aria-label='User' role='img' />,
 }));
 
 jest.mock('react-aria-components', () => ({
@@ -41,19 +41,19 @@ jest.mock('react-aria-components', () => ({
 
 jest.mock('@compass/shared-ui', () => ({
   Avatar: ({ alt, src, size }: { alt: string; src?: string; size: string }) => (
-    <div data-qa-id="avatar" data-alt={alt} data-src={src} data-size={size}>
+    <div data-qa-id='avatar' data-alt={alt} data-src={src} data-size={size}>
       Avatar: {alt}
     </div>
   ),
   Dropdown: {
     Root: ({ children }: { children: React.ReactNode }) => (
-      <div data-qa-id="dropdown-root">{children}</div>
+      <div data-qa-id='dropdown-root'>{children}</div>
     ),
     Popover: ({ children }: { children: React.ReactNode }) => (
-      <div data-qa-id="dropdown-popover">{children}</div>
+      <div data-qa-id='dropdown-popover'>{children}</div>
     ),
     Menu: ({ children }: { children: React.ReactNode }) => (
-      <div data-qa-id="dropdown-menu">{children}</div>
+      <div data-qa-id='dropdown-menu'>{children}</div>
     ),
     Item: ({
       icon: Icon,
@@ -64,12 +64,12 @@ jest.mock('@compass/shared-ui', () => ({
       label: string;
       onAction: () => void;
     }) => (
-      <button data-qa-id="dropdown-item" onClick={onAction}>
+      <button data-qa-id='dropdown-item' onClick={onAction}>
         <Icon />
         {label}
       </button>
     ),
-    Separator: () => <div data-qa-id="dropdown-separator">---</div>,
+    Separator: () => <div data-qa-id='dropdown-separator'>---</div>,
   },
 }));
 
@@ -107,10 +107,10 @@ describe('AdminHeader', () => {
     render(<AdminHeader {...defaultProps} />);
 
     expect(screen.getByTestId('admin-header-title')).toHaveTextContent(
-      'Test Title'
+      'Test Title',
     );
     expect(screen.getByTestId('admin-header-subtitle')).toHaveTextContent(
-      'Test Subtitle'
+      'Test Subtitle',
     );
   });
 
@@ -118,26 +118,26 @@ describe('AdminHeader', () => {
     render(<AdminHeader />);
 
     expect(screen.getByTestId('admin-header-title')).toHaveTextContent(
-      'Welcome Admin'
+      'Welcome Admin',
     );
     expect(screen.getByTestId('admin-header-subtitle')).toHaveTextContent(
-      'Dashboard Overview'
+      'Dashboard Overview',
     );
   });
 
   it('uses provided title over translation when title is provided', () => {
-    render(<AdminHeader title="Custom Title" />);
+    render(<AdminHeader title='Custom Title' />);
 
     expect(screen.getByTestId('admin-header-title')).toHaveTextContent(
-      'Custom Title'
+      'Custom Title',
     );
   });
 
   it('uses provided subtitle over translation when subtitle is provided', () => {
-    render(<AdminHeader subtitle="Custom Subtitle" />);
+    render(<AdminHeader subtitle='Custom Subtitle' />);
 
     expect(screen.getByTestId('admin-header-subtitle')).toHaveTextContent(
-      'Custom Subtitle'
+      'Custom Subtitle',
     );
   });
 
@@ -148,7 +148,7 @@ describe('AdminHeader', () => {
       return (
         <div>
           {mockT('welcome.subtitle') && (
-            <p data-qa-id="admin-header-subtitle">
+            <p data-qa-id='admin-header-subtitle'>
               {mockT('welcome.subtitle')}
             </p>
           )}
@@ -159,7 +159,7 @@ describe('AdminHeader', () => {
     render(<EmptySubtitleComponent />);
 
     expect(
-      screen.queryByTestId('admin-header-subtitle')
+      screen.queryByTestId('admin-header-subtitle'),
     ).not.toBeInTheDocument();
   });
 
@@ -167,10 +167,10 @@ describe('AdminHeader', () => {
     render(<AdminHeader {...defaultProps} />);
 
     expect(
-      screen.getByTestId('admin-header-search-button')
+      screen.getByTestId('admin-header-search-button'),
     ).toBeInTheDocument();
     expect(
-      screen.getByTestId('admin-header-notifications-button')
+      screen.getByTestId('admin-header-notifications-button'),
     ).toBeInTheDocument();
     expect(screen.getByTestId('search-icon')).toBeInTheDocument();
     expect(screen.getByTestId('bell-icon')).toBeInTheDocument();
@@ -178,13 +178,13 @@ describe('AdminHeader', () => {
 
   it('renders trailing content when provided', () => {
     const trailingContent = (
-      <div data-qa-id="custom-trailing">Custom Content</div>
+      <div data-qa-id='custom-trailing'>Custom Content</div>
     );
 
     render(<AdminHeader {...defaultProps} trailingContent={trailingContent} />);
 
     expect(screen.getByTestId('custom-trailing')).toHaveTextContent(
-      'Custom Content'
+      'Custom Content',
     );
   });
 
@@ -194,10 +194,10 @@ describe('AdminHeader', () => {
     expect(screen.getByTestId('admin-header-user-menu')).toBeInTheDocument();
     expect(screen.getByTestId('avatar')).toBeInTheDocument();
     expect(screen.getByTestId('admin-header-user-name')).toHaveTextContent(
-      'John Doe'
+      'John Doe',
     );
     expect(screen.getByTestId('admin-header-user-role')).toHaveTextContent(
-      'Test Admin'
+      'Test Admin',
     );
   });
 
@@ -205,7 +205,7 @@ describe('AdminHeader', () => {
     render(<AdminHeader {...defaultProps} showAvatarDropdown={false} />);
 
     expect(
-      screen.queryByTestId('admin-header-user-menu')
+      screen.queryByTestId('admin-header-user-menu'),
     ).not.toBeInTheDocument();
     expect(screen.queryByTestId('avatar')).not.toBeInTheDocument();
   });
@@ -214,10 +214,10 @@ describe('AdminHeader', () => {
     render(<AdminHeader />);
 
     expect(screen.getByTestId('admin-header-user-name')).toHaveTextContent(
-      'Faisal'
+      'Faisal',
     );
     expect(screen.getByTestId('admin-header-user-role')).toHaveTextContent(
-      'Govt. Admin'
+      'Govt. Admin',
     );
   });
 
@@ -239,7 +239,7 @@ describe('AdminHeader', () => {
     expect(section).toHaveClass(
       'border-b',
       'border-gray-200',
-      'dark:border-gray-700'
+      'dark:border-gray-700',
     );
   });
 
@@ -267,21 +267,21 @@ describe('AdminHeader', () => {
       'w-full',
       'items-center',
       'justify-between',
-      'px-6'
+      'px-6',
     );
     expect(content).toHaveClass('flex', 'flex-1', 'items-center');
     expect(title).toHaveClass(
       'text-[32px]',
       'font-medium',
       'text-gray-900',
-      'dark:text-white'
+      'dark:text-white',
     );
     expect(subtitle).toHaveClass(
       'mt-1',
       'text-[16px]',
       'font-normal',
       'text-gray-600',
-      'dark:text-gray-400'
+      'dark:text-gray-400',
     );
     expect(actions).toHaveClass('flex', 'items-center', 'gap-4');
   });
@@ -342,27 +342,27 @@ describe('AdminHeader', () => {
       userAvatar: 'https://example.com/jane.jpg',
       showAvatarDropdown: true,
       hideBorder: false,
-      trailingContent: <div data-qa-id="test-trailing">Test</div>,
+      trailingContent: <div data-qa-id='test-trailing'>Test</div>,
     };
 
     render(<AdminHeader {...props} />);
 
     expect(screen.getByTestId('admin-header-title')).toHaveTextContent(
-      'Custom Title'
+      'Custom Title',
     );
     expect(screen.getByTestId('admin-header-subtitle')).toHaveTextContent(
-      'Custom Subtitle'
+      'Custom Subtitle',
     );
     expect(screen.getByTestId('admin-header-user-name')).toHaveTextContent(
-      'Jane Smith'
+      'Jane Smith',
     );
     expect(screen.getByTestId('admin-header-user-role')).toHaveTextContent(
-      'Super Admin'
+      'Super Admin',
     );
     expect(screen.getByTestId('test-trailing')).toBeInTheDocument();
     expect(screen.getByTestId('avatar')).toHaveAttribute(
       'data-src',
-      'https://example.com/jane.jpg'
+      'https://example.com/jane.jpg',
     );
     expect(screen.getByTestId('admin-header-user-menu')).toBeInTheDocument();
 
@@ -375,22 +375,22 @@ describe('AdminHeader', () => {
 
     expect(screen.getByTestId('admin-header')).toBeInTheDocument();
     expect(screen.getByTestId('admin-header-title')).toHaveTextContent(
-      'Welcome Admin'
+      'Welcome Admin',
     );
     expect(screen.getByTestId('admin-header-subtitle')).toHaveTextContent(
-      'Dashboard Overview'
+      'Dashboard Overview',
     );
     expect(screen.getByTestId('admin-header-user-name')).toHaveTextContent(
-      'Faisal'
+      'Faisal',
     );
     expect(screen.getByTestId('admin-header-user-role')).toHaveTextContent(
-      'Govt. Admin'
+      'Govt. Admin',
     );
     expect(
-      screen.getByTestId('admin-header-search-button')
+      screen.getByTestId('admin-header-search-button'),
     ).toBeInTheDocument();
     expect(
-      screen.getByTestId('admin-header-notifications-button')
+      screen.getByTestId('admin-header-notifications-button'),
     ).toBeInTheDocument();
     expect(screen.getByTestId('admin-header-user-menu')).toBeInTheDocument();
   });
@@ -400,7 +400,7 @@ describe('AdminHeader', () => {
 
     const searchButton = screen.getByTestId('admin-header-search-button');
     const notificationButton = screen.getByTestId(
-      'admin-header-notifications-button'
+      'admin-header-notifications-button',
     );
     const userMenuButton = screen.getByTestId('admin-header-user-menu');
 
@@ -416,7 +416,7 @@ describe('AdminHeader', () => {
 
     const searchButton = screen.getByTestId('admin-header-search-button');
     const notificationButton = screen.getByTestId(
-      'admin-header-notifications-button'
+      'admin-header-notifications-button',
     );
     const userMenuButton = screen.getByTestId('admin-header-user-menu');
 
@@ -432,7 +432,7 @@ describe('AdminHeader', () => {
       'dark:hover:bg-gray-800',
     ];
 
-    expectedButtonClasses.forEach((className) => {
+    expectedButtonClasses.forEach(className => {
       expect(searchButton).toHaveClass(className);
       expect(notificationButton).toHaveClass(className);
     });
@@ -441,7 +441,7 @@ describe('AdminHeader', () => {
       'flex',
       'items-center',
       'gap-3',
-      'cursor-pointer'
+      'cursor-pointer',
     );
   });
 });

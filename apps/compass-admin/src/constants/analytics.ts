@@ -34,7 +34,7 @@ export const ANALYTICS_SECTIONS: AnalyticsSection[] = [
 ];
 
 export const SCROLL_SPY_CONFIG: ScrollSpyConfig = {
-  sections: ANALYTICS_SECTIONS.map((section) => section.id),
+  sections: ANALYTICS_SECTIONS.map(section => section.id),
   scrollOffset: 100,
   debounceDelay: 10,
   userScrollTimeout: 1000,

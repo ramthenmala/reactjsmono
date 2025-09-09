@@ -36,18 +36,18 @@ export const useSearchFilterStore = create<SearchFilterState>()(
       areaRange: DEFAULT_AREA_RANGE,
 
       // Actions
-      updateFilters: (updates) => {
-        set((state) => ({
+      updateFilters: updates => {
+        set(state => ({
           filters: { ...state.filters, ...updates },
         }));
       },
 
-      updateAreaValue: (value) => {
+      updateAreaValue: value => {
         set({ areaValue: value });
       },
 
-      setAreaRange: (range) => {
-        set((state) => {
+      setAreaRange: range => {
+        set(state => {
           // If this is the first time setting the range (initial load from API)
           const isInitialLoad =
             state.areaRange.min === 0 && state.areaRange.max === 25000;
@@ -107,7 +107,7 @@ export const useSearchFilterStore = create<SearchFilterState>()(
     }),
     {
       name: 'compass-search-filters',
-      partialize: (state) => ({
+      partialize: state => ({
         filters: state.filters,
         areaValue: state.areaValue,
       }),

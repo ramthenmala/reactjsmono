@@ -12,13 +12,13 @@ describe('utils index', () => {
 
   it('exports match the scroll-spy module exports', () => {
     expect(utilsIndex.createScrollToSection).toBe(
-      scrollSpyUtils.createScrollToSection
+      scrollSpyUtils.createScrollToSection,
     );
     expect(utilsIndex.createUrlForSection).toBe(
-      scrollSpyUtils.createUrlForSection
+      scrollSpyUtils.createUrlForSection,
     );
     expect(utilsIndex.extractHashFromUrl).toBe(
-      scrollSpyUtils.extractHashFromUrl
+      scrollSpyUtils.extractHashFromUrl,
     );
     expect(utilsIndex.findActiveSection).toBe(scrollSpyUtils.findActiveSection);
     expect(utilsIndex.isAnalyticsAnchor).toBe(scrollSpyUtils.isAnalyticsAnchor);

@@ -45,7 +45,7 @@ const Root = ({
   return (
     <PinInputContext.Provider value={{ size, disabled, id }}>
       <div
-        role="group"
+        role='group'
         className={cx('flex h-max flex-col gap-1.5', className)}
         {...props}
       />
@@ -81,7 +81,7 @@ const Group = ({
       maxLength={maxLength}
       disabled={disabled}
       id={'pin-input-' + id}
-      aria-label="Enter your pin"
+      aria-label='Enter your pin'
       aria-labelledby={'pin-input-label-' + id}
       aria-describedby={'pin-input-description-' + id}
       containerClassName={cx(
@@ -154,7 +154,7 @@ const FakeCaret = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => {
 const Separator = (props: ComponentPropsWithRef<'p'>) => {
   return (
     <div
-      role="separator"
+      role='separator'
       {...props}
       className={cx(
         'text-center text-display-xl font-medium text-placeholder_subtle',
@@ -188,7 +188,7 @@ const Description = ({ className, ...props }: ComponentPropsWithRef<'p'>) => {
     <p
       {...props}
       id={'pin-input-description-' + id}
-      role="description"
+      role='description'
       className={cx('text-sm text-tertiary', className)}
     />
   );

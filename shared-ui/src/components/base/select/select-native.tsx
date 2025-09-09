@@ -28,12 +28,12 @@ export const NativeSelect = ({
   return (
     <div className={cx('w-full in-data-input-wrapper:w-max', className)}>
       {label && (
-        <Label htmlFor={selectId} id={selectId} className="mb-1.5">
+        <Label htmlFor={selectId} id={selectId} className='mb-1.5'>
           {label}
         </Label>
       )}
 
-      <div className="relative grid w-full items-center">
+      <div className='relative grid w-full items-center'>
         <select
           {...props}
           id={selectId}
@@ -54,20 +54,20 @@ export const NativeSelect = ({
             selectClassName
           )}
         >
-          {options.map((opt) => (
+          {options.map(opt => (
             <option key={opt.value} value={opt.value}>
               {opt.label}
             </option>
           ))}
         </select>
         <ChevronDown
-          aria-hidden="true"
-          className="pointer-events-none absolute right-3.5 size-5 text-fg-quaternary in-data-input-wrapper:right-0 in-data-input-wrapper:size-4 in-data-input-wrapper:stroke-[2.625px] in-data-input-wrapper:in-data-trailing:in-data-[input-size=sm]:right-3"
+          aria-hidden='true'
+          className='pointer-events-none absolute right-3.5 size-5 text-fg-quaternary in-data-input-wrapper:right-0 in-data-input-wrapper:size-4 in-data-input-wrapper:stroke-[2.625px] in-data-input-wrapper:in-data-trailing:in-data-[input-size=sm]:right-3'
         />
       </div>
 
       {hint && (
-        <HintText className="mt-2" id={hintId}>
+        <HintText className='mt-2' id={hintId}>
           {hint}
         </HintText>
       )}

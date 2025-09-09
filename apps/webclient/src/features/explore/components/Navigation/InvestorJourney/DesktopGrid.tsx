@@ -5,7 +5,7 @@ import { investorJourneyStyles } from './styles';
 export function DesktopGrid({ cards }: DesktopGridProps) {
   return (
     <div className={investorJourneyStyles.desktopGrid.container}>
-      {cards.map((step) => (
+      {cards.map(step => (
         <div
           key={step.title}
           className={`${cardStyles.base} ${cardStyles.hover} ${investorJourneyStyles.desktopGrid.card.wrapper}`}

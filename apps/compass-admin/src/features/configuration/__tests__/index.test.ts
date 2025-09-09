@@ -30,7 +30,7 @@ describe('configuration index', () => {
     expect(configurationIndex.IsicRelevancePage).toBe(IsicRelevancePage);
     expect(configurationIndex.FeaturedLandsPage).toBe(FeaturedLandsPage);
     expect(configurationIndex.ConfigurationHistoryPage).toBe(
-      ConfigurationHistoryPage
+      ConfigurationHistoryPage,
     );
   });
 

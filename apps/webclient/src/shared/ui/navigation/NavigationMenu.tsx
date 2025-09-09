@@ -13,10 +13,10 @@ export function NavigationMenu({
   onToggleDropdown,
 }: NavigationMenuProps) {
   return (
-    <nav className="header-nav max-xl:hidden">
-      <ul className="flex items-center gap-4">
-        {items.map((item) => (
-          <li key={item.label} className="relative">
+    <nav className='header-nav max-xl:hidden'>
+      <ul className='flex items-center gap-4'>
+        {items.map(item => (
+          <li key={item.label} className='relative'>
             {item.hasDropdown ? (
               <button
                 onClick={() => onToggleDropdown(item.dropdownId || '')}

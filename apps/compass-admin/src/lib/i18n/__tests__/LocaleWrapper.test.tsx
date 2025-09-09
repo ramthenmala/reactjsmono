@@ -27,7 +27,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 describe('LocaleWrapper', () => {
-  const TestComponent = () => <div data-qa-id="test-content">Test Content</div>;
+  const TestComponent = () => <div data-qa-id='test-content'>Test Content</div>;
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -45,7 +45,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(screen.getByTestId('test-content')).toBeInTheDocument();
@@ -55,7 +55,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(mockChangeLanguage).toHaveBeenCalledWith('en');
@@ -65,7 +65,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(document.documentElement.dir).toBe('ltr');
@@ -75,7 +75,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(document.documentElement.classList.contains('locale-en')).toBe(true);
@@ -85,7 +85,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(document.documentElement.lang).toBe('en');
@@ -98,7 +98,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(document.documentElement.dir).toBe('rtl');
@@ -114,7 +114,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(mockNavigate).toHaveBeenCalledWith('/en/dashboard', {
@@ -129,7 +129,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     // Since '/fr/dashboard' doesn't start with '/en' or '/ar', it takes the else branch
@@ -145,7 +145,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(mockNavigate).toHaveBeenCalledWith('/en/analytics', {
@@ -160,7 +160,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(mockNavigate).toHaveBeenCalledWith('/en/users', { replace: true });
@@ -173,7 +173,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(mockNavigate).toHaveBeenCalledWith('/en/configuration', {
@@ -186,7 +186,7 @@ describe('LocaleWrapper', () => {
     document.documentElement.classList.add(
       'locale-ar',
       'locale-en',
-      'other-class'
+      'other-class',
     );
 
     mockUseParams.mockReturnValue({ locale: 'en' });
@@ -195,15 +195,15 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     expect(document.documentElement.classList.contains('locale-ar')).toBe(
-      false
+      false,
     );
     expect(document.documentElement.classList.contains('locale-en')).toBe(true);
     expect(document.documentElement.classList.contains('other-class')).toBe(
-      true
+      true,
     );
   });
 
@@ -218,7 +218,7 @@ describe('LocaleWrapper', () => {
     render(
       <LocaleWrapper>
         <TestComponent />
-      </LocaleWrapper>
+      </LocaleWrapper>,
     );
 
     // changeLanguage should not be called since language is already 'en'

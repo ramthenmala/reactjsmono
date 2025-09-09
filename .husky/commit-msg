@@ -1,0 +1,50 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Validating commit message..."
+
+# Get the commit message
+commit_message=$(cat "$1")
+
+# Check if commit message is empty (after stripping whitespace)
+if [ -z "$(echo "$commit_message" | xargs)" ]; then
+  echo "❌ Commit message cannot be empty!"
+  exit 1
+fi
+
+# Check minimum length (at least 10 characters)
+if [ ${#commit_message} -lt 10 ]; then
+  echo "❌ Commit message too short! Please provide a more descriptive message (at least 10 characters)."
+  echo "Current message: '$commit_message'"
+  exit 1
+fi
+
+# Check for conventional commit format (optional but recommended)
+if echo "$commit_message" | grep -qE "^(feat|fix|docs|style|refactor|perf|test|build|ci|chore)(\(.+\))?: .{1,}"; then
+  echo "✅ Conventional commit format detected!"
+elif echo "$commit_message" | grep -qE "^(add|update|remove|delete|improve|enhance|optimize): .{1,}"; then
+  echo "✅ Standard commit format detected!"
+else
+  echo "⚠️  Consider using conventional commit format:"
+  echo "   feat: add new feature"
+  echo "   fix: fix a bug"
+  echo "   docs: update documentation"
+  echo "   style: formatting changes"
+  echo "   refactor: code refactoring"
+  echo "   test: add or update tests"
+  echo "   chore: maintenance tasks"
+  echo ""
+  echo "Or use standard format:"
+  echo "   add: description"
+  echo "   update: description"
+  echo "   fix: description"
+fi
+
+# Prevent committing to main branch directly (optional)
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then
+  echo "⚠️  You're committing directly to $branch branch."
+  echo "Consider creating a feature branch for your changes."
+fi
+
+echo "✅ Commit message validation passed!"

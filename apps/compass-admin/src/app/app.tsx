@@ -6,9 +6,9 @@ export function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/:locale/*" element={<AdminRoutes />} />
-        <Route path="/" element={<Navigate to="/en" replace />} />
-        <Route path="*" element={<Navigate to="/en" replace />} />
+        <Route path='/:locale/*' element={<AdminRoutes />} />
+        <Route path='/' element={<Navigate to='/en' replace />} />
+        <Route path='*' element={<Navigate to='/en' replace />} />
       </Routes>
     </BrowserRouter>
   );

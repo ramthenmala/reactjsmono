@@ -6,7 +6,7 @@ export async function fetchIndustrialCityById(
 ): Promise<IIndustrialCityModel | null> {
   try {
     const properties = await IndustrialCitiesService.getProperties();
-    const foundProperty = properties.find((p) => p.slug === slug);
+    const foundProperty = properties.find(p => p.slug === slug);
 
     if (!foundProperty) {
       return null;

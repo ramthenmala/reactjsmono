@@ -34,7 +34,7 @@ export class CitiesService {
       // TODO: Replace with actual API call when cities endpoint is available
       // Expected API: GET /api/regions/{regionId}/cities
       // For now, simulate API delay and return mock data
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       // Return cities for all regions (same list for now)
       // In real implementation, this would filter cities by region

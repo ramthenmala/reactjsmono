@@ -58,14 +58,14 @@ export const SelectItem = ({
       textValue={textValue}
       isDisabled={isDisabled}
       {...props}
-      className={(state) =>
+      className={state =>
         cx(
           'w-full px-1.5 py-px outline-hidden',
           typeof className === 'function' ? className(state) : className
         )
       }
     >
-      {(state) => (
+      {state => (
         <div
           className={cx(
             'flex cursor-pointer items-center gap-2 rounded-md outline-hidden select-none',
@@ -82,16 +82,16 @@ export const SelectItem = ({
           )}
         >
           {avatarUrl ? (
-            <Avatar aria-hidden="true" size="xs" src={avatarUrl} alt={label} />
+            <Avatar aria-hidden='true' size='xs' src={avatarUrl} alt={label} />
           ) : isReactComponent(Icon) ? (
-            <Icon data-icon aria-hidden="true" />
+            <Icon data-icon aria-hidden='true' />
           ) : isValidElement(Icon) ? (
             Icon
           ) : null}
 
-          <div className="flex w-full min-w-0 flex-1 flex-wrap gap-x-2">
+          <div className='flex w-full min-w-0 flex-1 flex-wrap gap-x-2'>
             <AriaText
-              slot="label"
+              slot='label'
               className={cx(
                 'truncate text-md font-medium whitespace-nowrap text-primary',
                 state.isDisabled && 'text-disabled'
@@ -103,7 +103,7 @@ export const SelectItem = ({
 
             {supportingText && (
               <AriaText
-                slot="description"
+                slot='description'
                 className={cx(
                   'text-md whitespace-nowrap text-tertiary',
                   state.isDisabled && 'text-disabled'
@@ -116,7 +116,7 @@ export const SelectItem = ({
 
           {state.isSelected && (
             <Check
-              aria-hidden="true"
+              aria-hidden='true'
               className={cx(
                 'ml-auto text-fg-brand-primary',
                 size === 'sm' ? 'size-4 stroke-[2.5px]' : 'size-5',

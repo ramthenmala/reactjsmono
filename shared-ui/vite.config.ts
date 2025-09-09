@@ -44,15 +44,15 @@ export default defineConfig({
     rollupOptions: {
       // External packages that should not be bundled into your library.
       external: [
-        'react', 
-        'react-dom', 
+        'react',
+        'react-dom',
         'react/jsx-runtime',
         'react-aria-components',
         'tailwind-merge',
-        'tailwindcss-animate'
+        'tailwindcss-animate',
       ],
       output: {
-        manualChunks: (id) => {
+        manualChunks: id => {
           if (id.includes('node_modules')) {
             return 'vendor';
           }

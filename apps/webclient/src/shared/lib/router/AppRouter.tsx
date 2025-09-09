@@ -37,13 +37,13 @@ export const AppRouter: React.FC = () => {
       <Routes>
         {/* Redirect root to default locale */}
         <Route
-          path="/"
+          path='/'
           element={<Navigate to={`/${DEFAULT_LOCALE}`} replace />}
         />
 
         {/* Locale-based routes */}
         <Route
-          path="/:locale"
+          path='/:locale'
           element={
             <LocaleWrapper>
               <Layout />
@@ -51,19 +51,19 @@ export const AppRouter: React.FC = () => {
           }
         >
           <Route index element={<HomePage />} />
-          <Route path="explore" element={<ExploreLandingPage />} />
-          <Route path="explore/landing" element={<ExploreLandingPage />} />
-          <Route path="explore/listing" element={<ExploreListingPage />} />
+          <Route path='explore' element={<ExploreLandingPage />} />
+          <Route path='explore/landing' element={<ExploreLandingPage />} />
+          <Route path='explore/listing' element={<ExploreListingPage />} />
           <Route
-            path="explore/property/:slug"
+            path='explore/property/:slug'
             element={<PropertyDetailPage />}
           />
-          <Route path="contact" element={<ContactPage />} />
+          <Route path='contact' element={<ContactPage />} />
         </Route>
 
         {/* Catch all route - redirect to default locale */}
         <Route
-          path="*"
+          path='*'
           element={<Navigate to={`/${DEFAULT_LOCALE}`} replace />}
         />
       </Routes>

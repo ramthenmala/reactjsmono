@@ -30,7 +30,7 @@ export function SearchForm({
 
     // If user has 5 or more selections, only show already selected items
     if (selectedIds.size >= 5) {
-      return isicOptions.filter((item) => selectedIds.has(item.id));
+      return isicOptions.filter(item => selectedIds.has(item.id));
     }
 
     // Otherwise show all items
@@ -45,31 +45,31 @@ export function SearchForm({
   // Sync selectedIsic with form filters whenever they change
   React.useEffect(() => {
     if (isicOptions.length > 0) {
-      const selectedItems = isicOptions.filter((item) =>
+      const selectedItems = isicOptions.filter(item =>
         filters.isic.includes(item.id)
       );
-      const currentSelectedIds = selectedIsic.items.map((item) => item.id);
+      const currentSelectedIds = selectedIsic.items.map(item => item.id);
 
       // Only update if there's actually a difference
-      const newIds = selectedItems.map((item) => item.id);
+      const newIds = selectedItems.map(item => item.id);
       const currentIds = new Set(currentSelectedIds);
 
       // Check if sets are different
       const isDifferent =
         newIds.length !== currentSelectedIds.length ||
-        newIds.some((id) => !currentIds.has(id));
+        newIds.some(id => !currentIds.has(id));
 
       if (isDifferent) {
         // Clear and rebuild - but enforce the limit here too
-        selectedIsic.items.forEach((item) => selectedIsic.remove(item.id));
+        selectedIsic.items.forEach(item => selectedIsic.remove(item.id));
 
         // Only add items up to the limit of 5
         const itemsToAdd = selectedItems.slice(0, 5);
-        itemsToAdd.forEach((item) => selectedIsic.append(item));
+        itemsToAdd.forEach(item => selectedIsic.append(item));
 
         // If we had to truncate, update the form state to match
         if (selectedItems.length > 5) {
-          const truncatedIds = itemsToAdd.map((item) => item.id);
+          const truncatedIds = itemsToAdd.map(item => item.id);
           onFiltersChange({ isic: truncatedIds });
         }
       }
@@ -95,7 +95,7 @@ export function SearchForm({
 
   const handleIsicItemCleared = (key: React.Key) => {
     const currentIsicIds = filters.isic || [];
-    const newIsicIds = currentIsicIds.filter((id) => id !== key);
+    const newIsicIds = currentIsicIds.filter(id => id !== key);
 
     // Only update the form state - let MultiSelect manage its own internal state
     onFiltersChange({ isic: newIsicIds });
@@ -111,11 +111,11 @@ export function SearchForm({
   return (
     <>
       {/* First row of filters */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 items-end">
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 items-end'>
         {isicOptions.length > 0 ? (
-          <div className="flex flex-col gap-1">
+          <div className='flex flex-col gap-1'>
             <MultiSelect
-              label="ISIC Code"
+              label='ISIC Code'
               placeholder={`Search ISIC codes... (max 5, selected: ${
                 filters.isic?.length || 0
               })`}
@@ -131,101 +131,97 @@ export function SearchForm({
               )}
             </MultiSelect>
             {filters.isic && filters.isic.length >= 5 && (
-              <p className="text-xs text-amber-600">
+              <p className='text-xs text-amber-600'>
                 Maximum limit reached (5/5). Remove items to select others.
               </p>
             )}
           </div>
         ) : (
-          <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium text-gray-700">
+          <div className='flex flex-col gap-2'>
+            <label className='text-sm font-medium text-gray-700'>
               ISIC Code
             </label>
             <input
-              type="text"
-              placeholder="Loading ISIC codes..."
+              type='text'
+              placeholder='Loading ISIC codes...'
               disabled
-              className="px-3 py-2 border border-gray-300 rounded-md bg-gray-100"
+              className='px-3 py-2 border border-gray-300 rounded-md bg-gray-100'
             />
           </div>
         )}
 
         <Select
-          size="md"
+          size='md'
           label={t('search.sector')}
           placeholder={t('search.all_sectors')}
           items={sectors}
           selectedKey={filters.sector || null}
-          onSelectionChange={(key) =>
-            onFiltersChange({ sector: key as string })
-          }
+          onSelectionChange={key => onFiltersChange({ sector: key as string })}
         >
-          {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
+          {item => <Select.Item id={item.id}>{item.label}</Select.Item>}
         </Select>
 
         <Select
-          size="md"
+          size='md'
           label={t('search.region')}
           placeholder={t('search.select_region')}
           items={regions}
           selectedKey={filters.region || null}
-          onSelectionChange={(key) =>
-            onFiltersChange({ region: key as string })
-          }
+          onSelectionChange={key => onFiltersChange({ region: key as string })}
         >
-          {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
+          {item => <Select.Item id={item.id}>{item.label}</Select.Item>}
         </Select>
       </div>
 
       {/* Second row of filters */}
-      <div className="mt-4 grid grid-cols-1 items-end gap-4 md:grid-cols-3">
+      <div className='mt-4 grid grid-cols-1 items-end gap-4 md:grid-cols-3'>
         <Select
-          size="md"
+          size='md'
           label={t('search.location') || 'Location'}
           placeholder={t('search.select_city') || 'Select City'}
           items={cities}
           selectedKey={filters.location || null}
-          onSelectionChange={(key) =>
+          onSelectionChange={key =>
             onFiltersChange({ location: key as string })
           }
           isDisabled={!filters.region || isLoading}
         >
-          {(item) => <Select.Item id={item.id}>{item.label}</Select.Item>}
+          {item => <Select.Item id={item.id}>{item.label}</Select.Item>}
         </Select>
 
-        <div className="flex flex-col gap-2">
-          <label className="text-sm font-medium text-secondary">
+        <div className='flex flex-col gap-2'>
+          <label className='text-sm font-medium text-secondary'>
             {t('search.land_area') || 'Land Area'}
           </label>
-          <div className="flex items-center">
-            <span className="text-xs text-quaternary mr-2">{areaValue[0]}</span>
+          <div className='flex items-center'>
+            <span className='text-xs text-quaternary mr-2'>{areaValue[0]}</span>
             <Slider
-              aria-label="Land area"
+              aria-label='Land area'
               minValue={areaRange.min}
               maxValue={areaRange.max}
               value={areaValue}
               onChange={handleAreaChange}
               onChangeEnd={onAreaChangeEnd}
-              className="mx-2 flex-grow"
+              className='mx-2 flex-grow'
               formatOptions={{ style: 'decimal', maximumFractionDigits: 0 }}
             />
-            <span className="text-xs text-quaternary ml-2">{areaValue[1]}</span>
+            <span className='text-xs text-quaternary ml-2'>{areaValue[1]}</span>
           </div>
         </div>
 
         {/* Action Buttons Column */}
-        <div className="flex flex-row items-center gap-3 md:self-end md:justify-end">
+        <div className='flex flex-row items-center gap-3 md:self-end md:justify-end'>
           <Button
-            size="lg"
-            color="secondary"
+            size='lg'
+            color='secondary'
             onClick={onClear}
             disabled={isLoading}
           >
             {t('common.clear') || 'Clear'}
           </Button>
           <Button
-            size="lg"
-            color="primary"
+            size='lg'
+            color='primary'
             onClick={onSearch}
             disabled={isLoading}
           >

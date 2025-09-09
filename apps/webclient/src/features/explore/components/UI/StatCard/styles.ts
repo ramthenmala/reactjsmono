@@ -8,14 +8,19 @@ export const statCardStyles = {
     withIcon: 'flex items-center gap-2 md:gap-3',
   },
 
-  label: 'text-xs md:text-sm font-medium text-gray-600 leading-tight break-words hyphens-auto w-full',
+  label:
+    'text-xs md:text-sm font-medium text-gray-600 leading-tight break-words hyphens-auto w-full',
 
   value: {
     variants: {
-      default: 'text-lg md:text-2xl font-semibold text-[#695DC2] leading-tight break-words w-full',
-      regular: 'text-lg md:text-2xl font-semibold text-[#695DC2] leading-tight break-words w-full',
-      large: 'text-2xl md:text-4xl font-medium text-[#695DC2] leading-tight break-words w-full',
-      logistics: 'text-lg md:text-2xl font-semibold text-[#695DC2] leading-tight flex items-center gap-2 md:gap-3 break-words w-full',
+      default:
+        'text-lg md:text-2xl font-semibold text-[#695DC2] leading-tight break-words w-full',
+      regular:
+        'text-lg md:text-2xl font-semibold text-[#695DC2] leading-tight break-words w-full',
+      large:
+        'text-2xl md:text-4xl font-medium text-[#695DC2] leading-tight break-words w-full',
+      logistics:
+        'text-lg md:text-2xl font-semibold text-[#695DC2] leading-tight flex items-center gap-2 md:gap-3 break-words w-full',
     },
   },
 } as const;

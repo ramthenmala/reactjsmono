@@ -79,7 +79,7 @@ describe('Navigation Utils', () => {
       expect(mockTranslation).toHaveBeenCalledWith('navigation.overview');
       expect(mockTranslation).toHaveBeenCalledWith('navigation.investors');
       expect(mockTranslation).toHaveBeenCalledWith(
-        'navigation.connectRequests'
+        'navigation.connectRequests',
       );
       expect(mockTranslation).toHaveBeenCalledWith('navigation.analytics');
       expect(mockTranslation).toHaveBeenCalledWith('navigation.configuration');
@@ -97,7 +97,7 @@ describe('Navigation Utils', () => {
 
     it('includes analytics sub-items with correct structure', () => {
       const items = getNavigationItems('en', mockTranslation);
-      const analyticsItem = items.find((item) => item.label === 'Analytics');
+      const analyticsItem = items.find(item => item.label === 'Analytics');
 
       expect(analyticsItem).toBeDefined();
       expect(analyticsItem?.items).toHaveLength(6);
@@ -130,7 +130,7 @@ describe('Navigation Utils', () => {
 
     it('includes configuration sub-items with correct structure', () => {
       const items = getNavigationItems('en', mockTranslation);
-      const configItem = items.find((item) => item.label === 'Configuration');
+      const configItem = items.find(item => item.label === 'Configuration');
 
       expect(configItem).toBeDefined();
       expect(configItem?.items).toHaveLength(4);
@@ -155,7 +155,7 @@ describe('Navigation Utils', () => {
 
     it('maintains analytics sub-items locale consistency', () => {
       const items = getNavigationItems('ar', mockTranslation);
-      const analyticsItem = items.find((item) => item.label === 'Analytics');
+      const analyticsItem = items.find(item => item.label === 'Analytics');
       const subItems = analyticsItem?.items || [];
 
       expect(subItems[0].href).toBe('/ar/analytics#investor-insights');
@@ -168,7 +168,7 @@ describe('Navigation Utils', () => {
 
     it('maintains configuration sub-items locale consistency', () => {
       const items = getNavigationItems('fr', mockTranslation);
-      const configItem = items.find((item) => item.label === 'Configuration');
+      const configItem = items.find(item => item.label === 'Configuration');
       const subItems = configItem?.items || [];
 
       expect(subItems[0].href).toBe('/fr/configuration/filter-criteria');
@@ -182,22 +182,22 @@ describe('Navigation Utils', () => {
 
       // Analytics sub-items
       expect(mockTranslation).toHaveBeenCalledWith(
-        'navigation.investorInsights'
+        'navigation.investorInsights',
       );
       expect(mockTranslation).toHaveBeenCalledWith(
-        'navigation.industrialCityInsights'
+        'navigation.industrialCityInsights',
       );
       expect(mockTranslation).toHaveBeenCalledWith(
-        'navigation.nationalAnalytics'
+        'navigation.nationalAnalytics',
       );
       expect(mockTranslation).toHaveBeenCalledWith(
-        'navigation.regionalAnalytics'
+        'navigation.regionalAnalytics',
       );
       expect(mockTranslation).toHaveBeenCalledWith(
-        'navigation.cityLevelMetrics'
+        'navigation.cityLevelMetrics',
       );
       expect(mockTranslation).toHaveBeenCalledWith(
-        'navigation.sectorLevelView'
+        'navigation.sectorLevelView',
       );
 
       // Configuration sub-items
@@ -205,7 +205,7 @@ describe('Navigation Utils', () => {
       expect(mockTranslation).toHaveBeenCalledWith('navigation.isicRelevance');
       expect(mockTranslation).toHaveBeenCalledWith('navigation.featuredLands');
       expect(mockTranslation).toHaveBeenCalledWith(
-        'navigation.configurationHistory'
+        'navigation.configurationHistory',
       );
     });
 
@@ -234,7 +234,7 @@ describe('Navigation Utils', () => {
     it('validates navigation item structure', () => {
       const items = getNavigationItems('en', mockTranslation);
 
-      items.forEach((item) => {
+      items.forEach(item => {
         expect(item).toHaveProperty('label');
         expect(item).toHaveProperty('href');
         expect(item).toHaveProperty('icon');
@@ -247,13 +247,13 @@ describe('Navigation Utils', () => {
     it('validates sub-items structure', () => {
       const items = getNavigationItems('en', mockTranslation);
       const itemsWithSubItems = items.filter(
-        (item) => item.items && item.items.length > 0
+        item => item.items && item.items.length > 0,
       );
 
       expect(itemsWithSubItems).toHaveLength(2); // Analytics and Configuration
 
-      itemsWithSubItems.forEach((item) => {
-        item.items?.forEach((subItem) => {
+      itemsWithSubItems.forEach(item => {
+        item.items?.forEach(subItem => {
           expect(subItem).toHaveProperty('label');
           expect(subItem).toHaveProperty('href');
           expect(subItem).toHaveProperty('icon');
@@ -298,10 +298,10 @@ describe('Navigation Utils', () => {
 
     it('includes sub-items in pre-generated navigation', () => {
       const analyticsItem = navigationItems.find(
-        (item) => item.href === '/en/analytics'
+        item => item.href === '/en/analytics',
       );
       const configItem = navigationItems.find(
-        (item) => item.href === '/en/configuration'
+        item => item.href === '/en/configuration',
       );
 
       expect(analyticsItem?.items).toHaveLength(6);
@@ -334,7 +334,7 @@ describe('Navigation Utils', () => {
     it('works with different locale formats', () => {
       const locales = ['en-US', 'ar-SA', 'fr-FR', 'de-DE'];
 
-      locales.forEach((locale) => {
+      locales.forEach(locale => {
         const items = getNavigationItems(locale, mockTranslation);
         expect(items).toHaveLength(5);
         expect(items[0].href).toBe(`/${locale}/overview`);

@@ -4,8 +4,8 @@ import { mapStyles } from './styles';
 export function MapLegend() {
   return (
     <div className={mapStyles.legend.container}>
-      <ButtonGroup size="sm" className={mapStyles.legend.group}>
-        <ButtonGroupItem id="industrial" isSelected={true}>
+      <ButtonGroup size='sm' className={mapStyles.legend.group}>
+        <ButtonGroupItem id='industrial' isSelected={true}>
           <div className={mapStyles.legend.item.wrapper}>
             <div
               className={mapStyles.legend.item.dot(
@@ -15,7 +15,7 @@ export function MapLegend() {
             <span>Industrial Cities</span>
           </div>
         </ButtonGroupItem>
-        <ButtonGroupItem id="competitors">
+        <ButtonGroupItem id='competitors'>
           <div className={mapStyles.legend.item.wrapper}>
             <div
               className={mapStyles.legend.item.dot(
@@ -25,7 +25,7 @@ export function MapLegend() {
             <span>Competitors</span>
           </div>
         </ButtonGroupItem>
-        <ButtonGroupItem id="suppliers">
+        <ButtonGroupItem id='suppliers'>
           <div className={mapStyles.legend.item.wrapper}>
             <div
               className={mapStyles.legend.item.dot(
@@ -35,7 +35,7 @@ export function MapLegend() {
             <span>Suppliers</span>
           </div>
         </ButtonGroupItem>
-        <ButtonGroupItem id="consumers">
+        <ButtonGroupItem id='consumers'>
           <div className={mapStyles.legend.item.wrapper}>
             <div
               className={mapStyles.legend.item.dot(

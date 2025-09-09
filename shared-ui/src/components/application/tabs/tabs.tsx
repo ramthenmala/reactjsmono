@@ -170,7 +170,7 @@ export const TabList = <T extends Orientation>({
     <TabListContext.Provider value={{ size, type, orientation, fullWidth }}>
       <AriaTabList
         {...otherProps}
-        className={(state) =>
+        className={state =>
           cx(
             'group flex',
 
@@ -190,7 +190,7 @@ export const TabList = <T extends Orientation>({
           )
         }
       >
-        {children ?? ((item) => <Tab {...item}>{item.children}</Tab>)}
+        {children ?? (item => <Tab {...item}>{item.children}</Tab>)}
       </AriaTabList>
     </TabListContext.Provider>
   );
@@ -200,7 +200,7 @@ export const TabPanel = (props: ComponentPropsWithRef<typeof AriaTabPanel>) => {
   return (
     <AriaTabPanel
       {...props}
-      className={(state) =>
+      className={state =>
         cx(
           'outline-focus-ring focus-visible:outline-2 focus-visible:outline-offset-2',
           typeof props.className === 'function'
@@ -232,7 +232,7 @@ export const Tab = (props: TabComponentProps) => {
   return (
     <AriaTab
       {...otherProps}
-      className={(prop) =>
+      className={prop =>
         cx(
           'z-10 flex h-max cursor-pointer items-center justify-center gap-2 rounded-md whitespace-nowrap text-quaternary transition duration-100 ease-linear',
           'group-orientation-vertical:justify-start',
@@ -245,13 +245,13 @@ export const Tab = (props: TabComponentProps) => {
         )
       }
     >
-      {(state) => (
+      {state => (
         <Fragment>
           {typeof children === 'function' ? children(state) : children || label}
           {badge && (
             <Badge
               size={size}
-              type="pill-color"
+              type='pill-color'
               color={getColorStyles(state)[type] as BadgeColors}
               className={cx(
                 'hidden transition-inherit-all md:flex',
@@ -273,9 +273,9 @@ export const Tabs = ({
 }: ComponentPropsWithRef<typeof AriaTabs>) => {
   return (
     <AriaTabs
-      keyboardActivation="manual"
+      keyboardActivation='manual'
       {...props}
-      className={(state) =>
+      className={state =>
         cx(
           'flex w-full flex-col',
           typeof className === 'function' ? className(state) : className

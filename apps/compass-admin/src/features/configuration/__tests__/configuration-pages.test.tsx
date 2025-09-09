@@ -7,7 +7,7 @@ import { ConfigurationHistoryPage } from '../configuration-history';
 // Mock PageHeader component
 jest.mock('../../../components/ui/PageHeader', () => ({
   PageHeader: ({ titleKey }: any) => (
-    <div data-qa-id="page-header" data-title-key={titleKey}>
+    <div data-qa-id='page-header' data-title-key={titleKey}>
       Page Header: {titleKey}
     </div>
   ),
@@ -27,7 +27,7 @@ describe('Configuration Pages', () => {
       expect(pageHeader).toBeInTheDocument();
       expect(pageHeader).toHaveAttribute(
         'data-title-key',
-        'configuration.isicRelevance.title'
+        'configuration.isicRelevance.title',
       );
     });
 
@@ -65,7 +65,7 @@ describe('Configuration Pages', () => {
       expect(pageHeader).toBeInTheDocument();
       expect(pageHeader).toHaveAttribute(
         'data-title-key',
-        'configuration.featuredLands.title'
+        'configuration.featuredLands.title',
       );
     });
 
@@ -94,7 +94,7 @@ describe('Configuration Pages', () => {
     it('renders without crashing', () => {
       render(<ConfigurationHistoryPage />);
       expect(
-        screen.getByTestId('configuration-history-page')
+        screen.getByTestId('configuration-history-page'),
       ).toBeInTheDocument();
     });
 
@@ -105,7 +105,7 @@ describe('Configuration Pages', () => {
       expect(pageHeader).toBeInTheDocument();
       expect(pageHeader).toHaveAttribute(
         'data-title-key',
-        'configuration.configurationHistory.title'
+        'configuration.configurationHistory.title',
       );
     });
 
@@ -160,7 +160,7 @@ describe('Configuration Pages', () => {
         expect(screen.getByTestId('page-header')).toBeInTheDocument();
         expect(screen.getByTestId('page-header')).toHaveAttribute(
           'data-title-key',
-          titleKey
+          titleKey,
         );
       });
     });

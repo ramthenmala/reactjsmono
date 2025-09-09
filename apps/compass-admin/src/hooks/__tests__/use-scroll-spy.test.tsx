@@ -131,7 +131,7 @@ describe('useScrollSpy', () => {
     expect(window.addEventListener).toHaveBeenCalledWith(
       'scroll',
       expect.any(Function),
-      { passive: true }
+      { passive: true },
     );
   });
 
@@ -140,7 +140,7 @@ describe('useScrollSpy', () => {
 
     expect(document.addEventListener).toHaveBeenCalledWith(
       'click',
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 
@@ -151,7 +151,7 @@ describe('useScrollSpy', () => {
     expect(window.addEventListener).toHaveBeenCalledWith(
       'scroll',
       expect.any(Function),
-      { passive: true }
+      { passive: true },
     );
   });
 
@@ -162,7 +162,7 @@ describe('useScrollSpy', () => {
     expect(window.addEventListener).toHaveBeenCalledWith(
       'scroll',
       expect.any(Function),
-      { passive: true }
+      { passive: true },
     );
   });
 
@@ -171,7 +171,7 @@ describe('useScrollSpy', () => {
 
     const clickHandler = (
       document.addEventListener as jest.Mock
-    ).mock.calls.find((call) => call[0] === 'click')?.[1];
+    ).mock.calls.find(call => call[0] === 'click')?.[1];
 
     // Mock anchor element
     const mockAnchor = {
@@ -215,7 +215,7 @@ describe('useScrollSpy', () => {
     act(() => {
       const scrollHandler = (
         window.addEventListener as jest.Mock
-      ).mock.calls.find((call) => call[0] === 'scroll')?.[1];
+      ).mock.calls.find(call => call[0] === 'scroll')?.[1];
       if (scrollHandler) {
         scrollHandler();
       }
@@ -233,11 +233,11 @@ describe('useScrollSpy', () => {
 
     expect(window.removeEventListener).toHaveBeenCalledWith(
       'scroll',
-      expect.any(Function)
+      expect.any(Function),
     );
     expect(document.removeEventListener).toHaveBeenCalledWith(
       'click',
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 
@@ -252,7 +252,7 @@ describe('useScrollSpy', () => {
     act(() => {
       const scrollHandler = (
         window.addEventListener as jest.Mock
-      ).mock.calls.find((call) => call[0] === 'scroll')?.[1];
+      ).mock.calls.find(call => call[0] === 'scroll')?.[1];
       if (scrollHandler) {
         scrollHandler();
       }
@@ -269,7 +269,7 @@ describe('useScrollSpy', () => {
 
     const scrollHandler = (
       window.addEventListener as jest.Mock
-    ).mock.calls.find((call) => call[0] === 'scroll')?.[1];
+    ).mock.calls.find(call => call[0] === 'scroll')?.[1];
 
     // Trigger multiple rapid scroll events
     act(() => {
@@ -314,7 +314,7 @@ describe('useScrollSpy', () => {
 
     const clickHandler = (
       document.addEventListener as jest.Mock
-    ).mock.calls.find((call) => call[0] === 'click')?.[1];
+    ).mock.calls.find(call => call[0] === 'click')?.[1];
 
     const mockAnchor = {
       getAttribute: jest.fn().mockReturnValue('/other-page#section'),
@@ -343,7 +343,7 @@ describe('useScrollSpy', () => {
 
     const clickHandler = (
       document.addEventListener as jest.Mock
-    ).mock.calls.find((call) => call[0] === 'click')?.[1];
+    ).mock.calls.find(call => call[0] === 'click')?.[1];
 
     const mockTarget = {
       closest: jest.fn().mockReturnValue(null),
@@ -376,7 +376,7 @@ describe('useScrollSpy', () => {
     act(() => {
       const scrollHandler = (
         window.addEventListener as jest.Mock
-      ).mock.calls.find((call) => call[0] === 'scroll')?.[1];
+      ).mock.calls.find(call => call[0] === 'scroll')?.[1];
       if (scrollHandler) {
         scrollHandler();
       }
@@ -395,7 +395,7 @@ describe('useScrollSpy', () => {
     act(() => {
       const scrollHandler = (
         window.addEventListener as jest.Mock
-      ).mock.calls.find((call) => call[0] === 'scroll')?.[1];
+      ).mock.calls.find(call => call[0] === 'scroll')?.[1];
       if (scrollHandler) {
         scrollHandler();
       }
@@ -414,7 +414,7 @@ describe('useScrollSpy', () => {
     act(() => {
       const scrollHandler = (
         window.addEventListener as jest.Mock
-      ).mock.calls.find((call) => call[0] === 'scroll')?.[1];
+      ).mock.calls.find(call => call[0] === 'scroll')?.[1];
 
       mockFindActiveSection.mockReturnValue('national');
       mockCreateUrlForSection.mockReturnValue('/en/analytics#national');
@@ -452,7 +452,7 @@ describe('useScrollSpy', () => {
 
     const clickHandler = (
       document.addEventListener as jest.Mock
-    ).mock.calls.find((call) => call[0] === 'click')?.[1];
+    ).mock.calls.find(call => call[0] === 'click')?.[1];
 
     const mockAnchor = {
       getAttribute: jest.fn().mockReturnValue('/analytics#sectoral'),
@@ -514,7 +514,7 @@ describe('useScrollSpy', () => {
 
     const clickHandler = (
       document.addEventListener as jest.Mock
-    ).mock.calls.find((call) => call[0] === 'click')?.[1];
+    ).mock.calls.find(call => call[0] === 'click')?.[1];
 
     const mockAnchor = {
       getAttribute: jest.fn().mockReturnValue('/analytics#sectoral'),

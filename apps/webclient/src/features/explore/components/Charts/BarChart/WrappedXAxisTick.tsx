@@ -12,7 +12,7 @@ export function WrappedXAxisTick({ x, y, payload }: WrappedXAxisTickProps) {
 
   for (const word of words) {
     if (currentLine.length + word.length + 1 <= 12) {
-      currentLine = currentLine ? currentLine + ' ' + word : word;
+      currentLine = currentLine ? `${currentLine} ${word}` : word;
     } else {
       if (currentLine) lines.push(currentLine);
       currentLine = word;
@@ -24,8 +24,8 @@ export function WrappedXAxisTick({ x, y, payload }: WrappedXAxisTickProps) {
     <text
       x={x}
       y={y}
-      textAnchor="middle"
-      fill="currentColor"
+      textAnchor='middle'
+      fill='currentColor'
       className={barChartStyles.xAxisTick}
     >
       {lines.map((line, idx) => (

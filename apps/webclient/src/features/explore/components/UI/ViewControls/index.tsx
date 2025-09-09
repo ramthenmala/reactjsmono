@@ -23,15 +23,15 @@ export function ViewControls({
     <div className={viewControlsStyles.container}>
       {/* Left side - Filters */}
       <div className={viewControlsStyles.filters.container}>
-        <Button color="secondary" size="sm" iconLeading={FilterLines}>
+        <Button color='secondary' size='sm' iconLeading={FilterLines}>
           {t('explore.filters') || 'Filters'}
         </Button>
 
         {/* Sort Dropdown */}
         <div className={viewControlsStyles.filters.dropdown.container}>
           <Button
-            color="tertiary"
-            size="sm"
+            color='tertiary'
+            size='sm'
             iconTrailing={ChevronDown}
             onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
           >

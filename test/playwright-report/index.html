@@ -22,7 +22,7 @@
         if (s && s.supports && s.supports('modulepreload')) return;
         for (const c of document.querySelectorAll('link[rel="modulepreload"]'))
           a(c);
-        new MutationObserver((c) => {
+        new MutationObserver(c => {
           for (const f of c)
             if (f.type === 'childList')
               for (const d of f.addedNodes)
@@ -2519,7 +2519,7 @@
       const K1 = {
           getRandomValues(l) {
             const s = new Uint32Array(l.buffer),
-              r = (a) => {
+              r = a => {
                 let c = 987654321;
                 const f = 4294967295;
                 return function () {
@@ -2678,7 +2678,7 @@
           super({
             start() {
               Object.assign(this, {
-                ready: new Promise((d) => (this.resolveReady = d)),
+                ready: new Promise(d => (this.resolveReady = d)),
                 password: i0(s, r),
                 signed: a,
                 strength: c - 1,
@@ -2726,7 +2726,7 @@
           super({
             start() {
               Object.assign(this, {
-                ready: new Promise((f) => (this.resolveReady = f)),
+                ready: new Promise(f => (this.resolveReady = f)),
                 password: i0(s, r),
                 strength: a - 1,
                 pending: new Uint8Array(),
@@ -3117,7 +3117,7 @@
               scripts: A,
               transferStreams: g,
               terminate() {
-                return new Promise((I) => {
+                return new Promise(I => {
                   const { worker: T, busy: F } = s;
                   T
                     ? (F ? (s.resolveTerminated = I) : (T.terminate(), I()),
@@ -3226,7 +3226,7 @@
       }
       function R2(l) {
         let s;
-        const r = new Promise((c) => (s = c));
+        const r = new Promise(c => (s = c));
         return {
           writable: new WritableStream({
             async write(c) {
@@ -3261,7 +3261,7 @@
             (wd = !1), (f = new Worker(c, a));
           }
         else f = new Worker(c, a);
-        return f.addEventListener(g2, (d) => j2(d, r)), f;
+        return f.addEventListener(g2, d => j2(d, r)), f;
       }
       function bl(
         l,
@@ -3347,13 +3347,13 @@
           (await F()).run()
         );
         async function F() {
-          const v = In.find((w) => !w.busy);
+          const v = In.find(w => !w.busy);
           if (v) return da(v), new ea(v, l, s, x);
           if (In.length < I) {
             const w = { indexWorker: Ed };
             return Ed++, In.push(w), new ea(w, l, s, x);
           } else
-            return new Promise((w) =>
+            return new Promise(w =>
               na.push({ resolve: w, stream: l, workerOptions: s })
             );
         }
@@ -3364,7 +3364,7 @@
               1
             );
             w(new ea(v, j, M, x));
-          } else v.worker ? (da(v), O2(v, s)) : (In = In.filter((w) => w != v));
+          } else v.worker ? (da(v), O2(v, s)) : (In = In.filter(w => w != v));
         }
       }
       function O2(l, s) {
@@ -3375,7 +3375,7 @@
           (l.terminated
             ? (l.terminated = !1)
             : (l.terminateTimeout = setTimeout(async () => {
-                In = In.filter((c) => c != l);
+                In = In.filter(c => c != l);
                 try {
                   await l.terminate();
                 } catch {}
@@ -3386,7 +3386,7 @@
         s && (clearTimeout(s), (l.terminateTimeout = null));
       }
       async function D2() {
-        await Promise.allSettled(In.map((l) => (da(l), l.terminate())));
+        await Promise.allSettled(In.map(l => (da(l), l.terminate())));
       }
       const h0 = 'HTTP error ',
         Ri = 'HTTP Range not supported',
@@ -3694,11 +3694,11 @@
                     .getAllResponseHeaders()
                     .trim()
                     .split(/[\r\n]+/)
-                    .forEach((m) => {
+                    .forEach(m => {
                       const g = m.trim().split(/\s*:\s*/);
                       (g[0] = g[0]
                         .trim()
-                        .replace(/^[a-z]|-[a-z]/g, (A) => A.toUpperCase())),
+                        .replace(/^[a-z]|-[a-z]/g, A => A.toUpperCase())),
                         d.push(g);
                     }),
                     a({
@@ -3717,7 +3717,7 @@
             ),
             f.addEventListener(
               'error',
-              (d) => c(d.detail ? d.detail.error : new Error('Network error')),
+              d => c(d.detail ? d.detail.error : new Error('Network error')),
               !1
             ),
             f.open(l, s),
@@ -3996,7 +3996,7 @@
         ];
       class Id {
         constructor(s) {
-          mm.forEach((r) => (this[r] = s[r]));
+          mm.forEach(r => (this[r] = s[r]));
         }
       }
       const zl = 'File format is not recognized',
@@ -13602,7 +13602,7 @@ Error generating stack: ` +
           const r = Mm(s);
           if (
             this.project.length &&
-            !!!this.project.find((c) => {
+            !!!this.project.find(c => {
               const f = r.project.includes(c.name);
               return c.not ? !f : f;
             })
@@ -13610,7 +13610,7 @@ Error generating stack: ` +
             return !1;
           if (this.status.length) {
             if (
-              !!!this.status.find((c) => {
+              !!!this.status.find(c => {
                 const f = r.status.includes(c.name);
                 return c.not ? !f : f;
               })
@@ -13619,7 +13619,7 @@ Error generating stack: ` +
           } else if (r.status === 'skipped') return !1;
           return !(
             (this.text.length &&
-              !this.text.every((c) => {
+              !this.text.every(c => {
                 if (r.text.includes(c.name)) return !c.not;
                 const [f, d, m] = c.name.split(':');
                 return r.file.includes(f) &&
@@ -13629,13 +13629,13 @@ Error generating stack: ` +
                   : !!c.not;
               })) ||
             (this.labels.length &&
-              !this.labels.every((c) => {
+              !this.labels.every(c => {
                 const f = r.labels.includes(c.name);
                 return c.not ? !f : f;
               })) ||
             (this.annotations.length &&
-              !this.annotations.every((c) => {
-                const f = r.annotations.some((d) => d.includes(c.name));
+              !this.annotations.every(c => {
+                const f = r.annotations.some(d => d.includes(c.name));
                 return c.not ? !f : f;
               }))
           );
@@ -13668,8 +13668,8 @@ Error generating stack: ` +
           file: l.location.file,
           line: String(l.location.line),
           column: String(l.location.column),
-          labels: l.tags.map((c) => c.toLowerCase()),
-          annotations: l.annotations.map((c) => {
+          labels: l.tags.map(c => c.toLowerCase()),
+          annotations: l.annotations.map(c => {
             var f;
             return (
               c.type.toLowerCase() +
@@ -13682,7 +13682,7 @@ Error generating stack: ` +
       }
       const Bm = /("[^"]*"|"[^"]*$|\S+)/g;
       function Si(l, s, r) {
-        const a = [...l.matchAll(Bm)].map((d) => {
+        const a = [...l.matchAll(Bm)].map(d => {
           const m = d[0];
           return m.startsWith('"') && m.endsWith('"') && m.length > 1
             ? m.slice(1, m.length - 1)
@@ -13690,18 +13690,18 @@ Error generating stack: ` +
         });
         if (r)
           return (
-            '#?q=' + Hd(a.includes(s) ? a.filter((d) => d !== s) : [...a, s])
+            '#?q=' + Hd(a.includes(s) ? a.filter(d => d !== s) : [...a, s])
           );
         let c;
         s.startsWith('s:') && (c = 's:'),
           s.startsWith('p:') && (c = 'p:'),
           s.startsWith('@') && (c = '@');
-        const f = a.filter((d) => !d.startsWith(c));
+        const f = a.filter(d => !d.startsWith(c));
         return f.push(s), '#?q=' + Hd(f);
       }
       function Hd(l) {
         return l
-          .map((s) => (/\s/.test(s) ? `"${s}"` : s))
+          .map(s => (/\s/.test(s) ? `"${s}"` : s))
           .join(' ')
           .trim();
       }
@@ -13923,7 +13923,7 @@ Error generating stack: ` +
           Ft.useEffect(() => {
             let d = !1;
             return (
-              l().then((m) => {
+              l().then(m => {
                 d || f(m);
               }),
               () => {
@@ -13943,7 +13943,7 @@ Error generating stack: ` +
             if (!a) return;
             const c = a.getBoundingClientRect();
             r(new DOMRect(0, 0, c.width, c.height));
-            const f = new ResizeObserver((d) => {
+            const f = new ResizeObserver(d => {
               const m = d[d.length - 1];
               m && m.contentRect && r(m.contentRect);
             });
@@ -13999,7 +13999,7 @@ Error generating stack: ` +
             const a = [];
             return (
               s(
-                (c) => (
+                c => (
                   a.push(setTimeout(() => s(!1), 1e3)),
                   c ? (a.push(setTimeout(() => s(!0), 50)), !1) : !0
                 )
@@ -14036,7 +14036,7 @@ Error generating stack: ` +
       }
       const Km = ({ summary: l, children: s, className: r, style: a }) => {
         const [c, f] = Ft.useState(!1),
-          d = (m) => {
+          d = m => {
             f(m.currentTarget.open);
           };
         return h.jsxs('details', {
@@ -14077,7 +14077,7 @@ Error generating stack: ` +
         }) => {
           const f = h.jsx('span', {
             className: At('label', 'label-color-' + (a !== void 0 ? a : Zm(l))),
-            onClick: r ? (d) => r(d, l) : void 0,
+            onClick: r ? d => r(d, l) : void 0,
             children: c && l.startsWith('@') ? l.slice(1) : l,
           });
           return s
@@ -14113,7 +14113,7 @@ Error generating stack: ` +
               [s]
             );
           return h.jsx(h.Fragment, {
-            children: l.map((a) =>
+            children: l.map(a =>
               h.jsx(Ma, { label: a, trimAtSymbolPrefix: !0, onClick: r }, a)
             ),
           });
@@ -14145,7 +14145,7 @@ Error generating stack: ` +
               color: 'var(--color-fg-default)',
               cursor: 'pointer',
             },
-            onClick: (c) => {
+            onClick: c => {
               l &&
                 (c.preventDefault(), Rn(((c.metaKey || c.ctrlKey) && s) || l));
             },
@@ -14197,7 +14197,7 @@ Error generating stack: ` +
                       ),
                       target: '_blank',
                       rel: 'noreferrer',
-                      onClick: (g) => g.stopPropagation(),
+                      onClick: g => g.stopPropagation(),
                       children: l.name,
                     })
                   : h.jsx('span', { children: Ci(l.name) })),
@@ -14231,8 +14231,8 @@ Error generating stack: ` +
         },
         $0 = ({ test: l, trailingSeparator: s, dim: r }) => {
           const a = l.results
-            .map((c) => c.attachments.filter((f) => f.name === 'trace'))
-            .filter((c) => c.length > 0)[0];
+            .map(c => c.attachments.filter(f => f.name === 'trace'))
+            .filter(c => c.length > 0)[0];
           if (a)
             return h.jsxs(h.Fragment, {
               children: [
@@ -14361,7 +14361,7 @@ Error generating stack: ` +
                   }),
                   h.jsxs('form', {
                     className: 'subnav-search',
-                    onSubmit: (c) => {
+                    onSubmit: c => {
                       c.preventDefault();
                       const f = new URL(window.location.href),
                         d = new FormData(c.target).get('q');
@@ -14376,7 +14376,7 @@ Error generating stack: ` +
                         className:
                           'form-control subnav-search-input input-contrast width-full',
                         value: s,
-                        onChange: (c) => {
+                        onChange: c => {
                           r(c.target.value);
                         },
                       }),
@@ -14445,7 +14445,7 @@ Error generating stack: ` +
                   children: h.jsx('div', {
                     className: 'tabbed-pane-tab-strip',
                     role: 'tablist',
-                    children: l.map((c) =>
+                    children: l.map(c =>
                       h.jsx(
                         'div',
                         {
@@ -14467,7 +14467,7 @@ Error generating stack: ` +
                     ),
                   }),
                 }),
-                l.map((c) => {
+                l.map(c => {
                   if (s === c.id)
                     return h.jsx(
                       'div',
@@ -14648,7 +14648,7 @@ Error generating stack: ` +
                 h.jsx(ag, {
                   cursor: l === 'horizontal' ? 'ew-resize' : 'ns-resize',
                   onPaneMouseUp: () => g(null),
-                  onPaneMouseMove: (I) => {
+                  onPaneMouseMove: I => {
                     if (!I.buttons) g(null);
                     else if (m) {
                       const T =
@@ -14674,7 +14674,7 @@ Error generating stack: ` +
                       left: l === 'horizontal' ? I : 0,
                       pointerEvents: 'initial',
                     },
-                    onMouseDown: (F) =>
+                    onMouseDown: F =>
                       g({
                         clientX: F.clientX,
                         clientY: F.clientY,
@@ -15029,7 +15029,7 @@ Error generating stack: ` +
                   h.jsx(cg, {
                     orientation: 'horizontal',
                     offsets: [g],
-                    setOffsets: (k) => A(k[0]),
+                    setOffsets: k => A(k[0]),
                     resizerColor: '#57606a80',
                     resizerWidth: 6,
                   }),
@@ -15259,7 +15259,7 @@ Error generating stack: ` +
       function pg(l) {
         return l.replace(
           /[&"<>]/g,
-          (s) => ({ '&': '&amp;', '"': '&quot;', '<': '&lt;', '>': '&gt;' }[s])
+          s => ({ '&': '&amp;', '"': '&quot;', '<': '&lt;', '>': '&gt;' }[s])
         );
       }
       function hg(l) {
@@ -15328,18 +15328,18 @@ Error generating stack: ` +
         const m = new Set(
           a
             .filter(
-              (I) =>
+              I =>
                 I.message &&
                 !I.message.includes(`
 `)
             )
-            .map((I) => I.message)
+            .map(I => I.message)
         );
         for (const I of a)
           for (const T of m.keys())
             (k = I.message) != null && k.includes(T) && m.delete(T);
         const g = a.filter(
-          (I) =>
+          I =>
             !(
               !I.message ||
               (!I.message.includes(`
@@ -15411,17 +15411,17 @@ Error generating stack: ` +
             screenshotAnchors: E,
             errorContext: k,
           } = se.useMemo(() => {
-            const T = s.attachments.filter((H) => !H.name.startsWith('_')),
-              F = new Set(T.filter((H) => H.contentType.startsWith('image/'))),
-              x = [...F].map((H) => `attachment-${T.indexOf(H)}`),
-              v = T.filter((H) => H.contentType.startsWith('video/')),
-              w = T.filter((H) => H.name === 'trace'),
-              j = T.find((H) => H.name === 'error-context'),
+            const T = s.attachments.filter(H => !H.name.startsWith('_')),
+              F = new Set(T.filter(H => H.contentType.startsWith('image/'))),
+              x = [...F].map(H => `attachment-${T.indexOf(H)}`),
+              v = T.filter(H => H.contentType.startsWith('video/')),
+              w = T.filter(H => H.name === 'trace'),
+              j = T.find(H => H.name === 'error-context'),
               M = new Set(T);
-            [...F, ...v, ...w].forEach((H) => M.delete(H));
-            const B = [...M].map((H) => `attachment-${T.indexOf(H)}`),
+            [...F, ...v, ...w].forEach(H => M.delete(H));
+            const B = [...M].map(H => `attachment-${T.indexOf(H)}`),
               Q = Ag(F, s),
-              O = s.errors.map((H) => H.message);
+              O = s.errors.map(H => H.message);
             return {
               screenshots: [...F],
               videos: v,
@@ -15436,8 +15436,8 @@ Error generating stack: ` +
           }, [s]),
           I = bm(
             async () => {
-              const T = s.attachments.find((w) => w.name === 'stdout'),
-                F = s.attachments.find((w) => w.name === 'stderr'),
+              const T = s.attachments.find(w => w.name === 'stdout'),
+                F = s.attachments.find(w => w.name === 'stderr'),
                 x =
                   T != null && T.body && T.contentType === 'text/plain'
                     ? T.body
@@ -15455,12 +15455,12 @@ Error generating stack: ` +
                 metadata: r,
                 errorContext:
                   k != null && k.path
-                    ? await fetch(k.path).then((w) => w.text())
+                    ? await fetch(k.path).then(w => w.text())
                     : k == null
                     ? void 0
                     : k.body,
                 errors: s.errors,
-                buildCodeFrame: async (w) => w.codeframe,
+                buildCodeFrame: async w => w.codeframe,
                 stdout: x,
                 stderr: v,
               });
@@ -15588,7 +15588,7 @@ Error generating stack: ` +
                 children: h.jsx(Bt, {
                   header: 'Videos',
                   revealOnAnchorId: 'attachment-video',
-                  children: c.map((T) =>
+                  children: c.map(T =>
                     h.jsxs(
                       'div',
                       {
@@ -15637,7 +15637,7 @@ Error generating stack: ` +
         if (
           !(!r.includes('toHaveScreenshot') && !r.includes('toMatchSnapshot'))
         )
-          return s.find((a) => l.includes(a.name));
+          return s.find(a => l.includes(a.name));
       }
       const rp = ({ test: l, step: s, result: r, depth: a }) =>
           h.jsx(sg, {
@@ -15657,7 +15657,7 @@ Error generating stack: ` +
                       result: r,
                       anchor: `attachment-${s.attachments[0]}`,
                     }),
-                    onClick: (c) => {
+                    onClick: c => {
                       c.stopPropagation();
                     },
                     children: G0(),
@@ -15722,7 +15722,7 @@ Error generating stack: ` +
           const [d, m] = se.useState(a),
             g = se.useContext(Et),
             A = g.has('q') ? '&q=' + g.get('q') : '',
-            E = s.annotations.filter((k) => !k.type.startsWith('_')) ?? [];
+            E = s.annotations.filter(k => !k.type.startsWith('_')) ?? [];
           return h.jsxs(h.Fragment, {
             children: [
               h.jsx(La, {
@@ -15802,7 +15802,7 @@ Error generating stack: ` +
                     }),
                     render: () => {
                       const T = k.annotations.filter(
-                        (F) => !F.type.startsWith('_')
+                        F => !F.type.startsWith('_')
                       );
                       return h.jsxs(h.Fragment, {
                         children: [
@@ -15820,7 +15820,7 @@ Error generating stack: ` +
                     },
                   })) || [],
                 selectedTab: String(d),
-                setSelectedTab: (k) => m(+k),
+                setSelectedTab: k => m(+k),
               }),
             ],
           });
@@ -15848,12 +15848,12 @@ Error generating stack: ` +
         return h.jsx(tp, {
           expanded: r(l.fileId),
           noInsets: !0,
-          setExpanded: (d) => a(l.fileId, d),
+          setExpanded: d => a(l.fileId, d),
           header: h.jsx('span', {
             className: 'chip-header-allow-selection',
             children: l.fileName,
           }),
-          children: l.tests.map((d) =>
+          children: l.tests.map(d =>
             h.jsxs(
               'div',
               {
@@ -15946,8 +15946,8 @@ Error generating stack: ` +
               });
       }
       function Tg(l) {
-        const s = l.results.find((r) =>
-          r.attachments.some((a) => a.name === 'video')
+        const s = l.results.find(r =>
+          r.attachments.some(a => a.name === 'video')
         );
         return s
           ? h.jsx(Ba, {
@@ -15995,9 +15995,9 @@ Error generating stack: ` +
             : this.props.children;
         }
       }
-      const Pg = (l) =>
+      const Pg = l =>
           h.jsx(jg, { children: h.jsx(Og, { metadata: l.metadata }) }),
-        Og = (l) => {
+        Og = l => {
           const s = se.useContext(Et),
             r = l.metadata,
             a = s.has('show-metadata-other')
@@ -16108,7 +16108,7 @@ Error generating stack: ` +
           });
         },
         ip = new Set(['ci', 'gitCommit', 'gitDiff', 'actualWorkers']),
-        Mg = (l) => {
+        Mg = l => {
           const s = Object.entries(l).filter(([r]) => !ip.has(r));
           return !l.ci && !l.gitCommit && !s.length;
         },
@@ -16133,7 +16133,7 @@ Error generating stack: ` +
                 {
                   file: f,
                   projectNames: a,
-                  isFileExpanded: (m) => {
+                  isFileExpanded: m => {
                     const g = s.get(m);
                     return g === void 0 ? d : !!g;
                   },
@@ -16222,8 +16222,8 @@ Error generating stack: ` +
             ],
           });
         },
-        Lg = (l) => !l.has('testId'),
-        Fg = (l) => l.has('testId'),
+        Lg = l => !l.has('testId'),
+        Fg = l => l.has('testId'),
         Qg = ({ report: l }) => {
           var j, M;
           const s = se.useContext(Et),
@@ -16251,21 +16251,21 @@ Error generating stack: ` +
             x = se.useMemo(() => {
               const B = { files: [], tests: [] };
               for (const Q of (l == null ? void 0 : l.json().files) || []) {
-                const O = Q.tests.filter((H) => T.matches(H));
+                const O = Q.tests.filter(H => T.matches(H));
                 O.length && B.files.push({ ...Q, tests: O }),
                   B.tests.push(...O);
               }
               return B;
             }, [l, T]),
             { prev: v, next: w } = se.useMemo(() => {
-              const B = x.tests.findIndex((H) => H.testId === g),
+              const B = x.tests.findIndex(H => H.testId === g),
                 Q = B > 0 ? x.tests[B - 1] : void 0,
                 O = B < x.tests.length - 1 ? x.tests[B + 1] : void 0;
               return { prev: Q, next: O };
             }, [g, x]);
           return (
             se.useEffect(() => {
-              const B = (Q) => {
+              const B = Q => {
                 if (
                   !(
                     Q.target instanceof HTMLInputElement ||
@@ -16321,7 +16321,7 @@ Error generating stack: ` +
                         report: l == null ? void 0 : l.json(),
                         filteredStats: F,
                         metadataVisible: d,
-                        toggleMetadataVisible: () => m((B) => !B),
+                        toggleMetadataVisible: () => m(B => !B),
                       }),
                       h.jsx(Bg, {
                         tests: x.files,
@@ -16370,7 +16370,7 @@ Error generating stack: ` +
                 }
                 const E = await l.entry(`${A}.json`);
                 m(
-                  (E == null ? void 0 : E.tests.find((k) => k.testId === c)) ||
+                  (E == null ? void 0 : E.tests.find(k => k.testId === c)) ||
                     'not-found'
                 );
               })();
@@ -16404,7 +16404,7 @@ Error generating stack: ` +
       function Wg(l, s) {
         const r = { total: 0, duration: 0 };
         for (const a of l) {
-          const c = a.tests.filter((f) => s.matches(f));
+          const c = a.tests.filter(f => s.matches(f));
           r.total += c.length;
           for (const f of c) r.duration += f.duration;
         }
@@ -16442,11 +16442,11 @@ Error generating stack: ` +
           Gt(this, '_json');
         }
         async load() {
-          const s = await new Promise((a) => {
+          const s = await new Promise(a => {
               const c = document.getElementById('playwrightReportBase64');
               if (c != null && c.textContent) return a(c.textContent);
               if (window.opener) {
-                const f = (d) => {
+                const f = d => {
                   d.source === window.opener &&
                     (localStorage.setItem(Vd, d.data),
                     a(d.data),

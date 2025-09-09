@@ -1,5 +1,4 @@
-import { getCurrentLanguage } from '../lib/i18n';
-import { useLanguage } from '../lib/i18n';
+import { getCurrentLanguage, useLanguage } from '../lib/i18n';
 
 /**
  * Utility to create standardized API headers for the application
@@ -12,10 +11,11 @@ export interface ApiRequestOptions {
 }
 
 export function createApiHeaders(options: ApiRequestOptions = {}): HeadersInit {
-  const { currentLanguage = getCurrentLanguage(), additionalHeaders = {} } = options;
-  
+  const { currentLanguage = getCurrentLanguage(), additionalHeaders = {} } =
+    options;
+
   return {
-    'accept': '*/*',
+    accept: '*/*',
     'x-user-agent': 'InvestorPortal',
     'x-signature': 'secret456',
     'accept-language': currentLanguage,
@@ -27,11 +27,11 @@ export function createApiHeaders(options: ApiRequestOptions = {}): HeadersInit {
  * Creates a fetch request with standardized headers
  */
 export function createApiRequest(
-  url: string, 
+  url: string,
   options: RequestInit & ApiRequestOptions = {}
 ): Promise<Response> {
   const { currentLanguage, additionalHeaders, ...fetchOptions } = options;
-  
+
   return fetch(url, {
     ...fetchOptions,
     headers: {
@@ -44,12 +44,14 @@ export function createApiRequest(
 /**
  * React hook to create API headers with current language from context
  */
-export function useApiHeaders(additionalHeaders: Record<string, string> = {}): HeadersInit {
+export function useApiHeaders(
+  additionalHeaders: Record<string, string> = {}
+): HeadersInit {
   const { currentLanguage } = useLanguage();
-  
-  return createApiHeaders({ 
-    currentLanguage, 
-    additionalHeaders 
+
+  return createApiHeaders({
+    currentLanguage,
+    additionalHeaders,
   });
 }
 
@@ -58,8 +60,11 @@ export function useApiHeaders(additionalHeaders: Record<string, string> = {}): H
  */
 export function useApiRequest() {
   const { currentLanguage } = useLanguage();
-  
-  return (url: string, options: RequestInit & Omit<ApiRequestOptions, 'currentLanguage'> = {}) => {
+
+  return (
+    url: string,
+    options: RequestInit & Omit<ApiRequestOptions, 'currentLanguage'> = {}
+  ) => {
     return createApiRequest(url, { ...options, currentLanguage });
   };
 }

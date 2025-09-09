@@ -42,7 +42,7 @@ describe('ConnectRequestsPage', () => {
       'text-3xl',
       'font-bold',
       'text-gray-900',
-      'dark:text-white'
+      'dark:text-white',
     );
   });
 

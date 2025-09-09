@@ -5,46 +5,46 @@ import { AdminRoutes } from '../admin-routes';
 
 // Mock the pages - using absolute paths from src
 jest.mock('../../../features/dashboard', () => ({
-  DashboardPage: () => <div data-qa-id="dashboard-page">Dashboard</div>,
+  DashboardPage: () => <div data-qa-id='dashboard-page'>Dashboard</div>,
 }));
 
 jest.mock('../../../features/analytics', () => ({
-  AnalyticsPage: () => <div data-qa-id="analytics-page">Analytics</div>,
+  AnalyticsPage: () => <div data-qa-id='analytics-page'>Analytics</div>,
 }));
 
 jest.mock('../../../features/users', () => ({
-  UsersPage: () => <div data-qa-id="users-page">Users</div>,
+  UsersPage: () => <div data-qa-id='users-page'>Users</div>,
   ConnectRequestsPage: () => (
-    <div data-qa-id="connect-requests-page">Connect Requests</div>
+    <div data-qa-id='connect-requests-page'>Connect Requests</div>
   ),
 }));
 
 jest.mock('../../../features/configuration', () => ({
   FilterCriteriaPage: () => (
-    <div data-qa-id="filter-criteria-page">Filter Criteria</div>
+    <div data-qa-id='filter-criteria-page'>Filter Criteria</div>
   ),
   IsicRelevancePage: () => (
-    <div data-qa-id="isic-relevance-page">ISIC Relevance</div>
+    <div data-qa-id='isic-relevance-page'>ISIC Relevance</div>
   ),
   FeaturedLandsPage: () => (
-    <div data-qa-id="featured-lands-page">Featured Lands</div>
+    <div data-qa-id='featured-lands-page'>Featured Lands</div>
   ),
   ConfigurationHistoryPage: () => (
-    <div data-qa-id="configuration-history-page">Configuration History</div>
+    <div data-qa-id='configuration-history-page'>Configuration History</div>
   ),
 }));
 
 // Mock AdminLayout
 jest.mock('../../../components/layout/AdminLayout', () => ({
   AdminLayout: ({ children }: { children: React.ReactNode }) => (
-    <div data-qa-id="admin-layout">{children}</div>
+    <div data-qa-id='admin-layout'>{children}</div>
   ),
 }));
 
 // Mock LocaleWrapper
 jest.mock('../../i18n/LocaleWrapper', () => ({
   LocaleWrapper: ({ children }: { children: React.ReactNode }) => (
-    <div data-qa-id="locale-wrapper">{children}</div>
+    <div data-qa-id='locale-wrapper'>{children}</div>
   ),
 }));
 
@@ -52,7 +52,7 @@ const renderWithRouter = (initialEntries: string[] = ['/']) => {
   return render(
     <MemoryRouter initialEntries={initialEntries}>
       <AdminRoutes />
-    </MemoryRouter>
+    </MemoryRouter>,
   );
 };
 
@@ -116,7 +116,7 @@ describe('AdminRoutes', () => {
     renderWithRouter(['/configuration/history']);
 
     expect(
-      screen.getByTestId('configuration-history-page')
+      screen.getByTestId('configuration-history-page'),
     ).toBeInTheDocument();
   });
 

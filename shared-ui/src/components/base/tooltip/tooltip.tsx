@@ -113,10 +113,10 @@ export const Tooltip = ({
                 'ease-in animate-out fade-out zoom-out-95 in-placement-left:slide-out-to-right-0.5 in-placement-right:slide-out-to-left-0.5 in-placement-top:slide-out-to-bottom-0.5 in-placement-bottom:slide-out-to-top-0.5'
             )}
           >
-            <span className="text-xs font-semibold text-white">{title}</span>
+            <span className='text-xs font-semibold text-white'>{title}</span>
 
             {description && (
-              <span className="text-xs font-medium text-tooltip-supporting-text">
+              <span className='text-xs font-medium text-tooltip-supporting-text'>
                 {description}
               </span>
             )}
@@ -124,10 +124,10 @@ export const Tooltip = ({
             {arrow && (
               <AriaOverlayArrow>
                 <svg
-                  viewBox="0 0 100 100"
-                  className="size-2.5 fill-bg-primary-solid in-placement-left:-rotate-90 in-placement-right:rotate-90 in-placement-top:rotate-0 in-placement-bottom:rotate-180"
+                  viewBox='0 0 100 100'
+                  className='size-2.5 fill-bg-primary-solid in-placement-left:-rotate-90 in-placement-right:rotate-90 in-placement-top:rotate-0 in-placement-bottom:rotate-180'
                 >
-                  <path d="M0,0 L35.858,35.858 Q50,50 64.142,35.858 L100,0 Z" />
+                  <path d='M0,0 L35.858,35.858 Q50,50 64.142,35.858 L100,0 Z' />
                 </svg>
               </AriaOverlayArrow>
             )}
@@ -148,7 +148,7 @@ export const TooltipTrigger = ({
   return (
     <AriaButton
       {...buttonProps}
-      className={(values) =>
+      className={values =>
         cx(
           'h-max w-max outline-hidden',
           typeof className === 'function' ? className(values) : className

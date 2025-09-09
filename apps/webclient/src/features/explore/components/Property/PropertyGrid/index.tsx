@@ -10,11 +10,10 @@ const ITEMS_PER_PAGE_LIST = 10;
 
 export function PropertyGrid({
   properties,
-  totalResults,
   viewMode,
   onCompare,
   onView,
-}: IPropertyGridProps) {
+}: Omit<IPropertyGridProps, 'totalResults'>) {
   const [currentPage, setCurrentPage] = useState(1);
 
   if (viewMode === EViewMode.map) {
@@ -54,7 +53,7 @@ export function PropertyGrid({
   return (
     <div className={propertyGridStyles.container.split}>
       <div className={propertyGridStyles.cardGrid}>
-        {currentProperties.map((property) => (
+        {currentProperties.map(property => (
           <PropertyCard
             key={property.id}
             property={property}
@@ -79,15 +78,15 @@ export function PropertyGrid({
             >
               <svg
                 className={propertyGridStyles.pagination.icons.prev}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
+                  d='M15 19l-7-7 7-7'
                 />
               </svg>
               Previous
@@ -106,7 +105,7 @@ export function PropertyGrid({
                   pageNumber = currentPage - 2 + i;
                 }
                 return pageNumber;
-              }).map((page) => (
+              }).map(page => (
                 <button
                   key={page}
                   onClick={() => handlePageChange(page)}
@@ -156,15 +155,15 @@ export function PropertyGrid({
               Next
               <svg
                 className={propertyGridStyles.pagination.icons.next}
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+                fill='none'
+                stroke='currentColor'
+                viewBox='0 0 24 24'
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
                   strokeWidth={2}
-                  d="M9 5l7 7-7 7"
+                  d='M9 5l7 7-7 7'
                 />
               </svg>
             </button>

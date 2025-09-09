@@ -37,7 +37,7 @@ export class IndustrialCitiesService {
   static transformToProperties(cities: IIndustrialCityAPI[]): IProperty[] {
     // API already returns localized content based on accept-language header
     // No need for client-side localization anymore
-    
+
     return cities.map((city, index) => ({
       id: city.id,
       slug: city.name.toLowerCase().replace(/\s+/g, '-'),

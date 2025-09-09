@@ -44,7 +44,7 @@ export const Slider = ({
       formatOptions={formatOptions ?? defaultFormatOptions}
     >
       <AriaLabel />
-      <AriaSliderTrack className="relative h-6 w-full">
+      <AriaSliderTrack className='relative h-6 w-full'>
         {({
           state: { values, getThumbValue, getThumbPercent, getFormattedValue },
         }) => {
@@ -56,9 +56,9 @@ export const Slider = ({
 
           return (
             <>
-              <span className="absolute top-1/2 h-2 w-full -translate-y-1/2 rounded-full bg-quaternary" />
+              <span className='absolute top-1/2 h-2 w-full -translate-y-1/2 rounded-full bg-quaternary' />
               <span
-                className="absolute top-1/2 h-2 w-full -translate-y-1/2 rounded-full bg-brand-solid"
+                className='absolute top-1/2 h-2 w-full -translate-y-1/2 rounded-full bg-brand-solid'
                 style={{
                   left: `${left * 100}%`,
                   width: `${width * 100}%`,

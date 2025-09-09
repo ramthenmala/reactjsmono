@@ -69,8 +69,8 @@ export function FeaturedIndustrialCities({
         aria-hidden
       >
         <img
-          src="/assets/images/backgrounds/background-pattern-decorative.png"
-          alt=""
+          src='/assets/images/backgrounds/background-pattern-decorative.png'
+          alt=''
           style={featuredCitiesStyles.backgroundPattern.image}
         />
       </div>
@@ -108,7 +108,7 @@ export function FeaturedIndustrialCities({
 
         {/* Dots for mobile */}
         <div className={featuredCitiesStyles.dots.container}>
-          {visibleOrder.map((actualIdx) => (
+          {visibleOrder.map(actualIdx => (
             <button
               key={actualIdx}
               className={featuredCitiesStyles.dots.button(
@@ -123,7 +123,7 @@ export function FeaturedIndustrialCities({
 
         {/* Desktop Grid - Responsive for medium and large screens */}
         <div className={featuredCitiesStyles.desktopGrid}>
-          {properties.map((property) => (
+          {properties.map(property => (
             <PropertyCard key={property.id} property={property} />
           ))}
         </div>

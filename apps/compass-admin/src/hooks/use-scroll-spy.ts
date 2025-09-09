@@ -12,7 +12,7 @@ export const useScrollSpy = (config: ScrollSpyConfig) => {
   const navigate = useNavigate();
   const { locale } = useParams<{ locale: string }>();
   const [activeSection, setActiveSection] = useState<AnalyticsSectionId | ''>(
-    ''
+    '',
   );
   const isUserScrollingRef = useRef(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
@@ -77,7 +77,7 @@ export const useScrollSpy = (config: ScrollSpyConfig) => {
       debounceTimeout = setTimeout(() => {
         const newActiveSection = findActiveSection(
           config.sections,
-          config.scrollOffset
+          config.scrollOffset,
         );
 
         if (newActiveSection && newActiveSection !== activeSection) {

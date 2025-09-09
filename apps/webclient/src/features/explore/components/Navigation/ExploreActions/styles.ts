@@ -7,7 +7,7 @@ export const exploreActionsStyles = {
       dark: 'bg-black/50',
       light: 'bg-white/50',
     },
-    getClasses: function (variant: 'light' | 'dark') {
+    getClasses(variant: 'light' | 'dark') {
       return `${this.common} ${this.variants[variant]}`;
     },
   },

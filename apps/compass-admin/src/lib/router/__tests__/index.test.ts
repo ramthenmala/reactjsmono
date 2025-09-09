@@ -26,12 +26,12 @@ describe('Router Index', () => {
     expect(AdminRoutes.length).toBeLessThanOrEqual(1);
   });
 
-  it('maintains export consistency across re-exports', () => {
+  it('maintains export consistency across re-exports', async () => {
     // Test that re-exported items are the same as their original exports
     const { AdminRoutes } = RouterIndex;
 
     // Import directly from the source
-    const { AdminRoutes: DirectAdminRoutes } = require('../admin-routes');
+    const { AdminRoutes: DirectAdminRoutes } = await import('../admin-routes');
 
     expect(AdminRoutes).toBe(DirectAdminRoutes);
   });
@@ -49,7 +49,7 @@ describe('Router Index', () => {
   it('checks that all exports are not undefined or null', () => {
     const exportEntries = Object.entries(RouterIndex);
 
-    exportEntries.forEach(([exportName, exportValue]) => {
+    exportEntries.forEach(([_exportName, exportValue]) => {
       expect(exportValue).toBeDefined();
       expect(exportValue).not.toBeNull();
 
@@ -86,7 +86,7 @@ describe('Router Index', () => {
     expect(exportNames).toContain('AdminRoutes');
 
     // All exports should be functions
-    exportNames.forEach((exportName) => {
+    exportNames.forEach(exportName => {
       expect(typeof RouterIndex[exportName]).toBe('function');
     });
   });

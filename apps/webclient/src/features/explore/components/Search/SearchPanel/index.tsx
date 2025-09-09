@@ -28,7 +28,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
     useSearchFiltersStore({
       initialFilters,
       areaRange,
-      onFiltersChange: (newFilters) => {
+      onFiltersChange: () => {
         // Optional callback when filters change
       },
     });
@@ -58,7 +58,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
       );
 
       // Simulate loading delay
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise(resolve => setTimeout(resolve, 500));
 
       navigate(searchUrl);
     } catch (error) {
@@ -90,9 +90,9 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
   const isLoading = dataLoading || isSearching;
 
   return (
-    <section className="relative z-10 -mt-[80px] mx-auto w-full max-w-[1280px] px-4">
+    <section className='relative z-10 -mt-[80px] mx-auto w-full max-w-[1280px] px-4'>
       <div
-        className="relative flex flex-col items-start rounded-[24px] border border-[#EBEDEF] overflow-hidden w-full max-w-[1280px] p-4 md:p-8"
+        className='relative flex flex-col items-start rounded-[24px] border border-[#EBEDEF] overflow-hidden w-full max-w-[1280px] p-4 md:p-8'
         style={{
           background:
             'radial-gradient(48.45% 55.71% at 50% 0%, rgba(216, 200, 255, 0.50) 0%, rgba(216, 200, 255, 0.00) 100%), rgba(255, 255, 255, 0.80)',
@@ -101,7 +101,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
         }}
       >
         {/* Content */}
-        <div className="w-full">
+        <div className='w-full'>
           <SearchForm
             filters={filters}
             areaValue={areaValue}

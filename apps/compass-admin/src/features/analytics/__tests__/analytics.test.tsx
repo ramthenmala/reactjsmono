@@ -11,7 +11,7 @@ jest.mock('../../../hooks/use-scroll-spy', () => ({
 // Mock PageHeader component
 jest.mock('../../../components/ui/PageHeader', () => ({
   PageHeader: ({ titleKey }: any) => (
-    <div data-qa-id="page-header" data-title-key={titleKey}>
+    <div data-qa-id='page-header' data-title-key={titleKey}>
       Page Header: {titleKey}
     </div>
   ),
@@ -86,13 +86,13 @@ describe('AnalyticsPage', () => {
     render(<AnalyticsPage />);
 
     expect(
-      screen.getByTestId('analytics-section-investor-insights')
+      screen.getByTestId('analytics-section-investor-insights'),
     ).toBeInTheDocument();
     expect(
-      screen.getByTestId('analytics-section-national')
+      screen.getByTestId('analytics-section-national'),
     ).toBeInTheDocument();
     expect(
-      screen.getByTestId('analytics-section-regional')
+      screen.getByTestId('analytics-section-regional'),
     ).toBeInTheDocument();
   });
 
@@ -100,25 +100,25 @@ describe('AnalyticsPage', () => {
     render(<AnalyticsPage />);
 
     const investorInsights = screen.getByTestId(
-      'analytics-section-investor-insights'
+      'analytics-section-investor-insights',
     );
     expect(investorInsights).toHaveAttribute(
       'data-section-title',
-      'analytics.investorInsights.title'
+      'analytics.investorInsights.title',
     );
     expect(investorInsights).toHaveAttribute('data-is-active', 'false');
 
     const national = screen.getByTestId('analytics-section-national');
     expect(national).toHaveAttribute(
       'data-section-title',
-      'analytics.national.title'
+      'analytics.national.title',
     );
     expect(national).toHaveAttribute('data-is-active', 'false');
 
     const regional = screen.getByTestId('analytics-section-regional');
     expect(regional).toHaveAttribute(
       'data-section-title',
-      'analytics.regional.title'
+      'analytics.regional.title',
     );
     expect(regional).toHaveAttribute('data-is-active', 'false');
   });
@@ -129,7 +129,7 @@ describe('AnalyticsPage', () => {
     render(<AnalyticsPage />);
 
     const investorInsights = screen.getByTestId(
-      'analytics-section-investor-insights'
+      'analytics-section-investor-insights',
     );
     expect(investorInsights).toHaveAttribute('data-is-active', 'false');
 
@@ -146,7 +146,7 @@ describe('AnalyticsPage', () => {
     render(<AnalyticsPage />);
 
     const investorInsights = screen.getByTestId(
-      'analytics-section-investor-insights'
+      'analytics-section-investor-insights',
     );
     expect(investorInsights).toHaveAttribute('data-is-active', 'true');
 
@@ -163,7 +163,7 @@ describe('AnalyticsPage', () => {
     render(<AnalyticsPage />);
 
     const investorInsights = screen.getByTestId(
-      'analytics-section-investor-insights'
+      'analytics-section-investor-insights',
     );
     expect(investorInsights).toHaveAttribute('data-is-active', 'false');
 
@@ -181,7 +181,7 @@ describe('AnalyticsPage', () => {
 
     // All sections should be inactive
     const sections = screen.getAllByTestId(/analytics-section-/);
-    sections.forEach((section) => {
+    sections.forEach(section => {
       expect(section).toHaveAttribute('data-is-active', 'false');
     });
   });
@@ -209,15 +209,15 @@ describe('AnalyticsPage', () => {
 
     expect(sections[0]).toHaveAttribute(
       'data-qa-id',
-      'analytics-section-investor-insights'
+      'analytics-section-investor-insights',
     );
     expect(sections[1]).toHaveAttribute(
       'data-qa-id',
-      'analytics-section-national'
+      'analytics-section-national',
     );
     expect(sections[2]).toHaveAttribute(
       'data-qa-id',
-      'analytics-section-regional'
+      'analytics-section-regional',
     );
   });
 

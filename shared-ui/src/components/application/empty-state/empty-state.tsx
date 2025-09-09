@@ -60,7 +60,7 @@ const Illustration = ({
 
   return (
     <Illustrations
-      role="img"
+      role='img'
       {...props}
       {...{ type, color }}
       size={rootSize === 'sm' ? 'sm' : rootSize === 'md' ? 'md' : size}
@@ -90,7 +90,7 @@ const FileTypeIcon = ({
       <FileIcon
         type={type}
         variant={theme}
-        className="size-10 drop-shadow-sm"
+        className='size-10 drop-shadow-sm'
       />
     </div>
   );
@@ -109,7 +109,7 @@ const Header = ({
   const { size } = useContext(RootContext);
   // Whether we are passing `Illustration` component as children.
   const hasIllustration = Children.toArray(props.children).some(
-    (headerChild) =>
+    headerChild =>
       isValidElement(headerChild) && headerChild.type === Illustration
   );
 
@@ -127,7 +127,7 @@ const Header = ({
         <BackgroundPattern
           size={patternSize}
           pattern={pattern}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'
         />
       )}
       {props.children}

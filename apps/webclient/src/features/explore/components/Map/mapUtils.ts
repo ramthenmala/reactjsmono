@@ -88,7 +88,7 @@ export const convertPropertiesToTCityData = (
 ): TCityData => {
   const grouped: TCityData = {};
 
-  properties.forEach((property) => {
+  properties.forEach(property => {
     const baseCoords = CITY_COORDINATES[property.city] || [46.7749, 24.6775];
     const lng =
       property.coordinates?.lng || baseCoords[0] + (Math.random() - 0.5) * 0.1;
@@ -172,7 +172,7 @@ export const convertToIPlotPoints = (
   }
 
   const plotPoints = data[selectedCity];
-  const features = plotPoints.map((plot) => ({
+  const features = plotPoints.map(plot => ({
     type: 'Feature',
     geometry: {
       type: 'Point',

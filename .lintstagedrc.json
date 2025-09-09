@@ -1,0 +1,8 @@
+{
+  "apps/webclient/src/**/*.{ts,tsx}": ["eslint --fix", "prettier --write"],
+  "apps/webclient/src/**/*.{js,jsx}": ["eslint --fix", "prettier --write"],
+  "apps/compass-admin/src/**/*.{ts,tsx}": ["eslint --fix", "prettier --write"],
+  "apps/compass-admin/src/**/*.{js,jsx}": ["eslint --fix", "prettier --write"],
+  "*.{json,md,yml,yaml}": ["prettier --write"],
+  "*.{ts,tsx,js,jsx}": ["prettier --write"]
+}

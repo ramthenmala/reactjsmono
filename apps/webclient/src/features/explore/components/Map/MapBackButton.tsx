@@ -14,15 +14,15 @@ export function MapBackButton({
           width={mapStyles.icons.back.width}
           height={mapStyles.icons.back.height}
           viewBox={mapStyles.icons.back.viewBox}
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
         >
           <path
-            d="M10 12L6 8L10 4"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+            d='M10 12L6 8L10 4'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            strokeLinejoin='round'
           />
         </svg>
         Back to Cities

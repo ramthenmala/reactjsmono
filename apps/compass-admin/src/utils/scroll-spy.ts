@@ -1,6 +1,6 @@
 import type { AnalyticsSectionId } from '../types/features';
 
-export const createScrollToSection = (locale: string) => {
+export const createScrollToSection = (_locale: string) => {
   return (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -13,7 +13,7 @@ export const createScrollToSection = (locale: string) => {
 
 export const createUrlForSection = (
   locale: string,
-  sectionId: AnalyticsSectionId
+  sectionId: AnalyticsSectionId,
 ): string => {
   return `/${locale}/analytics#${sectionId}`;
 };
@@ -24,7 +24,7 @@ export const extractHashFromUrl = (url: string): string => {
 
 export const findActiveSection = (
   sections: AnalyticsSectionId[],
-  scrollOffset = 100
+  scrollOffset = 100,
 ): AnalyticsSectionId | null => {
   const scrollPosition = window.scrollY + scrollOffset;
 

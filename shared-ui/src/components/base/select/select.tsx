@@ -89,29 +89,29 @@ const SelectValue = ({
           sizes[size].root
         )}
       >
-        {(state) => {
+        {state => {
           const Icon = state.selectedItem?.icon || placeholderIcon;
           return (
             <>
               {state.selectedItem?.avatarUrl ? (
                 <Avatar
-                  size="xs"
+                  size='xs'
                   src={state.selectedItem.avatarUrl}
                   alt={state.selectedItem.label}
                 />
               ) : isReactComponent(Icon) ? (
-                <Icon data-icon aria-hidden="true" />
+                <Icon data-icon aria-hidden='true' />
               ) : isValidElement(Icon) ? (
                 Icon
               ) : null}
 
               {state.selectedItem ? (
-                <section className="flex w-full gap-2 truncate">
-                  <p className="truncate text-md font-medium text-primary">
+                <section className='flex w-full gap-2 truncate'>
+                  <p className='truncate text-md font-medium text-primary'>
                     {state.selectedItem?.label}
                   </p>
                   {state.selectedItem?.supportingText && (
-                    <p className="text-md text-tertiary">
+                    <p className='text-md text-tertiary'>
                       {state.selectedItem?.supportingText}
                     </p>
                   )}
@@ -128,7 +128,7 @@ const SelectValue = ({
               )}
 
               <ChevronDown
-                aria-hidden="true"
+                aria-hidden='true'
                 className={cx(
                   'ml-auto shrink-0 text-fg-quaternary',
                   size === 'sm' ? 'size-4 stroke-[2.5px]' : 'size-5'
@@ -162,14 +162,14 @@ const Select = ({
     <SelectContext.Provider value={{ size }}>
       <AriaSelect
         {...rest}
-        className={(state) =>
+        className={state =>
           cx(
             'flex flex-col gap-1.5',
             typeof className === 'function' ? className(state) : className
           )
         }
       >
-        {(state) => (
+        {state => (
           <>
             {label && (
               <Label isRequired={state.isRequired} tooltip={tooltip}>
@@ -184,7 +184,7 @@ const Select = ({
             />
 
             <Popover size={size} className={rest.popoverClassName}>
-              <AriaListBox items={items} className="size-full outline-hidden">
+              <AriaListBox items={items} className='size-full outline-hidden'>
                 {children}
               </AriaListBox>
             </Popover>

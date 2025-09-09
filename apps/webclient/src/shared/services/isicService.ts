@@ -33,7 +33,7 @@ export class IsicService {
     const queryNumber = parseInt(query);
 
     return allCodes
-      .filter((item) => {
+      .filter(item => {
         const codeStr = item.code.toString();
         return (
           codeStr.includes(query) ||

@@ -68,7 +68,7 @@ export const ComparisonProvider: React.FC<IComparisonProviderProps> = ({
   };
 
   const isInComparison = (propertyId: string): boolean => {
-    return comparisonList.some((p) => p.id === propertyId);
+    return comparisonList.some(p => p.id === propertyId);
   };
 
   const value: IComparisonContext = {

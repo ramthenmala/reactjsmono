@@ -5,7 +5,7 @@ import { FilterCriteriaPage } from '../filter-criteria';
 // Mock PageHeader component
 jest.mock('../../../components/ui/PageHeader', () => ({
   PageHeader: ({ titleKey }: any) => (
-    <div data-qa-id="page-header" data-title-key={titleKey}>
+    <div data-qa-id='page-header' data-title-key={titleKey}>
       Page Header: {titleKey}
     </div>
   ),
@@ -24,10 +24,10 @@ describe('FilterCriteriaPage', () => {
     expect(pageHeader).toBeInTheDocument();
     expect(pageHeader).toHaveAttribute(
       'data-title-key',
-      'configuration.filterCriteria.title'
+      'configuration.filterCriteria.title',
     );
     expect(pageHeader).toHaveTextContent(
-      'Page Header: configuration.filterCriteria.title'
+      'Page Header: configuration.filterCriteria.title',
     );
   });
 

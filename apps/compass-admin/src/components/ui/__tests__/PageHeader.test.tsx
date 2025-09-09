@@ -22,7 +22,7 @@ describe('PageHeader', () => {
   it('displays the translated title', () => {
     render(<PageHeader {...defaultProps} />);
     expect(screen.getByTestId('page-header-title')).toHaveTextContent(
-      'test.title'
+      'test.title',
     );
   });
 
@@ -37,7 +37,7 @@ describe('PageHeader', () => {
     expect(screen.getByTestId('page-header')).toHaveClass(
       'border-b',
       'border-gray-200',
-      'pb-5'
+      'pb-5',
     );
   });
 
@@ -46,14 +46,14 @@ describe('PageHeader', () => {
     expect(screen.getByTestId('page-header')).not.toHaveClass(
       'border-b',
       'border-gray-200',
-      'pb-5'
+      'pb-5',
     );
   });
 
   it('applies dark mode border classes', () => {
     render(<PageHeader {...defaultProps} />);
     expect(screen.getByTestId('page-header')).toHaveClass(
-      'dark:border-gray-700'
+      'dark:border-gray-700',
     );
   });
 
@@ -65,7 +65,7 @@ describe('PageHeader', () => {
       'text-3xl',
       'font-bold',
       'text-gray-900',
-      'dark:text-white'
+      'dark:text-white',
     );
   });
 });

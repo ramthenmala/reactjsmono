@@ -18,11 +18,11 @@ const SectionErrorFallback = memo(
     error: Error;
     resetErrorBoundary: () => void;
   }) => (
-    <section className="py-8 px-4">
+    <section className='py-8 px-4'>
       <ErrorFallback
         error={error}
         resetErrorBoundary={resetErrorBoundary}
-        message="This section failed to load"
+        message='This section failed to load'
       />
     </section>
   )
@@ -31,8 +31,8 @@ SectionErrorFallback.displayName = 'SectionErrorFallback';
 
 // Loading component for sections
 const SectionLoading = memo(() => (
-  <section className="py-8 px-4 flex justify-center">
-    <LoadingIndicator size="md" />
+  <section className='py-8 px-4 flex justify-center'>
+    <LoadingIndicator size='md' />
   </section>
 ));
 SectionLoading.displayName = 'SectionLoading';

@@ -37,7 +37,7 @@ export const CloseButton = ({
     <AriaButton
       {...otherProps}
       aria-label={label || 'Close'}
-      className={(state) =>
+      className={state =>
         cx(
           'flex cursor-pointer items-center justify-center rounded-lg p-2 transition duration-100 ease-linear focus:outline-hidden',
           sizes[size].root,
@@ -47,7 +47,7 @@ export const CloseButton = ({
       }
     >
       <CloseIcon
-        aria-hidden="true"
+        aria-hidden='true'
         className={cx('shrink-0 transition-inherit-all', sizes[size].icon)}
       />
     </AriaButton>

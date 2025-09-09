@@ -77,49 +77,49 @@ export const ProgressBarCircle = ({
   const strokeDashoffset = 100 - percentage;
 
   return (
-    <div className="flex flex-col items-center gap-0.5">
+    <div className='flex flex-col items-center gap-0.5'>
       <div
-        role="progressbar"
+        role='progressbar'
         aria-valuenow={value}
         aria-valuemin={min}
         aria-valuemax={max}
-        className="relative flex w-max items-center justify-center"
+        className='relative flex w-max items-center justify-center'
       >
         <svg
-          className="-rotate-90"
+          className='-rotate-90'
           width={width}
           height={height}
           viewBox={viewBox}
         >
           {/* Background circle */}
           <circle
-            className="stroke-bg-quaternary"
+            className='stroke-bg-quaternary'
             cx={cx}
             cy={cy}
             r={radius}
-            fill="none"
+            fill='none'
             strokeWidth={strokeWidth}
-            pathLength="100"
-            strokeDasharray="100"
-            strokeLinecap="round"
+            pathLength='100'
+            strokeDasharray='100'
+            strokeLinecap='round'
           />
 
           {/* Foreground circle */}
           <circle
-            className="stroke-fg-brand-primary"
+            className='stroke-fg-brand-primary'
             cx={cx}
             cy={cy}
             r={radius}
-            fill="none"
+            fill='none'
             strokeWidth={strokeWidth}
-            pathLength="100"
-            strokeDasharray="100"
-            strokeLinecap="round"
+            pathLength='100'
+            strokeDasharray='100'
+            strokeLinecap='round'
             strokeDashoffset={strokeDashoffset}
           />
         </svg>
         {label && size !== 'xxs' ? (
-          <div className="absolute text-center">
+          <div className='absolute text-center'>
             <div className={labelClass}>{label}</div>
             <div className={valueClass}>
               {valueFormatter
@@ -170,41 +170,41 @@ export const ProgressBarHalfCircle = ({
   const strokeDashoffset = -50 - (100 - percentage) / 2;
 
   return (
-    <div className="flex flex-col items-center gap-0.5">
+    <div className='flex flex-col items-center gap-0.5'>
       <div
-        role="progressbar"
+        role='progressbar'
         aria-valuenow={value}
         aria-valuemin={min}
         aria-valuemax={max}
-        className="relative flex w-max items-center justify-center"
+        className='relative flex w-max items-center justify-center'
       >
         <svg width={width} height={height} viewBox={viewBox}>
           {/* Background half-circle */}
           <circle
-            className="stroke-bg-quaternary"
+            className='stroke-bg-quaternary'
             cx={cx}
             cy={cy}
             r={radius}
-            fill="none"
+            fill='none'
             strokeWidth={strokeWidth}
-            pathLength="100"
-            strokeDasharray="100"
-            strokeDashoffset="-50"
-            strokeLinecap="round"
+            pathLength='100'
+            strokeDasharray='100'
+            strokeDashoffset='-50'
+            strokeLinecap='round'
           />
 
           {/* Foreground half-circle */}
           <circle
-            className="origin-center -scale-x-100 stroke-fg-brand-primary"
+            className='origin-center -scale-x-100 stroke-fg-brand-primary'
             cx={cx}
             cy={cy}
             r={radius}
-            fill="none"
+            fill='none'
             strokeWidth={strokeWidth}
-            pathLength="100"
-            strokeDasharray="100"
+            pathLength='100'
+            strokeDasharray='100'
             strokeDashoffset={strokeDashoffset}
-            strokeLinecap="round"
+            strokeLinecap='round'
           />
         </svg>
 

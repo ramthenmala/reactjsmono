@@ -112,7 +112,7 @@ export const Avatar = ({
       return (
         <img
           data-avatar-img
-          className="size-full rounded-full object-cover"
+          className='size-full rounded-full object-cover'
           src={src}
           alt={alt}
           onError={() => setIsFailed(true)}

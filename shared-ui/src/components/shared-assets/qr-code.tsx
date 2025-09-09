@@ -106,10 +106,10 @@ export const QRCode = ({
     >
       <div ref={ref} />
 
-      <QRCodeFrameHandle className="absolute top-0 left-0" />
-      <QRCodeFrameHandle className="absolute top-0 right-0 rotate-90" />
-      <QRCodeFrameHandle className="absolute right-0 bottom-0 rotate-180" />
-      <QRCodeFrameHandle className="absolute bottom-0 left-0 -rotate-90" />
+      <QRCodeFrameHandle className='absolute top-0 left-0' />
+      <QRCodeFrameHandle className='absolute top-0 right-0 rotate-90' />
+      <QRCodeFrameHandle className='absolute right-0 bottom-0 rotate-180' />
+      <QRCodeFrameHandle className='absolute bottom-0 left-0 -rotate-90' />
     </div>
   );
 };

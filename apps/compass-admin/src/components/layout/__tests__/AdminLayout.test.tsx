@@ -3,6 +3,9 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { AdminLayout } from '../AdminLayout';
 
+import { useParams } from 'react-router-dom';
+import { getNavigationItems } from '../../navigation/navigation';
+
 // Mock all external dependencies first
 jest.mock('react-router-dom', () => ({
   useParams: jest.fn(),
@@ -29,7 +32,7 @@ jest.mock('../../navigation/navigation', () => ({
 
 jest.mock('../../navigation/LanguageSwitcher', () => ({
   LanguageSwitcher: () => (
-    <div data-qa-id="language-switcher">Language Switcher</div>
+    <div data-qa-id='language-switcher'>Language Switcher</div>
   ),
 }));
 
@@ -42,23 +45,20 @@ jest.mock('../AdminHeader', () => ({
     trailingContent,
     hideBorder,
   }) => (
-    <div data-qa-id="admin-header">
-      <div data-qa-id="header-title">{title}</div>
-      <div data-qa-id="header-subtitle">{subtitle}</div>
-      <div data-qa-id="header-user">{userName}</div>
-      <div data-qa-id="header-role">{userRole}</div>
-      <div data-qa-id="header-border">{hideBorder?.toString()}</div>
-      <div data-qa-id="header-trailing">{trailingContent}</div>
+    <div data-qa-id='admin-header'>
+      <div data-qa-id='header-title'>{title}</div>
+      <div data-qa-id='header-subtitle'>{subtitle}</div>
+      <div data-qa-id='header-user'>{userName}</div>
+      <div data-qa-id='header-role'>{userRole}</div>
+      <div data-qa-id='header-border'>{hideBorder?.toString()}</div>
+      <div data-qa-id='header-trailing'>{trailingContent}</div>
     </div>
   ),
 }));
 
-const { useParams } = require('react-router-dom');
-
-// Get the mocked function
-const mockGetNavigationItems = jest.mocked(
-  require('../../navigation/navigation').getNavigationItems
-);
+// Get the mocked functions
+const mockUseParams = jest.mocked(useParams);
+const mockGetNavigationItems = jest.mocked(getNavigationItems);
 
 describe('AdminLayout', () => {
   const mockNavigationItems = [
@@ -69,15 +69,15 @@ describe('AdminLayout', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-    useParams.mockReturnValue({ locale: 'en' });
+    mockUseParams.mockReturnValue({ locale: 'en' });
     mockGetNavigationItems.mockReturnValue(mockNavigationItems);
   });
 
   it('renders without crashing', () => {
     render(
       <AdminLayout>
-        <div data-qa-id="test-content">Test Content</div>
-      </AdminLayout>
+        <div data-qa-id='test-content'>Test Content</div>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('admin-layout')).toBeInTheDocument();
@@ -87,8 +87,8 @@ describe('AdminLayout', () => {
   it('renders main layout structure', () => {
     render(
       <AdminLayout>
-        <div data-qa-id="child-content">Child Content</div>
-      </AdminLayout>
+        <div data-qa-id='child-content'>Child Content</div>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('admin-layout')).toBeInTheDocument();
@@ -103,11 +103,11 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout activeUrl={activeUrl}>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('sidebar-active-url')).toHaveTextContent(
-      activeUrl
+      activeUrl,
     );
   });
 
@@ -115,11 +115,11 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('sidebar-show-account')).toHaveTextContent(
-      'false'
+      'false',
     );
   });
 
@@ -127,42 +127,42 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     expect(mockGetNavigationItems).toHaveBeenCalledWith(
       'en',
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 
   it('uses default locale when locale param is not available', () => {
-    useParams.mockReturnValue({});
+    mockUseParams.mockReturnValue({});
 
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     expect(mockGetNavigationItems).toHaveBeenCalledWith(
       'en',
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 
   it('uses provided locale from router params', () => {
-    useParams.mockReturnValue({ locale: 'ar' });
+    mockUseParams.mockReturnValue({ locale: 'ar' });
 
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     expect(mockGetNavigationItems).toHaveBeenCalledWith(
       'ar',
-      expect.any(Function)
+      expect.any(Function),
     );
   });
 
@@ -170,14 +170,14 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('header-title')).toHaveTextContent(
-      'Welcome Admin'
+      'Welcome Admin',
     );
     expect(screen.getByTestId('header-subtitle')).toHaveTextContent(
-      'Dashboard Overview'
+      'Dashboard Overview',
     );
     expect(screen.getByTestId('header-user')).toHaveTextContent('Faisal');
     expect(screen.getByTestId('header-role')).toHaveTextContent('Govt. Admin');
@@ -188,7 +188,7 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('language-switcher')).toBeInTheDocument();
@@ -196,7 +196,7 @@ describe('AdminLayout', () => {
 
   it('renders children content in main area', () => {
     const testContent = (
-      <div data-qa-id="complex-content">
+      <div data-qa-id='complex-content'>
         <h2>Page Title</h2>
         <p>Page content</p>
         <button>Action Button</button>
@@ -216,14 +216,14 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     const layout = screen.getByTestId('admin-layout');
     expect(layout).toHaveClass(
       'min-h-screen',
       'bg-gray-50',
-      'dark:bg-gray-900'
+      'dark:bg-gray-900',
     );
 
     const content = screen.getByTestId('admin-layout-content');
@@ -237,7 +237,7 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     const layout = screen.getByTestId('admin-layout');
@@ -250,10 +250,10 @@ describe('AdminLayout', () => {
   it('handles multiple children correctly', () => {
     render(
       <AdminLayout>
-        <div data-qa-id="child-1">Child 1</div>
-        <div data-qa-id="child-2">Child 2</div>
-        <span data-qa-id="child-3">Child 3</span>
-      </AdminLayout>
+        <div data-qa-id='child-1'>Child 1</div>
+        <div data-qa-id='child-2'>Child 2</div>
+        <span data-qa-id='child-3'>Child 3</span>
+      </AdminLayout>,
     );
 
     const main = screen.getByTestId('admin-layout-main');
@@ -266,7 +266,7 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     const activeUrlElement = screen.getByTestId('sidebar-active-url');
@@ -277,7 +277,7 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('sidebar-items-count')).toHaveTextContent('3');
@@ -286,14 +286,14 @@ describe('AdminLayout', () => {
   it('maintains layout structure with different locales', () => {
     const locales = ['en', 'ar', 'fr', 'de'];
 
-    locales.forEach((locale) => {
-      useParams.mockReturnValue({ locale });
+    locales.forEach(locale => {
+      mockUseParams.mockReturnValue({ locale });
       mockGetNavigationItems.mockClear();
 
       const { unmount } = render(
         <AdminLayout activeUrl={`/${locale}/dashboard`}>
           <div data-qa-id={`content-${locale}`}>Content for {locale}</div>
-        </AdminLayout>
+        </AdminLayout>,
       );
 
       expect(screen.getByTestId('admin-layout')).toBeInTheDocument();
@@ -302,7 +302,7 @@ describe('AdminLayout', () => {
       expect(screen.getByTestId(`content-${locale}`)).toBeInTheDocument();
       expect(mockGetNavigationItems).toHaveBeenCalledWith(
         locale,
-        expect.any(Function)
+        expect.any(Function),
       );
 
       unmount();
@@ -313,7 +313,7 @@ describe('AdminLayout', () => {
     render(
       <AdminLayout>
         <div>Content</div>
-      </AdminLayout>
+      </AdminLayout>,
     );
 
     const translationFunction = mockGetNavigationItems.mock.calls[0][1];
@@ -325,18 +325,18 @@ describe('AdminLayout', () => {
 
   it('maintains consistent component structure across renders', () => {
     const { rerender } = render(
-      <AdminLayout activeUrl="/en/dashboard">
-        <div data-qa-id="content-1">Content 1</div>
-      </AdminLayout>
+      <AdminLayout activeUrl='/en/dashboard'>
+        <div data-qa-id='content-1'>Content 1</div>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('admin-layout')).toBeInTheDocument();
     expect(screen.getByTestId('content-1')).toBeInTheDocument();
 
     rerender(
-      <AdminLayout activeUrl="/ar/analytics">
-        <div data-qa-id="content-2">Content 2</div>
-      </AdminLayout>
+      <AdminLayout activeUrl='/ar/analytics'>
+        <div data-qa-id='content-2'>Content 2</div>
+      </AdminLayout>,
     );
 
     expect(screen.getByTestId('admin-layout')).toBeInTheDocument();

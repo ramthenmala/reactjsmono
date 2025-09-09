@@ -9,8 +9,8 @@ export function App() {
   return (
     <Suspense
       fallback={
-        <div className="flex items-center justify-center min-h-screen">
-          <LoadingIndicator size="lg" label="Loading application..." />
+        <div className='flex items-center justify-center min-h-screen'>
+          <LoadingIndicator size='lg' label='Loading application...' />
         </div>
       }
     >

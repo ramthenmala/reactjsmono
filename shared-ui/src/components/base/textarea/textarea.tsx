@@ -35,7 +35,7 @@ export const TextAreaBase = ({ className, ...props }: TextAreaBaseProps) => {
           '--resize-handle-bg-dark': getResizeHandleBg('#373A41'),
         } as React.CSSProperties
       }
-      className={(state) =>
+      className={state =>
         cx(
           'w-full scroll-py-3 rounded-lg bg-primary px-3.5 py-3 text-md text-primary shadow-xs ring-1 ring-primary transition duration-100 ease-linear ring-inset placeholder:text-placeholder autofill:rounded-lg autofill:text-primary focus:outline-hidden',
 
@@ -96,7 +96,7 @@ export const TextArea = ({
   return (
     <AriaTextField
       {...props}
-      className={(state) =>
+      className={state =>
         cx(
           'group flex h-max w-full flex-col items-start justify-start gap-1.5',
           typeof className === 'function' ? className(state) : className
