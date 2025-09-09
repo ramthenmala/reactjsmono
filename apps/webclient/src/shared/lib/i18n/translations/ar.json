@@ -1,0 +1,110 @@
+{
+  "common": {
+    "sign_in": "تسجيل الدخول",
+    "compare": "قارن",
+    "view": "عرض",
+    "featured": "مميز",
+    "search": "بحث",
+    "filters": "المرشحات",
+    "sort_by": "ترتيب حسب",
+    "clear_all": "مسح الكل",
+    "clear": "مسح",
+    "apply": "تطبيق",
+    "searching": "جاري البحث...",
+    "results": "النتائج",
+    "showing": "عرض",
+    "of": "من",
+    "connect": "اتصل"
+  },
+  "navigation": {
+    "home": "الرئيسية",
+    "explore": "استكشف",
+    "about": "حول",
+    "contact": "اتصل بنا"
+  },
+  "hero": {
+    "explore": {
+      "title": "ابحث عن قطعة الأرض الصناعية المثالية",
+      "subtitle": "تصفح العقارات الصناعية المتاحة واعثر على الموقع المثالي لعملك"
+    }
+  },
+  "search": {
+    "placeholder": "أدخل الموقع أو اسم العقار...",
+    "location": "الموقع",
+    "isic_code": "رمز ISIC",
+    "land_area": "مساحة الأرض (م²)",
+    "select_location": "اختر الموقع",
+    "select_isic": "اختر رموز ISIC",
+    "select_region": "اختر المنطقة",
+    "all_sectors": "جميع القطاعات",
+    "region": "المنطقة",
+    "sector": "القطاع",
+    "min_area": "الحد الأدنى للمساحة",
+    "max_area": "الحد الأقصى للمساحة"
+  },
+  "property": {
+    "available": "متاح",
+    "sold": "مُباع",
+    "reserved": "محجوز",
+    "electricity": "كهرباء",
+    "water": "مياه",
+    "gas": "غاز",
+    "area": "المساحة"
+  },
+  "property_detail": {
+    "district_map": "خريطة المنطقة",
+    "establishment_year": "سنة التأسيس",
+    "district": "المنطقة",
+    "industries_inside": "الصناعات الداخلية",
+    "skilled_labor_availability": "توفر العمالة الماهرة",
+    "non_skilled_labor_availability": "توفر العمالة غير الماهرة",
+    "skilled_labor_salary": "راتب العمالة الماهرة",
+    "non_skilled_labor_salary": "راتب العمالة غير الماهرة",
+    "workforce_talent": "القوى العاملة والمواهب",
+    "infrastructure_utilities": "البنية التحتية والمرافق",
+    "social_community": "المجتمع الاجتماعي",
+    "value_chain_clusters": "سلسلة القيمة والتجمعات",
+    "environmental": "البيئة",
+    "legal_regulatory": "القانونية والتنظيمية",
+    "market_access_demand": "الوصول إلى السوق والطلب",
+    "prioritization_results": "نتائج تحديد الأولويات",
+    "content_coming_soon": "المحتوى قريبا"
+  },
+  "explore": {
+    "listing": "نتائج البحث",
+    "results": {
+      "title": "المدن الصناعية المتاحة",
+      "count": "تم العثور على {{count}} مدينة صناعية"
+    }
+  },
+  "hero": {
+    "title": "مرحباً بكم في كومباس",
+    "subtitle": "اكتشف الفرص الصناعية في المملكة العربية السعودية"
+  },
+  "features": {
+    "title": "الميزات الرئيسية",
+    "explore_title": "استكشف المدن الصناعية",
+    "explore_description": "تصفح البيانات الشاملة للمدن الصناعية في جميع أنحاء المملكة العربية السعودية",
+    "insights_title": "رؤى السوق",
+    "insights_description": "احصل على معلومات السوق التفصيلية وفرص الاستثمار",
+    "location_title": "مواقع استراتيجية",
+    "location_description": "اعثر على المواقع المثلى مع اتصال لوجستي ممتاز"
+  },
+  "cta": {
+    "title": "هل أنت مستعد للعثور على استثمارك الصناعي؟",
+    "description": "استكشف قاعدة بياناتنا الشاملة للفرص الصناعية",
+    "button": "ابدأ الاستكشاف",
+    "explore": "استكشف الفرص",
+    "learn_more": "اعرف المزيد"
+  },
+  "footer": {
+    "description": "بوابتك إلى المشهد الصناعي للمملكة العربية السعودية",
+    "quick_links": "روابط سريعة",
+    "legal": "قانونية",
+    "copyright": "© 2024 كومباس. جميع الحقوق محفوظة.",
+    "follow_us": "تابعنا"
+  },
+  "contact": {
+    "title": "اتصل بنا"
+  }
+}

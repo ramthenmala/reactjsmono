@@ -4,6 +4,7 @@ import {
   IProperty,
 } from '../types/explore';
 import { getPropertyImageByIndex } from '../constants';
+import { localizeApiDataArray } from '@/shared/utils/i18nApi';
 
 const API_URL =
   import.meta.env.VITE_INDUSTRIAL_CITIES_API_URL ||
@@ -33,8 +34,11 @@ export class IndustrialCitiesService {
   }
 
   // Transform API data to IProperty format for consistency with existing components
-  static transformToProperties(cities: IIndustrialCityAPI[]): IProperty[] {
-    return cities.map((city, index) => ({
+  static transformToProperties(cities: IIndustrialCityAPI[], currentLanguage = 'en'): IProperty[] {
+    // Localize the cities data based on current language
+    const localizedCities = localizeApiDataArray(cities, ['name', 'cityName', 'regionName'], currentLanguage);
+    
+    return localizedCities.map((city, index) => ({
       id: city.id,
       slug: city.name.toLowerCase().replace(/\s+/g, '-'),
       city: city.cityName,
@@ -57,8 +61,8 @@ export class IndustrialCitiesService {
   }
 
   // Main method to get properties ready for the UI
-  static async getProperties(): Promise<IProperty[]> {
+  static async getProperties(currentLanguage = 'en'): Promise<IProperty[]> {
     const cities = await this.fetchIndustrialCities();
-    return this.transformToProperties(cities);
+    return this.transformToProperties(cities, currentLanguage);
   }
 }

@@ -152,8 +152,8 @@ export function SearchForm({
 
         <Select
           size="md"
-          label={t('search.sector') || 'Sector'}
-          placeholder={t('search.all_sectors') || 'All Sectors'}
+          label={t('search.sector')}
+          placeholder={t('search.all_sectors')}
           items={sectors}
           selectedKey={filters.sector || null}
           onSelectionChange={(key) =>
@@ -165,8 +165,8 @@ export function SearchForm({
 
         <Select
           size="md"
-          label={t('search.region') || 'Region'}
-          placeholder={t('search.select_region') || 'Select Region'}
+          label={t('search.region')}
+          placeholder={t('search.select_region')}
           items={regions}
           selectedKey={filters.region || null}
           onSelectionChange={(key) =>

@@ -1,10 +1,7 @@
 import { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import type {
-  MegaMenuItem,
-  MegaMenuSection,
   MegaMenuConfig,
-  MegaMenuProps,
 } from '../../types/megaMenu';
 
 interface MegaMenuProps {

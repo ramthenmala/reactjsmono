@@ -2,12 +2,24 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '../constants';
+import enTranslation from './translations/en.json';
+import arTranslation from './translations/ar.json';
 
 // Configure i18n
 i18n
   .use(LanguageDetector) // Detect user language
   .use(initReactI18next) // Pass i18n down to react-i18next
   .init({
+    // Resources configuration
+    resources: {
+      en: {
+        translation: enTranslation,
+      },
+      ar: {
+        translation: arTranslation,
+      },
+    },
+
     // Language configuration
     lng: DEFAULT_LOCALE,
     fallbackLng: DEFAULT_LOCALE,

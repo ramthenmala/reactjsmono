@@ -2,10 +2,11 @@ import { IndustrialCitiesService } from '../services/industrialCitiesService';
 import { IIndustrialCityModel } from '../types/industrialCity';
 
 export async function fetchIndustrialCityById(
-  slug: string
+  slug: string,
+  currentLanguage = 'en'
 ): Promise<IIndustrialCityModel | null> {
   try {
-    const properties = await IndustrialCitiesService.getProperties();
+    const properties = await IndustrialCitiesService.getProperties(currentLanguage);
     const foundProperty = properties.find((p) => p.slug === slug);
 
     if (!foundProperty) {

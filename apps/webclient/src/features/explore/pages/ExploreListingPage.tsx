@@ -13,7 +13,7 @@ import { SearchFilters } from '../../../shared/types';
 import { EXPLORE_PAGE_CONFIGS } from '../constants';
 
 export function ExploreListingPage() {
-  const { t } = useLocaleTranslation();
+  const { t, currentLanguage } = useLocaleTranslation();
   const { navigate } = useLocaleNavigate();
   const { addToComparison } = useComparison();
   const [viewMode, setViewMode] = useState<EViewMode>(EViewMode.split);
@@ -46,7 +46,7 @@ export function ExploreListingPage() {
       try {
         setLoading(true);
         setError(null);
-        const apiProperties = await IndustrialCitiesService.getProperties();
+        const apiProperties = await IndustrialCitiesService.getProperties(currentLanguage);
         setAllProperties(apiProperties);
         setProperties(apiProperties);
       } catch (err) {
@@ -60,7 +60,7 @@ export function ExploreListingPage() {
     };
 
     fetchProperties();
-  }, []);
+  }, [currentLanguage]);
 
   // Filter properties based on search criteria
   const filteredProperties = useMemo(() => {
