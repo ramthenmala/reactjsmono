@@ -20,14 +20,14 @@ export function MobileSlider({
         className={investorJourneyStyles.mobileSlider.track}
         style={investorJourneyStyles.mobileSlider.trackStyle(
           isRTL,
-          activeIndex
+          activeIndex,
         )}
       >
         {cards.map((step, idx) => (
           <div
             key={step.title}
             className={investorJourneyStyles.mobileSlider.slide(
-              idx === activeIndex
+              idx === activeIndex,
             )}
             style={investorJourneyStyles.mobileSlider.slideStyle}
           >

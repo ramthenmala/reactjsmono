@@ -25,7 +25,7 @@ const SectionErrorFallback = memo(
         message='This section failed to load'
       />
     </section>
-  )
+  ),
 );
 SectionErrorFallback.displayName = 'SectionErrorFallback';
 

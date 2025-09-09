@@ -30,6 +30,6 @@ export function MapPopup({
         ×
       </button>
     </div>,
-    container
+    container,
   );
 }

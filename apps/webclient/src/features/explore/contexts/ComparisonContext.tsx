@@ -21,7 +21,7 @@ interface IComparisonContext {
 }
 
 const ComparisonContext = createContext<IComparisonContext | undefined>(
-  undefined
+  undefined,
 );
 
 export const useComparison = (): IComparisonContext => {
@@ -48,7 +48,7 @@ export const ComparisonProvider: React.FC<IComparisonProviderProps> = ({
   }, []);
 
   const addToComparison = (
-    property: IProperty
+    property: IProperty,
   ): { success: boolean; message: string } => {
     const result = ComparisonService.addToComparison(property);
     if (result.success) {

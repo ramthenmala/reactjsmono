@@ -111,6 +111,6 @@ export const useSearchFilterStore = create<SearchFilterState>()(
         filters: state.filters,
         areaValue: state.areaValue,
       }),
-    }
-  )
+    },
+  ),
 );

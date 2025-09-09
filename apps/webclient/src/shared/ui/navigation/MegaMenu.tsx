@@ -56,7 +56,7 @@ export const MegaMenu = forwardRef<HTMLDivElement, MegaMenuProps>(
         </div>
       </div>
     );
-  }
+  },
 );
 
 MegaMenu.displayName = 'MegaMenu';

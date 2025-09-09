@@ -54,7 +54,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
       const searchUrl = createRouteUrl(
         '/explore/listing',
         currentLocale,
-        filters
+        filters,
       );
 
       // Simulate loading delay
@@ -84,7 +84,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
         maxArea: Math.round(sortedValues[1]),
       });
     },
-    [updateFilters]
+    [updateFilters],
   );
 
   const isLoading = dataLoading || isSearching;

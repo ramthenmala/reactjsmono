@@ -4,7 +4,7 @@
 
 export function formatNumber(
   value: number,
-  options?: Intl.NumberFormatOptions
+  options?: Intl.NumberFormatOptions,
 ): string {
   return value.toLocaleString(undefined, options);
 }

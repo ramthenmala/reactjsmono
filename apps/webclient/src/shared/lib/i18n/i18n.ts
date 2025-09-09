@@ -82,7 +82,7 @@ i18n
     missingKeyHandler: (lngs, ns, key) => {
       if (process.env.NODE_ENV === 'development') {
         console.warn(
-          `Missing translation key: ${key} for languages: ${lngs.join(', ')}`
+          `Missing translation key: ${key} for languages: ${lngs.join(', ')}`,
         );
       }
     },

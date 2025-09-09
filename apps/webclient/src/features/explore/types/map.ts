@@ -134,7 +134,7 @@ export function toCityData(data: IMapData): TCityData {
     const points: IPlotPoint[] = (c.industrialCities ?? [])
       .filter(
         ic =>
-          typeof ic.latitude === 'number' && typeof ic.longitude === 'number'
+          typeof ic.latitude === 'number' && typeof ic.longitude === 'number',
       )
       .map(ic => ({
         id: ic.id,

@@ -9,7 +9,7 @@ export function MapLegend() {
           <div className={mapStyles.legend.item.wrapper}>
             <div
               className={mapStyles.legend.item.dot(
-                mapStyles.legend.item.colors.industrial
+                mapStyles.legend.item.colors.industrial,
               )}
             ></div>
             <span>Industrial Cities</span>
@@ -19,7 +19,7 @@ export function MapLegend() {
           <div className={mapStyles.legend.item.wrapper}>
             <div
               className={mapStyles.legend.item.dot(
-                mapStyles.legend.item.colors.competitors
+                mapStyles.legend.item.colors.competitors,
               )}
             ></div>
             <span>Competitors</span>
@@ -29,7 +29,7 @@ export function MapLegend() {
           <div className={mapStyles.legend.item.wrapper}>
             <div
               className={mapStyles.legend.item.dot(
-                mapStyles.legend.item.colors.suppliers
+                mapStyles.legend.item.colors.suppliers,
               )}
             ></div>
             <span>Suppliers</span>
@@ -39,7 +39,7 @@ export function MapLegend() {
           <div className={mapStyles.legend.item.wrapper}>
             <div
               className={mapStyles.legend.item.dot(
-                mapStyles.legend.item.colors.consumers
+                mapStyles.legend.item.colors.consumers,
               )}
             ></div>
             <span>Consumers</span>

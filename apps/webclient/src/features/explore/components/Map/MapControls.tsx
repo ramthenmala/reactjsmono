@@ -65,7 +65,7 @@ export function MapControls({
                 setShowLayerMenu(false);
               }}
               className={mapStyles.controls.layerDropdown.button(
-                activeMapStyle === 'streets'
+                activeMapStyle === 'streets',
               )}
             >
               <svg
@@ -103,7 +103,7 @@ export function MapControls({
                 setShowLayerMenu(false);
               }}
               className={mapStyles.controls.layerDropdown.button(
-                activeMapStyle === 'satellite'
+                activeMapStyle === 'satellite',
               )}
             >
               <svg

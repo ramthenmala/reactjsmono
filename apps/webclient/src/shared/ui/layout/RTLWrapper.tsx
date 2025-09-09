@@ -27,7 +27,7 @@ export const RTLWrapper: React.FC<RTLWrapperProps> = ({
           rtl: isRTL,
           ltr: !isRTL,
         },
-        className
+        className,
       )}
       dir={direction}
     >

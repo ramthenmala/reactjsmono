@@ -16,7 +16,7 @@ export function Header() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [navigationData, setNavigationData] = useState<NavigationData | null>(
-    null
+    null,
   );
   const menuRef = useRef<HTMLDivElement | null>(null);
 

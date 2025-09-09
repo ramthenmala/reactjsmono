@@ -81,7 +81,7 @@ const MetricRow = memo(
       </div>
       {showSeparator && <hr className={propertyCardStyles.separator} />}
     </div>
-  )
+  ),
 );
 MetricRow.displayName = 'MetricRow';
 
@@ -92,7 +92,7 @@ const DistanceCard = memo(
       {icon}
       <span className='whitespace-nowrap'>{distance}</span>
     </div>
-  )
+  ),
 );
 DistanceCard.displayName = 'DistanceCard';
 
@@ -108,34 +108,34 @@ export const PropertyCard = memo(
     // Memoize formatter function
     const formatNumber = useMemo(
       () => (num: number) => new Intl.NumberFormat('en-US').format(num),
-      []
+      [],
     );
 
     // Memoize computed values
     const formattedArea = useMemo(
       () => `${formatNumber(property.area)} km²`,
-      [property.area, formatNumber]
+      [property.area, formatNumber],
     );
 
     // API already provides values with units, so use them directly
     const formattedElectricity = useMemo(
       () => property.electricity || null,
-      [property.electricity]
+      [property.electricity],
     );
     const formattedGas = useMemo(() => property.gas || null, [property.gas]);
     const formattedWater = useMemo(
       () => property.water || null,
-      [property.water]
+      [property.water],
     );
 
     // Memoize event handlers
     const handleCompare = useCallback(
       () => onCompare?.(property),
-      [onCompare, property]
+      [onCompare, property],
     );
     const handleView = useCallback(
       () => onView?.(property),
-      [onView, property]
+      [onView, property],
     );
 
     return (
@@ -254,7 +254,7 @@ export const PropertyCard = memo(
         </div>
       </article>
     );
-  }
+  },
 );
 
 PropertyCard.displayName = 'PropertyCard';

@@ -15,7 +15,7 @@ import { useLanguage } from '../lib/i18n';
 export function getLocalizedField<T extends Record<string, any>>(
   data: T,
   fieldName: keyof T,
-  currentLanguage: string
+  currentLanguage: string,
 ): string {
   if (currentLanguage === 'ar') {
     const arabicField = `arabic${capitalize(fieldName as string)}` as keyof T;
@@ -46,7 +46,7 @@ export function useLocalizedFields<T extends Record<string, any>>(data: T) {
 export function localizeApiData<T extends Record<string, any>>(
   data: T,
   fields: (keyof T)[],
-  currentLanguage: string
+  currentLanguage: string,
 ): T {
   const localized = { ...data };
 
@@ -54,7 +54,7 @@ export function localizeApiData<T extends Record<string, any>>(
     localized[field] = getLocalizedField(
       data,
       field,
-      currentLanguage
+      currentLanguage,
     ) as T[keyof T];
   });
 
@@ -71,7 +71,7 @@ export function localizeApiData<T extends Record<string, any>>(
 export function localizeApiDataArray<T extends Record<string, any>>(
   dataArray: T[],
   fields: (keyof T)[],
-  currentLanguage: string
+  currentLanguage: string,
 ): T[] {
   return dataArray.map(data => localizeApiData(data, fields, currentLanguage));
 }
@@ -98,7 +98,7 @@ export interface LocalizableIndustrialCity {
 export function getLocalizedIndustrialCityField(
   city: LocalizableIndustrialCity,
   field: 'name' | 'description' | 'region',
-  currentLanguage: string
+  currentLanguage: string,
 ): string {
   return getLocalizedField(city, field, currentLanguage);
 }

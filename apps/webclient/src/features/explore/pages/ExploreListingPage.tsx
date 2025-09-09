@@ -20,7 +20,7 @@ export function ExploreListingPage() {
   const [properties, setProperties] = useState<IProperty[]>([]);
   const [allProperties, setAllProperties] = useState<IProperty[]>([]);
   const [searchFilters, setSearchFilters] = useState<SearchFilters | null>(
-    null
+    null,
   );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -51,7 +51,7 @@ export function ExploreListingPage() {
         setProperties(apiProperties);
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : 'Failed to fetch properties'
+          err instanceof Error ? err.message : 'Failed to fetch properties',
         );
         console.error('Error fetching properties:', err);
       } finally {

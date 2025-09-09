@@ -2,7 +2,7 @@ import { IndustrialCitiesService } from '../services/industrialCitiesService';
 import { IIndustrialCityModel } from '../types/industrialCity';
 
 export async function fetchIndustrialCityById(
-  slug: string
+  slug: string,
 ): Promise<IIndustrialCityModel | null> {
   try {
     const properties = await IndustrialCitiesService.getProperties();

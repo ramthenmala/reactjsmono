@@ -18,7 +18,7 @@ export const PropertyTable = memo(
       (property: IProperty) => {
         onCompare?.(property);
       },
-      [onCompare]
+      [onCompare],
     );
 
     return (
@@ -120,7 +120,7 @@ export const PropertyTable = memo(
               <div className='flex items-center gap-2'>
                 {Array.from(
                   { length: Math.min(totalPages, 10) },
-                  (_, i) => i + 1
+                  (_, i) => i + 1,
                 ).map(page => (
                   <button
                     key={page}
@@ -176,7 +176,7 @@ export const PropertyTable = memo(
         </div>
       </TableCard.Root>
     );
-  }
+  },
 );
 
 PropertyTable.displayName = 'PropertyTable';

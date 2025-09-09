@@ -39,7 +39,7 @@ export function useInvestorJourney(steps?: InvestorJourneyCard[]) {
           'Complete your investment with full support throughout the process',
       },
     ],
-    [t]
+    [t],
   );
 
   // Data cleanup (normalization)
@@ -51,7 +51,7 @@ export function useInvestorJourney(steps?: InvestorJourneyCard[]) {
     const sourceSteps = steps || defaultSteps;
     return sourceSteps.map((s: Record<string, unknown>) => ({
       icon: normalizeText(
-        s?.icon ?? s?.iconUrl ?? s?.icon_url ?? s?.image ?? s?.img
+        s?.icon ?? s?.iconUrl ?? s?.icon_url ?? s?.image ?? s?.img,
       ),
       title: normalizeText(s?.title ?? s?.name ?? s?.label),
       content: normalizeText(s?.content ?? s?.description ?? s?.desc),

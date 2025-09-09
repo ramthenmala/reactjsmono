@@ -8,7 +8,7 @@ import { FooterBottom } from './FooterBottom';
 
 export function Footer() {
   const [navigationData, setNavigationData] = useState<NavigationData | null>(
-    null
+    null,
   );
 
   // Fetch navigation data on component mount

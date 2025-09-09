@@ -24,7 +24,7 @@ export const useLocaleNavigate = () => {
 
   const navigateWithLocale = (
     path: string,
-    options?: { replace?: boolean }
+    options?: { replace?: boolean },
   ) => {
     const fullPath = path.startsWith('/') ? path : `/${path}`;
     const localeAwarePath = `/${currentLocale}${fullPath}`;

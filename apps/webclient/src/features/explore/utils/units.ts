@@ -29,7 +29,7 @@ export function unitLabel(unit: EUnit, t?: (k: string) => string) {
 export function formatMeasure(
   value: number | string | undefined | null,
   unit: EUnit,
-  opts?: { formatNumber?: (n: number) => string; t?: (k: string) => string }
+  opts?: { formatNumber?: (n: number) => string; t?: (k: string) => string },
 ) {
   if (value === undefined || value === null || value === '') return '';
   const n = typeof value === 'number' ? value : Number(value);

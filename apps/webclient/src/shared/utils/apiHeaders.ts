@@ -28,7 +28,7 @@ export function createApiHeaders(options: ApiRequestOptions = {}): HeadersInit {
  */
 export function createApiRequest(
   url: string,
-  options: RequestInit & ApiRequestOptions = {}
+  options: RequestInit & ApiRequestOptions = {},
 ): Promise<Response> {
   const { currentLanguage, additionalHeaders, ...fetchOptions } = options;
 
@@ -45,7 +45,7 @@ export function createApiRequest(
  * React hook to create API headers with current language from context
  */
 export function useApiHeaders(
-  additionalHeaders: Record<string, string> = {}
+  additionalHeaders: Record<string, string> = {},
 ): HeadersInit {
   const { currentLanguage } = useLanguage();
 
@@ -63,7 +63,7 @@ export function useApiRequest() {
 
   return (
     url: string,
-    options: RequestInit & Omit<ApiRequestOptions, 'currentLanguage'> = {}
+    options: RequestInit & Omit<ApiRequestOptions, 'currentLanguage'> = {},
   ) => {
     return createApiRequest(url, { ...options, currentLanguage });
   };

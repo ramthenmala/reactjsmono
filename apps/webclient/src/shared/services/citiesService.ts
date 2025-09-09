@@ -39,7 +39,7 @@ export class CitiesService {
       // Return cities for all regions (same list for now)
       // In real implementation, this would filter cities by region
       const cities = CITIES_BY_REGION.default.sort((a, b) =>
-        a.label.localeCompare(b.label)
+        a.label.localeCompare(b.label),
       );
 
       // Cache the result

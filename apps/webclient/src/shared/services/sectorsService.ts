@@ -17,7 +17,7 @@ export class SectorsService {
       const apiResponse: SectorsApiResponse = await response.json();
       // Sort sectors alphabetically by name
       const sortedSectors = apiResponse.data.sectors.sort((a, b) =>
-        a.name.localeCompare(b.name)
+        a.name.localeCompare(b.name),
       );
       this.cache = sortedSectors;
       return sortedSectors;

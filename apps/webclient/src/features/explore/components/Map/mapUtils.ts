@@ -57,7 +57,7 @@ export interface MapboxGeoJSONFeatureCollection {
 // Helper function to convert plot data back to IProperty format
 export const plotToProperty = (
   plot: PlotData,
-  properties: FeatureProperties
+  properties: FeatureProperties,
 ): IProperty => {
   return {
     id: properties.id || plot?.id || 'unknown',
@@ -84,7 +84,7 @@ export const plotToProperty = (
 
 // Convert IProperty to TCityData format
 export const convertPropertiesToTCityData = (
-  properties: IProperty[]
+  properties: IProperty[],
 ): TCityData => {
   const grouped: TCityData = {};
 
@@ -162,7 +162,7 @@ export const convertToCityClusters = (data: TCityData) => {
 // Convert to plot points for selected city
 export const convertToIPlotPoints = (
   data: TCityData,
-  selectedCity?: string
+  selectedCity?: string,
 ) => {
   if (!selectedCity || !data[selectedCity]) {
     return {

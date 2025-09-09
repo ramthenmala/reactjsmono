@@ -48,7 +48,7 @@ class SearchService {
 
   buildSearchUrl(
     filters: Record<string, string | number | string[]>,
-    locale: string
+    locale: string,
   ): string {
     const qs = new URLSearchParams();
 

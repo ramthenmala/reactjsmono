@@ -12,7 +12,7 @@ type FilterValue =
   | undefined;
 
 export function buildSearchParams(
-  filters: Record<string, FilterValue>
+  filters: Record<string, FilterValue>,
 ): URLSearchParams {
   const params = new URLSearchParams();
 
@@ -32,7 +32,7 @@ export function buildSearchParams(
 }
 
 export function parseSearchParams(
-  searchParams: URLSearchParams
+  searchParams: URLSearchParams,
 ): Record<string, FilterValue> {
   const params: Record<string, FilterValue> = {};
 
@@ -53,7 +53,7 @@ export function parseSearchParams(
 export function createRouteUrl(
   path: string,
   locale: string,
-  params?: Record<string, FilterValue>
+  params?: Record<string, FilterValue>,
 ): string {
   const searchParams = params ? buildSearchParams(params) : null;
   const query = searchParams?.toString();

@@ -67,7 +67,7 @@ interface PageProps {
 }
 
 async function fetchIndustrialCityById(
-  slug: string
+  slug: string,
 ): Promise<IIndustrialCityModel | null> {
   try {
     // Fetch all properties and find the matching one

@@ -51,7 +51,7 @@ export function LogisticsServicesSection({
                 <div className='w-2 h-2 rounded-full bg-purple-600 flex-shrink-0'></div>
                 <div className='text-sm font-medium'>{center}</div>
               </div>
-            )
+            ),
           )}
         </div>
       </div>

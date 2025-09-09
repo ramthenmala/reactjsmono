@@ -97,7 +97,7 @@ export function FeaturedIndustrialCities({
               <div
                 key={property.id}
                 style={featuredCitiesStyles.mobileSlider.slide(
-                  idx === activeIndex
+                  idx === activeIndex,
                 )}
               >
                 <PropertyCard property={property} />
@@ -112,7 +112,7 @@ export function FeaturedIndustrialCities({
             <button
               key={actualIdx}
               className={featuredCitiesStyles.dots.button(
-                activeIndex === actualIdx
+                activeIndex === actualIdx,
               )}
               onClick={() => setActiveIndex(actualIdx)}
               aria-label={`Go to card ${actualIdx + 1}`}

@@ -65,7 +65,7 @@ export function MobileMenu({ isOpen, items, onClose }: MobileMenuProps) {
                       setMobileActiveDropdown(prev =>
                         prev === item.dropdownId
                           ? null
-                          : item.dropdownId || null
+                          : item.dropdownId || null,
                       )
                     }
                   >
@@ -106,7 +106,7 @@ export function MobileMenu({ isOpen, items, onClose }: MobileMenuProps) {
                                 ))}
                             </div>
                           </div>
-                        )
+                        ),
                       )}
                     </div>
                   )}

@@ -60,7 +60,7 @@ interface UseSearchFiltersReturn {
 }
 
 export function useSearchFilters(
-  options: UseSearchFiltersOptions = {}
+  options: UseSearchFiltersOptions = {},
 ): UseSearchFiltersReturn {
   const { initialFilters = {}, onFiltersChange, areaRange } = options;
 
@@ -105,7 +105,7 @@ export function useSearchFilters(
         dispatch({ type: 'SET_FILTERS', payload: { location: '' } });
       }
     },
-    [state.filters, onFiltersChange]
+    [state.filters, onFiltersChange],
   );
 
   const updateAreaValue = useCallback((value: [number, number]) => {

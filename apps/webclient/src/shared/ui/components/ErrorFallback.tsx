@@ -51,7 +51,7 @@ export const ErrorFallback = memo(
         </Button>
       </div>
     );
-  }
+  },
 );
 
 ErrorFallback.displayName = 'ErrorFallback';

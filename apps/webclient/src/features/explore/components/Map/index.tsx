@@ -37,7 +37,7 @@ export function Map({
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
   const [popupProperty, setPopupProperty] = useState<IProperty | null>(null);
   const [popupContainer, setPopupContainer] = useState<HTMLDivElement | null>(
-    null
+    null,
   );
   const [activeMapStyle, setActiveMapStyle] = useState('streets');
 
@@ -59,7 +59,7 @@ export function Map({
       // Saudi Arabia bounds
       const saudiBounds = new mapboxgl.LngLatBounds(
         [34.5, 16.0], // Southwest coordinates (lng, lat)
-        [55.7, 32.2] // Northeast coordinates (lng, lat)
+        [55.7, 32.2], // Northeast coordinates (lng, lat)
       );
 
       map.current = new mapboxgl.Map({
@@ -116,7 +116,7 @@ export function Map({
               </svg>
             `)}`,
             };
-          }
+          },
         );
 
         // Add plot marker image - single design for all types
@@ -166,7 +166,7 @@ export function Map({
               };
               img.src = url;
             });
-          })
+          }),
         ).then(() => {
           // Add layers after images are loaded
           if (!map.current) return;
@@ -305,7 +305,7 @@ export function Map({
         const plotGeoJSON = convertToIPlotPoints(data, selectedCity);
 
         const source = map.current?.getSource(
-          'plot-points'
+          'plot-points',
         ) as mapboxgl.GeoJSONSource;
         if (source) {
           source.setData(plotGeoJSON as any);
@@ -331,7 +331,7 @@ export function Map({
 
         // Clear plot points
         const source = map.current?.getSource(
-          'plot-points'
+          'plot-points',
         ) as mapboxgl.GeoJSONSource;
         if (source) {
           source.setData({

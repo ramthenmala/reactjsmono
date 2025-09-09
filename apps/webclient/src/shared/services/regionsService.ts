@@ -24,7 +24,7 @@ export class RegionsService {
       const apiResponse: RegionsApiResponse = await response.json();
       // Sort regions alphabetically by name
       const sortedRegions = apiResponse.data.regions.sort((a, b) =>
-        a.name.localeCompare(b.name)
+        a.name.localeCompare(b.name),
       );
       this.cache = sortedRegions;
       return sortedRegions;

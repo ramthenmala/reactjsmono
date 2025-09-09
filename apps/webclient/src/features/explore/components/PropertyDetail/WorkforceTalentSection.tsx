@@ -29,7 +29,7 @@ export function WorkforceTalentSection({
             label={t('property_detail.skilled_labor_availability')}
             value={industrialCity.workforceTalent.availabilityOfSkilleLabor}
             percentage={extractPercentage(
-              industrialCity.workforceTalent.availabilityOfSkilleLabor
+              industrialCity.workforceTalent.availabilityOfSkilleLabor,
             )}
             variant='wide'
           />
@@ -39,7 +39,7 @@ export function WorkforceTalentSection({
             label={t('property_detail.non_skilled_labor_availability')}
             value={industrialCity.workforceTalent.availabilityOfNonSkilleLabor}
             percentage={extractPercentage(
-              industrialCity.workforceTalent.availabilityOfNonSkilleLabor
+              industrialCity.workforceTalent.availabilityOfNonSkilleLabor,
             )}
             variant='wide'
           />
