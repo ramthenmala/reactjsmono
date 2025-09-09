@@ -1,12 +1,6 @@
 import { useState } from 'react';
 import { ButtonGroup, ButtonGroupItem } from '@compass/shared-ui';
-
-interface MapControlsProps {
-  onZoomIn: () => void;
-  onZoomOut: () => void;
-  onStyleChange: (style: string) => void;
-  activeMapStyle: string;
-}
+import type { MapControlsProps } from '../../types/mapControls';
 
 export function MapControls({ onZoomIn, onZoomOut, onStyleChange, activeMapStyle }: MapControlsProps) {
   const [showLayerMenu, setShowLayerMenu] = useState(false);

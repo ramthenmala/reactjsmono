@@ -2,13 +2,8 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { ChevronDown } from "@untitledui/icons";
 import { useCurrentLocale, useLocaleNavigate } from '../../lib/router';
-import type { NavigationItem } from './NavigationMenu';
-
-interface MobileMenuProps {
-  isOpen: boolean;
-  items: NavigationItem[];
-  onClose: () => void;
-}
+import type { NavigationItem } from '../../types/navigationMenu';
+import type { MobileMenuProps } from '../../types/mobileMenu';
 
 export function MobileMenu({ isOpen, items, onClose }: MobileMenuProps) {
   const currentLocale = useCurrentLocale();

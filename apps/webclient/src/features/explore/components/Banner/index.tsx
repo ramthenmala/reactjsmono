@@ -2,8 +2,9 @@
 
 import { ExploreActions } from "@/features/explore/components/ExploreActions";
 import { ImageSection } from "@/shared/ui/components/ImageSection";
+import type { BannerProps } from "../../types/banner";
 
-export function Banner({ imageSrc }: { imageSrc?: string }) {
+export function Banner({ imageSrc }: BannerProps) {
   return (
     <ImageSection
       backgroundImage={imageSrc}

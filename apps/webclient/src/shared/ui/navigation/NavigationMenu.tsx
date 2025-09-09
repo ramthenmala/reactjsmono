@@ -1,19 +1,8 @@
 import { Link } from "react-router-dom";
 import { ChevronDown } from "@untitledui/icons";
+import type { NavigationItem, NavigationMenuProps } from '../../types/navigationMenu';
 
-export interface NavigationItem {
-  label: string;
-  href: string;
-  hasDropdown?: boolean;
-  dropdownId?: string;
-  submenu?: any;
-}
-
-interface NavigationMenuProps {
-  items: NavigationItem[];
-  activeDropdown: string | null;
-  onToggleDropdown: (dropdownId: string) => void;
-}
+export type { NavigationItem };
 
 export function NavigationMenu({ items, activeDropdown, onToggleDropdown }: NavigationMenuProps) {
   return (

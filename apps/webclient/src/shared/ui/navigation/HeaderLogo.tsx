@@ -1,6 +1,4 @@
-interface HeaderLogoProps {
-  className?: string;
-}
+import type { HeaderLogoProps } from '../../types/headerLogo';
 
 export function HeaderLogo({ className = "" }: HeaderLogoProps) {
   return (

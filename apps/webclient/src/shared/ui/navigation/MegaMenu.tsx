@@ -1,22 +1,6 @@
 import { forwardRef } from 'react';
 import { Link } from "react-router-dom";
-
-interface MegaMenuItem {
-  name: string;
-  href: string;
-  icon?: React.ComponentType<{ className?: string }>;
-}
-
-interface MegaMenuSection {
-  title: string;
-  columns: MegaMenuItem[][];
-}
-
-interface MegaMenuConfig {
-  title: string;
-  subtitle: string;
-  sections: MegaMenuSection[];
-}
+import type { MegaMenuItem, MegaMenuSection, MegaMenuConfig, MegaMenuProps } from '../../types/megaMenu';
 
 interface MegaMenuProps {
   submenu: MegaMenuConfig | null;

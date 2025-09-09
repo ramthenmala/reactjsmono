@@ -1,14 +1,5 @@
 import React from "react";
-
-interface ImageSectionProps {
-  backgroundImage?: string;
-  alt?: string;
-  className?: string;
-  imageClassName?: string;
-  children?: React.ReactNode;
-  hasOverlay?: boolean;
-  overlayClassName?: string;
-}
+import type { ImageSectionProps } from "../../types/imageSection";
 
 export function ImageSection({
   backgroundImage,

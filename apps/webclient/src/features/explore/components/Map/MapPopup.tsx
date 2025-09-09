@@ -1,13 +1,7 @@
 import { createPortal } from 'react-dom';
 import { IProperty } from '@/features/explore/types/explore';
 import { PropertyCard } from '@/features/explore/components/PropertyCard';
-
-interface MapPopupProps {
-  property: IProperty | null;
-  container: HTMLDivElement | null;
-  onClose: () => void;
-  onView?: (property: IProperty) => void;
-}
+import type { MapPopupProps } from '../../types/mapPopup';
 
 export function MapPopup({ property, container, onClose, onView }: MapPopupProps) {
   if (!property || !container) return null;

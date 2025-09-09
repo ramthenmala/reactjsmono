@@ -1,14 +1,5 @@
 import React from "react";
-
-type StatCardVariant = 'default' | 'regular' | 'large';
-
-interface StatCardProps {
-  label: React.ReactNode;
-  value: React.ReactNode;
-  className?: string;
-  variant?: StatCardVariant;
-  icon?: React.ReactNode;
-}
+import type { StatCardProps, StatCardVariant } from '../../types/statCard';
 
 export function StatCard({ label, value, className = "", variant = 'default', icon }: StatCardProps) {
   const variantClassName = (() => {

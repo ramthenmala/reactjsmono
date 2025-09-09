@@ -3,11 +3,7 @@ import { ChevronDown, FilterLines, List, Map01, Map02 } from "@untitledui/icons"
 import { useState } from "react";
 import { EViewMode } from "@/features/explore/types/map";
 import { useLocaleTranslation } from "@/shared/lib/i18n";
-
-interface ViewControlsProps {
-  viewMode: EViewMode;
-  onViewModeChange: (mode: EViewMode) => void;
-}
+import type { ViewControlsProps } from '../../types/viewControls';
 
 export function ViewControls({ viewMode, onViewModeChange }: ViewControlsProps) {
   const { t } = useLocaleTranslation();

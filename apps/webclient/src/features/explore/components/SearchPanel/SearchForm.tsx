@@ -3,24 +3,7 @@ import { Select, MultiSelect, Slider, Button } from "@compass/shared-ui";
 import { useListData } from 'react-stately';
 import { SearchFilters, SelectOption, AreaRange } from '@/shared/types';
 import { useIsicSearch } from '@/shared/hooks';
-
-interface SearchFormProps {
-  filters: SearchFilters;
-  areaValue: [number, number];
-  areaRange: AreaRange;
-  regions: SelectOption[];
-  sectors: SelectOption[];
-  isics: SelectOption[];
-  cities: SelectOption[];
-  onFiltersChange: (updates: Partial<SearchFilters>) => void;
-  onAreaValueChange: (value: [number, number]) => void;
-  onAreaChangeEnd: (value: number | number[]) => void;
-  isLoading: boolean;
-  t: (key: string) => string;
-  onSearch: () => void;
-  onClear: () => void;
-  isSearching?: boolean;
-}
+import type { SearchFormProps } from '../../types/searchForm';
 
 export function SearchForm({
   filters,

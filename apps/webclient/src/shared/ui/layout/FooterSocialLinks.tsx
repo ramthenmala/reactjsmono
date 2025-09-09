@@ -1,9 +1,5 @@
 import { useLocaleTranslation } from '../../lib/i18n';
-import type { NavigationData } from '../../types/navigation';
-
-interface FooterSocialLinksProps {
-  navigationData: NavigationData | null;
-}
+import type { FooterSocialLinksProps } from '../../types/footerSocialLinks';
 
 export function FooterSocialLinks({ navigationData }: FooterSocialLinksProps) {
   const { t } = useLocaleTranslation();

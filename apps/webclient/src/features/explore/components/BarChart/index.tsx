@@ -2,9 +2,10 @@
 
 import React from "react";
 import { Bar, CartesianGrid, BarChart as RechartsBarChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import type { BarChartProps, CustomTooltipProps, TooltipPayload, WrappedXAxisTickProps } from '../../types/barChart';
 
 // Custom wrapped axis tick component for text wrapping
-function WrappedXAxisTick({ x, y, payload }: { x: number; y: number; payload: { value: string | number } }) {
+function WrappedXAxisTick({ x, y, payload }: WrappedXAxisTickProps) {
     const text = String(payload.value ?? "");
     // Simple text wrapping - split on spaces and limit line length
     const words = text.split(' ');
@@ -31,13 +32,7 @@ function WrappedXAxisTick({ x, y, payload }: { x: number; y: number; payload: { 
 }
 
 // Custom tooltip component
-interface TooltipPayload {
-  value: number;
-  name: string;
-  color: string;
-}
-
-function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: TooltipPayload[]; label?: string }) {
+function CustomTooltip({ active, payload, label }: CustomTooltipProps) {
     if (active && payload && payload.length) {
         return (
             <div className="bg-white p-2 border border-gray-200 rounded shadow-lg">
@@ -51,7 +46,7 @@ function CustomTooltip({ active, payload, label }: { active?: boolean; payload?:
     return null;
 }
 
-export function BarChart({data}: {data: {label: string | number; quantity: number}[]}) {
+export function BarChart({data}: BarChartProps) {
     
     return (
         <div className="h-92 w-full">

@@ -2,12 +2,7 @@
 import { Button } from "@compass/shared-ui";
 import { Share01 } from "@untitledui/icons";
 import { useLocaleTranslation } from '@/shared/lib/i18n';
-
-interface ExploreActionsProps {
-  size?: "sm" | "md" | "lg";
-  variant?: "light" | "dark";
-  className?: string;
-}
+import type { ExploreActionsProps } from '../../types/exploreActions';
 
 export function ExploreActions({ size = "sm", variant = "light", className = "" }: ExploreActionsProps) {
   const { t } = useLocaleTranslation();

@@ -7,11 +7,7 @@ import { useSearchFiltersStore } from '@/shared/hooks/useSearchFiltersStore';
 import { SearchFilters } from '@/shared/types';
 import { createRouteUrl } from '@/shared/utils';
 import { SearchForm } from './SearchForm';
-
-interface SearchPanelProps {
-  onSearch?: (searchParams?: SearchFilters) => void;
-  initialFilters?: Partial<SearchFilters>;
-}
+import type { SearchPanelProps } from '../../types/searchPanel';
 
 export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
   const { t } = useLocaleTranslation();

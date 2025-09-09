@@ -1,7 +1,4 @@
-interface MapBackButtonProps {
-  selectedCity: string | null;
-  onBackToCities: () => void;
-}
+import type { MapBackButtonProps } from '../../types/mapBackButton';
 
 export function MapBackButton({ selectedCity, onBackToCities }: MapBackButtonProps) {
   if (!selectedCity) return null;

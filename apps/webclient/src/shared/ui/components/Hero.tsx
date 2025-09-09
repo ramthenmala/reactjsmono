@@ -1,20 +1,6 @@
-import React from "react";
 import { Breadcrumb } from "@compass/shared-ui";
 import { ImageSection } from "./ImageSection";
-
-export interface BreadcrumbItem {
-  label: string;
-  href?: string;
-  current?: boolean;
-}
-
-interface HeroProps {
-  backgroundImage?: string;
-  title?: string | React.ReactNode;
-  subtitle?: string | React.ReactNode;
-  className?: string;
-  breadcrumbItems?: BreadcrumbItem[];
-}
+import type { HeroProps } from "../../types/hero";
 
 export function Hero({
   backgroundImage,

@@ -1,11 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLocaleTranslation } from '../../lib/i18n';
 import { useCurrentLocale } from '../../lib/router';
-import type { NavigationData } from '../../types/navigation';
-
-interface FooterNavLinksProps {
-  navigationData: NavigationData | null;
-}
+import type { FooterNavLinksProps } from '../../types/footerNavLinks';
 
 export function FooterNavLinks({ navigationData }: FooterNavLinksProps) {
   const { t } = useLocaleTranslation();

@@ -1,9 +1,5 @@
 import { useLocaleTranslation } from '../../lib/i18n';
-import type { NavigationData } from '../../types/navigation';
-
-interface FooterBottomProps {
-  navigationData: NavigationData | null;
-}
+import type { FooterBottomProps } from '../../types/footerBottom';
 
 export function FooterBottom({ navigationData }: FooterBottomProps) {
   const { t } = useLocaleTranslation();
