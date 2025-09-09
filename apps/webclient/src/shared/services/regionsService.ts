@@ -4,13 +4,21 @@ export class RegionsService {
   private static readonly API_URL = import.meta.env.VITE_REGIONS_API_URL;
   private static cache: Region[] | null = null;
 
-  static async fetchRegions(): Promise<Region[]> {
-    if (this.cache) {
+  static async fetchRegions(currentLanguage = 'en'): Promise<Region[]> {
+    const cacheKey = `regions_${currentLanguage}`;
+    if (this.cache && this.cache.length > 0) {
       return this.cache;
     }
 
     try {
-      const response = await fetch(this.API_URL);
+      const response = await fetch(this.API_URL, {
+        headers: {
+          'accept': '*/*',
+          'x-user-agent': 'InvestorPortal', 
+          'x-signature': 'secret456',
+          'accept-language': currentLanguage,
+        },
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }

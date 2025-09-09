@@ -5,6 +5,7 @@ import {
 } from '../types/explore';
 import { getPropertyImageByIndex } from '../constants';
 import { localizeApiDataArray } from '@/shared/utils/i18nApi';
+import { createApiRequest } from '@/shared/utils/apiHeaders';
 
 const API_URL =
   import.meta.env.VITE_INDUSTRIAL_CITIES_API_URL ||
@@ -12,9 +13,9 @@ const API_URL =
 
 // Service to fetch industrial cities data
 export class IndustrialCitiesService {
-  static async fetchIndustrialCities(): Promise<IIndustrialCityAPI[]> {
+  static async fetchIndustrialCities(currentLanguage = 'en'): Promise<IIndustrialCityAPI[]> {
     try {
-      const response = await fetch(API_URL);
+      const response = await createApiRequest(API_URL, { currentLanguage });
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -62,7 +63,7 @@ export class IndustrialCitiesService {
 
   // Main method to get properties ready for the UI
   static async getProperties(currentLanguage = 'en'): Promise<IProperty[]> {
-    const cities = await this.fetchIndustrialCities();
+    const cities = await this.fetchIndustrialCities(currentLanguage);
     return this.transformToProperties(cities, currentLanguage);
   }
 }
