@@ -1,6 +1,6 @@
-import { StatCard } from './StatCard';
-import { BarChart } from './BarChart';
-import { useLocaleTranslation } from '../../../shared/lib/i18n';
+import { StatCard } from '../UI/StatCard';
+import { BarChart } from '../Charts/BarChart';
+import { useLocaleTranslation } from '../../../../shared/lib/i18n';
 
 interface DistrictMapSectionProps {
   industrialCity: any;

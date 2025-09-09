@@ -1,5 +1,5 @@
 import { WorkforceTalentSection } from './WorkforceTalentSection';
-import { useLocaleTranslation } from '../../../shared/lib/i18n';
+import { useLocaleTranslation } from '../../../../shared/lib/i18n';
 import { useState } from 'react';
 
 interface PrioritizationResultsSectionProps {

@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useRef } from 'react';
-import { PropertyCard } from '@/features/explore/components/PropertyCard';
+import { PropertyCard } from '@/features/explore/components/Property/PropertyCard';
 import { useCurrentLocale } from '@/shared/lib/router';
 import { TFeaturedProperty } from '@/features/explore/types/explore';
 import { featuredData } from '@/features/explore/data/exploreLandingData';

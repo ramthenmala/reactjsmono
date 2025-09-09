@@ -2,11 +2,11 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useLocaleTranslation } from '../../../shared/lib/i18n';
 import { Hero } from '../../../shared/ui/components/Hero';
-import { PropertyDetailsSection } from '../components/PropertyDetailsSection';
-import { PrioritizationResultsSection } from '../components/PrioritizationResultsSection';
-import { ExploreActions } from '../components/ExploreActions';
+import { PropertyDetailsSection } from '../components/PropertyDetail/PropertyDetailsSection';
+import { PrioritizationResultsSection } from '../components/PropertyDetail/PrioritizationResultsSection';
+import { ExploreActions } from '../components/Navigation/ExploreActions';
 import { IndustrialCitiesService } from '../services/industrialCitiesService';
-import { ApiDownNotice } from '../components/ApiDownNotice';
+import { ApiDownNotice } from '../components/UI/ApiDownNotice';
 
 export interface IIndustrialCityModel {
   id: string;

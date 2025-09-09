@@ -1,5 +1,5 @@
-import { StatCard } from './StatCard';
-import { useLocaleTranslation } from '../../../shared/lib/i18n';
+import { StatCard } from '../UI/StatCard';
+import { useLocaleTranslation } from '../../../../shared/lib/i18n';
 
 interface InfrastructureSectionProps {
   industrialCity: any;

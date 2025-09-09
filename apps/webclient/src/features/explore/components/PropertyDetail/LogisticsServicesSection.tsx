@@ -1,6 +1,6 @@
-import { StatCard } from './StatCard';
+import { StatCard } from '../UI/StatCard';
 import { Anchor, Plane, Train } from '@untitledui/icons';
-import { useLocaleTranslation } from '../../../shared/lib/i18n';
+import { useLocaleTranslation } from '../../../../shared/lib/i18n';
 
 interface LogisticsServicesSectionProps {
   industrialCity: any;

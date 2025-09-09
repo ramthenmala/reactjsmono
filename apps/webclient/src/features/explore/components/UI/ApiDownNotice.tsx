@@ -1,4 +1,4 @@
-import { Hero } from '../../../shared/ui/components/Hero';
+import { Hero } from '../../../../shared/ui/components/Hero';
 
 export function ApiDownNotice() {
   return (

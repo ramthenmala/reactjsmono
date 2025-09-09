@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { PropertyCard } from '@/features/explore/components/PropertyCard';
-import { PropertyTable } from '@/features/explore/components/PropertyTable';
+import { PropertyCard } from '@/features/explore/components/Property/PropertyCard';
+import { PropertyTable } from '@/features/explore/components/Property/PropertyTable';
 import { IPropertyGridProps } from '@/features/explore/types/searchFilters';
 import { EViewMode } from '@/features/explore/types/map';
 import { propertyGridStyles } from './styles';

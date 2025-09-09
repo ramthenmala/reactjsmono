@@ -1,6 +1,6 @@
 'use client';
 
-import { Banner } from './Banner';
+import { Banner } from '../Banner';
 
 interface PropertyHeaderProps {
   industrialCity: any;

@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
-import { useLocaleTranslation, useCurrentLocale } from '../../../../shared/lib';
+import { useLocaleTranslation } from '@/shared/lib/i18n';
+import { useCurrentLocale } from '@/shared/lib/router';
 import { InvestorJourneyCard } from '../../types/investorJourney';
 
 export function useInvestorJourney(steps?: InvestorJourneyCard[]) {
