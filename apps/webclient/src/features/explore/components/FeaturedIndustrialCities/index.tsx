@@ -3,6 +3,7 @@ import { PropertyCard } from "@/features/explore/components/PropertyCard";
 import { useCurrentLocale } from "@/shared/lib/router";
 import { TFeaturedProperty } from "@/features/explore/types/explore";
 import { featuredData } from "@/features/explore/data/exploreLandingData";
+import { featuredCitiesStyles } from "./styles";
 
 const SWIPE_THRESHOLD = 40;
 
@@ -57,69 +58,46 @@ export function FeaturedIndustrialCities({
 
   return (
     <section 
-      className="w-full flex flex-col justify-center items-center gap-[80px] relative px-4 py-12 md:px-20 md:py-40"
-      style={{ 
-        overflow: "visible",
-        maxWidth: '1440px',
-        margin: '0 auto',
-        background: 'radial-gradient(73.04% 54.31% at 50% 0%, rgba(237, 230, 255, 0.60) 0%, rgba(255, 255, 255, 0.00) 100%)',
-      }}
+      className={featuredCitiesStyles.section.base}
+      style={featuredCitiesStyles.section.style}
     >
       {/* Decorative background pattern */}
       <div
-        className="hidden md:block absolute"
-        style={{
-          left: "50%",
-          top: "-60px",
-          transform: "translateX(-50%)",
-          zIndex: 0,
-          width: "1400px",
-          height: "800px",
-          pointerEvents: "none",
-          userSelect: "none",
-        }}
+        className={featuredCitiesStyles.backgroundPattern.container}
+        style={featuredCitiesStyles.backgroundPattern.style}
         aria-hidden
       >
         <img
           src="/assets/images/backgrounds/background-pattern-decorative.png"
           alt=""
-          style={{ width: "100%", height: "100%", objectFit: "contain" }}
+          style={featuredCitiesStyles.backgroundPattern.image}
         />
       </div>
-      <div className="relative z-10 w-full flex flex-col items-center gap-[80px]">
-        <div className="text-center">
-          <h2 className="font-semibold text-[36px] leading-[42px] tracking-[-0.02em] md:text-[48px] md:leading-[60px] text-[#5547B5] mb-4">
+      <div className={featuredCitiesStyles.content.wrapper}>
+        <div className={featuredCitiesStyles.content.header.container}>
+          <h2 className={featuredCitiesStyles.content.header.title}>
             {title}
           </h2>
-          <p className="font-medium text-base leading-[22px] tracking-normal md:text-[23px] md:leading-[30px] text-gray-600">
+          <p className={featuredCitiesStyles.content.header.subtitle}>
             {subtitle}
           </p>
         </div>
         
         {/* Mobile Slider */}
         <div
-          className="md:hidden flex items-center justify-center overflow-hidden pb-4"
-          style={{ touchAction: "pan-x", width: "100%", maxWidth: "100%" }}
+          className={featuredCitiesStyles.mobileSlider.container}
+          style={featuredCitiesStyles.mobileSlider.containerStyle}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
         >
           <div
-            className={`flex transition-transform duration-300 ease-in-out ${isRTL ? "flex-row-reverse" : ""}`}
-            style={{
-              transform: `translateX(-${activeIndex * 100}%)`,
-              width: "100%",
-            }}
+            className={featuredCitiesStyles.mobileSlider.track(isRTL)}
+            style={featuredCitiesStyles.mobileSlider.trackStyle(activeIndex)}
           >
             {properties.map((property, idx) => (
               <div
                 key={property.id}
-                style={{
-                  minWidth: "100%",
-                  maxWidth: "100%",
-                  margin: 0,
-                  opacity: idx === activeIndex ? 1 : 0.7,
-                  transition: "opacity 0.3s",
-                }}
+                style={featuredCitiesStyles.mobileSlider.slide(idx === activeIndex)}
               >
                 <PropertyCard property={property} />
               </div>
@@ -128,22 +106,20 @@ export function FeaturedIndustrialCities({
         </div>
 
         {/* Dots for mobile */}
-        <div className="md:hidden flex justify-center mt-4 gap-2">
+        <div className={featuredCitiesStyles.dots.container}>
           {visibleOrder.map((actualIdx) => (
             <button
               key={actualIdx}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                activeIndex === actualIdx ? "bg-[#6C4EEA]" : "bg-[#E0D7FF]"
-              }`}
+              className={featuredCitiesStyles.dots.button(activeIndex === actualIdx)}
               onClick={() => setActiveIndex(actualIdx)}
               aria-label={`Go to card ${actualIdx + 1}`}
-              style={{ outline: "none", border: "none", padding: 0, cursor: "pointer" }}
+              style={featuredCitiesStyles.dots.buttonStyle}
             />
           ))}
         </div>
 
         {/* Desktop Grid - Responsive for medium and large screens */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 items-start">
+        <div className={featuredCitiesStyles.desktopGrid}>
           {properties.map((property) => (
             <PropertyCard key={property.id} property={property} />
           ))}

@@ -3,6 +3,7 @@ import { Copy01 } from "@untitledui/icons";
 import { ButtonUtility, Table, TableCard } from "@compass/shared-ui";
 import { IProperty } from '@/features/explore/types/explore';
 import type { IPropertyTableProps } from '../../types/propertyTable';
+import { propertyTableStyles } from './styles';
 
 export const PropertyTable = memo(({ 
   properties, 

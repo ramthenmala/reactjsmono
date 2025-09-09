@@ -3,6 +3,7 @@ import { PropertyCard } from "@/features/explore/components/PropertyCard";
 import { PropertyTable } from "@/features/explore/components/PropertyTable";
 import { IPropertyGridProps } from "@/features/explore/types/searchFilters";
 import { EViewMode } from "@/features/explore/types/map";
+import { propertyGridStyles } from './styles';
 
 const ITEMS_PER_PAGE_SPLIT = 4;
 const ITEMS_PER_PAGE_LIST = 10;
@@ -34,7 +35,7 @@ export function PropertyGrid({
   // Use table view for list mode
   if (viewMode === EViewMode.list) {
     return (
-      <div className="w-full">
+      <div className={propertyGridStyles.container.list}>
         <PropertyTable
           properties={currentProperties}
           onCompare={onCompare}
@@ -50,8 +51,8 @@ export function PropertyGrid({
   
   // Use card grid for split mode - also implement pagination
   return (
-    <div className="flex-1 lg:max-w-2xl">
-      <div className="grid gap-6 grid-cols-1 md:grid-cols-2">
+    <div className={propertyGridStyles.container.split}>
+      <div className={propertyGridStyles.cardGrid}>
         {currentProperties.map((property) => (
           <PropertyCard
             key={property.id}
@@ -64,20 +65,24 @@ export function PropertyGrid({
       
       {/* Pagination for cards */}
       {totalPages > 1 && (
-        <div className="mt-8 flex items-center justify-center">
-          <div className="flex items-center gap-1">
+        <div className={propertyGridStyles.pagination.wrapper}>
+          <div className={propertyGridStyles.pagination.container}>
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
-              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors"
+              className={`${propertyGridStyles.pagination.navButton.base} ${
+                currentPage === 1 
+                  ? propertyGridStyles.pagination.navButton.disabled
+                  : propertyGridStyles.pagination.navButton.enabled
+              }`}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={propertyGridStyles.pagination.icons.prev} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Previous
             </button>
             
-            <div className="flex items-center gap-1 mx-4">
+            <div className={propertyGridStyles.pagination.numbers.container}>
               {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
                 let pageNumber;
                 if (totalPages <= 5) {
@@ -94,10 +99,10 @@ export function PropertyGrid({
                 <button
                   key={page}
                   onClick={() => handlePageChange(page)}
-                  className={`w-8 h-8 text-sm font-medium transition-colors cursor-pointer ${
+                  className={`${propertyGridStyles.pagination.numbers.button.base} ${
                     currentPage === page
-                      ? 'text-blue-600 font-semibold'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? propertyGridStyles.pagination.numbers.button.active
+                      : propertyGridStyles.pagination.numbers.button.inactive
                   }`}
                 >
                   {page}
@@ -105,13 +110,13 @@ export function PropertyGrid({
               ))}
               {totalPages > 5 && currentPage < totalPages - 2 && (
                 <>
-                  <span className="text-gray-400 mx-1">...</span>
+                  <span className={propertyGridStyles.pagination.numbers.ellipsis}>...</span>
                   <button
                     onClick={() => handlePageChange(totalPages)}
-                    className={`w-8 h-8 text-sm font-medium transition-colors cursor-pointer ${
+                    className={`${propertyGridStyles.pagination.numbers.button.base} ${
                       currentPage === totalPages
-                        ? 'text-blue-600 font-semibold'
-                        : 'text-gray-600 hover:text-gray-900'
+                        ? propertyGridStyles.pagination.numbers.button.active
+                        : propertyGridStyles.pagination.numbers.button.inactive
                     }`}
                   >
                     {totalPages}
@@ -123,10 +128,14 @@ export function PropertyGrid({
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-colors"
+              className={`${propertyGridStyles.pagination.navButton.base} ${
+                currentPage === totalPages 
+                  ? propertyGridStyles.pagination.navButton.disabled
+                  : propertyGridStyles.pagination.navButton.enabled
+              }`}
             >
               Next
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className={propertyGridStyles.pagination.icons.next} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>

@@ -1,13 +1,7 @@
 import React from 'react';
-import { InvestorJourneyCard } from './types';
-
-interface MobileSliderProps {
-  cards: InvestorJourneyCard[];
-  activeIndex: number;
-  isRTL: boolean;
-  onTouchStart: (e: React.TouchEvent) => void;
-  onTouchEnd: (e: React.TouchEvent) => void;
-}
+import { InvestorJourneyCard } from '../../types/investorJourney';
+import type { MobileSliderProps } from '../../types/mobileSlider';
+import { investorJourneyStyles } from './styles';
 
 export function MobileSlider({
   cards,
@@ -18,46 +12,32 @@ export function MobileSlider({
 }: MobileSliderProps) {
   return (
     <div
-      className="md:hidden flex items-center justify-center overflow-hidden pb-4 pt-24"
-      style={{ touchAction: "pan-x", width: "100%", maxWidth: "100%" }}
+      className={investorJourneyStyles.mobileSlider.container}
+      style={investorJourneyStyles.mobileSlider.containerStyle}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
       <div
-        className="flex transition-transform duration-300 ease-in-out"
-        style={{
-          transform: isRTL
-            ? `translateX(${activeIndex * 100}%)` // RTL
-            : `translateX(-${activeIndex * 100}%)`, // LTR
-          width: "80%",
-        }}
+        className={investorJourneyStyles.mobileSlider.track}
+        style={investorJourneyStyles.mobileSlider.trackStyle(isRTL, activeIndex)}
       >
         {cards.map((step, idx) => (
           <div
             key={step.title}
-            className={`
-              flex flex-col items-center min-h-[290px] p-12 gap-5
-              rounded-[20px] border border-[#EBEDEF] bg-white
-              shadow-[0_12px_16px_-4px_rgba(16,24,40,0.04),0_4px_6px_-2px_rgba(16,24,40,0.02)]
-              backdrop-blur-[7.5px] transition-all duration-300
-              ${idx === activeIndex ? 'opacity-100 scale-100' : 'opacity-80 scale-95'}
-            `}
-            style={{
-              minWidth: "100%",
-              maxWidth: "100%",
-            }}
+            className={investorJourneyStyles.mobileSlider.slide(idx === activeIndex)}
+            style={investorJourneyStyles.mobileSlider.slideStyle}
           >
             {/* Icon Container */}
-            <div className="w-12 h-12 rounded-[10px] border border-[#5547B5] bg-white p-2 flex items-center justify-center">
-              <img src={step.icon} alt={step.title} className="w-6 h-6" />
+            <div className={investorJourneyStyles.cardContent.icon.container}>
+              <img src={step.icon} alt={step.title} className={investorJourneyStyles.cardContent.icon.image} />
             </div>
             
             {/* Content Container */}
-            <div className="flex flex-col items-center gap-2 text-center px-4">
-              <h3 className="text-lg font-semibold text-[#171B23] leading-7">
+            <div className={investorJourneyStyles.cardContent.text.wrapperMobile}>
+              <h3 className={investorJourneyStyles.cardContent.text.title}>
                 {step.title}
               </h3>
-              <p className="text-sm text-gray-500 leading-5">
+              <p className={investorJourneyStyles.cardContent.text.content}>
                 {step.content}
               </p>
             </div>

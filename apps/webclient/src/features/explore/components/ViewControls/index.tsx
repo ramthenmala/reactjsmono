@@ -4,15 +4,16 @@ import { useState } from "react";
 import { EViewMode } from "@/features/explore/types/map";
 import { useLocaleTranslation } from "@/shared/lib/i18n";
 import type { ViewControlsProps } from '../../types/viewControls';
+import { viewControlsStyles } from './styles';
 
 export function ViewControls({ viewMode, onViewModeChange }: ViewControlsProps) {
   const { t } = useLocaleTranslation();
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
 
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+    <div className={viewControlsStyles.container}>
       {/* Left side - Filters */}
-      <div className="flex flex-wrap items-center gap-2">
+      <div className={viewControlsStyles.filters.container}>
         <Button 
           color="secondary" 
           size="sm"
@@ -22,7 +23,7 @@ export function ViewControls({ viewMode, onViewModeChange }: ViewControlsProps) 
         </Button>
 
         {/* Sort Dropdown */}
-        <div className="relative">
+        <div className={viewControlsStyles.filters.dropdown.container}>
           <Button 
             color="tertiary" 
             size="sm"
@@ -33,15 +34,15 @@ export function ViewControls({ viewMode, onViewModeChange }: ViewControlsProps) 
           </Button>
           
           {isSortDropdownOpen && (
-            <div className="absolute top-full left-0 mt-2 w-32 rounded-lg bg-white shadow-lg ring-1 ring-black/5 z-50">
-              <div className="p-1">
-                <button className="w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 rounded">
+            <div className={viewControlsStyles.filters.dropdown.menu}>
+              <div className={viewControlsStyles.filters.dropdown.padding}>
+                <button className={viewControlsStyles.filters.dropdown.item}>
                   {t('explore.sort.distance') || 'Distance'}
                 </button>
-                <button className="w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 rounded">
+                <button className={viewControlsStyles.filters.dropdown.item}>
                   {t('explore.sort.land_area') || 'Land Area'}
                 </button>
-                <button className="w-full px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 rounded">
+                <button className={viewControlsStyles.filters.dropdown.item}>
                   {t('explore.sort.electricity') || 'Electricity'}
                 </button>
               </div>
@@ -51,38 +52,38 @@ export function ViewControls({ viewMode, onViewModeChange }: ViewControlsProps) 
       </div>
 
       {/* Right side - View Controls */}
-      <div className="flex rounded-lg border border-gray-300 overflow-hidden">
+      <div className={viewControlsStyles.viewButtons.container}>
         <button
           onClick={() => onViewModeChange(EViewMode.list)}
-          className={`flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
+          className={`${viewControlsStyles.viewButtons.button.base} ${
             viewMode === EViewMode.list
-              ? "bg-purple-600 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50"
+              ? viewControlsStyles.viewButtons.button.active
+              : viewControlsStyles.viewButtons.button.inactive
           }`}
         >
-          <List className="size-4" />
+          <List className={viewControlsStyles.viewButtons.icon} />
           {t('explore.view.list') || 'List'}
         </button>
         <button
           onClick={() => onViewModeChange(EViewMode.split)}
-          className={`flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors border-l border-gray-300 cursor-pointer ${
+          className={`${viewControlsStyles.viewButtons.button.base} ${viewControlsStyles.viewButtons.button.withBorder} ${
             viewMode === EViewMode.split
-              ? "bg-purple-600 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50"
+              ? viewControlsStyles.viewButtons.button.active
+              : viewControlsStyles.viewButtons.button.inactive
           }`}
         >
-          <Map02 className="size-4" />
+          <Map02 className={viewControlsStyles.viewButtons.icon} />
           {t('explore.view.split') || 'Split'}
         </button>
         <button
           onClick={() => onViewModeChange(EViewMode.map)}
-          className={`flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors border-l border-gray-300 cursor-pointer ${
+          className={`${viewControlsStyles.viewButtons.button.base} ${viewControlsStyles.viewButtons.button.withBorder} ${
             viewMode === EViewMode.map
-              ? "bg-purple-600 text-white"
-              : "bg-white text-gray-700 hover:bg-gray-50"
+              ? viewControlsStyles.viewButtons.button.active
+              : viewControlsStyles.viewButtons.button.inactive
           }`}
         >
-          <Map01 className="size-4" />
+          <Map01 className={viewControlsStyles.viewButtons.icon} />
           {t('explore.view.map') || 'Map'}
         </button>
       </div>

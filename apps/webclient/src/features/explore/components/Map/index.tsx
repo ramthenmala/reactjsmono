@@ -16,6 +16,7 @@ import {
   plotToProperty,
   PointGeometry
 } from './mapUtils';
+import { mapStyles } from './styles';
 
 // Lazy load Mapbox CSS only when this component is used
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -424,19 +425,19 @@ export function Map({
   // Conditional rendering after all hooks
   if (!hasToken) {
     return (
-      <div className={`${className} bg-gray-100 flex items-center justify-center rounded-xl`}>
-        <div className="text-center p-6">
-          <p className="text-red-600 mb-2">Mapbox configuration required</p>
-          <p className="text-sm text-gray-500">Please set VITE_MAPBOX_ACCESS_TOKEN in .env file</p>
-          <p className="text-xs text-gray-400 mt-2">Token: {mapboxgl.accessToken ? "Present" : "Missing"}</p>
+      <div className={mapStyles.container.errorContainer(className)}>
+        <div className={mapStyles.container.errorContent}>
+          <p className={mapStyles.container.errorMessage}>Mapbox configuration required</p>
+          <p className={mapStyles.container.errorDescription}>Please set VITE_MAPBOX_ACCESS_TOKEN in .env file</p>
+          <p className={mapStyles.container.errorToken}>Token: {mapboxgl.accessToken ? "Present" : "Missing"}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`relative w-full ${className || 'h-96'}`}>
-      <div ref={mapContainer} className="w-full h-full rounded-xl" />
+    <div className={mapStyles.container.wrapper(className)}>
+      <div ref={mapContainer} className={mapStyles.container.mapbox} />
 
       {/* Map Controls Component */}
       <MapControls

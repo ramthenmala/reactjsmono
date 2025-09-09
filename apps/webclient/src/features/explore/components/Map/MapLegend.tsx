@@ -1,30 +1,31 @@
 import { ButtonGroup, ButtonGroupItem } from '@compass/shared-ui';
+import { mapStyles } from './styles';
 
 export function MapLegend() {
   return (
-    <div className="absolute bottom-4 right-4 z-10">
-      <ButtonGroup size="sm" className="bg-white/95 backdrop-blur-sm">
+    <div className={mapStyles.legend.container}>
+      <ButtonGroup size="sm" className={mapStyles.legend.group}>
         <ButtonGroupItem id="industrial" isSelected={true}>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-purple-600"></div>
+          <div className={mapStyles.legend.item.wrapper}>
+            <div className={mapStyles.legend.item.dot(mapStyles.legend.item.colors.industrial)}></div>
             <span>Industrial Cities</span>
           </div>
         </ButtonGroupItem>
         <ButtonGroupItem id="competitors">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-orange-500"></div>
+          <div className={mapStyles.legend.item.wrapper}>
+            <div className={mapStyles.legend.item.dot(mapStyles.legend.item.colors.competitors)}></div>
             <span>Competitors</span>
           </div>
         </ButtonGroupItem>
         <ButtonGroupItem id="suppliers">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+          <div className={mapStyles.legend.item.wrapper}>
+            <div className={mapStyles.legend.item.dot(mapStyles.legend.item.colors.suppliers)}></div>
             <span>Suppliers</span>
           </div>
         </ButtonGroupItem>
         <ButtonGroupItem id="consumers">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-teal-500"></div>
+          <div className={mapStyles.legend.item.wrapper}>
+            <div className={mapStyles.legend.item.dot(mapStyles.legend.item.colors.consumers)}></div>
             <span>Consumers</span>
           </div>
         </ButtonGroupItem>

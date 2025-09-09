@@ -2,13 +2,14 @@ import { createPortal } from 'react-dom';
 import { IProperty } from '@/features/explore/types/explore';
 import { PropertyCard } from '@/features/explore/components/PropertyCard';
 import type { MapPopupProps } from '../../types/mapPopup';
+import { mapStyles } from './styles';
 
 export function MapPopup({ property, container, onClose, onView }: MapPopupProps) {
   if (!property || !container) return null;
 
   return createPortal(
-    <div className="relative w-full">
-      <div className="w-full min-w-[380px]">
+    <div className={mapStyles.popup.container}>
+      <div className={mapStyles.popup.content}>
         <PropertyCard
           property={property}
           hideDistance={true}
@@ -23,7 +24,7 @@ export function MapPopup({ property, container, onClose, onView }: MapPopupProps
       </div>
       <button
         onClick={onClose}
-        className="absolute top-3 right-3 z-50 w-8 h-8 bg-black/60 text-white rounded-full flex items-center justify-center text-lg font-bold hover:bg-black/80 transition-all cursor-pointer shadow-md"
+        className={mapStyles.popup.closeButton}
       >
         ×
       </button>
