@@ -1,123 +1,75 @@
-import { memo, Suspense } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useLocaleTranslation } from '../../../shared/lib/i18n';
 import { Hero } from '../../../shared/ui/components/Hero';
 import { SearchPanel } from '../components/Search/SearchPanel';
 import { FeaturedIndustrialCities } from '../components/FeaturedIndustrialCities';
 import { InvestorJourney } from '../components/Navigation/InvestorJourney';
-import { LoadingIndicator } from '@compass/shared-ui';
-import { ErrorFallback } from '../../../shared/ui/components/ErrorFallback';
-import { ErrorBoundary } from '../../../shared/ui/components/ErrorBoundary';
 import { EXPLORE_PAGE_CONFIGS } from '../constants';
-
-// Error fallback component for sections
-const SectionErrorFallback = memo(
-  ({
-    error,
-    resetErrorBoundary,
-  }: {
-    error: Error;
-    resetErrorBoundary: () => void;
-  }) => (
-    <section className='py-8 px-4'>
-      <ErrorFallback
-        error={error}
-        resetErrorBoundary={resetErrorBoundary}
-        message='This section failed to load'
-      />
-    </section>
-  ),
-);
-SectionErrorFallback.displayName = 'SectionErrorFallback';
-
-// Loading component for sections
-const SectionLoading = memo(() => (
-  <section className='py-8 px-4 flex justify-center'>
-    <LoadingIndicator size='md' />
-  </section>
-));
-SectionLoading.displayName = 'SectionLoading';
-
-// Hero Section Component
-const HeroSection = memo(() => {
-  const { t } = useLocaleTranslation();
-
-  return (
-    <Hero
-      backgroundImage={EXPLORE_PAGE_CONFIGS.landing.hero.backgroundImage}
-      title={t('hero.explore.title') || 'Explore Industrial Opportunities'}
-      subtitle={
-        t('hero.explore.subtitle') ||
-        "Discover investment opportunities across Saudi Arabia's industrial landscape"
-      }
-      breadcrumbItems={[
-        {
-          label: t('navigation.explore') || 'Explore',
-          href: EXPLORE_PAGE_CONFIGS.landing.hero.breadcrumbBase,
-          current: true,
-        },
-      ]}
-    />
-  );
-});
-HeroSection.displayName = 'HeroSection';
-
-// Search Section Component
-const SearchSection = memo(() => (
-  <ErrorBoundary FallbackComponent={SectionErrorFallback}>
-    <Suspense fallback={<SectionLoading />}>
-      <SearchPanel />
-    </Suspense>
-  </ErrorBoundary>
-));
-SearchSection.displayName = 'SearchSection';
-
-// Featured Cities Section Component
-const FeaturedCitiesSection = memo(() => {
-  const { t } = useLocaleTranslation();
-
-  return (
-    <ErrorBoundary FallbackComponent={SectionErrorFallback}>
-      <Suspense fallback={<SectionLoading />}>
-        <FeaturedIndustrialCities
-          title={t('explore.featured.title') || 'Featured Industrial Cities'}
-          subtitle={
-            t('explore.featured.subtitle') ||
-            'Site Selection Roadmap to Navigate, Compare, Invest - Seamlessly.'
-          }
-        />
-      </Suspense>
-    </ErrorBoundary>
-  );
-});
-FeaturedCitiesSection.displayName = 'FeaturedCitiesSection';
-
-// Investor Journey Section Component
-const InvestorJourneySection = memo(() => (
-  <ErrorBoundary FallbackComponent={SectionErrorFallback}>
-    <Suspense fallback={<SectionLoading />}>
-      <InvestorJourney />
-    </Suspense>
-  </ErrorBoundary>
-));
-InvestorJourneySection.displayName = 'InvestorJourneySection';
+import { useCurrentLocale } from '@/shared';
+import { exploreService } from '@/features/explore/services/exploreService';
+import { IExploreDetails } from '../types';
 
 // Main page component
 export const ExploreLandingPage = memo(() => {
+  const currentLocale = useCurrentLocale();
+  const [exploreDetails, setExploreDetails] = useState<IExploreDetails | null>(null);
+  const { t } = useLocaleTranslation();
+
+  useEffect(() => {
+    const loadNavigationData = async () => {
+      try {
+        const data = await exploreService.getExploreData(currentLocale);
+        setExploreDetails(data);
+      } catch (error) {
+        console.error('Failed to load navigation data:', error);
+      }
+    };
+
+    loadNavigationData();
+  }, [currentLocale]);
+
   return (
     <div
+      data-qa-id="explore-landing-page"
       className={`${EXPLORE_PAGE_CONFIGS.landing.layout.className} ${EXPLORE_PAGE_CONFIGS.landing.layout.background}`}
     >
       {/* Hero Section - Critical, no lazy loading */}
-      <HeroSection />
+      <div data-qa-id="explore-landing-hero-section">
+        <Hero
+          backgroundImage={exploreDetails?.bannerImage || ''}
+          title={exploreDetails?.bannerTitle || ''}
+          subtitle={exploreDetails?.bannerContent || ''}
+          breadcrumbItems={[
+            {
+              label: t('navigation.explore'),
+              href: EXPLORE_PAGE_CONFIGS.landing.hero.breadcrumbBase,
+              current: true,
+            },
+          ]}
+        />
+      </div>
 
       {/* Search Section - Above the fold, high priority */}
-      <SearchSection />
+      <div data-qa-id="explore-landing-search-section">
+        <SearchPanel />
+      </div>
 
       {/* Featured Cities Section - Below the fold, can be lazy loaded */}
-      <FeaturedCitiesSection />
+      <div data-qa-id="explore-landing-featured-cities-section">
+        <FeaturedIndustrialCities
+          title={exploreDetails?.featuredIndustrialCitiesTitle || ''}
+          subtitle={exploreDetails?.featuredIndustrialCitiesContent || ''}
+        />
+      </div>
 
       {/* Investor Journey Section - Bottom section, lowest priority */}
-      <InvestorJourneySection />
+      <div data-qa-id="explore-landing-investor-journey-section">
+        <InvestorJourney
+          title={exploreDetails?.compassInvestorJourney?.title || ''}
+          content={exploreDetails?.compassInvestorJourney?.content || ''}
+          cards={exploreDetails?.compassInvestorJourney?.cards || []}
+        />
+      </div>
     </div>
   );
 });
