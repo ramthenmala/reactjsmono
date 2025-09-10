@@ -6,15 +6,17 @@ import { PropertyDetailsSection } from '../components/PropertyDetail/PropertyDet
 import { PrioritizationResultsSection } from '../components/PropertyDetail/PrioritizationResultsSection';
 import { ExploreActions } from '../components/Navigation/ExploreActions';
 import { ApiDownNotice } from '../components/UI/ApiDownNotice';
-import { IIndustrialCityModel } from '../types/industrialCity';
-import { fetchIndustrialCityById } from '../utils/industrialCityService';
+import { useCurrentLocale } from '@/shared';
+import { industrialCityService } from '../services/industrialCityService';
+import { IIndustrialCity } from '../types/industrialCity';
 
 export function PropertyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useLocaleTranslation();
   const [industrialCity, setIndustrialCity] =
-    useState<IIndustrialCityModel | null>(null);
+    useState<IIndustrialCity | null>(null);
   const [loading, setLoading] = useState(true);
+  const currentLocale = useCurrentLocale();
 
   useEffect(() => {
     const loadData = async () => {
@@ -24,7 +26,7 @@ export function PropertyDetailPage() {
       }
 
       try {
-        const data = await fetchIndustrialCityById(slug);
+        const data = await industrialCityService.getIndustrialCity(currentLocale, slug);
         setIndustrialCity(data);
       } catch (error) {
         console.error('Error loading property:', error);
@@ -34,43 +36,49 @@ export function PropertyDetailPage() {
     };
 
     loadData();
-  }, [slug]);
+  }, [slug, currentLocale]);
 
   if (loading) {
     return (
-      <main className='flex min-h-dvh items-center justify-center'>
+      <main data-qa-id="property-detail-loading-state" className='flex min-h-dvh items-center justify-center'>
         <div className='text-center'>
-          <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4'></div>
-          <p className='text-gray-600'>Loading property details...</p>
+          <div data-qa-id="property-detail-loading-spinner" className='animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4'></div>
+          <p data-qa-id="property-detail-loading-text" className='text-gray-600'>Loading property details...</p>
         </div>
       </main>
     );
   }
 
   if (!industrialCity) {
-    return <ApiDownNotice />;
+    return <div data-qa-id="property-detail-api-down-notice"><ApiDownNotice /></div>;
   }
 
   return (
-    <main className='flex min-h-dvh flex-col bg-[radial-gradient(50%_50%_at_100%_50%,rgba(85,71,181,0.2)_0%,rgba(216,200,255,0)_100%)]'>
+    <main data-qa-id="property-detail-page" className='flex min-h-dvh flex-col bg-[radial-gradient(50%_50%_at_100%_50%,rgba(85,71,181,0.2)_0%,rgba(216,200,255,0)_100%)]'>
       {/* Hero Section */}
-      <Hero
-        backgroundImage='/assets/images/backgrounds/ExploreBG.jpg'
-        breadcrumbItems={[
-          { label: t('navigation.explore') || 'Explore', href: '/explore' },
-          { label: industrialCity.district, href: `/explore/property/${slug}` },
-        ]}
-        className='pb-28 md:pb-40'
-      />
+      <div data-qa-id="property-detail-hero-section">
+        <Hero
+          backgroundImage='/assets/images/backgrounds/ExploreBG.jpg'
+          breadcrumbItems={[
+            { label: t('navigation.explore') || 'Explore', href: '/explore' },
+            { label: industrialCity.district , href: '/explore/listing' },
+          ]}
+          className='pb-28 md:pb-40'
+        />
+      </div>
 
-      <section className='md:hidden mx-auto -mt-20 mb-11'>
+      <section data-qa-id="property-detail-mobile-actions" className='md:hidden mx-auto -mt-20 mb-11'>
         <div className='end-4 top-4 z-10 flex items-center gap-3'>
           <ExploreActions size='sm' variant='light' />
         </div>
       </section>
 
-      <PropertyDetailsSection industrialCity={industrialCity} />
-      <PrioritizationResultsSection industrialCity={industrialCity} />
+      <div data-qa-id="property-detail-details-section">
+        <PropertyDetailsSection industrialCity={industrialCity} />
+      </div>
+      <div data-qa-id="property-detail-prioritization-section">
+        <PrioritizationResultsSection industrialCity={industrialCity} />
+      </div>
     </main>
   );
 }

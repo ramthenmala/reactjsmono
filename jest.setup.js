@@ -1,6 +1,18 @@
 import '@testing-library/jest-dom';
 
-// Configure testing-library to use data-qa-id instead of data-testid
+// Mock import.meta for Jest compatibility
+Object.defineProperty(globalThis, 'import', {
+  value: {
+    meta: {
+      env: {
+        VITE_BASE_API_URL: '',
+      },
+    },
+  },
+  writable: true,
+});
+
+// Configure testing-library to use data-qa-id instead of data-qa-id
 import { configure } from '@testing-library/react';
 
 configure({
@@ -45,7 +57,9 @@ beforeAll(() => {
     if (
       typeof args[0] === 'string' &&
       (args[0].includes('Warning: ReactDOM.render is deprecated') ||
-        args[0].includes('React Router Future Flag Warning'))
+        args[0].includes('React Router Future Flag Warning') ||
+        args[0].includes('An update to') ||
+        args[0].includes('act(...)'))
     ) {
       return;
     }
