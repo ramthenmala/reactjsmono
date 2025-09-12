@@ -10,16 +10,21 @@ interface PieChartProps {
   value: number;
   mobileSize?: number; // width/height on mobile
   desktopSize?: number; // width/height on md+
+  'data-qa-id'?: string;
 }
 
 export const PieChart = ({
   value,
   mobileSize = 60,
   desktopSize = 120,
+  'data-qa-id': dataQaId = 'pie-chart',
 }: PieChartProps) => {
-  const renderChart = (size: number) => (
+  const renderChart = (size: number, suffix: string) => (
     <ResponsiveContainer height={size} width={size}>
-      <RechartsPieChart margin={{ left: 0, right: 0, top: 0, bottom: 0 }}>
+      <RechartsPieChart 
+        margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
+        data-qa-id={`${dataQaId}-${suffix}`}
+      >
         <Pie
           isAnimationActive={false}
           startAngle={-270}
@@ -40,9 +45,13 @@ export const PieChart = ({
   );
 
   return (
-    <>
-      <div className='block md:hidden'>{renderChart(mobileSize)}</div>
-      <div className='hidden md:block'>{renderChart(desktopSize)}</div>
-    </>
+    <div data-qa-id={dataQaId}>
+      <div className='block md:hidden' data-qa-id={`${dataQaId}-mobile`}>
+        {renderChart(mobileSize, 'mobile-chart')}
+      </div>
+      <div className='hidden md:block' data-qa-id={`${dataQaId}-desktop`}>
+        {renderChart(desktopSize, 'desktop-chart')}
+      </div>
+    </div>
   );
 };

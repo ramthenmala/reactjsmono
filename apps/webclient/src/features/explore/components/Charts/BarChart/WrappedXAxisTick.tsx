@@ -24,16 +24,17 @@ export function WrappedXAxisTick({ x, y, payload }: WrappedXAxisTickProps) {
   const limited = lines.slice(0, 2);
 
   return (
-    <g transform={`translate(${x}, ${y}) rotate(-45)`}>
+    <g transform={`translate(${x}, ${y}) rotate(-45)`} data-qa-id="bar-chart-x-tick">
       <text
         x={0}
         y={0}
         textAnchor='end'
         fill='currentColor'
         className={barChartStyles.xAxisTick}
+        data-qa-id="bar-chart-x-tick-text"
       >
         {limited.map((line, idx) => (
-          <tspan key={idx} x={0} dy={idx === 0 ? 0 : 12}>
+          <tspan key={idx} x={0} dy={idx === 0 ? 0 : 12} data-qa-id={`bar-chart-x-tick-line-${idx}`}>
             {line}
           </tspan>
         ))}

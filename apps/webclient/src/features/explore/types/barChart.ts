@@ -9,6 +9,7 @@ export interface BarChartProps {
     label: string | number;
     quantity: number;
   }>;
+  'data-qa-id'?: string;
 }
 
 export interface CustomTooltipProps {
