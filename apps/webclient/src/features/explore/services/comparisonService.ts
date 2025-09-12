@@ -7,7 +7,11 @@ export class ComparisonService {
   private static getStoredProperties(): IProperty[] {
     try {
       const stored = localStorage.getItem(COMPARISON_KEY);
-      return stored ? JSON.parse(stored) : [];
+      if (!stored) return [];
+      
+      const parsed = JSON.parse(stored);
+      // Ensure parsed data is an array
+      return Array.isArray(parsed) ? parsed : [];
     } catch (error) {
       console.error('Error loading comparison properties:', error);
       return [];
