@@ -5,18 +5,18 @@ export function CTASection() {
   const { t } = useLocaleTranslation();
 
   return (
-    <section className='w-full bg-white'>
-      <div className='container py-16 mx-auto max-w-7xl px-4'>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 items-center'>
-          <div>
-            <h3 className='font-semibold text-[30px] leading-[38px] tracking-normal md:text-left text-center mb-6 text-[#171B23]'>
+    <section className='w-full bg-white' data-qa-id="cta-section">
+      <div className='container py-16 mx-auto max-w-7xl px-4' data-qa-id="cta-container">
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6 items-center' data-qa-id="cta-grid">
+          <div data-qa-id="cta-content">
+            <h3 className='font-semibold text-[30px] leading-[38px] tracking-normal md:text-left text-center mb-6 text-[#171B23]' data-qa-id="cta-title">
               {t('cta.title')}
             </h3>
-            <p className='text-justify text-[18px] leading-[24px] font-normal md:text-[16px] md:leading-[24px] md:font-medium tracking-normal text-[#3D424C] md:text-[#50555E]'>
+            <p className='text-justify text-[18px] leading-[24px] font-normal md:text-[16px] md:leading-[24px] md:font-medium tracking-normal text-[#3D424C] md:text-[#50555E]' data-qa-id="cta-description">
               {t('cta.description')}
             </p>
           </div>
-          <div className='flex justify-center md:justify-end'>
+          <div className='flex justify-center md:justify-end' data-qa-id="cta-button-container">
             <Button
               size='lg'
               color='primary'
@@ -29,6 +29,7 @@ export function CTASection() {
                         w-[170px] h-12 px-[18px] py-[12px] gap-[6px]
                         /* Desktop overrides */
                         md:w-[190px] md:h-14 md:px-5 md:py-[14px] md:gap-[10px]'
+              data-qa-id="cta-button"
             >
               {t('cta.button')}
             </Button>

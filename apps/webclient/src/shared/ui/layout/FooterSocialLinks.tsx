@@ -91,17 +91,18 @@ export function FooterSocialLinks({ socialLinks }: { socialLinks: ISocialLink[] 
   };
 
   return (
-    <div>
+    <div data-qa-id="footer-social-section">
       <h3
         className='font-semibold mb-4 text-sm leading-5'
         style={{
           color: '#D8C8FF',
           fontFamily: '"General Sans"',
         }}
+        data-qa-id="footer-social-title"
       >
         {t('footer.follow_us') || 'Follow Us'}
       </h3>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-6" data-qa-id="footer-social-links">
         {socialLinks.map((social, index) => {
           const icon = getSocialIcon(social.platform);
           const href = social.link || '#';
@@ -116,6 +117,7 @@ export function FooterSocialLinks({ socialLinks }: { socialLinks: ISocialLink[] 
               rel='noopener noreferrer'
               aria-label={social.label}
               className='text-gray-300 hover:text-white transition-colors'
+              data-qa-id={`footer-social-${social.platform.toLowerCase()}`}
             >
               {icon}
             </a>

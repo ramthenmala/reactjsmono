@@ -40,13 +40,19 @@ export class ErrorBoundary extends Component<
     if (this.state.hasError && this.state.error) {
       const { FallbackComponent } = this.props;
       return (
-        <FallbackComponent
-          error={this.state.error}
-          resetErrorBoundary={this.resetErrorBoundary}
-        />
+        <div data-qa-id="error-boundary-fallback">
+          <FallbackComponent
+            error={this.state.error}
+            resetErrorBoundary={this.resetErrorBoundary}
+          />
+        </div>
       );
     }
 
-    return this.props.children;
+    return (
+      <div data-qa-id="error-boundary-children">
+        {this.props.children}
+      </div>
+    );
   }
 }
