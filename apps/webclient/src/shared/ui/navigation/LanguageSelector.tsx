@@ -15,12 +15,14 @@ export function LanguageSelector({ onLanguageChange }: LanguageSelectorProps) {
   };
 
   return (
-    <div className='relative'>
+    <div className='relative' data-qa-id="language-selector">
       <button
+        data-qa-id="language-selector-toggle"
         onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
         className='flex cursor-pointer items-center gap-2 rounded-lg py-2 outline-none transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2'
       >
         <img
+          data-qa-id="language-flag-icon"
           src={
             currentLocale === 'ar'
               ? '/assets/images/flags/SA.svg'
@@ -30,21 +32,23 @@ export function LanguageSelector({ onLanguageChange }: LanguageSelectorProps) {
           width={20}
           height={20}
         />
-        <span className='text-md font-medium'>
+        <span className='text-md font-medium' data-qa-id="language-text">
           {currentLocale === 'ar' ? 'ع' : 'En'}
         </span>
-        <ChevronDown className='size-4 text-white/70' />
+        <ChevronDown className='size-4 text-white/70' data-qa-id="language-dropdown-chevron" />
       </button>
 
       {isLangDropdownOpen && (
-        <div className='absolute top-full right-0 mt-2 w-32 rounded-lg bg-white shadow-lg ring-1 ring-black/5'>
+        <div className='absolute top-full right-0 mt-2 w-32 rounded-lg bg-white shadow-lg ring-1 ring-black/5' data-qa-id="language-dropdown-menu">
           <button
+            data-qa-id="language-option-english"
             onClick={() => handleLanguageChange('en')}
             className='w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 rounded-t-lg'
           >
             English
           </button>
           <button
+            data-qa-id="language-option-arabic"
             onClick={() => handleLanguageChange('ar')}
             className='w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 rounded-b-lg'
           >

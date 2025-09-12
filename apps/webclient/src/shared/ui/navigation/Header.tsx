@@ -101,13 +101,14 @@ export function Header({menu}: IHeader) {
 
   return (
     <header
+      data-qa-id="header"
       className={`header text-white ${
         isScrolled ? 'fixed top-0 left-0 right-0 scrolled' : 'relative'
       }`}
     >
-      <div className='container flex items-end justify-between gap-4'>
+      <div className='container flex items-end justify-between gap-4' data-qa-id="header-container">
         {/* Left: Logo and Navigation */}
-        <div className='header-section flex gap-12'>
+        <div className='header-section flex gap-12' data-qa-id="header-left-section">
           <HeaderLogo />
           <NavigationMenu
             items={navigationItems}
@@ -118,19 +119,20 @@ export function Header({menu}: IHeader) {
 
         {/* Right: Language Selector and Mobile Menu Button */}
         {/* Desktop language selector */}
-        <div className='header-section gap-3 shadow-2xl hidden xl:flex'>
+        <div className='header-section gap-3 shadow-2xl hidden xl:flex' data-qa-id="header-desktop-actions">
           <LanguageSelector onLanguageChange={handleLanguageChange} />
         </div>
 
         {/* Mobile menu button */}
-        <div className='header-section gap-3 shadow-2xl xl:hidden flex'>
+        <div className='header-section gap-3 shadow-2xl xl:hidden flex' data-qa-id="header-mobile-actions">
           <button
             type='button'
+            data-qa-id="mobile-menu-toggle"
             className='flex cursor-pointer items-center gap-2 rounded-lg py-2 outline-none transition hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 relative z-50'
             aria-label='Open menu'
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <Menu01 className='size-6 pointer-events-none' />
+            <Menu01 className='size-6 pointer-events-none' data-qa-id="mobile-menu-icon" />
           </button>
         </div>
       </div>
