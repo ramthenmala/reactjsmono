@@ -1,6 +1,6 @@
 import React, { memo, useMemo, useCallback } from 'react';
-import { Button } from '@compass/shared-ui';
-import { useLocaleTranslation } from '@/shared/lib/i18n';
+import { Button, Icon } from '@compass/shared-ui';
+import { useLocaleTranslation } from '@/i18n';
 import {
   Zap,
   Drop,
@@ -11,37 +11,6 @@ import {
 } from '@untitledui/icons';
 import { IPropertyCardProps } from '@/features/explore/types/explore';
 import { propertyCardStyles } from './styles';
-
-// Fire icon component for better performance
-const FireIcon = memo(() => (
-  <div className={propertyCardStyles.icons.fire}>
-    <svg
-      width='20'
-      height='20'
-      viewBox='0 0 20 20'
-      fill='none'
-      className='text-[#5547B5]'
-    >
-      <path
-        d='M10 2L8.5 4.5L6 6L8.5 7.5L10 10L11.5 7.5L14 6L11.5 4.5L10 2Z'
-        fill='currentColor'
-      />
-      <path
-        d='M6 8L5 9.5L3.5 10.5L5 11.5L6 13L7 11.5L8.5 10.5L7 9.5L6 8Z'
-        fill='currentColor'
-      />
-      <path
-        d='M14 8L13 9.5L11.5 10.5L13 11.5L14 13L15 11.5L16.5 10.5L15 9.5L14 8Z'
-        fill='currentColor'
-      />
-      <path
-        d='M10 12L9 13.5L7.5 14.5L9 15.5L10 17L11 15.5L12.5 14.5L11 13.5L10 12Z'
-        fill='currentColor'
-      />
-    </svg>
-  </div>
-));
-FireIcon.displayName = 'FireIcon';
 
 // Featured badge component
 const FeaturedBadge = memo(({ text }: { text: string }) => (
@@ -143,7 +112,7 @@ export const PropertyCard = memo(
         {/* Property Image & overlays */}
         <div className={propertyCardStyles.imageContainer}>
           <img
-            src={property.image}
+            src={property.image || '/assets/images/properties/placeholder.png'}
             alt={property.title}
             className={propertyCardStyles.image}
             loading='lazy'
@@ -194,7 +163,7 @@ export const PropertyCard = memo(
 
               {formattedGas && (
                 <MetricRow
-                  icon={<FireIcon />}
+                  icon={<Icon name="fire" size={20} color="#5547B5" />}
                   label={t('property.gas') || 'Gas'}
                   value={formattedGas}
                 />

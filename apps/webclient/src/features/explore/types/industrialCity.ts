@@ -1,148 +1,254 @@
-export interface WorkforceTalent {
-  availabilityOfSkilleLabor?: string;
-  availabilityOfNonSkilleLabor?: string;
-  skilledLaborAvgSalary?: string;
-  nonSkilledLaborAvgSalary?: string;
-  image?: string;
+export interface IMapInfo {
+  title: string;
+  map: string | null;
 }
 
-export interface LandsAndFactories {
-  totalLand?: string;
-  availableLand?: string;
-  occupiedLand?: string;
-  developedLand?: string;
-  undevelopedLand?: string;
-  occupancyRate?: string;
-  logisticLandPercentage?: string;
-  projectsUnderConstruction?: string | null;
-  numberOfFactories?: string | number;
-  currentWorkforce?: string;
-  totalFactoriesAndFacilities?: string;
-  availableFactoriesAndFacilities?: string;
-  occupiedFactoriesAndFacilities?: string;
+export interface IYearInfo {
+  title: string;
+  value: number | null;
 }
 
-export interface Infrastructure {
-  electricityDailyCapacity?: string;
-  gasDailyCapacity?: string;
-  waterDailyCapacity?: string;
-  totalElectricityCapacity?: string;
-  totalWaterCapacity?: string | null;
-  totalGasCapacity?: string | null;
+export interface IDistrictInfo {
+  title: string;
+  value: string | null;
 }
 
-export interface LogisticsServices {
-  nearestPort?: string;
-  nearestAirport?: string;
-  railwayAccess?: string;
-  dryPort?: {
-    name: string;
-    distance: string;
+export interface ILandAndFactoriesInfo {
+  title: string;
+  totalLand: {
+    title: string;
+    value: number | null;
+    unit: string | null;
   };
-  airport?: {
-    name: string;
-    distance: string;
+  developedLand: {
+    title: string;
+    value: number | null;
+    unit: string | null;
   };
-  railwayStation?: {
-    name: string;
-    distance: string;
-  } | null;
-  neartestSeaport?: {
-    name: string;
-    distance: string;
-  } | null;
-  neartestRailway?: {
-    name: string;
-    distance: string;
-  } | null;
-  nearbyLogisticCenters?: string[];
+  undevelopedLand: {
+    title: string;
+    value: number | null;
+    unit: string | null;
+  };
+  occupancyRate: {
+    title: string;
+    value: string | null;
+    unit: string | null;
+  };
+  percentageOfLogisticLand: {
+    title: string;
+    value: number | null;
+    unit: string | null;
+  };
+  projectsUnderConstruction: {
+    title: string;
+    value: number | null;
+  };
+  noOfFactories: {
+    title: string;
+    value: number | null;
+  };
+  currentWorkforce: {
+    title: string;
+    value: number | null;
+  };
 }
 
-export interface IndustrialCity {
+export interface IInfrastructureInfo {
+  title: string;
+  electricity: {
+    title: string;
+    value: string | null;
+  };
+  gas: {
+    title: string;
+    value: string | null;
+  };
+  water: {
+    title: string;
+    value: string | null;
+  };
+}
+
+export interface ILogisticsServicesInfo {
+  title: string;
+  value: {
+    dryPort: string | null;
+    airport: {
+      name: string | null;
+      distance: string | null;
+      unit: string | null;
+    } | null;
+    railwayStation: {
+      name: string | null;
+      distance: number | null;
+      unit: string | null;
+    } | null;
+    neartestSeaport: {
+      name: string | null;
+      distance: number | null;
+      unit: string | null;
+    } | null;
+    neartestRailway: string | null;
+  };
+}
+
+export interface INearByLogisticCentersInfo {
+  title: string;
+  value: string[];
+}
+
+export interface IIndustriesInsideGraphInfo {
+  title: string;
+  value: {
+    label: string;
+    quantity: number;
+  }[];
+}
+
+export interface IWorkforceAndTalent {
+  title: string;
+  image: string | null;
+  avaialbilityOfSkilledLabor: {
+    title: string;
+    value: string | null;
+    unit: string | null;
+  };
+  avaialbilityOfNonSkilledLabor: {
+    title: string;
+    value: string | null;
+    unit: string | null;
+  };
+  skilledLaborAvgSalary: {
+    title: string;
+    value: number | null;
+    unit: string | null;
+  };
+  nonskilledLaborAvgSalary: {
+    title: string;
+    value: number | null;
+    unit: string | null;
+  };
+}
+
+export interface ISocialAndCommunity {
+  title: string;
+  residentialAreas: {
+    title: string;
+    value: string | null;
+  };
+  hospitalsAndMedicalCenters: {
+    title: string;
+    value: string | null;
+  };
+  publicTransportationAvailability: {
+    title: string;
+    value: string | null;
+  };
+  educationalInstitutions: {
+    title: string;
+    value: string | null;
+  };
+  noOfBanksAndCreditInstitutions: {
+    title: string;
+    value: number | null;
+  };
+  amenitiesForWorkforce: {
+    title: string;
+    value: string | null;
+  };
+  scenicLocationAndSurroundings: {
+    title: string;
+    value: string | null;
+  };
+}
+
+export interface IMarketAccessAndDemand {
+  title: string;
+  subTitle: string;
+  value: number | null;
+}
+
+export interface ILeagalAndRegulatory {
+  title: string;
+  subitile: string;
+  value: string | null;
+}
+
+export interface IEnvironmental {
+  title: string;
+  humidity: {
+    title: string;
+    value: number | null;
+    unit: string | null;
+  };
+  temperature: {
+    title: string;
+    value: number | null;
+    unit: string | null;
+  };
+  percipitation: {
+    title: string;
+    value: number | null;
+    unit: string | null;
+  };
+  polution: {
+    title: string;
+    value: number | null;
+    unit: string | null;
+  };
+}
+
+export interface IValueChainAndIndustryClusters {
+  title: string;
+  valueParks: {
+    title: string;
+    value: object[];
+  };
+  organicClusters: {
+    title: string;
+    value: object[];
+  };
+  knowHowAndInnovation: {
+    title: string;
+    value: number | null;
+  };
+}
+
+export interface IPrioritizationResultInfo {
+  title: string;
+  workforceAndTalent: IWorkforceAndTalent;
+  socialAndCommunity: ISocialAndCommunity;
+  marketAccessAndDemand: IMarketAccessAndDemand;
+  leagalAndRegulatory: ILeagalAndRegulatory;
+  environmental: IEnvironmental;
+  valueChainAndIndustryClusters: IValueChainAndIndustryClusters;
+}
+
+export interface IIndustrialCityData {
   id: string;
   name: string;
-  arabicName?: string;
-  slug?: string;
-  region?: string;
-  arabicRegion?: string;
-  description?: string;
-  arabicDescription?: string;
-  status?: 'active' | 'planned' | 'under-construction' | string;
-  logo?: string;
-  heroImage?: string;
-  banner?: string | null;
-  gallery?: string[];
-  coordinates?: {
-    lat: number;
-    lng: number;
-  };
-  area?: string | number;
-  establishedYear?: number;
-  estYear?: string | number;
-  district?: string;
-  targetIndustries?: string[];
-  workforceTalent?: WorkforceTalent;
-  landsAndFactories?: LandsAndFactories;
-  infrastructure?: Infrastructure;
-  logisticsServices?: LogisticsServices;
-  districtMap?: string;
-  districtMapAndDetails?: string | null;
-  features?: string[];
-  amenities?: string[];
-}
-
-export interface IIndustrialCityModel {
-  id: string;
-  slug?: string;
-  name: string;
-  title?: string;
-  description: string;
+  description: string | null;
   banner: string | null;
-  image?: string;
-  estYear: number;
-  district: string;
-  region?: string;
-  city?: string;
-  area?: number;
-  coordinates?: { lat: number; lng: number };
-  status?: string;
-  featured?: boolean;
-  electricity?: number;
-  water?: number;
-  gas?: number;
-  landsAndFactories?: {
-    totalLand?: string;
-    developedLand?: string;
-    undevelopedLand?: string;
-    occupancyRate?: string;
-    logisticLandPercentage?: string;
-    projectsUnderConstruction?: string | null;
-    numberOfFactories?: number;
-    currentWorkforce?: string;
-  };
-  infrastructure?: {
-    totalElectricityCapacity?: string;
-    totalWaterCapacity?: string | null;
-    totalGasCapacity?: string | null;
-  };
-  logisticsServices?: {
-    dryPort?: { name: string; distance: string };
-    airport?: { name: string; distance: string };
-    railwayStation?: { name: string; distance: string } | null;
-    neartestSeaport?: { name: string; distance: string } | null;
-    neartestRailway?: { name: string; distance: string } | null;
-    nearbyLogisticCenters?: string[];
-  };
-  districtMapAndDetails?: string | null;
-  industries?: { label: string | number; quantity: number }[];
-  workforceTalent?: {
-    availabilityOfSkilleLabor?: string;
-    availabilityOfNonSkilleLabor?: string;
-    skilledLaborAvgSalary?: string;
-    nonSkilledLaborAvgSalary?: string;
-  };
+  mapInfo: IMapInfo;
+  yearInfo: IYearInfo;
+  districtInfo: IDistrictInfo;
+  landAndFactoriesInfo: ILandAndFactoriesInfo;
+  infrastructureInfo: IInfrastructureInfo;
+  logisticsServicesInfo: ILogisticsServicesInfo;
+  nearByLogisticCentersInfo: INearByLogisticCentersInfo;
+  industriesInsideGraphInfo: IIndustriesInsideGraphInfo;
+  prioritizationResultInfo: IPrioritizationResultInfo;
 }
 
-export interface PropertyDetailComponentProps {
-  industrialCity: IndustrialCity;
+export interface IIndustrialCityResponse {
+  data: IIndustrialCityData;
+}
+
+// Props for DistrictMapSection component
+export interface IDistrictMapSectionProps {
+  mapInfo: IMapInfo;
+  yearInfo: IYearInfo;
+  districtInfo: IDistrictInfo;
+  industriesInsideGraphInfo: IIndustriesInsideGraphInfo;
 }

@@ -1,53 +1,53 @@
 // Common types used across the application
 
-export interface BaseProps {
+export interface IBaseProps {
   className?: string;
   children?: React.ReactNode;
 }
 
-export interface WithId {
+export interface IWithId {
   id: string;
 }
 
-export interface WithTitle {
+export interface IWithTitle {
   title: string;
 }
 
-export interface WithOptionalTitle {
+export interface IWithOptionalTitle {
   title?: string;
 }
 
-export interface WithDescription {
+export interface IWithDescription {
   description: string;
 }
 
-export interface WithOptionalDescription {
+export interface IWithOptionalDescription {
   description?: string;
 }
 
-export interface Translatable {
+export interface ITranslatable {
   titleKey: string;
   subtitleKey?: string;
   descriptionKey?: string;
 }
 
-export interface NavigationItem extends WithId {
+export interface INavigationItem extends IWithId {
   label: string;
   href: string;
   current?: boolean;
   icon?: React.ComponentType<{ className?: string }>;
   badge?: React.ReactNode;
-  items?: NavigationItem[];
+  items?: INavigationItem[];
 }
 
 // Generic API response types
-export interface ApiResponse<T = any> {
+export interface IApiResponse<T = any> {
   data: T;
   status: 'success' | 'error';
   message?: string;
 }
 
-export interface PaginatedResponse<T> extends ApiResponse<T[]> {
+export interface IPaginatedResponse<T> extends IApiResponse<T[]> {
   pagination: {
     page: number;
     limit: number;
@@ -57,7 +57,7 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
 }
 
 // Form types
-export interface FormField<T = any> {
+export interface IFormField<T = any> {
   name: string;
   label: string;
   type: 'text' | 'email' | 'password' | 'number' | 'select' | 'textarea';
@@ -68,7 +68,7 @@ export interface FormField<T = any> {
   options?: Array<{ label: string; value: any }>;
 }
 
-export interface FormState<T = Record<string, any>> {
+export interface IFormState<T = Record<string, any>> {
   values: T;
   errors: Partial<Record<keyof T, string>>;
   touched: Partial<Record<keyof T, boolean>>;
@@ -77,9 +77,9 @@ export interface FormState<T = Record<string, any>> {
 }
 
 // Event handler types
-export type EventHandler<T = Event> = (event: T) => void;
-export type ClickHandler = EventHandler<React.MouseEvent>;
-export type ChangeHandler = EventHandler<
+export type TEventHandler<T = Event> = (event: T) => void;
+export type TClickHandler = TEventHandler<React.MouseEvent>;
+export type TChangeHandler = TEventHandler<
   React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
 >;
-export type SubmitHandler = EventHandler<React.FormEvent>;
+export type TSubmitHandler = TEventHandler<React.FormEvent>;

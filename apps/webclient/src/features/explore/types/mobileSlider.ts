@@ -1,8 +1,8 @@
 import React from 'react';
-import { InvestorJourneyCard } from './investorJourney';
+import { IInvestorJourneyCard } from './explore';
 
 export interface MobileSliderProps {
-  cards: InvestorJourneyCard[];
+  cards: IInvestorJourneyCard[];
   activeIndex: number;
   isRTL: boolean;
   onTouchStart: (e: React.TouchEvent) => void;

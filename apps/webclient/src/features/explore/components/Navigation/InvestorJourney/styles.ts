@@ -6,27 +6,27 @@
 export const investorJourneyStyles = {
   // Main section styles
   section: {
-    base: 'w-full relative overflow-visible flex flex-col items-start gap-20 self-stretch px-4 py-12 md:px-20 md:py-[100px] md:pb-[200px]',
+    base: 'relative overflow-visible flex flex-col items-start gap-20',
     style: {
       background:
         'radial-gradient(134.48% 100% at 50% 100%, rgba(216, 200, 255, 0.50) 0%, rgba(255, 255, 255, 0.00) 100%)',
     },
   },
 
-  container: 'relative z-10 mx-auto w-full max-w-7xl',
+  container: 'container relative z-10 py-5 md:pt-25 md:pb-50 flex flex-col items-center gap-12 md:gap-20',
 
   header: {
-    wrapper: 'text-center pb-16',
+    wrapper: 'text-center flex flex-col gap-8',
     title:
-      'font-semibold text-[36px] leading-[42px] tracking-[-0.02em] md:text-[48px] md:leading-[60px] text-[#5547B5] mb-4',
+      'font-semibold text-4xl tracking-[-0.02em] md:text-5xl bg-gradient-to-r from-brand-900 to-brand-600 bg-clip-text text-transparent',
     content:
-      'font-medium text-base leading-[22px] tracking-normal md:text-[23px] md:leading-[30px] text-gray-600',
+      'font-medium text-base tracking-normal md:text-[23px] text-secondary',
   },
 
   // Mobile slider styles
   mobileSlider: {
     container:
-      'md:hidden flex items-center justify-center overflow-hidden pb-4 pt-24',
+      'md:hidden flex items-center justify-center overflow-hidden pb-4 pt-12',
     containerStyle: {
       touchAction: 'pan-x' as const,
       width: '100%',

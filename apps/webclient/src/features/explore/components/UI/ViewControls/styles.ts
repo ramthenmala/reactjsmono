@@ -21,7 +21,7 @@ export const viewControlsStyles = {
   viewButtons: {
     container: 'flex rounded-lg border border-gray-300 overflow-hidden',
     button: {
-      base: 'flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors cursor-pointer',
+      base: 'flex-1 flex items-center gap-2 px-3 py-2 text-sm font-medium transition-colors cursor-pointer',
       active: 'bg-purple-600 text-white',
       inactive: 'bg-white text-gray-700 hover:bg-gray-50',
       withBorder: 'border-l border-gray-300',

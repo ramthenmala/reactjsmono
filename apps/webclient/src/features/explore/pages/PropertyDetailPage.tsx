@@ -1,20 +1,22 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useLocaleTranslation } from '../../../shared/lib/i18n';
+import { useLocaleTranslation } from '../../../i18n';
 import { Hero } from '../../../shared/ui/components/Hero';
 import { PropertyDetailsSection } from '../components/PropertyDetail/PropertyDetailsSection';
 import { PrioritizationResultsSection } from '../components/PropertyDetail/PrioritizationResultsSection';
 import { ExploreActions } from '../components/Navigation/ExploreActions';
 import { ApiDownNotice } from '../components/UI/ApiDownNotice';
-import { IIndustrialCityModel } from '../types/industrialCity';
-import { fetchIndustrialCityById } from '../utils/industrialCityService';
+import { useCurrentLocale } from '@/shared';
+import { industrialCityService } from '../services/industrialCityService';
+import { IIndustrialCityData } from '../types/industrialCity';
 
 export function PropertyDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useLocaleTranslation();
   const [industrialCity, setIndustrialCity] =
-    useState<IIndustrialCityModel | null>(null);
+    useState<IIndustrialCityData | null>(null);
   const [loading, setLoading] = useState(true);
+  const currentLocale = useCurrentLocale();
 
   useEffect(() => {
     const loadData = async () => {
@@ -24,7 +26,7 @@ export function PropertyDetailPage() {
       }
 
       try {
-        const data = await fetchIndustrialCityById(slug);
+        const data = await industrialCityService.getIndustrialCity(currentLocale, slug);
         setIndustrialCity(data);
       } catch (error) {
         console.error('Error loading property:', error);
@@ -34,7 +36,7 @@ export function PropertyDetailPage() {
     };
 
     loadData();
-  }, [slug]);
+  }, [slug, currentLocale]);
 
   if (loading) {
     return (
@@ -58,7 +60,7 @@ export function PropertyDetailPage() {
         backgroundImage='/assets/images/backgrounds/ExploreBG.jpg'
         breadcrumbItems={[
           { label: t('navigation.explore') || 'Explore', href: '/explore' },
-          { label: industrialCity.district, href: `/explore/property/${slug}` },
+          { label: industrialCity.name , href: '/explore/listing' },
         ]}
         className='pb-28 md:pb-40'
       />
@@ -69,8 +71,8 @@ export function PropertyDetailPage() {
         </div>
       </section>
 
-      <PropertyDetailsSection industrialCity={industrialCity} />
-      <PrioritizationResultsSection industrialCity={industrialCity} />
+      <PropertyDetailsSection {...industrialCity} />
+      <PrioritizationResultsSection {...industrialCity.prioritizationResultInfo} />
     </main>
   );
 }

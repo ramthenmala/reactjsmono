@@ -1,27 +1,34 @@
 import { StatCard } from '../UI/StatCard';
-import { Zap, Drop, Settings01 } from '@untitledui/icons';
+import { Zap, Drop } from '@untitledui/icons';
 import { propertyDetailStyles } from '../../utils/propertyDetailUtils';
+import { IInfrastructureInfo } from '../../types/industrialCity';
+import { Icon } from '@compass/shared-ui';
 
-export function InfrastructureSection() {
+export function InfrastructureSection({
+  title,
+  electricity,
+  gas,
+  water,
+} : IInfrastructureInfo) {
   return (
     <div className={propertyDetailStyles.section}>
-      <h2 className={propertyDetailStyles.sectionTitle}>Infrastructure</h2>
+      <h2 className={propertyDetailStyles.sectionTitle}>{title}</h2>
 
       <div className={propertyDetailStyles.grid.threeColumns}>
         <StatCard
-          label='Electricity Daily Capacity (MW)'
-          value='174 MW'
-          icon={<Zap className='w-5 h-5' />}
+          label={electricity.title}
+          value={electricity.value}
+          icon={<Zap className='size-8.5' strokeWidth={1} />}
         />
         <StatCard
-          label='Gas Daily Capacity (MMW)'
-          value='N/A MMSCFD'
-          icon={<Settings01 className='w-5 h-5' />}
+          label={gas.title}
+          value={gas.value}
+          icon={<Icon name="fire" className='size-8.5' strokeWidth={1} />}
         />
         <StatCard
-          label='Water Daily Capacity (m³/day)'
-          value='17,500 m³/day'
-          icon={<Drop className='w-5 h-5' />}
+          label={water.title}
+          value={water.value}
+          icon={<Drop className='size-8.5' strokeWidth={1} />}
         />
       </div>
     </div>

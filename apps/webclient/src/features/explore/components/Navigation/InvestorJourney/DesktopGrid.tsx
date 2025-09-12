@@ -1,8 +1,8 @@
+import { IInvestorJourneyCard } from '@/features/explore/types';
 import { cardStyles } from './cardStyles';
-import type { DesktopGridProps } from '../../types/desktopGrid';
 import { investorJourneyStyles } from './styles';
 
-export function DesktopGrid({ cards }: DesktopGridProps) {
+export function DesktopGrid({ cards }: { cards: IInvestorJourneyCard[] }) {
   return (
     <div className={investorJourneyStyles.desktopGrid.container}>
       {cards.map(step => (

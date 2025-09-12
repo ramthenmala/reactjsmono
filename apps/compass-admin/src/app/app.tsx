@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AdminRoutes } from '../lib/router';
-import '../lib/i18n';
+import { AdminRoutes } from '../router';
+import '../i18n';
 
 export function App() {
   return (

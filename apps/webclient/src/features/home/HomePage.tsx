@@ -1,4 +1,4 @@
-import { useLocaleTranslation } from '../../shared/lib/i18n';
+import { useLocaleTranslation } from '../../i18n';
 import { Button } from '@compass/shared-ui';
 
 export function HomePage() {

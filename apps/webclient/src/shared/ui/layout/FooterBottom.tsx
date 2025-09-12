@@ -1,9 +1,4 @@
-import { useLocaleTranslation } from '../../lib/i18n';
-import type { FooterBottomProps } from '../../types/footerBottom';
-
-export function FooterBottom({ navigationData }: FooterBottomProps) {
-  const { t } = useLocaleTranslation();
-
+export function FooterBottom({ copyrightText }: { copyrightText?: string }) {
   return (
     <div className='pt-8'>
       <div className='flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6'>
@@ -44,10 +39,8 @@ export function FooterBottom({ navigationData }: FooterBottomProps) {
         </div>
 
         {/* Copyright */}
-        <div className='text-sm text-white font-medium text-base leading-6 text-center lg:text-right'>
-          {navigationData?.footer?.copyrightText ||
-            t('footer.copyright') ||
-            '© 2024 Compass. All rights reserved.'}
+        <div className="text-sm text-white font-medium text-base leading-6 text-center lg:text-right">
+          {copyrightText}
         </div>
       </div>
     </div>

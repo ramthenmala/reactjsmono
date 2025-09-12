@@ -1,4 +1,4 @@
-import { getCurrentLanguage, useLanguage } from '../lib/i18n';
+import { getCurrentLanguage, useLanguage } from '../../i18n';
 
 /**
  * Utility to create standardized API headers for the application

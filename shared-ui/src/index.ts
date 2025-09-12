@@ -58,6 +58,9 @@ export * from './components/foundations/featured-icon/featured-icons';
 export * from './components/foundations/dot-icon';
 export * from './components/foundations/rating-stars';
 
+// Custom Components
+export * from './components/custom/icon/icon';
+
 // Utilities
 export * from './utils/cx';
 export * from './utils/is-react-component';

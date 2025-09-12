@@ -1,5 +1,5 @@
 export const barChartStyles = {
-  container: 'h-60 w-full',
+  container: 'h-80 w-full',
   xAxisTick: 'text-xs text-gray-600',
   xAxis: 'text-gray-600',
   yAxis: 'text-gray-600 text-xs',
@@ -21,9 +21,9 @@ export const barChartStyles = {
     fill: 'rgba(209, 213, 219, 0.2)',
   },
   margin: {
-    left: 4,
+    left: 16,
     right: 0,
     top: 12,
-    bottom: 24,
+    bottom: 48,
   },
 };

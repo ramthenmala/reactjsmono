@@ -1,12 +1,7 @@
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Globe01 } from '@untitledui/icons';
-import type { Language } from '../../types/components';
-
-const languages: Language[] = [
-  { code: 'en', name: 'English', nativeName: 'English' },
-  { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
-];
+import { languages } from '../../shared/constants';
 
 export const LanguageSwitcher = () => {
   const { locale } = useParams<{ locale: string }>();

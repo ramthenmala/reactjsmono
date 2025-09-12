@@ -20,19 +20,24 @@ export function WrappedXAxisTick({ x, y, payload }: WrappedXAxisTickProps) {
   }
   if (currentLine) lines.push(currentLine);
 
+  // Limit lines to 2 to prevent excessive height
+  const limited = lines.slice(0, 2);
+
   return (
-    <text
-      x={x}
-      y={y}
-      textAnchor='middle'
-      fill='currentColor'
-      className={barChartStyles.xAxisTick}
-    >
-      {lines.map((line, idx) => (
-        <tspan key={idx} x={x} dy={idx === 0 ? 0 : 12}>
-          {line}
-        </tspan>
-      ))}
-    </text>
+    <g transform={`translate(${x}, ${y}) rotate(-45)`}>
+      <text
+        x={0}
+        y={0}
+        textAnchor='end'
+        fill='currentColor'
+        className={barChartStyles.xAxisTick}
+      >
+        {limited.map((line, idx) => (
+          <tspan key={idx} x={0} dy={idx === 0 ? 0 : 12}>
+            {line}
+          </tspan>
+        ))}
+      </text>
+    </g>
   );
 }

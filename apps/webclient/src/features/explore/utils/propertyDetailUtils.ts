@@ -52,3 +52,8 @@ export const propertyDetailStyles = {
     cardSubtitle: 'text-sm font-medium text-gray-600',
   },
 } as const;
+
+export function formatValueWithUnit(value: number | string | null, unit?: string | null) {
+  if (value === null || value === undefined) return undefined;
+  return unit ? `${value} ${unit}` : `${value}`;
+}

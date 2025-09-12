@@ -1,32 +1,28 @@
 import { useState, useEffect, useRef } from 'react';
 import { Menu01 } from '@untitledui/icons';
-import { useCurrentLocale } from '../../lib/router';
-import { navigationService } from '../../services/navigationService';
-import type { NavigationData } from '../../types/navigation';
+import { useCurrentLocale } from '../../../router';
 import { HeaderLogo } from './HeaderLogo';
 import { NavigationMenu } from './NavigationMenu';
 import { LanguageSelector } from './LanguageSelector';
 import { MobileMenu } from './MobileMenu';
 import { MegaMenu } from './MegaMenu';
 import { megaMenuConfig } from './megaMenuConfig';
+import { IHeader } from '@/shared/types';
 
-export function Header() {
+export function Header({menu}: IHeader) {
   const currentLocale = useCurrentLocale();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [navigationData, setNavigationData] = useState<NavigationData | null>(
-    null,
-  );
   const menuRef = useRef<HTMLDivElement | null>(null);
 
   // Transform API navigation data to include locale prefix and mega menu
   const getNavigationItems = () => {
-    if (!navigationData?.header) {
+    if (!menu) {
       return [];
     }
 
-    return navigationData.header.map(item => {
+    return menu.map((item) => {
       // Add locale prefix to links
       const href =
         item.link === '/'
@@ -70,31 +66,6 @@ export function Header() {
   const handleLanguageChange = () => {
     setActiveDropdown(null);
   };
-
-  // Fetch navigation data on component mount
-  useEffect(() => {
-    const loadNavigationData = async () => {
-      try {
-        const data = await navigationService.getNavigationData();
-        setNavigationData(data);
-      } catch (error) {
-        console.error('Failed to load navigation data:', error);
-        // Set empty navigation data on failure
-        setNavigationData({
-          header: [],
-          footer: {
-            footerContent: '',
-            copyrightText: '',
-            quickLinks: [],
-            legalPages: [],
-            socialLinks: [],
-          },
-        });
-      }
-    };
-
-    loadNavigationData();
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

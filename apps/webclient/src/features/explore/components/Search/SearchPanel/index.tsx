@@ -1,14 +1,14 @@
 import { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useLocaleTranslation } from '@/shared/lib/i18n';
-import { useCurrentLocale } from '@/shared/lib/router';
+import { useLocaleTranslation } from '@/i18n';
+import { useCurrentLocale } from '@/router';
 import { useSearchData } from '@/shared/hooks';
 import { useSearchFiltersStore } from '@/shared/hooks/useSearchFiltersStore';
 import { createRouteUrl } from '@/shared/utils';
 import { SearchForm } from './SearchForm';
-import type { SearchPanelProps } from '../../types/searchPanel';
+import { ISearchPanelProps } from '@/features/explore/types/searchPanel';
 
-export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
+export function SearchPanel({ onSearch, initialFilters }: ISearchPanelProps) {
   const { t } = useLocaleTranslation();
   const currentLocale = useCurrentLocale();
   const navigate = useNavigate();
@@ -16,14 +16,15 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
 
   // Use custom hooks for data and filters management
   const {
-    regions,
-    sectors,
     isics,
+    sectors,
+    regions,
     cities,
     areaRange,
     loadCities,
     isLoading: dataLoading,
   } = useSearchData();
+
   const { filters, areaValue, updateFilters, updateAreaValue, clearFilters } =
     useSearchFiltersStore({
       initialFilters,
@@ -70,7 +71,11 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
 
   const handleClearFilters = useCallback(() => {
     clearFilters();
-  }, [clearFilters]);
+    navigate(createRouteUrl(
+      '/explore/listing',
+      currentLocale,
+    ));
+  }, [clearFilters, currentLocale, navigate]);
 
   const handleAreaChangeEnd = useCallback(
     (values: number[]) => {
@@ -90,7 +95,7 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
   const isLoading = dataLoading || isSearching;
 
   return (
-    <section className='relative z-10 -mt-[80px] mx-auto w-full max-w-[1280px] px-4'>
+    <section className='container relative z-10 -mt-25'>
       <div
         className='relative flex flex-col items-start rounded-[24px] border border-[#EBEDEF] overflow-hidden w-full max-w-[1280px] p-4 md:p-8'
         style={{
@@ -103,12 +108,12 @@ export function SearchPanel({ onSearch, initialFilters }: SearchPanelProps) {
         {/* Content */}
         <div className='w-full'>
           <SearchForm
+            isics={isics}
+            sectors={sectors}
+            regions={regions}
             filters={filters}
             areaValue={areaValue}
             areaRange={areaRange}
-            regions={regions}
-            sectors={sectors}
-            isics={isics}
             cities={cities}
             onFiltersChange={updateFilters}
             onAreaValueChange={updateAreaValue}

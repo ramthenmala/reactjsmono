@@ -1,30 +1,35 @@
-export interface IExploreLandingResponse {
-  success: boolean;
-  statusCode: number;
-  message: string;
+export interface IExploreDetailsResponse {
   data: {
-    exploreDetails: {
-      bannerImage: string;
-      bannerTitle: string;
-      bannerContent: string;
-      featuredIndustrialCitiesTitle: string;
-      featuredIndustrialCitiesContent: string;
-      compassInvestorJourney: {
-        title: string;
-        content: string;
-        cards: Array<{
-          icon: string;
-          title: string;
-          content: string;
-        }>;
-      };
-      connect: {
-        title: string;
-        content: string;
-        buttonLabel: string;
-      };
-    };
-  };
+    exploreDetails: IExploreDetails;
+  }
+}
+
+export interface IExploreDetails {
+  bannerImage: string;
+  bannerTitle: string;
+  bannerContent: string;
+  featuredIndustrialCitiesTitle: string;
+  featuredIndustrialCitiesContent: string;
+  compassInvestorJourney: ICompassInvestorJourney;
+  connect: IConnectSection;
+}
+
+export interface ICompassInvestorJourney {
+  title: string;
+  content: string;
+  cards: IInvestorJourneyCard[];
+}
+
+export interface IInvestorJourneyCard {
+  icon: string;
+  title: string;
+  content: string;
+}
+
+export interface IConnectSection {
+  title: string;
+  content: string;
+  buttonLabel: string;
 }
 
 export type TFeaturedProperty = {

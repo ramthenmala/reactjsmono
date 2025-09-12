@@ -57,3 +57,7 @@ html[dir='ltr'] {
 .property-card-popup .mapboxgl-popup-content {
   padding: 0 !important;
 }
+
+.container {
+  @apply max-w-[1312px] mx-auto px-4;
+}

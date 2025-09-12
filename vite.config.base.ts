@@ -1,10 +1,10 @@
 /// <reference types='vitest' />
 import { defineConfig, loadEnv, UserConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import checker from 'vite-plugin-checker';
 import eslint from 'vite-plugin-eslint';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import { visualizer } from 'rollup-plugin-visualizer';
+import svgr from 'vite-plugin-svgr';
 
 interface AppConfig {
   appName: string;
@@ -13,7 +13,8 @@ interface AppConfig {
   appPath: string;
 }
 
-export function createAppConfig(appConfig: AppConfig) {
+export async function createAppConfig(appConfig: AppConfig) {
+  const { checker } = await import('vite-plugin-checker');
   return defineConfig(async ({ mode }) => {
     const env = loadEnv(mode, '../../', '');
     const port = parseInt(env[appConfig.envPortKey] || appConfig.defaultPort);
@@ -38,6 +39,7 @@ export function createAppConfig(appConfig: AppConfig) {
       },
       plugins: [
         react(),
+        svgr(),
         nxViteTsPaths(),
         i18nextLoader({
           paths: ['./src/locales'],

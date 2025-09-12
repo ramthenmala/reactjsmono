@@ -1,12 +1,12 @@
 // Component-specific types and interfaces
-import type { BaseProps, Translatable } from './common';
+import type { IBaseProps, ITranslatable } from './common';
 
 // Layout component types
-export interface AdminLayoutProps extends BaseProps {
+export interface IAdminLayoutProps extends IBaseProps {
   activeUrl?: string;
 }
 
-export interface AdminHeaderProps {
+export interface IAdminHeaderProps {
   trailingContent?: React.ReactNode;
   showAvatarDropdown?: boolean;
   hideBorder?: boolean;
@@ -18,21 +18,21 @@ export interface AdminHeaderProps {
 }
 
 // UI component types
-export interface PageHeaderProps extends Partial<Translatable> {
+export interface IPageHeaderProps extends Partial<ITranslatable> {
   titleKey: string;
   showBorder?: boolean;
   className?: string;
 }
 
 // i18n component types
-export type LocaleWrapperProps = BaseProps;
+export type TLocaleWrapperProps = IBaseProps;
 
-export interface Language {
+export interface ILanguage {
   code: string;
   name: string;
   nativeName: string;
 }
 
-export interface LanguageSwitcherProps {
+export interface ILanguageSwitcherProps {
   className?: string;
 }

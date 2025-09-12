@@ -1,10 +1,8 @@
 export const featuredCitiesStyles = {
   section: {
-    base: 'w-full flex flex-col justify-center items-center gap-[80px] relative px-4 py-12 md:px-20 md:py-40',
+    base: 'container flex flex-col justify-center items-center gap-[80px] relative py-12 md:pt-40 md:pb-20',
     style: {
       overflow: 'visible',
-      maxWidth: '1440px',
-      margin: '0 auto',
       background:
         'radial-gradient(73.04% 54.31% at 50% 0%, rgba(237, 230, 255, 0.60) 0%, rgba(255, 255, 255, 0.00) 100%)',
     },
@@ -30,13 +28,13 @@ export const featuredCitiesStyles = {
   },
 
   content: {
-    wrapper: 'relative z-10 w-full flex flex-col items-center gap-[80px]',
+    wrapper: 'relative z-10 w-full flex flex-col items-center gap-12 md:gap-20',
     header: {
-      container: 'text-center',
+      container: 'text-center flex flex-col gap-8',
       title:
-        'font-semibold text-[36px] leading-[42px] tracking-[-0.02em] md:text-[48px] md:leading-[60px] text-[#5547B5] mb-4',
+        'font-semibold text-4xl tracking-[-0.02em] md:text-5xl bg-gradient-to-r from-brand-900 to-brand-600 bg-clip-text text-transparent',
       subtitle:
-        'font-medium text-base leading-[22px] tracking-normal md:text-[23px] md:leading-[30px] text-gray-600',
+        'font-medium text-base tracking-normal md:text-[23px] text-secondary',
     },
   },
 

@@ -41,6 +41,7 @@ export function BarChart({ data }: BarChartProps) {
             interval='preserveStartEnd'
             tickFormatter={value => Number(value).toLocaleString()}
             className={barChartStyles.yAxis}
+            label={{ value: 'Quantity', angle: -90, position: 'insideLeft', offset: 0 }}
           />
 
           <Tooltip content={<CustomTooltip />} cursor={barChartStyles.cursor} />

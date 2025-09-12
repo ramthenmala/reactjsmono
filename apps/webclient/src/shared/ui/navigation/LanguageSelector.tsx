@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown } from '@untitledui/icons';
-import { useCurrentLocale, useLocaleNavigate } from '../../lib/router';
+import { useCurrentLocale, useLocaleNavigate } from '../../../router';
 import type { LanguageSelectorProps } from '../../types/languageSelector';
 
 export function LanguageSelector({ onLanguageChange }: LanguageSelectorProps) {

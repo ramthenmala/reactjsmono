@@ -4,9 +4,9 @@ import { SidebarNavigationSimple } from '@compass/shared-ui';
 import { getNavigationItems } from '../navigation/navigation';
 import { LanguageSwitcher } from '../navigation/LanguageSwitcher';
 import { AdminHeader } from './AdminHeader';
-import type { AdminLayoutProps } from '../../types/components';
+import type { IAdminLayoutProps } from '../../types/components';
 
-export const AdminLayout = ({ children, activeUrl }: AdminLayoutProps) => {
+export const AdminLayout = ({ children, activeUrl }: IAdminLayoutProps) => {
   const { locale } = useParams<{ locale: string }>();
   const { t } = useTranslation();
   const navigationItems = getNavigationItems(locale || 'en', t);

@@ -1,16 +1,19 @@
 import { StatChartCard } from '../Charts/StatChartCard';
 import { StatCard } from '../UI/StatCard';
-import { useLocaleTranslation } from '../../../../shared/lib/i18n';
-import type { PropertyDetailComponentProps } from '../../types/industrialCity';
 import {
-  extractPercentage,
+  formatValueWithUnit,
   propertyDetailStyles,
 } from '../../utils/propertyDetailUtils';
+import { IWorkforceAndTalent } from '../../types/industrialCity';
+import { Icon } from '@compass/shared-ui';
 
 export function WorkforceTalentSection({
-  industrialCity,
-}: PropertyDetailComponentProps) {
-  const { t } = useLocaleTranslation();
+  avaialbilityOfSkilledLabor,
+  avaialbilityOfNonSkilledLabor,
+  skilledLaborAvgSalary,
+  nonskilledLaborAvgSalary,
+  image,
+}: IWorkforceAndTalent) {
 
   const customLabelStyle: React.CSSProperties = {
     color: 'var(--colors-text-text-tertiary-600, #50555E)',
@@ -24,51 +27,54 @@ export function WorkforceTalentSection({
   return (
     <div className={propertyDetailStyles.flexLayout.reverseOnLarge}>
       <div className='lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-4'>
-        {industrialCity.workforceTalent?.availabilityOfSkilleLabor && (
+        {avaialbilityOfSkilledLabor && (
           <StatChartCard
-            label={t('property_detail.skilled_labor_availability')}
-            value={industrialCity.workforceTalent.availabilityOfSkilleLabor}
-            percentage={extractPercentage(
-              industrialCity.workforceTalent.availabilityOfSkilleLabor,
-            )}
+            label={avaialbilityOfSkilledLabor.title}
+            value={formatValueWithUnit(avaialbilityOfNonSkilledLabor.value, avaialbilityOfNonSkilledLabor.unit)}
+            percentage={Number(avaialbilityOfNonSkilledLabor.value)}
             variant='wide'
           />
         )}
-        {industrialCity.workforceTalent?.availabilityOfNonSkilleLabor && (
+
+        {avaialbilityOfNonSkilledLabor && (
           <StatChartCard
-            label={t('property_detail.non_skilled_labor_availability')}
-            value={industrialCity.workforceTalent.availabilityOfNonSkilleLabor}
-            percentage={extractPercentage(
-              industrialCity.workforceTalent.availabilityOfNonSkilleLabor,
-            )}
+            label={avaialbilityOfNonSkilledLabor.title}
+            value={formatValueWithUnit(avaialbilityOfNonSkilledLabor.value, avaialbilityOfNonSkilledLabor.unit)}
+            percentage={Number(avaialbilityOfNonSkilledLabor.value)}
             variant='wide'
           />
         )}
-        {industrialCity.workforceTalent?.skilledLaborAvgSalary && (
+
+        {skilledLaborAvgSalary && (
           <StatCard
-            label={t('property_detail.skilled_labor_salary')}
-            value={industrialCity.workforceTalent.skilledLaborAvgSalary}
+            label={skilledLaborAvgSalary.title}
+            value={
+              <span className='flex items-center gap-1'>
+                <Icon name='sar' className='size-4 md:size-6' />
+                {skilledLaborAvgSalary.value}
+              </span>
+            }
             variant='large'
-            icon={<span className='size-4 md:size-6 text-brand-600'>SAR</span>}
             labelStyle={customLabelStyle}
           />
         )}
-        {industrialCity.workforceTalent?.nonSkilledLaborAvgSalary && (
+
+        {nonskilledLaborAvgSalary && (
           <StatCard
-            label={t('property_detail.non_skilled_labor_salary')}
-            value={industrialCity.workforceTalent.nonSkilledLaborAvgSalary}
+            label={nonskilledLaborAvgSalary.title}
+            value={
+              <span className='flex items-center gap-1'>
+                <Icon name='sar' className='size-4 md:size-6' />
+                {nonskilledLaborAvgSalary.value}
+              </span>
+            }
             variant='large'
-            icon={<span className='size-4 md:size-6 text-brand-600'>SAR</span>}
             labelStyle={customLabelStyle}
           />
         )}
       </div>
-      {industrialCity.workforceTalent?.image && (
-        <img
-          src={industrialCity.workforceTalent?.image}
-          alt='Workforce and Talent'
-          className={propertyDetailStyles.image.rounded}
-        />
+      {image && (
+        <img src={image} alt='Workforce and Talent' className={propertyDetailStyles.image.rounded} />
       )}
     </div>
   );

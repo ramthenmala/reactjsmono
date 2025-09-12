@@ -1,0 +1,74 @@
+{
+  "welcome": {
+    "title": "Welcome Back, Faisal",
+    "subtitle": "Here's what's happening today"
+  },
+  "navigation": {
+    "overview": "Overview",
+    "investors": "Investors",
+    "connectRequests": "Connect Requests",
+    "analytics": "Analytics",
+    "configuration": "Configuration",
+    "investorInsights": "Investor Insights",
+    "industrialCityInsights": "Industrial City Insights",
+    "nationalAnalytics": "National Analytics",
+    "regionalAnalytics": "Regional Analytics",
+    "cityLevelMetrics": "City Level Metrics",
+    "sectorLevelView": "Sector-Level View (ISIC)",
+    "filterCriteria": "Filter & Criteria",
+    "isicRelevance": "ISIC Relevance",
+    "featuredLands": "Featured Lands",
+    "configurationHistory": "Configuration History"
+  },
+  "userMenu": {
+    "viewProfile": "View profile",
+    "settings": "Settings",
+    "logOut": "Log out"
+  },
+  "analytics": {
+    "title": "Analytics",
+    "subtitle": "Comprehensive analytics and insights for data-driven decision making.",
+    "investorInsights": {
+      "title": "Investor Insights",
+      "description": "Detailed insights about investor behavior and trends"
+    },
+    "industrialCityInsights": {
+      "title": "Industrial City Insights",
+      "description": "Analytics focused on industrial city development"
+    },
+    "national": {
+      "title": "National Analytics",
+      "description": "Country-wide analytics and statistics"
+    },
+    "regional": {
+      "title": "Regional Analytics",
+      "description": "Regional breakdown of key metrics"
+    },
+    "cityMetrics": {
+      "title": "City Level Metrics",
+      "description": "Individual city performance indicators"
+    },
+    "sectorView": {
+      "title": "Sector-Level View (ISIC)",
+      "description": "Industry sector analysis using ISIC classification"
+    }
+  },
+  "configuration": {
+    "filterCriteria": {
+      "title": "Filter & Criteria",
+      "subtitle": "Configure data filtering rules and criteria for analysis and reporting."
+    },
+    "isicRelevance": {
+      "title": "ISIC Relevance",
+      "subtitle": "Manage ISIC classification relevance settings and mappings."
+    },
+    "featuredLands": {
+      "title": "Featured Lands",
+      "subtitle": "Configure and manage featured land listings and priorities."
+    },
+    "configurationHistory": {
+      "title": "Configuration History",
+      "subtitle": "View and track configuration changes and system updates."
+    }
+  }
+}

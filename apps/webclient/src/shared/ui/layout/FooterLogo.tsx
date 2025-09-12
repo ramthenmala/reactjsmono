@@ -1,9 +1,4 @@
-import { useLocaleTranslation } from '../../lib/i18n';
-import type { FooterLogoProps } from '../../types/footerLogo';
-
-export function FooterLogo({ navigationData }: FooterLogoProps) {
-  const { t } = useLocaleTranslation();
-
+export function FooterLogo({ footerContent }: { footerContent: string }) {
   return (
     <div className='lg:col-span-1'>
       <div className='flex items-center gap-2 mb-4'>
@@ -15,10 +10,8 @@ export function FooterLogo({ navigationData }: FooterLogoProps) {
           className='h-8 w-auto'
         />
       </div>
-      <p className='text-white font-medium text-base leading-6 leading-relaxed max-w-[320px]'>
-        {navigationData?.footer?.footerContent ||
-          t('footer.description') ||
-          'Your gateway to industrial investment in Saudi Arabia.'}
+      <p className="text-white font-medium text-base leading-6 leading-relaxed max-w-[320px]">
+        {footerContent}
       </p>
     </div>
   );

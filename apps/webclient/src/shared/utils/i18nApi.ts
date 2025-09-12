@@ -1,4 +1,4 @@
-import { useLanguage } from '../lib/i18n';
+import { useLanguage } from '../../i18n';
 
 /**
  * Utility functions to handle multilingual API content

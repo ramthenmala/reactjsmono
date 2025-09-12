@@ -1,16 +1,16 @@
 import React from 'react';
 import { Select, MultiSelect, Slider, Button } from '@compass/shared-ui';
 import { useListData } from 'react-stately';
-import { SelectOption } from '@/shared/types';
-import { useIsicSearch } from '@/shared/hooks';
+import { ICity, IIsicCode, IRegion, ISector, SelectOption } from '@/shared/types';
 import type { SearchFormProps } from '../../types/searchForm';
 
 export function SearchForm({
+  isics,
+  sectors,
+  regions,
   filters,
   areaValue,
   areaRange,
-  regions,
-  sectors,
   cities,
   onFiltersChange,
   onAreaValueChange,
@@ -21,8 +21,38 @@ export function SearchForm({
   onClear,
   isSearching = false,
 }: SearchFormProps) {
-  // Use ISIC search hook to load API data
-  const { isicOptions } = useIsicSearch();
+
+  const isicOptions: SelectOption[] = isics
+    .map((isic: IIsicCode) => ({
+      id: isic.id.toString(),
+      label: isic.code.toString(),
+      value: isic.id.toString(),
+    }))
+    .sort((a: SelectOption, b: SelectOption) => a.label.localeCompare(b.label));
+
+  const regionOptions: SelectOption[] = regions
+    .map((region: IRegion) => ({
+      id: region.id,
+      label: region.name,
+      value: region.id,
+    }))
+    .sort((a: SelectOption, b: SelectOption) => a.label.localeCompare(b.label));
+
+  const sectorOptions: SelectOption[] = sectors
+    .map((sector: ISector) => ({
+      id: sector.id,
+      label: sector.name,
+      value: sector.id,
+    }))
+    .sort((a: SelectOption, b: SelectOption) => a.label.localeCompare(b.label));
+
+  const cityOptions: SelectOption[] = cities
+    .map((city: ICity) => ({
+      id: city.id,
+      label: city.name,
+      value: city.id,
+    }))
+    .sort((a: SelectOption, b: SelectOption) => a.label.localeCompare(b.label));
 
   // Limit available items when user has reached maximum selections
   const availableItems = React.useMemo(() => {
@@ -115,10 +145,8 @@ export function SearchForm({
         {isicOptions.length > 0 ? (
           <div className='flex flex-col gap-1'>
             <MultiSelect
-              label='ISIC Code'
-              placeholder={`Search ISIC codes... (max 5, selected: ${
-                filters.isic?.length || 0
-              })`}
+              label={t('search.isic_code')}
+              placeholder={t('common.search')}
               selectedItems={selectedIsic}
               items={availableItems}
               onItemInserted={handleIsicItemInserted}
@@ -154,7 +182,7 @@ export function SearchForm({
           size='md'
           label={t('search.sector')}
           placeholder={t('search.all_sectors')}
-          items={sectors}
+          items={sectorOptions}
           selectedKey={filters.sector || null}
           onSelectionChange={key => onFiltersChange({ sector: key as string })}
         >
@@ -165,7 +193,7 @@ export function SearchForm({
           size='md'
           label={t('search.region')}
           placeholder={t('search.select_region')}
-          items={regions}
+          items={regionOptions}
           selectedKey={filters.region || null}
           onSelectionChange={key => onFiltersChange({ region: key as string })}
         >
@@ -177,9 +205,9 @@ export function SearchForm({
       <div className='mt-4 grid grid-cols-1 items-end gap-4 md:grid-cols-3'>
         <Select
           size='md'
-          label={t('search.location') || 'Location'}
-          placeholder={t('search.select_city') || 'Select City'}
-          items={cities}
+          label={t('search.location')}
+          placeholder={t('search.select_location')}
+          items={cityOptions}
           selectedKey={filters.location || null}
           onSelectionChange={key =>
             onFiltersChange({ location: key as string })

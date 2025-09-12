@@ -8,7 +8,7 @@ import {
 } from '@untitledui/icons';
 import { useState } from 'react';
 import { EViewMode } from '@/features/explore/types/map';
-import { useLocaleTranslation } from '@/shared/lib/i18n';
+import { useLocaleTranslation } from '@/i18n';
 import type { ViewControlsProps } from '../../types/viewControls';
 import { viewControlsStyles } from './styles';
 
@@ -24,7 +24,7 @@ export function ViewControls({
       {/* Left side - Filters */}
       <div className={viewControlsStyles.filters.container}>
         <Button color='secondary' size='sm' iconLeading={FilterLines}>
-          {t('explore.filters') || 'Filters'}
+          {t('common.filters')}
         </Button>
 
         {/* Sort Dropdown */}
@@ -35,7 +35,7 @@ export function ViewControls({
             iconTrailing={ChevronDown}
             onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
           >
-            {t('explore.sort_by') || 'Sort by'}
+            {t('common.sort_by')}
           </Button>
 
           {isSortDropdownOpen && (
@@ -48,7 +48,7 @@ export function ViewControls({
                   {t('explore.sort.land_area') || 'Land Area'}
                 </button>
                 <button className={viewControlsStyles.filters.dropdown.item}>
-                  {t('explore.sort.electricity') || 'Electricity'}
+                  {t('explore.sort.newest') || 'Newest'}
                 </button>
               </div>
             </div>

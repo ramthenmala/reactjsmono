@@ -1,5 +1,5 @@
 // Feature-specific types
-import type { WithId, WithTitle, WithOptionalDescription } from './common';
+import type { IWithId, IWithTitle, IWithOptionalDescription } from './common';
 
 // Analytics feature types
 export type AnalyticsSectionId =
@@ -11,9 +11,9 @@ export type AnalyticsSectionId =
   | 'sector-view';
 
 export interface AnalyticsSection
-  extends WithId,
-    WithTitle,
-    WithOptionalDescription {
+  extends IWithId,
+    IWithTitle,
+    IWithOptionalDescription {
   id: AnalyticsSectionId;
 }
 

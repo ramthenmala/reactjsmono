@@ -1,16 +1,16 @@
 import { Link } from 'react-router-dom';
-import { useLocaleTranslation } from '../../lib/i18n';
-import { useCurrentLocale } from '../../lib/router';
-import type { FooterNavLinksProps } from '../../types/footerNavLinks';
+import { useLocaleTranslation } from '../../../i18n';
+import { useCurrentLocale } from '../../../router';
+import { ILinkItem } from '@/shared/types';
 
-export function FooterNavLinks({ navigationData }: FooterNavLinksProps) {
+export function FooterNavLinks({ quickLinks, legalPages } : { quickLinks?: ILinkItem[], legalPages: ILinkItem[] }) {
   const { t } = useLocaleTranslation();
   const currentLocale = useCurrentLocale();
 
   return (
     <>
       {/* Quick Links */}
-      <div>
+      {quickLinks && <div>
         <h3
           className='font-semibold mb-4 text-sm leading-5'
           style={{
@@ -18,10 +18,10 @@ export function FooterNavLinks({ navigationData }: FooterNavLinksProps) {
             fontFamily: '"General Sans"',
           }}
         >
-          {t('footer.quick_links') || 'Quick Links'}
+          {t('footer.quick_links')}
         </h3>
-        <ul className='flex flex-col items-start gap-3 self-stretch'>
-          {navigationData?.footer.quickLinks.map((item, index) => (
+        <ul className="flex flex-col items-start gap-3 self-stretch">
+          {quickLinks.map((item, index) => (
             <li key={index}>
               <Link
                 to={`/${currentLocale}${item.link}`}
@@ -33,10 +33,10 @@ export function FooterNavLinks({ navigationData }: FooterNavLinksProps) {
             </li>
           ))}
         </ul>
-      </div>
+      </div>}
 
       {/* Legal Links */}
-      <div>
+      {legalPages && <div>
         <h3
           className='font-semibold mb-4 text-sm leading-5'
           style={{
@@ -46,8 +46,8 @@ export function FooterNavLinks({ navigationData }: FooterNavLinksProps) {
         >
           {t('footer.legal') || 'Legal'}
         </h3>
-        <ul className='flex flex-col items-start gap-3 self-stretch'>
-          {navigationData?.footer.legalPages.map((item, index) => (
+        <ul className="flex flex-col items-start gap-3 self-stretch">
+          {legalPages.map((item, index) => (
             <li key={index}>
               <Link
                 to={`/${currentLocale}${item.link}`}
@@ -59,7 +59,7 @@ export function FooterNavLinks({ navigationData }: FooterNavLinksProps) {
             </li>
           ))}
         </ul>
-      </div>
+      </div>}
     </>
   );
 }

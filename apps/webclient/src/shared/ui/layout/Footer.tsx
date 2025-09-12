@@ -1,41 +1,10 @@
-import { useState, useEffect } from 'react';
-import { navigationService } from '../../services/navigationService';
-import type { NavigationData } from '../../types/navigation';
 import { FooterLogo } from './FooterLogo';
 import { FooterNavLinks } from './FooterNavLinks';
 import { FooterSocialLinks } from './FooterSocialLinks';
 import { FooterBottom } from './FooterBottom';
+import { IFooter } from '@/shared/types';
 
-export function Footer() {
-  const [navigationData, setNavigationData] = useState<NavigationData | null>(
-    null,
-  );
-
-  // Fetch navigation data on component mount
-  useEffect(() => {
-    const loadNavigationData = async () => {
-      try {
-        const data = await navigationService.getNavigationData();
-        setNavigationData(data);
-      } catch (error) {
-        console.error('Failed to load navigation data:', error);
-        // Set empty navigation data on failure
-        setNavigationData({
-          header: [],
-          footer: {
-            footerContent: '',
-            copyrightText: '',
-            quickLinks: [],
-            legalPages: [],
-            socialLinks: [],
-          },
-        });
-      }
-    };
-
-    loadNavigationData();
-  }, []);
-
+export function Footer({footerContent, copyrightText, quickLinks, legalPages, socialLinks }: IFooter) {
   return (
     <footer className='relative text-white overflow-hidden'>
       {/* Background image */}
@@ -53,19 +22,19 @@ export function Footer() {
         {/* Main Footer Content */}
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12'>
           {/* Left Half - Logo and Text */}
-          <FooterLogo navigationData={navigationData} />
+          <FooterLogo footerContent={footerContent} />
 
           {/* Right Half - Menu and Social */}
-          <div className='lg:col-span-1'>
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-8'>
-              <FooterNavLinks navigationData={navigationData} />
-              <FooterSocialLinks navigationData={navigationData} />
+          <div className="lg:col-span-1">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+              <FooterNavLinks quickLinks={quickLinks} legalPages={legalPages} />
+              <FooterSocialLinks socialLinks={socialLinks} />
             </div>
           </div>
         </div>
 
         {/* Bottom Section */}
-        <FooterBottom navigationData={navigationData} />
+        <FooterBottom copyrightText={copyrightText} />
       </div>
     </footer>
   );

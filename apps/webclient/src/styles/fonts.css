@@ -197,7 +197,3 @@ input[type='number'] {
 input[type='search']::-webkit-search-cancel-button {
   -webkit-appearance: none;
 }
-
-.container {
-  @apply max-w-[1312px] mx-auto px-4;
-}

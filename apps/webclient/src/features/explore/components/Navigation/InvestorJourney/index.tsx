@@ -1,20 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
-import { useInvestorJourney } from './useInvestorJourney';
-import type { InvestorJourneyProps } from '../../types/investorJourney';
 import { MobileSlider } from './MobileSlider';
 import { DesktopGrid } from './DesktopGrid';
 import { NavigationDots } from './NavigationDots';
 import { investorJourneyStyles } from './styles';
+import { ICompassInvestorJourney, isRTL } from '@/shared';
 
 export function InvestorJourney({
   title,
   content,
-  steps,
-}: InvestorJourneyProps) {
+  cards,
+}: ICompassInvestorJourney) {
   const [activeIndex, setActiveIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
-
-  const { cards, isRTL, content: i18nContent } = useInvestorJourney(steps);
 
   // Keep activeIndex within bounds if steps length changes
   useEffect(() => {
@@ -34,7 +31,7 @@ export function InvestorJourney({
     const NEXT = () => setActiveIndex(i => Math.min(i + 1, cards.length - 1));
     const PREV = () => setActiveIndex(i => Math.max(i - 1, 0));
 
-    if (isRTL) {
+    if (isRTL()) {
       // RTL: swipe right (diff > 40) -> NEXT; swipe left (diff < -40) -> PREV
       if (diff > 40) NEXT();
       else if (diff < -40) PREV();
@@ -46,8 +43,8 @@ export function InvestorJourney({
     touchStartX.current = null;
   };
 
-  const displayTitle = title || i18nContent.defaultTitle;
-  const displayContent = content || i18nContent.defaultContent;
+  const displayTitle = title;
+  const displayContent = content;
 
   return (
     <section

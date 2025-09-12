@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import type { PageHeaderProps } from '../../types/components';
+import type { IPageHeaderProps } from '../../types/components';
 
 export const PageHeader = ({
   titleKey,
   showBorder = true,
   className = '',
-}: PageHeaderProps) => {
+}: IPageHeaderProps) => {
   const { t } = useTranslation();
 
   return (

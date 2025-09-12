@@ -1,7 +1,7 @@
-import { useLocaleTranslation } from '../../lib/i18n';
-import type { FooterSocialLinksProps } from '../../types/footerSocialLinks';
+import { ISocialLink } from '@/shared/types';
+import { useLocaleTranslation } from '../../../i18n';
 
-export function FooterSocialLinks({ navigationData }: FooterSocialLinksProps) {
+export function FooterSocialLinks({ socialLinks }: { socialLinks: ISocialLink[] }) {
   const { t } = useLocaleTranslation();
 
   // Get social media icon
@@ -101,8 +101,8 @@ export function FooterSocialLinks({ navigationData }: FooterSocialLinksProps) {
       >
         {t('footer.follow_us') || 'Follow Us'}
       </h3>
-      <div className='flex items-center gap-6'>
-        {navigationData?.footer.socialLinks.map((social, index) => {
+      <div className="flex items-center gap-6">
+        {socialLinks.map((social, index) => {
           const icon = getSocialIcon(social.platform);
           const href = social.link || '#';
 

@@ -8,7 +8,7 @@ import {
 import { Button as AriaButton } from 'react-aria-components';
 import { Avatar, Dropdown } from '@compass/shared-ui';
 import { useTranslation } from 'react-i18next';
-import type { AdminHeaderProps } from '../../types/components';
+import type { IAdminHeaderProps } from '../../types/components';
 
 export const AdminHeader = ({
   trailingContent,
@@ -16,10 +16,10 @@ export const AdminHeader = ({
   hideBorder = false,
   title,
   subtitle,
-  userName = 'Faisal',
-  userRole = 'Govt. Admin',
+  userName = '',
+  userRole = '',
   userAvatar,
-}: AdminHeaderProps) => {
+}: IAdminHeaderProps) => {
   const { t } = useTranslation();
 
   return (

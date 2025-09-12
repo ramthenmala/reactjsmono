@@ -3,7 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import { IProperty } from '@/features/explore/types/explore';
 import { IMapProps, IPlotPoint } from '@/features/explore/types/map';
 import { MapControls } from './MapControls';
-import { MapLegend } from './MapLegend';
+//import { MapLegend } from './MapLegend';
 import { MapPopup } from './MapPopup';
 import { MapBackButton } from './MapBackButton';
 import {
@@ -474,8 +474,8 @@ export function Map({
         onBackToCities={handleBackToCities}
       />
 
-      {/* Map Legend Component */}
-      <MapLegend />
+      {/* Todo: Map Legend Component */}
+      {/* <MapLegend /> */}
 
       {/* Map Popup Component */}
       <MapPopup

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocaleTranslation } from '../../shared/lib/i18n';
+import { useLocaleTranslation } from '../../i18n';
 
 export function ContactPage() {
   const { t, currentLanguage } = useLocaleTranslation();

@@ -1,7 +1,7 @@
-import { InvestorJourneyCard } from './investorJourney';
+import { IInvestorJourneyCard } from './explore';
 
 export interface NavigationDotsProps {
-  cards: InvestorJourneyCard[];
+  cards: IInvestorJourneyCard[];
   activeIndex: number;
   isRTL: boolean;
   onDotClick: (index: number) => void;

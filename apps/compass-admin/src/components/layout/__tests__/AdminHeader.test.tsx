@@ -214,10 +214,10 @@ describe('AdminHeader', () => {
     render(<AdminHeader />);
 
     expect(screen.getByTestId('admin-header-user-name')).toHaveTextContent(
-      'Faisal',
+      '',
     );
     expect(screen.getByTestId('admin-header-user-role')).toHaveTextContent(
-      'Govt. Admin',
+      '',
     );
   });
 
@@ -381,10 +381,10 @@ describe('AdminHeader', () => {
       'Dashboard Overview',
     );
     expect(screen.getByTestId('admin-header-user-name')).toHaveTextContent(
-      'Faisal',
+      '',
     );
     expect(screen.getByTestId('admin-header-user-role')).toHaveTextContent(
-      'Govt. Admin',
+      '',
     );
     expect(
       screen.getByTestId('admin-header-search-button'),

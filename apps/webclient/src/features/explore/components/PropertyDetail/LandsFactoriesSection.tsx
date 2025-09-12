@@ -1,77 +1,90 @@
 import { StatCard } from '../UI/StatCard';
-import { useLocaleTranslation } from '../../../../shared/lib/i18n';
-import type { PropertyDetailComponentProps } from '../../types/industrialCity';
-import { propertyDetailStyles } from '../../utils/propertyDetailUtils';
-import { Zap, Drop, Settings01 } from '@untitledui/icons';
+import { formatValueWithUnit, propertyDetailStyles } from '../../utils/propertyDetailUtils';
+import { ILandAndFactoriesInfo } from '../../types/industrialCity';
+import { Icon } from '@compass/shared-ui';
 
 export function LandsFactoriesSection({
-  industrialCity,
-}: PropertyDetailComponentProps) {
-  const { t } = useLocaleTranslation();
+  title,
+  totalLand,
+  developedLand,
+  undevelopedLand,
+  occupancyRate,
+  percentageOfLogisticLand,
+  projectsUnderConstruction,
+  noOfFactories,
+  currentWorkforce,
+}: ILandAndFactoriesInfo) {
   return (
     <>
       <h2 className={propertyDetailStyles.sectionTitleSmall}>
-        {t('property_detail.lands_factories')}
+        {title}
       </h2>
       <div className={propertyDetailStyles.grid.threeColumns}>
-        {industrialCity.landsAndFactories?.totalLand && (
+        {totalLand && (
           <StatCard
-            label={t('property_detail.total_land')}
-            value={industrialCity.landsAndFactories.totalLand}
-            icon={<Drop className='w-5 h-5' />}
+            label={totalLand.title}
+            value={formatValueWithUnit(totalLand.value, totalLand.unit)}
+            icon={<Icon name='substract' className='size-8.5' />}
           />
         )}
-        {industrialCity.landsAndFactories?.developedLand && (
+
+        {developedLand && (
           <StatCard
-            label={t('property_detail.developed_land')}
-            value={industrialCity.landsAndFactories.developedLand}
-            icon={<Drop className='w-5 h-5' />}
+            label={developedLand.title}
+            value={formatValueWithUnit(developedLand.value, developedLand.unit)}
+            icon={<Icon name='union' className='size-8.5' />}
           />
         )}
-        {industrialCity.landsAndFactories?.undevelopedLand && (
+
+        {undevelopedLand && (
           <StatCard
-            label={t('property_detail.undeveloped_land')}
-            value={industrialCity.landsAndFactories.undevelopedLand}
-            icon={<Drop className='w-5 h-5' />}
+            label={undevelopedLand.title}
+            value={formatValueWithUnit(undevelopedLand.value, undevelopedLand.unit)}
+            icon={<Icon name='intersect' className='size-8.5' />}
           />
         )}
-        {industrialCity.landsAndFactories?.occupancyRate && (
+
+        {occupancyRate && (
           <StatCard
-            label={t('property_detail.occupancy_rate')}
-            value={industrialCity.landsAndFactories.occupancyRate}
-            icon={<Zap className='w-5 h-5' />}
+            label={occupancyRate.title}
+            value={formatValueWithUnit(occupancyRate.value, occupancyRate.unit)}
+            icon={<Icon name='stats-up-square' className='size-8.5' />}
           />
         )}
-        {industrialCity.landsAndFactories?.logisticLandPercentage && (
+
+        {percentageOfLogisticLand && (
           <StatCard
-            label={t('property_detail.logistic_land_percentage')}
-            value={industrialCity.landsAndFactories.logisticLandPercentage}
-            icon={<Zap className='w-5 h-5' />}
+            label={percentageOfLogisticLand.title}
+            value={formatValueWithUnit(percentageOfLogisticLand.value, percentageOfLogisticLand.unit)}
+            icon={<Icon name='delivery-truck' className='size-8.5' />}
           />
         )}
-        {industrialCity.landsAndFactories?.projectsUnderConstruction && (
+
+        {projectsUnderConstruction && (
           <StatCard
-            label={t('property_detail.projects_under_construction')}
-            value={industrialCity.landsAndFactories.projectsUnderConstruction}
-            icon={<Settings01 className='w-5 h-5' />}
+            label={projectsUnderConstruction.title}
+            value={formatValueWithUnit(projectsUnderConstruction.value)}
+            icon={<Icon name='city' className='size-8.5' />}
           />
         )}
       </div>
+
       <div className={propertyDetailStyles.grid.twoColumns}>
-        {industrialCity.landsAndFactories?.numberOfFactories && (
+        {noOfFactories && (
           <StatCard
-            label={t('property_detail.number_of_factories')}
-            value={industrialCity.landsAndFactories.numberOfFactories}
+            label={noOfFactories.title}
+            value={formatValueWithUnit(noOfFactories.value)}
             variant='large'
-            icon={<Settings01 className='w-6 h-6' />}
+            icon={<Icon name='industry' className='size-8.5' />}
           />
         )}
-        {industrialCity.landsAndFactories?.currentWorkforce && (
+
+        {currentWorkforce && (
           <StatCard
-            label={t('property_detail.current_workforce')}
-            value={industrialCity.landsAndFactories.currentWorkforce}
+            label={currentWorkforce.title}
+            value={formatValueWithUnit(currentWorkforce.value)}
             variant='large'
-            icon={<Settings01 className='w-6 h-6' />}
+            icon={<Icon name='community' className='size-8.5' />}
           />
         )}
       </div>

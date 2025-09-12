@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLanguage } from '../../lib/i18n/LanguageContext';
+import { useLanguage } from '../../../i18n/LanguageContext';
 import clsx from 'clsx';
 
 interface RTLWrapperProps {

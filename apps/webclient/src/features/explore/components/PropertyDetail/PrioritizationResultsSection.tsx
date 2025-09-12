@@ -1,11 +1,12 @@
 import { WorkforceTalentSection } from './WorkforceTalentSection';
-import { useLocaleTranslation } from '../../../../shared/lib/i18n';
+import { useLocaleTranslation } from '../../../../i18n';
 import { useState } from 'react';
-import type { PropertyDetailComponentProps } from '../../types/industrialCity';
+import { IPrioritizationResultInfo } from '../../types/industrialCity';
 
 export function PrioritizationResultsSection({
-  industrialCity,
-}: PropertyDetailComponentProps) {
+  title,
+  workforceAndTalent,
+}: IPrioritizationResultInfo) {
   const { t } = useLocaleTranslation();
   const [openSection, setOpenSection] = useState('workforce');
 
@@ -16,8 +17,8 @@ export function PrioritizationResultsSection({
   const sections = [
     {
       id: 'workforce',
-      title: t('property_detail.workforce_talent') || 'Workforce & Talent',
-      content: <WorkforceTalentSection industrialCity={industrialCity} />,
+      title: workforceAndTalent.title,
+      content: <WorkforceTalentSection {...workforceAndTalent} />,
     },
     {
       id: 'infrastructure',
@@ -83,8 +84,7 @@ export function PrioritizationResultsSection({
     <section className='container mt-8 mb-20'>
       <div className='rounded-3xl py-8 px-4 md:px-8 flex flex-col gap-7 md:gap-10 bg-white/40 shadow-[0px_2px_50px_-2px_rgba(16,24,40,0.1)] backdrop-blur-[100px]'>
         <h2 className='text-2xl md:text-4xl font-semibold md:font-medium text-brand-900 mx-auto md:mx-0'>
-          {t('property_detail.prioritization_results') ||
-            'Prioritization Results'}
+          {title}
         </h2>
         <div className='space-y-4'>
           {sections.map(section => (

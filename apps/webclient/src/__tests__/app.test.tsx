@@ -7,11 +7,11 @@ jest.mock('@compass/shared-ui', () => ({
   LoadingIndicator: ({ label }: { label: string }) => <div>{label}</div>,
 }));
 
-jest.mock('../shared/lib/router', () => ({
+jest.mock('../router', () => ({
   AppRouter: () => <div data-testid='app-router'>App Router</div>,
 }));
 
-jest.mock('../shared/lib/i18n/i18n', () => ({}));
+jest.mock('../i18n/i18n', () => ({}));
 
 describe('App', () => {
   it('renders without crashing', () => {

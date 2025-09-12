@@ -3,12 +3,12 @@ import '@testing-library/jest-dom';
 import App from '../app';
 
 // Mock the AdminRoutes component
-jest.mock('../../lib/router', () => ({
+jest.mock('../../router', () => ({
   AdminRoutes: () => <div data-qa-id='admin-routes'>Admin Routes</div>,
 }));
 
 // Mock the i18n module
-jest.mock('../../lib/i18n');
+jest.mock('../../i18n');
 
 describe('App', () => {
   it('renders without crashing', () => {

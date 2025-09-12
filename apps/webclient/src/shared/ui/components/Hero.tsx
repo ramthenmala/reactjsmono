@@ -13,17 +13,15 @@ export function Hero({
     <ImageSection
       backgroundImage={backgroundImage}
       alt='Hero background'
-      className={`py-40 ${className}`}
+      className={`pt-40 pb-34 ${className}`}
       hasOverlay={true}
     >
       <div className='container mx-auto px-4'>
         {breadcrumbItems && breadcrumbItems.length > 0 && (
-          <div className='mb-10'>
             <Breadcrumb items={breadcrumbItems} showHome={true} />
-          </div>
         )}
         {(title || subtitle) && (
-          <div className='mx-auto text-center w-full md:w-1/2 mt-10'>
+          <div className='mx-auto text-center w-full md:w-1/2 my-10'>
             {title && (
               <h1
                 className='font-sans font-semibold text-center
