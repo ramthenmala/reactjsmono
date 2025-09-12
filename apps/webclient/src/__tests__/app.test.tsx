@@ -8,7 +8,7 @@ jest.mock('@compass/shared-ui', () => ({
 }));
 
 jest.mock('../router', () => ({
-  AppRouter: () => <div data-testid='app-router'>App Router</div>,
+  AppRouter: () => <div data-qa-id='app-router'>App Router</div>,
 }));
 
 jest.mock('../i18n/i18n', () => ({}));

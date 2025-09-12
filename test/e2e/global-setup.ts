@@ -16,9 +16,9 @@ async function globalSetup(config: FullConfig) {
   // Example: Login and save authentication state
   // const page = await context.newPage();
   // await page.goto('/login');
-  // await page.fill('[data-testid="username"]', 'test@example.com');
-  // await page.fill('[data-testid="password"]', 'password');
-  // await page.click('[data-testid="login-button"]');
+  // await page.fill('[data-qa-id="username"]', 'test@example.com');
+  // await page.fill('[data-qa-id="password"]', 'password');
+  // await page.click('[data-qa-id="login-button"]');
   // await page.context().storageState({ path: './e2e/auth.json' });
 
   await browser.close();
