@@ -1,5 +1,5 @@
-import * as utilsIndex from '../index';
-import * as unitsModule from '../units';
+import * as utilsIndex from '@/features/explore/utils/index';
+import * as unitsModule from '@/features/explore/utils/units';
 
 describe('explore utils index', () => {
   it('should export all utilities from units module', () => {

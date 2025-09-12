@@ -7,7 +7,7 @@ import {
   getLocaleUrl,
   getLocaleFromPathname,
   generateLocaleUrls,
-} from '../routerUtils';
+} from '@/router/routerUtils';
 import { DEFAULT_LOCALE } from '@/shared/lib/constants';
 
 // Mock the react-router-dom hooks

@@ -1,5 +1,5 @@
-import { ComparisonService } from '../comparisonService';
-import { IProperty } from '../../types/explore';
+import { ComparisonService } from '@/features/explore/services/comparisonService';
+import { IProperty } from '@/features/explore/types/explore';
 
 // Mock console methods - note that jest.setup.js already overrides console
 const consoleSpy = {

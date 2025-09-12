@@ -1,8 +1,8 @@
-import { searchService } from '../searchService';
-import { apiFetch } from '@/lib/api/client';
-import { ISearchResponse, ISearchData, ISearchCity } from '../../types/search';
+import { searchService } from '@/features/explore/services/searchService';
+import { apiFetch } from '@/shared/lib/api/client';
+import { ISearchResponse, ISearchData, ISearchCity } from '@/features/explore/types/search';
 
-jest.mock('@/lib/api/client', () => ({
+jest.mock('@/shared/lib/api/client', () => ({
   apiFetch: jest.fn(),
 }));
 

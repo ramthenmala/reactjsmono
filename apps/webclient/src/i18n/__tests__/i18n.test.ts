@@ -1,14 +1,14 @@
-import i18n, { changeLanguage, getCurrentLanguage, isRTL, getDirection } from '../i18n';
+import i18n, { changeLanguage, getCurrentLanguage, isRTL, getDirection } from '@/i18n/i18n';
 import { DEFAULT_LOCALE, SUPPORTED_LOCALES } from '@/shared/lib/constants';
 
 // Mock the translation files
-jest.mock('../translations/en.json', () => ({
+jest.mock('@/i18n/translations/en.json', () => ({
   welcome: 'Welcome',
   home: 'Home',
   about: 'About Us',
 }));
 
-jest.mock('../translations/ar.json', () => ({
+jest.mock('@/i18n/translations/ar.json', () => ({
   welcome: 'مرحباً',
   home: 'الرئيسية',
   about: 'من نحن',

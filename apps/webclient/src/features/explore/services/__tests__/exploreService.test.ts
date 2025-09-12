@@ -1,15 +1,15 @@
-import { exploreService } from '../exploreService';
-import { apiFetch } from '@/lib/api/client';
+import { exploreService } from '@/features/explore/services/exploreService';
+import { apiFetch } from '@/shared/lib/api/client';
 import { 
   IExploreDetailsResponse, 
   IExploreDetails,
   ICompassInvestorJourney,
   IConnectSection,
   IInvestorJourneyCard 
-} from '../types/explore';
+} from '@/features/explore/types/explore';
 
 // Mock the API client
-jest.mock('@/lib/api/client', () => ({
+jest.mock('@/shared/lib/api/client', () => ({
   apiFetch: jest.fn(),
 }));
 

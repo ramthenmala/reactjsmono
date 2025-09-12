@@ -4,7 +4,7 @@ import {
   hasValue,
   propertyDetailStyles,
   formatValueWithUnit,
-} from '../propertyDetailUtils';
+} from '@/features/explore/utils/propertyDetailUtils';
 
 describe('propertyDetailUtils', () => {
   describe('extractPercentage', () => {

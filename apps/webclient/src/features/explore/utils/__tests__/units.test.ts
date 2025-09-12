@@ -1,10 +1,10 @@
-import { unitLabel, formatMeasure, EUnit } from '../units';
+import { unitLabel, formatMeasure, EUnit } from '@/features/explore/utils/units';
 import { 
   EAreaUnit,
   EPowerUnit,
   EGasFlowUnit,
   EWaterFlowUnit
-} from '../../types/explore';
+} from '@/features/explore/types/explore';
 
 describe('units utilities', () => {
   describe('unitLabel', () => {

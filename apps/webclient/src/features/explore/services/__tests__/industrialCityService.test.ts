@@ -1,5 +1,5 @@
-import { industrialCityService } from '../industrialCityService';
-import { apiFetch } from '@/lib/api/client';
+import { industrialCityService } from '@/features/explore/services/industrialCityService';
+import { apiFetch } from '@/shared/lib/api/client';
 import {
   IIndustrialCityResponse,
   IIndustrialCityData,
@@ -12,9 +12,9 @@ import {
   INearByLogisticCentersInfo,
   IIndustriesInsideGraphInfo,
   IPrioritizationResultInfo,
-} from '../types/industrialCity';
+} from '@/features/explore/types/industrialCity';
 
-jest.mock('@/lib/api/client', () => ({
+jest.mock('@/shared/lib/api/client', () => ({
   apiFetch: jest.fn(),
 }));
 
