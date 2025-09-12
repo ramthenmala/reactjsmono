@@ -30,6 +30,9 @@ export const RTLWrapper: React.FC<RTLWrapperProps> = ({
         className,
       )}
       dir={direction}
+      data-qa-id="rtl-wrapper"
+      data-qa-direction={direction}
+      data-qa-is-rtl={isRTL}
     >
       {children}
     </div>
