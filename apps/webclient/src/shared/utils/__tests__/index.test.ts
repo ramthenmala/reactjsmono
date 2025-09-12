@@ -1,4 +1,4 @@
-import * as utils from '../index';
+import * as utils from '@/utils/index';
 
 describe('utils index exports', () => {
   describe('url exports', () => {

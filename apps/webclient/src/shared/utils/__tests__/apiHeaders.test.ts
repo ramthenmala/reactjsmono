@@ -4,7 +4,7 @@ import {
   createApiRequest,
   useApiHeaders,
   useApiRequest,
-} from '../apiHeaders';
+} from '@/utils/apiHeaders';
 
 // Mock the i18n module
 jest.mock('../../../i18n', () => ({
@@ -22,7 +22,7 @@ global.Response = jest.fn(() => ({
   text: jest.fn(),
 })) as any;
 
-import { getCurrentLanguage, useLanguage } from '../../../i18n';
+import { getCurrentLanguage, useLanguage } from 'i18n';
 
 describe('apiHeaders utilities', () => {
   const mockGetCurrentLanguage = getCurrentLanguage as jest.MockedFunction<

@@ -2,7 +2,7 @@ import {
   buildSearchParams,
   parseSearchParams,
   createRouteUrl,
-} from '../url';
+} from '@/utils/url';
 
 describe('url utilities', () => {
   describe('buildSearchParams', () => {
