@@ -36,6 +36,29 @@ global.IntersectionObserver = jest.fn().mockImplementation(() => ({
   disconnect: jest.fn(),
 }));
 
+// Mock import.meta.env for Jest environment
+Object.defineProperty(globalThis, 'import', {
+  writable: true,
+  value: {
+    meta: {
+      env: {
+        VITE_BASE_API_URL: 'https://api.compass.sa',
+        VITE_USE_MOCK_API: 'false',
+        VITE_MOCK_ISIC_ENDPOINT: 'mock/isic.json',
+        VITE_MOCK_SECTORS_ENDPOINT: 'mock/sectors.json',
+        VITE_MOCK_REGIONS_ENDPOINT: 'mock/regions.json',
+        VITE_MOCK_AREA_ENDPOINT: 'mock/area.json',
+        VITE_MOCK_INDUSTRIAL_CITIES_ENDPOINT: 'mock/cities.json',
+        VITE_PROD_ISIC_ENDPOINT: '/api/isic',
+        VITE_PROD_SECTORS_ENDPOINT: '/api/sectors',
+        VITE_PROD_REGIONS_ENDPOINT: '/api/regions',
+        VITE_PROD_AREA_ENDPOINT: '/api/areas',
+        VITE_PROD_INDUSTRIAL_CITIES_ENDPOINT: '/api/cities',
+      },
+    },
+  },
+});
+
 // Suppress console warnings in tests
 const originalError = console.error;
 const originalWarn = console.warn;

@@ -4,7 +4,7 @@ import {
   formatAreaRange,
   truncateText,
   capitalizeFirst,
-} from '../format';
+} from '@/utils/format';
 
 describe('format utilities', () => {
   describe('formatNumber', () => {

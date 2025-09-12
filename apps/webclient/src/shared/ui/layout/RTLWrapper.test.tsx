@@ -3,11 +3,11 @@ import '@testing-library/jest-dom';
 import { RTLWrapper } from './RTLWrapper';
 
 // Mock the LanguageContext
-jest.mock('../../../i18n/LanguageContext', () => ({
+jest.mock('i18n/LanguageContext', () => ({
   useLanguage: jest.fn(),
 }));
 
-import { useLanguage } from '../../../i18n/LanguageContext';
+import { useLanguage } from 'i18n/LanguageContext';
 
 describe('RTLWrapper', () => {
   const mockUseLanguage = useLanguage as jest.MockedFunction<

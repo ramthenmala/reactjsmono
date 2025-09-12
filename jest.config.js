@@ -19,6 +19,28 @@ module.exports = {
   moduleNameMapper: {
     '^@compass/shared-ui$': '<rootDir>/shared-ui/src/index.ts',
     '^@compass/shared-ui/(.*)$': '<rootDir>/shared-ui/src/$1',
+    // Absolute imports from src directory (original format)
+    '^shared/(.*)$': '<rootDir>/apps/webclient/src/shared/$1',
+    '^app/(.*)$': '<rootDir>/apps/webclient/src/app/$1',
+    '^features/(.*)$': '<rootDir>/apps/webclient/src/features/$1',
+    '^i18n$': '<rootDir>/apps/webclient/src/i18n/index.ts',
+    '^i18n/(.*)$': '<rootDir>/apps/webclient/src/i18n/$1',
+    '^router/(.*)$': '<rootDir>/apps/webclient/src/router/$1',
+    '^styles/(.*)$': '<rootDir>/apps/webclient/src/styles/$1',
+    // @/ path aliases (matching tsconfig.app.json) - more specific mappings first
+    '^@/types/(.*)$': '<rootDir>/apps/webclient/src/shared/types/$1',
+    '^@/types$': '<rootDir>/apps/webclient/src/shared/types/index.ts',
+    '^@/services/(.*)$': '<rootDir>/apps/webclient/src/shared/services/$1',
+    '^@/services$': '<rootDir>/apps/webclient/src/shared/services/index.ts',
+    '^@/store/(.*)$': '<rootDir>/apps/webclient/src/shared/store/$1',
+    '^@/utils/(.*)$': '<rootDir>/apps/webclient/src/shared/utils/$1',
+    '^@/lib/(.*)$': '<rootDir>/apps/webclient/src/shared/lib/$1',
+    '^@/lib$': '<rootDir>/apps/webclient/src/shared/lib/index.ts',
+    '^@/ui/(.*)$': '<rootDir>/apps/webclient/src/shared/ui/$1',
+    '^@/shared/(.*)$': '<rootDir>/apps/webclient/src/shared/$1',
+    '^@/components/(.*)$': '<rootDir>/apps/webclient/src/components/$1',
+    '^@/features/(.*)$': '<rootDir>/apps/webclient/src/features/$1',
+    '^@/(.*)$': '<rootDir>/apps/webclient/src/$1',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
       'jest-transform-stub',

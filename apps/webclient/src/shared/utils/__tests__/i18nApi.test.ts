@@ -6,14 +6,14 @@ import {
   localizeApiDataArray,
   getLocalizedIndustrialCityField,
   LocalizableIndustrialCity,
-} from '../i18nApi';
+} from '@/utils/i18nApi';
 
 // Mock the i18n module
 jest.mock('../../../i18n', () => ({
   useLanguage: jest.fn(),
 }));
 
-import { useLanguage } from '../../../i18n';
+import { useLanguage } from 'i18n';
 
 describe('i18nApi utilities', () => {
   const mockUseLanguage = useLanguage as jest.MockedFunction<
