@@ -61,6 +61,10 @@ export const getLocaleUrl = (path: string, locale?: Locale): string => {
  * Extract locale from pathname
  */
 export const getLocaleFromPathname = (pathname: string): Locale => {
+  if (!pathname) {
+    return DEFAULT_LOCALE;
+  }
+  
   const segments = pathname.split('/');
   const potentialLocale = segments[1];
 
