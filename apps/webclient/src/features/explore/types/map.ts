@@ -23,6 +23,7 @@ export interface IMapProps {
   zoom?: number;
   className?: string;
   onMarkerClick?: (point: IProperty) => void;
+  'data-qa-id'?: string;
 }
 
 /** Raw API models (matches your JSON) */

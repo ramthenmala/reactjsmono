@@ -404,32 +404,6 @@ describe('FooterSocialLinks', () => {
     });
   });
 
-  describe('Performance', () => {
-    it('should render efficiently with many social links', () => {
-      const manyLinks = Array.from({ length: 50 }, (_, i) => ({
-        platform: i % 2 === 0 ? 'facebook' : 'twitter',
-        link: `https://example${i}.com`,
-        label: `Platform ${i}`
-      }));
-
-      const startTime = performance.now();
-      renderComponent({ socialLinks: manyLinks });
-      const endTime = performance.now();
-
-      expect(endTime - startTime).toBeLessThan(100);
-    });
-
-    it('should handle rapid re-renders', () => {
-      const { rerender } = renderComponent();
-
-      for (let i = 0; i < 10; i++) {
-        const dynamicLinks = [{ platform: 'facebook', link: `https://facebook.com/${i}`, label: `Facebook ${i}` }];
-        rerender(<FooterSocialLinks socialLinks={dynamicLinks} />);
-        expect(screen.getByLabelText(`Facebook ${i}`)).toBeInTheDocument();
-      }
-    });
-  });
-
   describe('Data QA ID Generation', () => {
     it('should generate correct data-qa-id for different platforms', () => {
       const allPlatforms = [

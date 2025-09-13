@@ -127,3 +127,7 @@ export interface IPropertyGridProps {
   onCompare?: (property: IProperty) => void;
   onView?: (property: IProperty) => void;
 }
+
+export interface IPropertyGridPropsWithQaId extends Omit<IPropertyGridProps, 'totalResults'> {
+  'data-qa-id'?: string;
+}

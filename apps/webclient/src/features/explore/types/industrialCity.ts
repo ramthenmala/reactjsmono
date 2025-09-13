@@ -107,6 +107,7 @@ export interface IIndustriesInsideGraphInfo {
 }
 
 export interface IWorkforceAndTalent {
+  'data-qa-id'?: string;
   title: string;
   image: string | null;
   avaialbilityOfSkilledLabor: {
@@ -132,20 +133,25 @@ export interface IWorkforceAndTalent {
 }
 
 export interface ISocialAndCommunity {
+  'data-qa-id'?: string;
   title: string;
   residentialAreas: {
+    status: boolean;
     title: string;
     value: string | null;
   };
   hospitalsAndMedicalCenters: {
+    status: boolean;
     title: string;
     value: string | null;
   };
   publicTransportationAvailability: {
+    status: boolean;
     title: string;
     value: string | null;
   };
   educationalInstitutions: {
+    status: boolean;
     title: string;
     value: string | null;
   };
@@ -154,29 +160,37 @@ export interface ISocialAndCommunity {
     value: number | null;
   };
   amenitiesForWorkforce: {
+    status: boolean;
     title: string;
     value: string | null;
   };
   scenicLocationAndSurroundings: {
+    status: boolean;
     title: string;
     value: string | null;
   };
 }
 
 export interface IMarketAccessAndDemand {
+  'data-qa-id'?: string;
+  image: string | null;
   title: string;
   subTitle: string;
   value: number | null;
 }
 
 export interface ILeagalAndRegulatory {
+  'data-qa-id'?: string;
+  image: string | null;
   title: string;
-  subitile: string;
+  subTitle: string;
   value: string | null;
 }
 
 export interface IEnvironmental {
-  title: string;
+  'data-qa-id'?: string;
+  title: string
+  image: string | null;
   humidity: {
     title: string;
     value: number | null;
@@ -200,14 +214,15 @@ export interface IEnvironmental {
 }
 
 export interface IValueChainAndIndustryClusters {
+  'data-qa-id'?: string;
   title: string;
   valueParks: {
     title: string;
-    value: object[];
+    value: string[];
   };
   organicClusters: {
     title: string;
-    value: object[];
+    value: string[];
   };
   knowHowAndInnovation: {
     title: string;
@@ -216,6 +231,7 @@ export interface IValueChainAndIndustryClusters {
 }
 
 export interface IPrioritizationResultInfo {
+  'data-qa-id'?: string;
   title: string;
   workforceAndTalent: IWorkforceAndTalent;
   socialAndCommunity: ISocialAndCommunity;
@@ -251,4 +267,61 @@ export interface IDistrictMapSectionProps {
   yearInfo: IYearInfo;
   districtInfo: IDistrictInfo;
   industriesInsideGraphInfo: IIndustriesInsideGraphInfo;
+  'data-qa-id'?: string;
+}
+
+// Props for PropertyHeader component
+export interface IPropertyHeaderProps {
+  banner: string | null;
+  name: string;
+  description: string | null;
+  'data-qa-id'?: string;
+}
+
+// Props for PropertyDetailsSection component  
+export interface IPropertyDetailsSectionProps extends IIndustrialCityData {
+  'data-qa-id'?: string;
+}
+
+// Props for other PropertyDetail components
+export interface ILandsFactoriesSectionProps extends ILandAndFactoriesInfo {
+  'data-qa-id'?: string;
+}
+
+export interface IInfrastructureSectionProps extends IInfrastructureInfo {
+  'data-qa-id'?: string;
+}
+
+export interface ILogisticsServicesSectionProps {
+  logisticsServicesInfo: ILogisticsServicesInfo;
+  nearByLogisticCentersInfo: INearByLogisticCentersInfo;
+  'data-qa-id'?: string;
+}
+
+export interface IWorkforceTalentSectionProps extends IWorkforceAndTalent {
+  'data-qa-id'?: string;
+}
+
+export interface ISocialAndCommunitySectionProps extends ISocialAndCommunity {
+  'data-qa-id'?: string;
+}
+
+export interface IMarketAccessAndDemandSectionProps extends IMarketAccessAndDemand {
+  'data-qa-id'?: string;
+}
+
+export interface ILeagalAndRegulatorySectionProps extends ILeagalAndRegulatory {
+  'data-qa-id'?: string;
+}
+
+export interface IEnvironmentalSectionProps extends IEnvironmental {
+  'data-qa-id'?: string;
+}
+
+export interface IValueChainAndIndustryClustersSectionProps extends IValueChainAndIndustryClusters {
+  'data-qa-id'?: string;
+}
+
+export interface IPrioritizationResultsSectionProps extends IPrioritizationResultInfo {
+  'data-qa-id'?: string;
 }

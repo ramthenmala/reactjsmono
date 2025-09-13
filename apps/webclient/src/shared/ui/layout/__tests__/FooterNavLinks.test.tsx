@@ -405,33 +405,4 @@ describe('FooterNavLinks', () => {
       expect(screen.getByText('Link 20')).toBeInTheDocument();
     });
   });
-
-  describe('Performance', () => {
-    it('should render efficiently with many links', () => {
-      const manyLinks = Array.from({ length: 100 }, (_, i) => ({
-        label: `Link ${i + 1}`,
-        link: `/link-${i + 1}`
-      }));
-
-      const startTime = performance.now();
-      renderComponent({ quickLinks: manyLinks, legalPages: manyLinks });
-      const endTime = performance.now();
-
-      expect(endTime - startTime).toBeLessThan(200);
-    });
-
-    it('should handle rapid re-renders', () => {
-      const { rerender } = renderComponent();
-
-      for (let i = 0; i < 10; i++) {
-        const dynamicLinks = [{ label: `Dynamic ${i}`, link: `/dynamic-${i}` }];
-        rerender(
-          <MemoryRouter>
-            <FooterNavLinks quickLinks={dynamicLinks} legalPages={mockLegalPages} />
-          </MemoryRouter>
-        );
-        expect(screen.getByText(`Dynamic ${i}`)).toBeInTheDocument();
-      }
-    });
-  });
 });

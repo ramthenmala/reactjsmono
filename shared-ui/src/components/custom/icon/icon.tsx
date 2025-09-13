@@ -11,6 +11,9 @@ import DeliveryTruckIcon from './delivery-truck.svg?react';
 import CityIcon from './city.svg?react';
 import IndustryIcon from './industry.svg?react';
 import CommunityIcon from './community.svg?react';
+import TreeIcon from './tree.svg?react';
+import ClusterIcon from './cluster.svg?react';
+import InnovationIcon from './innovation.svg?react';
 
 interface IconProps {
   name: string;
@@ -36,10 +39,13 @@ const Icon: React.FC<IconProps> = ({ name, className = '', size, color, strokeWi
     case 'union': return <UnionIcon className={className} style={style} />;
     case 'intersect': return <IntersectIcon className={className} style={style} />;
     case 'stats-up-square': return <StatsUpSquareIcon className={className} style={style} />;
-  case 'delivery-truck': return <DeliveryTruckIcon className={className} style={style} />;
-  case 'city': return <CityIcon className={className} style={style} />;
-  case 'industry': return <IndustryIcon className={className} style={style} />;
-  case 'community': return <CommunityIcon className={className} style={style} />;
+    case 'delivery-truck': return <DeliveryTruckIcon className={className} style={style} />;
+    case 'city': return <CityIcon className={className} style={style} />;
+    case 'industry': return <IndustryIcon className={className} style={style} />;
+    case 'community': return <CommunityIcon className={className} style={style} />;
+    case 'tree': return <TreeIcon className={className} style={style} />;
+    case 'cluster': return <ClusterIcon className={className} style={style} />;
+    case 'innovation': return <InnovationIcon className={className} style={style} />;
     default: 
       return <FallbackIcon className={className} style={style} />;
   }

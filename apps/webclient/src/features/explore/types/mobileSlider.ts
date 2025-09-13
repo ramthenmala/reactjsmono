@@ -7,4 +7,5 @@ export interface MobileSliderProps {
   isRTL: boolean;
   onTouchStart: (e: React.TouchEvent) => void;
   onTouchEnd: (e: React.TouchEvent) => void;
+  'data-qa-id'?: string;
 }

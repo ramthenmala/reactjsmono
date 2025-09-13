@@ -5,4 +5,5 @@ export interface MapPopupProps {
   container: HTMLDivElement | null;
   onClose: () => void;
   onView?: (property: IProperty) => void;
+  'data-qa-id'?: string;
 }

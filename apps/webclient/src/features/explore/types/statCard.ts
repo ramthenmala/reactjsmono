@@ -9,4 +9,5 @@ export interface StatCardProps {
   variant?: StatCardVariant;
   icon?: React.ReactNode;
   labelStyle?: React.CSSProperties;
+  'data-qa-id'?: string;
 }

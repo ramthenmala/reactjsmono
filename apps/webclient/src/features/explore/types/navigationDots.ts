@@ -5,4 +5,5 @@ export interface NavigationDotsProps {
   activeIndex: number;
   isRTL: boolean;
   onDotClick: (index: number) => void;
+  'data-qa-id'?: string;
 }

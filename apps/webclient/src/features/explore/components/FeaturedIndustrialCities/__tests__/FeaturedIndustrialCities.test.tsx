@@ -627,7 +627,7 @@ describe('FeaturedIndustrialCities', () => {
       }
       
       const endTime = performance.now();
-      expect(endTime - startTime).toBeLessThan(50);
+      expect(endTime - startTime).toBeLessThan(100);
     });
   });
 

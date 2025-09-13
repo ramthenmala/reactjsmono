@@ -8,7 +8,7 @@ export class ComparisonService {
     try {
       const stored = localStorage.getItem(COMPARISON_KEY);
       if (!stored) return [];
-      
+
       const parsed = JSON.parse(stored);
       // Ensure parsed data is an array
       return Array.isArray(parsed) ? parsed : [];

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { PropertyCard } from '@/features/explore/components/Property/PropertyCard';
 import { PropertyTable } from '@/features/explore/components/Property/PropertyTable';
-import { IPropertyGridProps } from '@/features/explore/types/searchFilters';
+import { IPropertyGridPropsWithQaId } from '@/features/explore/types/searchFilters';
 import { EViewMode } from '@/features/explore/types/map';
 import { propertyGridStyles } from './styles';
 
@@ -13,7 +13,8 @@ export function PropertyGrid({
   viewMode,
   onCompare,
   onView,
-}: Omit<IPropertyGridProps, 'totalResults'>) {
+  'data-qa-id': dataQaId = 'property-grid',
+}: IPropertyGridPropsWithQaId) {
   const [currentPage, setCurrentPage] = useState(1);
 
   if (viewMode === EViewMode.map) {
@@ -35,7 +36,7 @@ export function PropertyGrid({
   // Use table view for list mode
   if (viewMode === EViewMode.list) {
     return (
-      <div className={propertyGridStyles.container.list}>
+      <div className={propertyGridStyles.container.list} data-qa-id={`${dataQaId}-list-container`}>
         <PropertyTable
           properties={currentProperties}
           onCompare={onCompare}
@@ -44,6 +45,7 @@ export function PropertyGrid({
           totalPages={totalPages}
           onPageChange={handlePageChange}
           itemsPerPage={itemsPerPage}
+          data-qa-id={`${dataQaId}-table`}
         />
       </div>
     );
@@ -51,22 +53,23 @@ export function PropertyGrid({
 
   // Use card grid for split mode - also implement pagination
   return (
-    <div className={propertyGridStyles.container.split}>
-      <div className={propertyGridStyles.cardGrid}>
-        {currentProperties.map(property => (
+    <div className={propertyGridStyles.container.split} data-qa-id={`${dataQaId}-split-container`}>
+      <div className={propertyGridStyles.cardGrid} data-qa-id={`${dataQaId}-card-grid`}>
+        {currentProperties.map((property, index) => (
           <PropertyCard
             key={property.id}
             property={property}
             onCompare={onCompare}
             onView={onView}
+            data-qa-id={`${dataQaId}-card-${index}`}
           />
         ))}
       </div>
 
       {/* Pagination for cards */}
       {totalPages > 1 && (
-        <div className={propertyGridStyles.pagination.wrapper}>
-          <div className={propertyGridStyles.pagination.container}>
+        <div className={propertyGridStyles.pagination.wrapper} data-qa-id={`${dataQaId}-pagination`}>
+          <div className={propertyGridStyles.pagination.container} data-qa-id={`${dataQaId}-pagination-container`}>
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
@@ -75,12 +78,14 @@ export function PropertyGrid({
                   ? propertyGridStyles.pagination.navButton.disabled
                   : propertyGridStyles.pagination.navButton.enabled
               }`}
+              data-qa-id={`${dataQaId}-pagination-prev`}
             >
               <svg
                 className={propertyGridStyles.pagination.icons.prev}
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
+                data-qa-id={`${dataQaId}-pagination-prev-icon`}
               >
                 <path
                   strokeLinecap='round'
@@ -92,7 +97,7 @@ export function PropertyGrid({
               Previous
             </button>
 
-            <div className={propertyGridStyles.pagination.numbers.container}>
+            <div className={propertyGridStyles.pagination.numbers.container} data-qa-id={`${dataQaId}-pagination-numbers`}>
               {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
                 let pageNumber;
                 if (totalPages <= 5) {
@@ -116,6 +121,7 @@ export function PropertyGrid({
                       ? propertyGridStyles.pagination.numbers.button.active
                       : propertyGridStyles.pagination.numbers.button.inactive
                   }`}
+                  data-qa-id={`${dataQaId}-pagination-page-${page}`}
                 >
                   {page}
                 </button>
@@ -124,6 +130,7 @@ export function PropertyGrid({
                 <>
                   <span
                     className={propertyGridStyles.pagination.numbers.ellipsis}
+                    data-qa-id={`${dataQaId}-pagination-ellipsis`}
                   >
                     ...
                   </span>
@@ -136,6 +143,7 @@ export function PropertyGrid({
                         ? propertyGridStyles.pagination.numbers.button.active
                         : propertyGridStyles.pagination.numbers.button.inactive
                     }`}
+                    data-qa-id={`${dataQaId}-pagination-page-${totalPages}`}
                   >
                     {totalPages}
                   </button>
@@ -151,6 +159,7 @@ export function PropertyGrid({
                   ? propertyGridStyles.pagination.navButton.disabled
                   : propertyGridStyles.pagination.navButton.enabled
               }`}
+              data-qa-id={`${dataQaId}-pagination-next`}
             >
               Next
               <svg
@@ -158,6 +167,7 @@ export function PropertyGrid({
                 fill='none'
                 stroke='currentColor'
                 viewBox='0 0 24 24'
+                data-qa-id={`${dataQaId}-pagination-next-icon`}
               >
                 <path
                   strokeLinecap='round'

@@ -82,9 +82,11 @@ export function ExploreListingPage() {
 
   return (
     <div
+      data-qa-id="explore-listing-page"
       className={`${EXPLORE_PAGE_CONFIGS.listing.layout.className} ${EXPLORE_PAGE_CONFIGS.listing.layout.background}`}
     >
       <Hero
+        data-qa-id="explore-listing-hero"
         backgroundImage={EXPLORE_PAGE_CONFIGS.listing.hero.backgroundImage}
         breadcrumbItems={[
           {
@@ -99,24 +101,24 @@ export function ExploreListingPage() {
       />
 
       {/* Search/Filter Panel */}
-      <SearchPanel />
+      <SearchPanel data-qa-id="explore-listing-search-panel" />
 
       {/* Results Section */}
-      <section className='container mx-auto px-4 py-8'>
+      <section data-qa-id="explore-listing-results" className='container mx-auto px-4 py-8'>
         {/* Results Header */}
-        <div className='mb-6'>
-          <h2 className='text-2xl font-semibold text-gray-900 mb-2'>
+        <div data-qa-id="explore-listing-results-header" className='mb-6'>
+          <h2 data-qa-id="explore-listing-results-title" className='text-2xl font-semibold text-gray-900 mb-2'>
             {t('explore.results.title') || 'Available Industrial Cities'}
           </h2>
           {(() => {
             if (loading) {
-              return <p className='text-gray-600'>Loading properties...</p>;
+              return <p data-qa-id="explore-listing-loading-text" className='text-gray-600'>Loading properties...</p>;
             }
             if (error) {
-              return <p className='text-red-600'>Error: {error}</p>;
+              return <p data-qa-id="explore-listing-error-text" className='text-red-600'>Error: {error}</p>;
             }
             return (
-              <p className='text-gray-600'>
+              <p data-qa-id="explore-listing-results-count" className='text-gray-600'>
                 {t('explore.results.count', { count: properties.length }) ||
                   `${properties.length} industrial cities found`}
               </p>
@@ -125,15 +127,15 @@ export function ExploreListingPage() {
         </div>
 
         {/* View Controls */}
-        <ViewControls viewMode={viewMode} onViewModeChange={setViewMode} />
+        <ViewControls data-qa-id="explore-listing-view-controls" viewMode={viewMode} onViewModeChange={setViewMode} />
 
         {/* Content Area */}
         {(() => {
           if (loading) {
             return (
-              <div className='flex items-center justify-center py-12'>
+              <div data-qa-id="explore-listing-loading-spinner" className='flex items-center justify-center py-12'>
                 <div className='animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600'></div>
-                <span className='ml-3 text-gray-600'>
+                <span data-qa-id="explore-listing-loading-message" className='ml-3 text-gray-600'>
                   Loading industrial cities...
                 </span>
               </div>
@@ -141,8 +143,8 @@ export function ExploreListingPage() {
           }
           if (error) {
             return (
-              <div className='text-center py-12'>
-                <div className='text-red-500 mb-4'>
+              <div data-qa-id="explore-listing-error-container" className='text-center py-12'>
+                <div data-qa-id="explore-listing-error-icon" className='text-red-500 mb-4'>
                   <svg
                     className='mx-auto h-16 w-16'
                     fill='none'
@@ -157,11 +159,12 @@ export function ExploreListingPage() {
                     />
                   </svg>
                 </div>
-                <h3 className='text-lg font-semibold text-gray-900 mb-2'>
+                <h3 data-qa-id="explore-listing-error-title" className='text-lg font-semibold text-gray-900 mb-2'>
                   Failed to Load Data
                 </h3>
-                <p className='text-gray-600 mb-4'>{error}</p>
+                <p data-qa-id="explore-listing-error-message" className='text-gray-600 mb-4'>{error}</p>
                 <button
+                  data-qa-id="explore-listing-retry-button"
                   onClick={() => window.location.reload()}
                   className='bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors'
                 >
@@ -173,8 +176,9 @@ export function ExploreListingPage() {
           if (viewMode === EViewMode.map) {
             // Full Map View
             return (
-              <div className='w-full h-[500px] md:h-auto md:min-h-[600px]'>
+              <div data-qa-id="explore-listing-map-view" className='w-full h-[500px] md:h-auto md:min-h-[600px]'>
                 <Map
+                  data-qa-id="explore-listing-map"
                   points={properties}
                   className='h-full w-full rounded-lg shadow-sm'
                   onMarkerClick={point => {
@@ -189,6 +193,7 @@ export function ExploreListingPage() {
           // Split and List Views
           return (
             <div
+              data-qa-id="explore-listing-content-area"
               className={
                 viewMode === EViewMode.split
                   ? 'flex flex-col lg:flex-row gap-8'
@@ -197,6 +202,7 @@ export function ExploreListingPage() {
             >
               {/* Property Grid */}
               <PropertyGrid
+                data-qa-id="explore-listing-property-grid"
                 properties={properties}
                 viewMode={viewMode}
                 onView={handleViewProperty}
@@ -205,8 +211,9 @@ export function ExploreListingPage() {
 
               {/* Map Area (for split view only) */}
               {viewMode === EViewMode.split && (
-                <div className='w-full lg:flex-1 min-h-[400px] lg:min-h-[600px] h-[500px] md:h-auto md:min-h-[600px]'>
+                <div data-qa-id="explore-listing-split-view-map" className='w-full lg:flex-1 min-h-[400px] lg:min-h-[600px] h-[500px] md:h-auto md:min-h-[600px]'>
                   <Map
+                    data-qa-id="explore-listing-split-map"
                     points={properties}
                     className='h-full rounded-lg shadow-sm'
                     onMarkerClick={point => {

@@ -18,6 +18,7 @@ export interface ICompassInvestorJourney {
   title: string;
   content: string;
   cards: IInvestorJourneyCard[];
+  'data-qa-id'?: string;
 }
 
 export interface IInvestorJourneyCard {
@@ -66,6 +67,7 @@ export interface IPropertyCardProps {
   onCompare?: (property: IProperty) => void;
   onView?: (property: IProperty) => void;
   hideDistance?: boolean;
+  'data-qa-id'?: string;
 }
 
 // --- API Response Types -------------------------------------------

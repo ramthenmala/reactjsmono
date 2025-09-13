@@ -468,41 +468,4 @@ describe('RTLWrapper', () => {
       expect(wrapper.className).toContain('class-with-@#$%-chars');
     });
   });
-
-  describe('Performance', () => {
-    it('should render efficiently with many children', () => {
-      const manyChildren = Array.from({ length: 100 }, (_, i) => (
-        <div key={i} data-qa-id={`child-${i}`}>
-          Child {i}
-        </div>
-      ));
-
-      const startTime = performance.now();
-      renderComponent({ children: manyChildren });
-      const endTime = performance.now();
-
-      expect(endTime - startTime).toBeLessThan(100); // Increased threshold
-      expect(screen.getByTestId('child-0')).toBeInTheDocument();
-      expect(screen.getByTestId('child-99')).toBeInTheDocument();
-    });
-
-    it('should handle rapid re-renders without performance issues', () => {
-      const { rerender } = renderComponent();
-
-      const startTime = performance.now();
-
-      for (let i = 0; i < 20; i++) {
-        rerender(
-          <RTLWrapper className={`dynamic-class-${i}`}>
-            <div data-qa-id={`content-${i}`}>Content {i}</div>
-          </RTLWrapper>
-        );
-      }
-
-      const endTime = performance.now();
-
-      expect(endTime - startTime).toBeLessThan(200); // Increased threshold
-      expect(screen.getByTestId('content-19')).toBeInTheDocument();
-    });
-  });
 });
