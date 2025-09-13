@@ -64,7 +64,7 @@ export const getLocaleFromPathname = (pathname: string): Locale => {
   if (!pathname) {
     return DEFAULT_LOCALE;
   }
-  
+
   const segments = pathname.split('/');
   const potentialLocale = segments[1];
 

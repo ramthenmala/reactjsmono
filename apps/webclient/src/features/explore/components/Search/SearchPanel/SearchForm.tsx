@@ -20,6 +20,7 @@ export function SearchForm({
   onSearch,
   onClear,
   isSearching = false,
+  'data-qa-id': dataQaId = 'search-form',
 }: SearchFormProps) {
 
   const isicOptions: SelectOption[] = isics
@@ -139,11 +140,11 @@ export function SearchForm({
   };
 
   return (
-    <>
+    <div data-qa-id={dataQaId}>
       {/* First row of filters */}
-      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 items-end'>
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3 items-end' data-qa-id={`${dataQaId}-first-row`}>
         {isicOptions.length > 0 ? (
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1' data-qa-id={`${dataQaId}-isic-section`}>
             <MultiSelect
               label={t('search.isic_code')}
               placeholder={t('common.search')}
@@ -151,6 +152,7 @@ export function SearchForm({
               items={availableItems}
               onItemInserted={handleIsicItemInserted}
               onItemCleared={handleIsicItemCleared}
+              data-qa-id={`${dataQaId}-isic-multiselect`}
             >
               {(item: SelectOption) => (
                 <MultiSelect.Item key={item.id} id={item.id}>
@@ -159,14 +161,14 @@ export function SearchForm({
               )}
             </MultiSelect>
             {filters.isic && filters.isic.length >= 5 && (
-              <p className='text-xs text-amber-600'>
+              <p className='text-xs text-amber-600' data-qa-id={`${dataQaId}-isic-limit-message`}>
                 Maximum limit reached (5/5). Remove items to select others.
               </p>
             )}
           </div>
         ) : (
-          <div className='flex flex-col gap-2'>
-            <label className='text-sm font-medium text-gray-700'>
+          <div className='flex flex-col gap-2' data-qa-id={`${dataQaId}-isic-loading`}>
+            <label className='text-sm font-medium text-gray-700' data-qa-id={`${dataQaId}-isic-loading-label`}>
               ISIC Code
             </label>
             <input
@@ -174,6 +176,7 @@ export function SearchForm({
               placeholder='Loading ISIC codes...'
               disabled
               className='px-3 py-2 border border-gray-300 rounded-md bg-gray-100'
+              data-qa-id={`${dataQaId}-isic-loading-input`}
             />
           </div>
         )}
@@ -185,6 +188,7 @@ export function SearchForm({
           items={sectorOptions}
           selectedKey={filters.sector || null}
           onSelectionChange={key => onFiltersChange({ sector: key as string })}
+          data-qa-id={`${dataQaId}-sector-select`}
         >
           {item => <Select.Item id={item.id}>{item.label}</Select.Item>}
         </Select>
@@ -196,13 +200,14 @@ export function SearchForm({
           items={regionOptions}
           selectedKey={filters.region || null}
           onSelectionChange={key => onFiltersChange({ region: key as string })}
+          data-qa-id={`${dataQaId}-region-select`}
         >
           {item => <Select.Item id={item.id}>{item.label}</Select.Item>}
         </Select>
       </div>
 
       {/* Second row of filters */}
-      <div className='mt-4 grid grid-cols-1 items-end gap-4 md:grid-cols-3'>
+      <div className='mt-4 grid grid-cols-1 items-end gap-4 md:grid-cols-3' data-qa-id={`${dataQaId}-second-row`}>
         <Select
           size='md'
           label={t('search.location')}
@@ -213,16 +218,17 @@ export function SearchForm({
             onFiltersChange({ location: key as string })
           }
           isDisabled={!filters.region || isLoading}
+          data-qa-id={`${dataQaId}-location-select`}
         >
           {item => <Select.Item id={item.id}>{item.label}</Select.Item>}
         </Select>
 
-        <div className='flex flex-col gap-2'>
-          <label className='text-sm font-medium text-secondary'>
+        <div className='flex flex-col gap-2' data-qa-id={`${dataQaId}-area-section`}>
+          <label className='text-sm font-medium text-secondary' data-qa-id={`${dataQaId}-area-label`}>
             {t('search.land_area') || 'Land Area'}
           </label>
-          <div className='flex items-center'>
-            <span className='text-xs text-quaternary mr-2'>{areaValue[0]}</span>
+          <div className='flex items-center' data-qa-id={`${dataQaId}-area-slider-container`}>
+            <span className='text-xs text-quaternary mr-2' data-qa-id={`${dataQaId}-area-min-value`}>{areaValue[0]}</span>
             <Slider
               aria-label='Land area'
               minValue={areaRange.min}
@@ -232,18 +238,20 @@ export function SearchForm({
               onChangeEnd={onAreaChangeEnd}
               className='mx-2 flex-grow'
               formatOptions={{ style: 'decimal', maximumFractionDigits: 0 }}
+              data-qa-id={`${dataQaId}-area-slider`}
             />
-            <span className='text-xs text-quaternary ml-2'>{areaValue[1]}</span>
+            <span className='text-xs text-quaternary ml-2' data-qa-id={`${dataQaId}-area-max-value`}>{areaValue[1]}</span>
           </div>
         </div>
 
         {/* Action Buttons Column */}
-        <div className='flex flex-row items-center gap-3 md:self-end md:justify-end'>
+        <div className='flex flex-row items-center gap-3 md:self-end md:justify-end' data-qa-id={`${dataQaId}-actions`}>
           <Button
             size='lg'
             color='secondary'
             onClick={onClear}
             disabled={isLoading}
+            data-qa-id={`${dataQaId}-clear-button`}
           >
             {t('common.clear') || 'Clear'}
           </Button>
@@ -252,6 +260,7 @@ export function SearchForm({
             color='primary'
             onClick={onSearch}
             disabled={isLoading}
+            data-qa-id={`${dataQaId}-search-button`}
           >
             {isSearching
               ? t('common.searching') || 'Searching...'
@@ -259,6 +268,6 @@ export function SearchForm({
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

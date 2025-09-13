@@ -14,16 +14,6 @@ export function WorkforceTalentSection({
   nonskilledLaborAvgSalary,
   image,
 }: IWorkforceAndTalent) {
-
-  const customLabelStyle: React.CSSProperties = {
-    color: 'var(--colors-text-text-tertiary-600, #50555E)',
-    fontFamily: '"General Sans"',
-    fontSize: '18px',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    lineHeight: '21px',
-  };
-
   return (
     <div className={propertyDetailStyles.flexLayout.reverseOnLarge}>
       <div className='lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-4'>
@@ -55,7 +45,6 @@ export function WorkforceTalentSection({
               </span>
             }
             variant='large'
-            labelStyle={customLabelStyle}
           />
         )}
 
@@ -69,7 +58,6 @@ export function WorkforceTalentSection({
               </span>
             }
             variant='large'
-            labelStyle={customLabelStyle}
           />
         )}
       </div>

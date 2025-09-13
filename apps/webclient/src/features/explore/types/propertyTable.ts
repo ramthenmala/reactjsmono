@@ -8,4 +8,5 @@ export interface IPropertyTableProps {
   totalPages?: number;
   onPageChange?: (page: number) => void;
   itemsPerPage?: number;
+  'data-qa-id'?: string;
 }

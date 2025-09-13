@@ -1,7 +1,7 @@
 import { StatCard } from '../UI/StatCard';
 import { Zap, Drop } from '@untitledui/icons';
 import { propertyDetailStyles } from '../../utils/propertyDetailUtils';
-import { IInfrastructureInfo } from '../../types/industrialCity';
+import type { IInfrastructureSectionProps } from '../../types/industrialCity';
 import { Icon } from '@compass/shared-ui';
 
 export function InfrastructureSection({
@@ -9,26 +9,41 @@ export function InfrastructureSection({
   electricity,
   gas,
   water,
-} : IInfrastructureInfo) {
+  'data-qa-id': dataQaId = 'infrastructure-section',
+}: IInfrastructureSectionProps) {
   return (
-    <div className={propertyDetailStyles.section}>
-      <h2 className={propertyDetailStyles.sectionTitle}>{title}</h2>
+    <div 
+      className={propertyDetailStyles.section}
+      data-qa-id={dataQaId}
+    >
+      <h2 
+        className={propertyDetailStyles.sectionTitle}
+        data-qa-id={`${dataQaId}-title`}
+      >
+        {title}
+      </h2>
 
-      <div className={propertyDetailStyles.grid.threeColumns}>
+      <div 
+        className={propertyDetailStyles.grid.threeColumns}
+        data-qa-id={`${dataQaId}-stats`}
+      >
         <StatCard
           label={electricity.title}
           value={electricity.value}
           icon={<Zap className='size-8.5' strokeWidth={1} />}
+          data-qa-id={`${dataQaId}-electricity`}
         />
         <StatCard
           label={gas.title}
           value={gas.value}
           icon={<Icon name="fire" className='size-8.5' strokeWidth={1} />}
+          data-qa-id={`${dataQaId}-gas`}
         />
         <StatCard
           label={water.title}
           value={water.value}
           icon={<Drop className='size-8.5' strokeWidth={1} />}
+          data-qa-id={`${dataQaId}-water`}
         />
       </div>
     </div>

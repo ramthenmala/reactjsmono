@@ -16,10 +16,12 @@ export interface CustomTooltipProps {
   active?: boolean;
   payload?: TooltipPayload[];
   label?: string;
+  'data-qa-id'?: string;
 }
 
 export interface WrappedXAxisTickProps {
   x: number;
   y: number;
   payload: { value: string | number };
+  'data-qa-id'?: string;
 }

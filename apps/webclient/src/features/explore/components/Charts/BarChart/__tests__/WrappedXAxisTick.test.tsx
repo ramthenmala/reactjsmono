@@ -1,359 +1,420 @@
-'use client';
-
+import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { WrappedXAxisTick } from '../WrappedXAxisTick';
-import { barChartStyles } from '../styles';
+import { WrappedXAxisTick } from '@/features/explore/components/Charts/BarChart/WrappedXAxisTick';
+import type { WrappedXAxisTickProps } from '@/features/explore/types/barChart';
 
-jest.mock('../styles', () => ({
-  barChartStyles: {
-    xAxisTick: 'text-xs text-gray-600'
-  }
-}));
+interface Props extends WrappedXAxisTickProps {
+  isRTL?: boolean;
+}
 
 describe('WrappedXAxisTick', () => {
-  const defaultProps = {
+  const defaultProps: Props = {
     x: 100,
     y: 200,
-    payload: { value: 'Test Label' }
-  };
-
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  const renderWithSvg = (component: React.ReactElement) => {
-    return render(
-      <svg>
-        {component}
-      </svg>
-    );
+    payload: { value: 'Test Category' },
+    isRTL: false,
   };
 
   describe('Basic Rendering', () => {
-    it('renders with default props', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} />);
-      
-      expect(screen.getByTestId('bar-chart-x-tick')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-text')).toBeInTheDocument();
+    it('should render with basic props', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} />
+        </svg>
+      );
+
+      expect(screen.getByTestId('wrapped-x-axis-tick')).toBeInTheDocument();
+      expect(screen.getByTestId('wrapped-x-axis-tick-text')).toBeInTheDocument();
+      expect(screen.getByText('Test')).toBeInTheDocument();
+      expect(screen.getByText('Category')).toBeInTheDocument();
     });
 
-    it('applies correct transform with x and y coordinates', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} />);
-      
-      const tickGroup = screen.getByTestId('bar-chart-x-tick');
-      expect(tickGroup).toHaveAttribute('transform', 'translate(100, 200) rotate(-45)');
+    it('should render with custom data-qa-id', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} data-qa-id="custom-tick" />
+        </svg>
+      );
+
+      expect(screen.getByTestId('custom-tick')).toBeInTheDocument();
+      expect(screen.getByTestId('custom-tick-text')).toBeInTheDocument();
     });
 
-    it('applies correct text styling and attributes', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} />);
-      
-      const textElement = screen.getByTestId('bar-chart-x-tick-text');
-      expect(textElement).toHaveAttribute('x', '0');
-      expect(textElement).toHaveAttribute('y', '0');
+    it('should use default data-qa-id when not provided', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} />
+        </svg>
+      );
+
+      expect(screen.getByTestId('wrapped-x-axis-tick')).toBeInTheDocument();
+      expect(screen.getByTestId('wrapped-x-axis-tick-text')).toBeInTheDocument();
+    });
+  });
+
+  describe('Hierarchical data-qa-id Structure', () => {
+    it('should create proper hierarchical data-qa-id attributes', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} data-qa-id="test-tick" />
+        </svg>
+      );
+
+      expect(screen.getByTestId('test-tick')).toBeInTheDocument();
+      expect(screen.getByTestId('test-tick-text')).toBeInTheDocument();
+      expect(screen.getByTestId('test-tick-line-0')).toBeInTheDocument();
+    });
+
+    it('should create line-specific data-qa-id attributes', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick 
+            {...defaultProps} 
+            payload={{ value: 'Multi word category name that will wrap' }}
+            data-qa-id="multi-line-tick" 
+          />
+        </svg>
+      );
+
+      expect(screen.getByTestId('multi-line-tick')).toBeInTheDocument();
+      expect(screen.getByTestId('multi-line-tick-text')).toBeInTheDocument();
+      expect(screen.getByTestId('multi-line-tick-line-0')).toBeInTheDocument();
+      // Should have multiple lines for long text
+      expect(screen.getByTestId('multi-line-tick-line-1')).toBeInTheDocument();
+    });
+  });
+
+  describe('Text Wrapping', () => {
+    it('should handle short text without wrapping', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: 'Short' }} />
+        </svg>
+      );
+
+      expect(screen.getByText('Short')).toBeInTheDocument();
+      expect(screen.getByTestId('wrapped-x-axis-tick-line-0')).toBeInTheDocument();
+      expect(screen.queryByTestId('wrapped-x-axis-tick-line-1')).not.toBeInTheDocument();
+    });
+
+    it('should wrap long text into multiple lines', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick 
+            {...defaultProps} 
+            payload={{ value: 'This is a very long category name that should wrap' }}
+          />
+        </svg>
+      );
+
+      expect(screen.getByTestId('wrapped-x-axis-tick-line-0')).toBeInTheDocument();
+      expect(screen.getByTestId('wrapped-x-axis-tick-line-1')).toBeInTheDocument();
+    });
+
+    it('should limit text to maximum 2 lines', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick 
+            {...defaultProps} 
+            payload={{ value: 'This is an extremely long category name that would normally wrap into many lines but should be limited to only two lines maximum' }}
+          />
+        </svg>
+      );
+
+      expect(screen.getByTestId('wrapped-x-axis-tick-line-0')).toBeInTheDocument();
+      expect(screen.getByTestId('wrapped-x-axis-tick-line-1')).toBeInTheDocument();
+      expect(screen.queryByTestId('wrapped-x-axis-tick-line-2')).not.toBeInTheDocument();
+    });
+
+    it('should handle single word longer than character limit', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick 
+            {...defaultProps} 
+            payload={{ value: 'Supercalifragilisticexpialidocious' }}
+          />
+        </svg>
+      );
+
+      expect(screen.getByText('Supercalifragilisticexpialidocious')).toBeInTheDocument();
+      expect(screen.getByTestId('wrapped-x-axis-tick-line-0')).toBeInTheDocument();
+    });
+  });
+
+  describe('RTL Support', () => {
+    it('should apply LTR text anchor for LTR layout', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} isRTL={false} />
+        </svg>
+      );
+
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
       expect(textElement).toHaveAttribute('text-anchor', 'end');
-      expect(textElement).toHaveAttribute('fill', 'currentColor');
-      expect(textElement).toHaveClass('text-xs text-gray-600');
+      expect(textElement).toHaveStyle({ fontSize: '12px' });
+    });
+
+    it('should apply RTL text anchor for RTL layout', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} isRTL={true} />
+        </svg>
+      );
+
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toHaveAttribute('text-anchor', 'start');
+      expect(textElement).toHaveStyle({ fontSize: '11px' });
+    });
+
+    it('should default to LTR when isRTL is not provided', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick x={100} y={200} payload={{ value: 'Test' }} />
+        </svg>
+      );
+
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toHaveAttribute('text-anchor', 'end');
+      expect(textElement).toHaveStyle({ fontSize: '12px' });
+    });
+  });
+
+  describe('Positioning and Transform', () => {
+    it('should apply correct transform with position coordinates', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} x={150} y={250} />
+        </svg>
+      );
+
+      const gElement = screen.getByTestId('wrapped-x-axis-tick');
+      expect(gElement).toHaveAttribute('transform', 'translate(150, 250) rotate(-45)');
+    });
+
+    it('should handle zero coordinates', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} x={0} y={0} />
+        </svg>
+      );
+
+      const gElement = screen.getByTestId('wrapped-x-axis-tick');
+      expect(gElement).toHaveAttribute('transform', 'translate(0, 0) rotate(-45)');
+    });
+
+    it('should handle negative coordinates', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} x={-50} y={-100} />
+        </svg>
+      );
+
+      const gElement = screen.getByTestId('wrapped-x-axis-tick');
+      expect(gElement).toHaveAttribute('transform', 'translate(-50, -100) rotate(-45)');
     });
   });
 
   describe('Text Content Handling', () => {
-    it('renders single word correctly', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Single' }} />);
-      
-      const line = screen.getByTestId('bar-chart-x-tick-line-0');
-      expect(line).toHaveTextContent('Single');
-      expect(line).toHaveAttribute('x', '0');
-      expect(line).toHaveAttribute('dy', '0');
+    it('should handle string values', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: 'String Value' }} />
+        </svg>
+      );
+
+      expect(screen.getByText('String Value')).toBeInTheDocument();
     });
 
-    it('renders short text without wrapping', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Short Text' }} />);
-      
-      const line = screen.getByTestId('bar-chart-x-tick-line-0');
-      expect(line).toHaveTextContent('Short Text');
-      expect(screen.queryByTestId('bar-chart-x-tick-line-1')).not.toBeInTheDocument();
+    it('should handle number values', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: 12345 }} />
+        </svg>
+      );
+
+      expect(screen.getByText('12345')).toBeInTheDocument();
     });
 
-    it('wraps long text into multiple lines', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'This is a very long text that should wrap' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      const line2 = screen.getByTestId('bar-chart-x-tick-line-1');
-      
-      expect(line1).toBeInTheDocument();
-      expect(line2).toBeInTheDocument();
-      expect(line1).toHaveAttribute('dy', '0');
-      expect(line2).toHaveAttribute('dy', '12');
+    it('should handle empty string', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: '' }} />
+        </svg>
+      );
+
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toBeInTheDocument();
     });
 
-    it('limits to maximum 2 lines', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'This is an extremely long text that would normally wrap into more than two lines but should be limited' }} />);
-      
-      expect(screen.getByTestId('bar-chart-x-tick-line-0')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-line-1')).toBeInTheDocument();
-      expect(screen.queryByTestId('bar-chart-x-tick-line-2')).not.toBeInTheDocument();
+    it('should handle undefined value', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: undefined as any }} />
+        </svg>
+      );
+
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toBeInTheDocument();
     });
 
-    it('handles exactly 12 character limit per line', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Twelve chars exactly more text' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      const line2 = screen.getByTestId('bar-chart-x-tick-line-1');
-      
-      expect(line1).toHaveTextContent('Twelve chars');
-      expect(line2).toHaveTextContent('exactly more');
-    });
-  });
+    it('should handle null value', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: null as any }} />
+        </svg>
+      );
 
-  describe('Edge Cases and Special Values', () => {
-    it('handles undefined payload value', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: undefined }} />);
-      
-      expect(screen.getByTestId('bar-chart-x-tick')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-text')).toBeInTheDocument();
-      expect(screen.queryByTestId('bar-chart-x-tick-line-0')).not.toBeInTheDocument();
-    });
-
-    it('handles null payload value', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: null }} />);
-      
-      expect(screen.getByTestId('bar-chart-x-tick')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-text')).toBeInTheDocument();
-      expect(screen.queryByTestId('bar-chart-x-tick-line-0')).not.toBeInTheDocument();
-    });
-
-    it('handles empty string payload value', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: '' }} />);
-      
-      expect(screen.getByTestId('bar-chart-x-tick')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-text')).toBeInTheDocument();
-      expect(screen.queryByTestId('bar-chart-x-tick-line-0')).not.toBeInTheDocument();
-    });
-
-    it('handles numeric payload value', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 12345 }} />);
-      
-      const line = screen.getByTestId('bar-chart-x-tick-line-0');
-      expect(line).toHaveTextContent('12345');
-    });
-
-    it('handles boolean payload value', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: true }} />);
-      
-      const line = screen.getByTestId('bar-chart-x-tick-line-0');
-      expect(line).toHaveTextContent('true');
-    });
-
-    it('handles zero coordinates', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} x={0} y={0} />);
-      
-      const tickGroup = screen.getByTestId('bar-chart-x-tick');
-      expect(tickGroup).toHaveAttribute('transform', 'translate(0, 0) rotate(-45)');
-    });
-
-    it('handles negative coordinates', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} x={-50} y={-100} />);
-      
-      const tickGroup = screen.getByTestId('bar-chart-x-tick');
-      expect(tickGroup).toHaveAttribute('transform', 'translate(-50, -100) rotate(-45)');
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toBeInTheDocument();
     });
   });
 
-  describe('Text Wrapping Logic', () => {
-    it('wraps at word boundaries', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Word boundary test case' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      const line2 = screen.getByTestId('bar-chart-x-tick-line-1');
-      
-      expect(line1.textContent).toBe('Word');
-      expect(line2.textContent).toBe('boundary');
+  describe('SVG Structure', () => {
+    it('should render proper SVG structure', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} />
+        </svg>
+      );
+
+      const gElement = screen.getByTestId('wrapped-x-axis-tick');
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+
+      expect(gElement.tagName).toBe('g');
+      expect(textElement.tagName).toBe('text');
     });
 
-    it('handles single long word exceeding character limit', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Supercalifragilisticexpialidocious' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      expect(line1).toHaveTextContent('Supercalifragilisticexpialidocious');
-      expect(screen.queryByTestId('bar-chart-x-tick-line-1')).not.toBeInTheDocument();
-    });
+    it('should apply correct text attributes', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} />
+        </svg>
+      );
 
-    it('handles multiple spaces between words', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Multiple    spaces   between' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      const line2 = screen.getByTestId('bar-chart-x-tick-line-1');
-      
-      expect(line1).toHaveTextContent('Multiple');
-      expect(line2).toHaveTextContent('spaces');
-    });
-
-    it('preserves single spaces in wrapped text', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Short text wrap' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      expect(line1).toHaveTextContent('Short text');
-    });
-  });
-
-  describe('Special Characters and Unicode', () => {
-    it('handles text with special characters', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Special @#$%^&*() chars' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      const line2 = screen.getByTestId('bar-chart-x-tick-line-1');
-      
-      expect(line1).toHaveTextContent('Special');
-      expect(line2).toHaveTextContent('@#$%^&*()');
-    });
-
-    it('handles Unicode characters', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Héllo Wörld 你好' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      const line2 = screen.getByTestId('bar-chart-x-tick-line-1');
-      
-      expect(line1).toHaveTextContent('Héllo Wörld');
-      expect(line2).toHaveTextContent('你好');
-    });
-
-    it('handles emojis in text', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Hello 👋 World 🌍' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      const line2 = screen.getByTestId('bar-chart-x-tick-line-1');
-      
-      expect(line1).toHaveTextContent('Hello 👋');
-      expect(line2).toHaveTextContent('World 🌍');
-    });
-  });
-
-  describe('Performance and Edge Cases', () => {
-    it('handles very long strings efficiently', () => {
-      const longText = 'word '.repeat(100);
-      const startTime = performance.now();
-      
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: longText }} />);
-      
-      const endTime = performance.now();
-      expect(endTime - startTime).toBeLessThan(50);
-      
-      expect(screen.getByTestId('bar-chart-x-tick-line-0')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-line-1')).toBeInTheDocument();
-      expect(screen.queryByTestId('bar-chart-x-tick-line-2')).not.toBeInTheDocument();
-    });
-
-    it('handles string with only spaces', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: '     ' }} />);
-      
-      expect(screen.getByTestId('bar-chart-x-tick')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-text')).toBeInTheDocument();
-      expect(screen.queryByTestId('bar-chart-x-tick-line-0')).not.toBeInTheDocument();
-    });
-
-    it('handles string starting with spaces', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: '   Leading spaces' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      expect(line1).toHaveTextContent('Leading');
-    });
-
-    it('handles string ending with spaces', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Trailing spaces   ' }} />);
-      
-      const line1 = screen.getByTestId('bar-chart-x-tick-line-0');
-      expect(line1).toHaveTextContent('Trailing');
-    });
-  });
-
-  describe('Component Integration', () => {
-    it('works with different coordinate values', () => {
-      const coords = [
-        { x: 0, y: 0 },
-        { x: 100, y: 200 },
-        { x: -50, y: 300 },
-        { x: 1000, y: -100 }
-      ];
-
-      coords.forEach(({ x, y }) => {
-        const { unmount } = renderWithSvg(
-          <WrappedXAxisTick {...defaultProps} x={x} y={y} />
-        );
-        
-        const tickGroup = screen.getByTestId('bar-chart-x-tick');
-        expect(tickGroup).toHaveAttribute('transform', `translate(${x}, ${y}) rotate(-45)`);
-        
-        unmount();
-      });
-    });
-
-    it('maintains consistent structure across different texts', () => {
-      const testTexts = [
-        'Short',
-        'Medium length text',
-        'Very long text that will definitely wrap into multiple lines',
-        'SingleVeryLongWordWithoutSpaces'
-      ];
-
-      testTexts.forEach((text) => {
-        const { unmount } = renderWithSvg(
-          <WrappedXAxisTick {...defaultProps} payload={{ value: text }} />
-        );
-        
-        expect(screen.getByTestId('bar-chart-x-tick')).toBeInTheDocument();
-        expect(screen.getByTestId('bar-chart-x-tick-text')).toBeInTheDocument();
-        expect(screen.getByTestId('bar-chart-x-tick-line-0')).toBeInTheDocument();
-        
-        unmount();
-      });
-    });
-  });
-
-  describe('Accessibility and Data Attributes', () => {
-    it('provides correct data-qa-id attributes for testing', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Test wrap text' }} />);
-      
-      expect(screen.getByTestId('bar-chart-x-tick')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-text')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-line-0')).toBeInTheDocument();
-      expect(screen.getByTestId('bar-chart-x-tick-line-1')).toBeInTheDocument();
-    });
-
-    it('maintains proper SVG structure for screen readers', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} />);
-      
-      const group = screen.getByTestId('bar-chart-x-tick');
-      const text = screen.getByTestId('bar-chart-x-tick-text');
-      
-      expect(group.tagName).toBe('g');
-      expect(text.tagName).toBe('text');
-      expect(text).toHaveAttribute('fill', 'currentColor');
-    });
-
-    it('uses semantic SVG text elements', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} payload={{ value: 'Multi word test' }} />);
-      
-      const tspans = screen.getAllByTestId(/bar-chart-x-tick-line-\d+/);
-      tspans.forEach((tspan) => {
-        expect(tspan.tagName).toBe('tspan');
-        expect(tspan).toHaveAttribute('x', '0');
-      });
-    });
-  });
-
-  describe('Style Integration', () => {
-    it('applies barChartStyles.xAxisTick class', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} />);
-      
-      const textElement = screen.getByTestId('bar-chart-x-tick-text');
-      expect(textElement).toHaveClass('text-xs text-gray-600');
-    });
-
-    it('maintains currentColor for dynamic theming', () => {
-      renderWithSvg(<WrappedXAxisTick {...defaultProps} />);
-      
-      const textElement = screen.getByTestId('bar-chart-x-tick-text');
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toHaveAttribute('x', '0');
+      expect(textElement).toHaveAttribute('y', '0');
       expect(textElement).toHaveAttribute('fill', 'currentColor');
+    });
+
+    it('should render tspan elements for each line', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick 
+            {...defaultProps} 
+            payload={{ value: 'Multi word text' }}
+          />
+        </svg>
+      );
+
+      expect(screen.getByTestId('wrapped-x-axis-tick-line-0')).toBeInTheDocument();
+      expect(screen.getByTestId('wrapped-x-axis-tick-line-1')).toBeInTheDocument();
+    });
+  });
+
+  describe('Styling', () => {
+    it('should apply correct CSS classes', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} />
+        </svg>
+      );
+
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toHaveClass('text-xs', 'text-gray-600');
+    });
+
+    it('should apply different font sizes for RTL and LTR', () => {
+      const { rerender } = render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} isRTL={false} />
+        </svg>
+      );
+      
+      let textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toHaveStyle({ fontSize: '12px' });
+
+      rerender(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} isRTL={true} />
+        </svg>
+      );
+      
+      textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+      expect(textElement).toHaveStyle({ fontSize: '11px' });
+    });
+  });
+
+  describe('Edge Cases', () => {
+    it('should handle special characters', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: 'Special @#$%^&*()' }} />
+        </svg>
+      );
+
+      expect(screen.getByText('Special')).toBeInTheDocument();
+      expect(screen.getByText('@#$%^&*()')).toBeInTheDocument();
+    });
+
+    it('should handle unicode characters', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: 'Unicode 中文 العربية' }} />
+        </svg>
+      );
+
+      expect(screen.getByText('Unicode 中文')).toBeInTheDocument();
+      expect(screen.getByText('العربية')).toBeInTheDocument();
+    });
+
+    it('should handle emojis', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} payload={{ value: 'Emojis 🚀 🎉 📊' }} />
+        </svg>
+      );
+
+      expect(screen.getByText('Emojis 🚀 🎉')).toBeInTheDocument();
+      expect(screen.getByText('📊')).toBeInTheDocument();
+    });
+
+    it('should handle very large coordinates', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} x={999999} y={888888} />
+        </svg>
+      );
+
+      const gElement = screen.getByTestId('wrapped-x-axis-tick');
+      expect(gElement).toHaveAttribute('transform', 'translate(999999, 888888) rotate(-45)');
+    });
+  });
+
+  describe('Accessibility', () => {
+    it('should provide proper data-qa-id hierarchy for testing', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} data-qa-id="accessible-tick" />
+        </svg>
+      );
+
+      expect(screen.getByTestId('accessible-tick')).toBeInTheDocument();
+      expect(screen.getByTestId('accessible-tick-text')).toBeInTheDocument();
+      expect(screen.getByTestId('accessible-tick-line-0')).toBeInTheDocument();
+    });
+
+    it('should maintain semantic SVG structure', () => {
+      render(
+        <svg>
+          <WrappedXAxisTick {...defaultProps} />
+        </svg>
+      );
+
+      const gElement = screen.getByTestId('wrapped-x-axis-tick');
+      const textElement = screen.getByTestId('wrapped-x-axis-tick-text');
+
+      expect(gElement).toContainElement(textElement);
     });
   });
 });

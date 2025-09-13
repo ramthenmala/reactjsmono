@@ -18,6 +18,7 @@ export interface ICompassInvestorJourney {
   title: string;
   content: string;
   cards: IInvestorJourneyCard[];
+  'data-qa-id'?: string;
 }
 
 export interface IInvestorJourneyCard {

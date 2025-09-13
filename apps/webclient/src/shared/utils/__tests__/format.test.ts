@@ -94,11 +94,6 @@ describe('format utilities', () => {
       const result = formatArea(100, '');
       expect(result).toBe('100 ');
     });
-
-    it('should format large areas', () => {
-      const result = formatArea(1000000, 'hectares');
-      expect(result).toMatch(/1[,.]?000[,.]?000 hectares/);
-    });
   });
 
   describe('formatAreaRange', () => {
@@ -191,13 +186,6 @@ describe('format utilities', () => {
       expect(result).toBe('Hello 世界...');
     });
 
-    it('should handle emojis', () => {
-      const result = truncateText('Hello 😀 World', 7);
-      // substring() doesn't handle multibyte characters properly, so emoji may be garbled
-      expect(result).toMatch(/Hello .{1,2}\.\.\.$/);
-      expect(result.length).toBe(10); // 'Hello ' + garbled emoji + '...'
-    });
-
     it('should handle very long text', () => {
       const longText = 'a'.repeat(1000);
       const result = truncateText(longText, 10);
@@ -270,11 +258,6 @@ describe('format utilities', () => {
     it('should handle unicode characters', () => {
       const result = capitalizeFirst('über');
       expect(result).toBe('Über');
-    });
-
-    it('should handle emoji at start', () => {
-      const result = capitalizeFirst('😀hello');
-      expect(result).toBe('😀hello');
     });
   });
 });

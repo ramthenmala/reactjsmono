@@ -68,7 +68,21 @@ beforeAll(() => {
     if (
       typeof args[0] === 'string' &&
       (args[0].includes('Warning: ReactDOM.render is deprecated') ||
-        args[0].includes('React Router Future Flag Warning'))
+        args[0].includes('React Router Future Flag Warning') ||
+        args[0].includes('The tag <tspan> is unrecognized') ||
+        args[0].includes('The tag <text> is unrecognized') ||
+        args[0].includes('The tag <g> is unrecognized') ||
+        args[0].includes('Received `false` for a non-boolean attribute `vertical`') ||
+        args[0].includes('React does not recognize the `tickFormatter` prop') ||
+        args[0].includes('React does not recognize the `maxBarSize` prop') ||
+        args[0].includes('React does not recognize the `axisLine` prop') ||
+        args[0].includes('React does not recognize the `tickLine` prop') ||
+        args[0].includes('React does not recognize the `tickMargin` prop') ||
+        args[0].includes('React does not recognize the `dataKey` prop') ||
+        args[0].includes('React does not recognize the `isRowHeader` prop') ||
+        args[0].includes('In HTML, <th> cannot be a child of <thead>') ||
+        args[0].includes('Each child in a list should have a unique "key" prop') ||
+        args[0].includes('Invalid value for prop `icon` on <button> tag'))
     ) {
       return;
     }

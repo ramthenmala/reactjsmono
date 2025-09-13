@@ -8,7 +8,7 @@ import { createRouteUrl } from '@/shared/utils';
 import { SearchForm } from './SearchForm';
 import { ISearchPanelProps } from '@/features/explore/types/searchPanel';
 
-export function SearchPanel({ onSearch, initialFilters }: ISearchPanelProps) {
+export function SearchPanel({ onSearch, initialFilters, 'data-qa-id': dataQaId = 'search-panel' }: ISearchPanelProps) {
   const { t } = useLocaleTranslation();
   const currentLocale = useCurrentLocale();
   const navigate = useNavigate();
@@ -95,7 +95,7 @@ export function SearchPanel({ onSearch, initialFilters }: ISearchPanelProps) {
   const isLoading = dataLoading || isSearching;
 
   return (
-    <section className='container relative z-10 -mt-25'>
+    <section className='container relative z-10 -mt-25' data-qa-id={dataQaId}>
       <div
         className='relative flex flex-col items-start rounded-[24px] border border-[#EBEDEF] overflow-hidden w-full max-w-[1280px] p-4 md:p-8'
         style={{
@@ -104,9 +104,10 @@ export function SearchPanel({ onSearch, initialFilters }: ISearchPanelProps) {
           boxShadow: '0 2px 75px 20px rgba(85, 71, 181, 0.20)',
           backdropFilter: 'blur(50px)',
         }}
+        data-qa-id={`${dataQaId}-container`}
       >
         {/* Content */}
-        <div className='w-full'>
+        <div className='w-full' data-qa-id={`${dataQaId}-content`}>
           <SearchForm
             isics={isics}
             sectors={sectors}
@@ -123,6 +124,7 @@ export function SearchPanel({ onSearch, initialFilters }: ISearchPanelProps) {
             onSearch={handleSearch}
             onClear={handleClearFilters}
             isSearching={isSearching}
+            data-qa-id={`${dataQaId}-form`}
           />
         </div>
       </div>

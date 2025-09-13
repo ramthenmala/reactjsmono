@@ -16,4 +16,5 @@ export interface SearchFormProps {
   onSearch: () => void;
   onClear: () => void;
   isSearching?: boolean;
+  'data-qa-id'?: string;
 }

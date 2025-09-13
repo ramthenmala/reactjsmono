@@ -9,14 +9,18 @@ export function InvestorJourney({
   title,
   content,
   cards,
+  'data-qa-id': dataQaId = 'investor-journey',
 }: ICompassInvestorJourney) {
   const [activeIndex, setActiveIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
 
+  // Handle null or undefined cards
+  const safeCards = cards || [];
+
   // Keep activeIndex within bounds if steps length changes
   useEffect(() => {
-    setActiveIndex(i => Math.min(i, Math.max(0, cards.length - 1)));
-  }, [cards.length]);
+    setActiveIndex(i => Math.min(i, Math.max(0, safeCards.length - 1)));
+  }, [safeCards.length]);
 
   // Touch handlers for sliding
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -28,7 +32,7 @@ export function InvestorJourney({
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX.current;
 
-    const NEXT = () => setActiveIndex(i => Math.min(i + 1, cards.length - 1));
+    const NEXT = () => setActiveIndex(i => Math.min(i + 1, safeCards.length - 1));
     const PREV = () => setActiveIndex(i => Math.max(i - 1, 0));
 
     if (isRTL()) {
@@ -50,34 +54,37 @@ export function InvestorJourney({
     <section
       className={investorJourneyStyles.section.base}
       style={investorJourneyStyles.section.style}
+      data-qa-id={dataQaId}
     >
-      <div className={investorJourneyStyles.container}>
-        <div className={investorJourneyStyles.header.wrapper}>
-          <h2 className={investorJourneyStyles.header.title}>{displayTitle}</h2>
-          <p className={investorJourneyStyles.header.content}>
+      <div className={investorJourneyStyles.container} data-qa-id={`${dataQaId}-container`}>
+        <div className={investorJourneyStyles.header.wrapper} data-qa-id={`${dataQaId}-header`}>
+          <h2 className={investorJourneyStyles.header.title} data-qa-id={`${dataQaId}-title`}>{displayTitle}</h2>
+          <p className={investorJourneyStyles.header.content} data-qa-id={`${dataQaId}-content`}>
             {displayContent}
           </p>
         </div>
 
         {/* Mobile Slider */}
         <MobileSlider
-          cards={cards}
+          cards={safeCards}
           activeIndex={activeIndex}
-          isRTL={isRTL}
+          isRTL={isRTL()}
           onTouchStart={handleTouchStart}
           onTouchEnd={handleTouchEnd}
+          data-qa-id={`${dataQaId}-mobile-slider`}
         />
 
         {/* Navigation Dots */}
         <NavigationDots
-          cards={cards}
+          cards={safeCards}
           activeIndex={activeIndex}
-          isRTL={isRTL}
+          isRTL={isRTL()}
           onDotClick={setActiveIndex}
+          data-qa-id={`${dataQaId}-navigation-dots`}
         />
 
         {/* Desktop Grid */}
-        <DesktopGrid cards={cards} />
+        <DesktopGrid cards={safeCards} data-qa-id={`${dataQaId}-desktop-grid`} />
       </div>
     </section>
   );

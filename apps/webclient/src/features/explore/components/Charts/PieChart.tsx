@@ -21,7 +21,7 @@ export const PieChart = ({
 }: PieChartProps) => {
   const renderChart = (size: number, suffix: string) => (
     <ResponsiveContainer height={size} width={size}>
-      <RechartsPieChart 
+      <RechartsPieChart
         margin={{ left: 0, right: 0, top: 0, bottom: 0 }}
         data-qa-id={`${dataQaId}-${suffix}`}
       >

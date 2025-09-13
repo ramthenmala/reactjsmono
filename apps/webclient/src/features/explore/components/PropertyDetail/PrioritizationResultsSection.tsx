@@ -1,13 +1,21 @@
 import { WorkforceTalentSection } from './WorkforceTalentSection';
-import { useLocaleTranslation } from '../../../../i18n';
 import { useState } from 'react';
 import { IPrioritizationResultInfo } from '../../types/industrialCity';
+import SocialAndCommunity from './SocialAndCommunity';
+import MarketAccessAndDemand from './MarketAccessAndDemand';
+import LeagalAndRegulatory from './LeagalAndRegulatory';
+import { Environmental } from './Environmental';
+import ValueChainAndIndustryClusters from './ValueChainAndIndustryClusters';
 
 export function PrioritizationResultsSection({
   title,
   workforceAndTalent,
+  socialAndCommunity,
+  marketAccessAndDemand,
+  leagalAndRegulatory,
+  environmental,
+  valueChainAndIndustryClusters,
 }: IPrioritizationResultInfo) {
-  const { t } = useLocaleTranslation();
   const [openSection, setOpenSection] = useState('workforce');
 
   const toggleSection = (sectionId: string) => {
@@ -21,62 +29,29 @@ export function PrioritizationResultsSection({
       content: <WorkforceTalentSection {...workforceAndTalent} />,
     },
     {
-      id: 'infrastructure',
-      title:
-        t('property_detail.infrastructure_utilities') ||
-        'Infrastructure & Utilities',
-      content: (
-        <div className='text-gray-600'>
-          {t('property_detail.content_coming_soon') || 'Content coming soon'}
-        </div>
-      ),
-    },
-    {
       id: 'social',
-      title: t('property_detail.social_community') || 'Social & Community',
-      content: (
-        <div className='text-gray-600'>
-          {t('property_detail.content_coming_soon') || 'Content coming soon'}
-        </div>
-      ),
-    },
-    {
-      id: 'value-chain',
-      title:
-        t('property_detail.value_chain_clusters') || 'Value Chain & Clusters',
-      content: (
-        <div className='text-gray-600'>
-          {t('property_detail.content_coming_soon') || 'Content coming soon'}
-        </div>
-      ),
-    },
-    {
-      id: 'environmental',
-      title: t('property_detail.environmental') || 'Environmental',
-      content: (
-        <div className='text-gray-600'>
-          {t('property_detail.content_coming_soon') || 'Content coming soon'}
-        </div>
-      ),
-    },
-    {
-      id: 'legal',
-      title: t('property_detail.legal_regulatory') || 'Legal & Regulatory',
-      content: (
-        <div className='text-gray-600'>
-          {t('property_detail.content_coming_soon') || 'Content coming soon'}
-        </div>
-      ),
+      title: socialAndCommunity.title,
+      content: <SocialAndCommunity {...socialAndCommunity} />,
     },
     {
       id: 'market',
-      title:
-        t('property_detail.market_access_demand') || 'Market Access & Demand',
-      content: (
-        <div className='text-gray-600'>
-          {t('property_detail.content_coming_soon') || 'Content coming soon'}
-        </div>
-      ),
+      title: marketAccessAndDemand.title,
+      content: <MarketAccessAndDemand {...marketAccessAndDemand} />,
+    },
+    {
+      id: 'legal',
+      title: leagalAndRegulatory.title,
+      content: <LeagalAndRegulatory {...leagalAndRegulatory} />,
+    },
+    {
+      id: 'environmental',
+      title: environmental.title,
+      content: <Environmental {...environmental} />,
+    },
+    {
+      id: 'value-chain',
+      title: valueChainAndIndustryClusters.title,
+      content: <ValueChainAndIndustryClusters {...valueChainAndIndustryClusters} />,
     },
   ];
 
@@ -102,7 +77,7 @@ export function PrioritizationResultsSection({
             >
               <button
                 onClick={() => toggleSection(section.id)}
-                className='w-full text-left flex justify-between items-center'
+                className='w-full text-left flex justify-between items-center cursor-pointer'
               >
                 <h3
                   className='text-gray-900'
@@ -132,8 +107,7 @@ export function PrioritizationResultsSection({
               </button>
               {openSection === section.id && (
                 <div
-                  className='bg-white'
-                  style={{ marginTop: 'var(--spacing-4xl, 32px)' }}
+                  className='mt-8'
                 >
                   {section.content}
                 </div>
