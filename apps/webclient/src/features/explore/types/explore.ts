@@ -67,6 +67,7 @@ export interface IPropertyCardProps {
   onCompare?: (property: IProperty) => void;
   onView?: (property: IProperty) => void;
   hideDistance?: boolean;
+  'data-qa-id'?: string;
 }
 
 // --- API Response Types -------------------------------------------

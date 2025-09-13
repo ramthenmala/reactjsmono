@@ -13,16 +13,24 @@ export function WorkforceTalentSection({
   skilledLaborAvgSalary,
   nonskilledLaborAvgSalary,
   image,
+  'data-qa-id': dataQaId = 'workforce-talent',
 }: IWorkforceAndTalent) {
   return (
-    <div className={propertyDetailStyles.flexLayout.reverseOnLarge}>
-      <div className='lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-4'>
+    <div 
+      className={propertyDetailStyles.flexLayout.reverseOnLarge}
+      data-qa-id={dataQaId}
+    >
+      <div 
+        className='lg:w-7/12 grid grid-cols-1 md:grid-cols-2 gap-4'
+        data-qa-id={`${dataQaId}-stats`}
+      >
         {avaialbilityOfSkilledLabor && (
           <StatChartCard
             label={avaialbilityOfSkilledLabor.title}
-            value={formatValueWithUnit(avaialbilityOfNonSkilledLabor.value, avaialbilityOfNonSkilledLabor.unit)}
-            percentage={Number(avaialbilityOfNonSkilledLabor.value)}
+            value={formatValueWithUnit(avaialbilityOfSkilledLabor.value, avaialbilityOfSkilledLabor.unit)}
+            percentage={Number(avaialbilityOfSkilledLabor.value)}
             variant='wide'
+            data-qa-id={`${dataQaId}-skilled-availability`}
           />
         )}
 
@@ -32,6 +40,7 @@ export function WorkforceTalentSection({
             value={formatValueWithUnit(avaialbilityOfNonSkilledLabor.value, avaialbilityOfNonSkilledLabor.unit)}
             percentage={Number(avaialbilityOfNonSkilledLabor.value)}
             variant='wide'
+            data-qa-id={`${dataQaId}-non-skilled-availability`}
           />
         )}
 
@@ -45,6 +54,7 @@ export function WorkforceTalentSection({
               </span>
             }
             variant='large'
+            data-qa-id={`${dataQaId}-skilled-salary`}
           />
         )}
 
@@ -58,11 +68,17 @@ export function WorkforceTalentSection({
               </span>
             }
             variant='large'
+            data-qa-id={`${dataQaId}-non-skilled-salary`}
           />
         )}
       </div>
       {image && (
-        <img src={image} alt='Workforce and Talent' className={propertyDetailStyles.image.rounded} />
+        <img 
+          src={image} 
+          alt='Workforce and Talent' 
+          className={propertyDetailStyles.image.rounded}
+          data-qa-id={`${dataQaId}-image`}
+        />
       )}
     </div>
   );

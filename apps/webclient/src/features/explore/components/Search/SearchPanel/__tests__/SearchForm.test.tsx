@@ -124,12 +124,19 @@ jest.mock('@compass/shared-ui', () => {
   };
 });
 
-// Mock react-stately
+// Mock react-stately with better handling of selected items
+const mockSelectedItems: any[] = [];
+const mockAppend = jest.fn((item) => mockSelectedItems.push(item));
+const mockRemove = jest.fn((id) => {
+  const index = mockSelectedItems.findIndex(item => item.id === id);
+  if (index > -1) mockSelectedItems.splice(index, 1);
+});
+
 jest.mock('react-stately', () => ({
   useListData: ({ initialItems }: any) => ({
-    items: initialItems || [],
-    append: jest.fn(),
-    remove: jest.fn(),
+    get items() { return mockSelectedItems; },
+    append: mockAppend,
+    remove: mockRemove,
   }),
 }));
 
@@ -189,6 +196,8 @@ describe('SearchForm', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+    // Clear mock selected items
+    mockSelectedItems.length = 0;
   });
 
   describe('Rendering', () => {
@@ -647,6 +656,320 @@ describe('SearchForm', () => {
       expect(screen.getByText('Land Area')).toBeInTheDocument();
       expect(screen.getByText('Clear')).toBeInTheDocument();
       expect(screen.getByText('Search')).toBeInTheDocument();
+    });
+  });
+
+  describe('Advanced ISIC Logic Coverage', () => {
+    it('should handle useEffect isDifferent check when selectedItems change', () => {
+      const initialFilters = { ...mockFilters, isic: ['1'] };
+      const { rerender } = render(<SearchForm {...defaultProps} filters={initialFilters} />);
+
+      // Change filters to trigger useEffect
+      const newFilters = { ...mockFilters, isic: ['2'] };
+      rerender(<SearchForm {...defaultProps} filters={newFilters} />);
+
+      // The component should detect difference and update
+      expect(screen.getByTestId('search-form')).toBeInTheDocument();
+    });
+
+    it('should handle truncation when more than 5 items are selected in useEffect', () => {
+      const mockOnFiltersChange = jest.fn();
+
+      // Mock isics with more than 5 items
+      const manyIsics: IIsicCode[] = [
+        { id: '1', code: 1 },
+        { id: '2', code: 2 },
+        { id: '3', code: 3 },
+        { id: '4', code: 4 },
+        { id: '5', code: 5 },
+        { id: '6', code: 6 },
+        { id: '7', code: 7 },
+      ];
+
+      const filtersWithManyIsics = {
+        ...mockFilters,
+        isic: ['1', '2', '3', '4', '5', '6', '7'],
+      };
+
+      render(
+        <SearchForm 
+          {...defaultProps} 
+          isics={manyIsics}
+          filters={filtersWithManyIsics}
+          onFiltersChange={mockOnFiltersChange}
+        />
+      );
+
+      // Should call onFiltersChange to truncate to 5 items
+      expect(mockOnFiltersChange).toHaveBeenCalledWith({ isic: ['1', '2', '3', '4', '5'] });
+    });
+
+    it('should handle setTimeout logic for preventing excess ISIC selection', async () => {
+      jest.useFakeTimers();
+      const consoleSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+
+      const filtersWithMaxIsics = {
+        ...mockFilters,
+        isic: ['1', '2', '3', '4', '5'],
+      };
+
+      render(<SearchForm {...defaultProps} filters={filtersWithMaxIsics} />);
+
+      fireEvent.click(screen.getByTestId('search-form-isic-multiselect-item-3'));
+
+      // Fast-forward timers to trigger setTimeout
+      jest.runAllTimers();
+
+      expect(consoleSpy).toHaveBeenCalledWith('⚠️ Maximum 5 ISIC codes allowed');
+      
+      jest.useRealTimers();
+      consoleSpy.mockRestore();
+    });
+
+    it('should handle ISIC item removal correctly', () => {
+      const mockOnFiltersChange = jest.fn();
+
+      const filtersWithIsics = {
+        ...mockFilters,
+        isic: ['1', '2'],
+      };
+
+      // First, populate the mock selected items to simulate having selected items
+      mockSelectedItems.length = 0; // Clear array
+      mockSelectedItems.push({ id: '1', label: '1' }, { id: '2', label: '2' });
+
+      render(
+        <SearchForm 
+          {...defaultProps} 
+          filters={filtersWithIsics}
+          onFiltersChange={mockOnFiltersChange}
+        />
+      );
+
+      // Should have selected items rendered
+      expect(screen.getByTestId('search-form-isic-multiselect-selected-1')).toBeInTheDocument();
+
+      // Simulate removal by clicking remove button
+      fireEvent.click(screen.getByTestId('search-form-isic-multiselect-remove-1'));
+
+      expect(mockOnFiltersChange).toHaveBeenCalledWith({ isic: ['2'] });
+    });
+
+    it('should handle ISIC item insertion when isic array is empty', () => {
+      const mockOnFiltersChange = jest.fn();
+      
+      const filtersWithEmptyIsic = {
+        ...mockFilters,
+        isic: [],
+      };
+
+      render(
+        <SearchForm 
+          {...defaultProps} 
+          filters={filtersWithEmptyIsic}
+          onFiltersChange={mockOnFiltersChange}
+        />
+      );
+
+      // Simulate adding an item
+      fireEvent.click(screen.getByTestId('search-form-isic-multiselect-item-1'));
+
+      expect(mockOnFiltersChange).toHaveBeenCalledWith({ isic: ['1'] });
+    });
+  });
+
+  describe('Select Item Rendering Coverage', () => {
+    it('should render MultiSelect items correctly', () => {
+      const testIsics: IIsicCode[] = [
+        { id: '100', code: 100 },
+        { id: '200', code: 200 },
+      ];
+
+      render(<SearchForm {...defaultProps} isics={testIsics} />);
+
+      // Check that items are rendered with correct labels
+      expect(screen.getByTestId('search-form-isic-multiselect-item-100')).toHaveTextContent('100');
+      expect(screen.getByTestId('search-form-isic-multiselect-item-200')).toHaveTextContent('200');
+    });
+
+    it('should render sector Select items correctly', () => {
+      const testSectors: ISector[] = [
+        { id: 'sector1', name: 'Sector One' },
+        { id: 'sector2', name: 'Sector Two' },
+      ];
+
+      render(<SearchForm {...defaultProps} sectors={testSectors} />);
+
+      const sectorSelect = screen.getByTestId('search-form-sector-select-select');
+      const options = sectorSelect.querySelectorAll('option');
+      
+      // Should have placeholder + 2 sector options
+      expect(options).toHaveLength(3);
+      expect(options[1]).toHaveTextContent('Sector One');
+      expect(options[2]).toHaveTextContent('Sector Two');
+    });
+
+    it('should render region Select items correctly', () => {
+      const testRegions: IRegion[] = [
+        { id: 'region1', name: 'Region One' },
+        { id: 'region2', name: 'Region Two' },
+      ];
+
+      render(<SearchForm {...defaultProps} regions={testRegions} />);
+
+      const regionSelect = screen.getByTestId('search-form-region-select-select');
+      const options = regionSelect.querySelectorAll('option');
+      
+      // Should have placeholder + 2 region options
+      expect(options).toHaveLength(3);
+      expect(options[1]).toHaveTextContent('Region One');
+      expect(options[2]).toHaveTextContent('Region Two');
+    });
+
+    it('should render location Select items correctly', () => {
+      const testCities: ICity[] = [
+        { id: 'city1', name: 'City One' },
+        { id: 'city2', name: 'City Two' },
+      ];
+
+      render(<SearchForm {...defaultProps} cities={testCities} />);
+
+      const locationSelect = screen.getByTestId('search-form-location-select-select');
+      const options = locationSelect.querySelectorAll('option');
+      
+      // Should have placeholder + 2 city options
+      expect(options).toHaveLength(3);
+      expect(options[1]).toHaveTextContent('City One');
+      expect(options[2]).toHaveTextContent('City Two');
+    });
+
+    it('should render Select.Item children correctly for all selects', () => {
+      const testSectors: ISector[] = [{ id: 'test-sector', name: 'Test Sector' }];
+      const testRegions: IRegion[] = [{ id: 'test-region', name: 'Test Region' }];
+      const testCities: ICity[] = [{ id: 'test-city', name: 'Test City' }];
+      const testIsics: IIsicCode[] = [{ id: 'test-isic', code: 123 }];
+
+      render(
+        <SearchForm 
+          {...defaultProps} 
+          sectors={testSectors}
+          regions={testRegions}
+          cities={testCities}
+          isics={testIsics}
+        />
+      );
+
+      // Verify the Select.Item children are rendered correctly
+      expect(screen.getByText('Test Sector')).toBeInTheDocument();
+      expect(screen.getByText('Test Region')).toBeInTheDocument();
+      expect(screen.getByText('Test City')).toBeInTheDocument();
+      expect(screen.getByText('123')).toBeInTheDocument();
+    });
+  });
+
+  describe('Area Slider Edge Cases', () => {
+    it('should handle area value change with reversed values', () => {
+      const mockOnAreaValueChange = jest.fn();
+      
+      render(
+        <SearchForm 
+          {...defaultProps} 
+          onAreaValueChange={mockOnAreaValueChange}
+        />
+      );
+
+      // Simulate area change where first value is larger than second
+      fireEvent.change(screen.getByTestId('search-form-area-slider-max'), {
+        target: { value: '100' }
+      });
+
+      // Should call with properly sorted values [min, max]
+      expect(mockOnAreaValueChange).toHaveBeenCalledWith([0, 100]);
+    });
+
+    it('should handle single number value in area change', () => {
+      const mockOnAreaValueChange = jest.fn();
+      
+      render(
+        <SearchForm 
+          {...defaultProps} 
+          onAreaValueChange={mockOnAreaValueChange}
+        />
+      );
+
+      // Test the handleAreaChange function with a single number
+      // This would happen if onChange is called with just a number instead of array
+      const component = screen.getByTestId('search-form');
+      
+      // We need to test this indirectly through the slider component
+      fireEvent.change(screen.getByTestId('search-form-area-slider-min'), {
+        target: { value: '500' }
+      });
+
+      expect(mockOnAreaValueChange).toHaveBeenCalledWith([500, 1000]);
+    });
+  });
+
+  describe('Component State Synchronization', () => {
+    it('should handle useEffect when isicOptions length changes', () => {
+      const { rerender } = render(<SearchForm {...defaultProps} isics={[]} />);
+
+      // Initially no isics, then add some
+      rerender(<SearchForm {...defaultProps} isics={mockIsics} />);
+
+      expect(screen.getByTestId('search-form-isic-section')).toBeInTheDocument();
+    });
+
+    it('should handle useEffect when filters.isic is exactly the same as current', () => {
+      const filtersWithSameIsic = { ...mockFilters, isic: ['1'] };
+      const { rerender } = render(<SearchForm {...defaultProps} filters={filtersWithSameIsic} />);
+
+      // Re-render with the same filters - should not trigger changes
+      rerender(<SearchForm {...defaultProps} filters={filtersWithSameIsic} />);
+
+      // Should not cause any issues since no difference detected
+      expect(screen.getByTestId('search-form')).toBeInTheDocument();
+    });
+
+    it('should handle handleIsicItemCleared with undefined isic array', () => {
+      const mockOnFiltersChange = jest.fn();
+      
+      // Mock filters with undefined isic to test the || [] fallback
+      const filtersWithUndefinedIsic = {
+        ...mockFilters,
+        isic: undefined as any,
+      };
+
+      render(
+        <SearchForm 
+          {...defaultProps} 
+          filters={filtersWithUndefinedIsic}
+          onFiltersChange={mockOnFiltersChange}
+        />
+      );
+
+      // This should still work even with undefined isic array
+      expect(screen.getByTestId('search-form')).toBeInTheDocument();
+    });
+
+    it('should handle single value area change correctly', () => {
+      const mockOnAreaValueChange = jest.fn();
+      
+      render(
+        <SearchForm 
+          {...defaultProps} 
+          onAreaValueChange={mockOnAreaValueChange}
+          areaValue={[300, 700]}
+        />
+      );
+
+      // Test area change where values get sorted
+      fireEvent.change(screen.getByTestId('search-form-area-slider-min'), {
+        target: { value: '800' }
+      });
+
+      // Should call with properly sorted values [min, max]
+      expect(mockOnAreaValueChange).toHaveBeenCalledWith([700, 800]);
     });
   });
 });

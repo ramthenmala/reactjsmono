@@ -107,6 +107,7 @@ export interface IIndustriesInsideGraphInfo {
 }
 
 export interface IWorkforceAndTalent {
+  'data-qa-id'?: string;
   title: string;
   image: string | null;
   avaialbilityOfSkilledLabor: {
@@ -132,6 +133,7 @@ export interface IWorkforceAndTalent {
 }
 
 export interface ISocialAndCommunity {
+  'data-qa-id'?: string;
   title: string;
   residentialAreas: {
     status: boolean;
@@ -170,6 +172,7 @@ export interface ISocialAndCommunity {
 }
 
 export interface IMarketAccessAndDemand {
+  'data-qa-id'?: string;
   image: string | null;
   title: string;
   subTitle: string;
@@ -177,6 +180,7 @@ export interface IMarketAccessAndDemand {
 }
 
 export interface ILeagalAndRegulatory {
+  'data-qa-id'?: string;
   image: string | null;
   title: string;
   subTitle: string;
@@ -184,6 +188,7 @@ export interface ILeagalAndRegulatory {
 }
 
 export interface IEnvironmental {
+  'data-qa-id'?: string;
   title: string
   image: string | null;
   humidity: {
@@ -209,6 +214,7 @@ export interface IEnvironmental {
 }
 
 export interface IValueChainAndIndustryClusters {
+  'data-qa-id'?: string;
   title: string;
   valueParks: {
     title: string;
@@ -225,6 +231,7 @@ export interface IValueChainAndIndustryClusters {
 }
 
 export interface IPrioritizationResultInfo {
+  'data-qa-id'?: string;
   title: string;
   workforceAndTalent: IWorkforceAndTalent;
   socialAndCommunity: ISocialAndCommunity;

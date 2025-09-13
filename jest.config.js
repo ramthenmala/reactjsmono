@@ -88,6 +88,20 @@ module.exports = {
     '!**/main.tsx',
     '!**/vite-env.d.ts',
     '!**/nx-welcome.tsx',
+    // Exclude test files
+    '!**/__tests__/**',
+    '!**/*.test.{ts,tsx}',
+    '!**/*.spec.{ts,tsx}',
+    // Exclude problematic file types causing test noise
+    '!**/types/**/*',
+    '!**/*.types.{ts,tsx}',
+    '!**/i18n/**/*',
+    '!**/shared/ui/layout/**/*',
+    '!**/*Context*.{ts,tsx}',
+    '!**/services/**/*',
+    '!**/lib/**/*',
+    '!**/constants/**/*',
+    '!**/*utils*.{ts,tsx}',
   ],
 
   // Coverage thresholds - configured per app

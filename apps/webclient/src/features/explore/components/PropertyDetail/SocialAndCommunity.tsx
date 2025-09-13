@@ -12,10 +12,17 @@ const SocialAndCommunity: React.FC<ISocialAndCommunity> = ({
   noOfBanksAndCreditInstitutions,
   amenitiesForWorkforce,
   scenicLocationAndSurroundings,
+  'data-qa-id': dataQaId = 'social-community',
 }) => {
   return (
-    <div className='flex flex-col gap-4'>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+    <div 
+      className='flex flex-col gap-4'
+      data-qa-id={dataQaId}
+    >
+      <div 
+        className='grid grid-cols-1 md:grid-cols-3 gap-4'
+        data-qa-id={`${dataQaId}-main-grid`}
+      >
         {residentialAreas && (
           <StatCard
             label={residentialAreas.title}
@@ -29,6 +36,7 @@ const SocialAndCommunity: React.FC<ISocialAndCommunity> = ({
                 </BadgeWithIcon>
             }
             icon={<Home02 className='size-11' strokeWidth={1} />}
+            data-qa-id={`${dataQaId}-residential`}
           />
         )}
         {hospitalsAndMedicalCenters && (
@@ -44,6 +52,7 @@ const SocialAndCommunity: React.FC<ISocialAndCommunity> = ({
                 </BadgeWithIcon>
             }
             icon={<Building03 className='size-11' strokeWidth={1} />}
+            data-qa-id={`${dataQaId}-medical`}
           />
         )}
         {publicTransportationAvailability && (
@@ -59,10 +68,14 @@ const SocialAndCommunity: React.FC<ISocialAndCommunity> = ({
                 </BadgeWithIcon>
             }
             icon={<Bus className='size-11' strokeWidth={1} />}
+            data-qa-id={`${dataQaId}-transport`}
           />
         )}
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
+      <div 
+        className='grid grid-cols-1 md:grid-cols-4 gap-4'
+        data-qa-id={`${dataQaId}-secondary-grid`}
+      >
         {educationalInstitutions && (
           <StatCard
             label={educationalInstitutions.title}
@@ -76,6 +89,7 @@ const SocialAndCommunity: React.FC<ISocialAndCommunity> = ({
                 </BadgeWithIcon>
             }
             icon={<BookClosed className='size-11' strokeWidth={1} />}
+            data-qa-id={`${dataQaId}-education`}
           />
         )}
         {noOfBanksAndCreditInstitutions && (
@@ -87,6 +101,7 @@ const SocialAndCommunity: React.FC<ISocialAndCommunity> = ({
               </BadgeWithDot>
             }
             icon={<Bank className='size-11' strokeWidth={1} />}
+            data-qa-id={`${dataQaId}-banks`}
           />
         )}
         {amenitiesForWorkforce && (
@@ -102,6 +117,7 @@ const SocialAndCommunity: React.FC<ISocialAndCommunity> = ({
                 </BadgeWithIcon>
             }
             icon={<Tool01 className='size-11' strokeWidth={1} />}
+            data-qa-id={`${dataQaId}-amenities`}
           />
         )}
         {scenicLocationAndSurroundings && (
@@ -117,6 +133,7 @@ const SocialAndCommunity: React.FC<ISocialAndCommunity> = ({
                 </BadgeWithIcon>
             }
             icon={<Map02 className='size-11' strokeWidth={1} />}
+            data-qa-id={`${dataQaId}-scenic`}
           />
         )}
       </div>

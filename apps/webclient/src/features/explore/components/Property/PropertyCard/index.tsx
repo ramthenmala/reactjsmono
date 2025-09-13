@@ -13,12 +13,13 @@ import { IPropertyCardProps } from '@/features/explore/types/explore';
 import { propertyCardStyles } from './styles';
 
 // Featured badge component
-const FeaturedBadge = memo(({ text }: { text: string }) => (
-  <div className={propertyCardStyles.featuredBadge}>
+const FeaturedBadge = memo(({ text, dataQaId }: { text: string; dataQaId?: string }) => (
+  <div className={propertyCardStyles.featuredBadge} data-qa-id={dataQaId}>
     <Button
       size='sm'
       color='secondary'
       className={propertyCardStyles.featuredButton}
+      data-qa-id={`${dataQaId}-button`}
     >
       <div className='absolute inset-0 rounded-xl bg-gradient-to-br from-white/10 to-transparent pointer-events-none' />
       <span className='relative z-10 text-xs font-medium'>{text}</span>
@@ -34,21 +35,23 @@ const MetricRow = memo(
     label,
     value,
     showSeparator = true,
+    dataQaId,
   }: {
     icon: React.ReactNode;
     label: string;
     value: string;
     showSeparator?: boolean;
+    dataQaId?: string;
   }) => (
-    <div>
-      <div className={propertyCardStyles.metricRow}>
-        <span className={propertyCardStyles.metricLabel}>
+    <div data-qa-id={dataQaId}>
+      <div className={propertyCardStyles.metricRow} data-qa-id={`${dataQaId}-row`}>
+        <span className={propertyCardStyles.metricLabel} data-qa-id={`${dataQaId}-label`}>
           {icon}
           {label}
         </span>
-        <span className={propertyCardStyles.metricValue}>{value}</span>
+        <span className={propertyCardStyles.metricValue} data-qa-id={`${dataQaId}-value`}>{value}</span>
       </div>
-      {showSeparator && <hr className={propertyCardStyles.separator} />}
+      {showSeparator && <hr className={propertyCardStyles.separator} data-qa-id={`${dataQaId}-separator`} />}
     </div>
   ),
 );
@@ -56,10 +59,10 @@ MetricRow.displayName = 'MetricRow';
 
 // Distance card component
 const DistanceCard = memo(
-  ({ icon, distance }: { icon: React.ReactNode; distance: string }) => (
-    <div className={propertyCardStyles.distanceCard}>
+  ({ icon, distance, dataQaId }: { icon: React.ReactNode; distance: string; dataQaId?: string }) => (
+    <div className={propertyCardStyles.distanceCard} data-qa-id={dataQaId}>
       {icon}
-      <span className='whitespace-nowrap'>{distance}</span>
+      <span className='whitespace-nowrap' data-qa-id={`${dataQaId}-text`}>{distance}</span>
     </div>
   ),
 );
@@ -71,6 +74,7 @@ export const PropertyCard = memo(
     onCompare,
     onView,
     hideDistance = false,
+    'data-qa-id': dataQaId = 'property-card',
   }: IPropertyCardProps) => {
     const { t } = useLocaleTranslation();
 
@@ -108,20 +112,21 @@ export const PropertyCard = memo(
     );
 
     return (
-      <article className={propertyCardStyles.container}>
+      <article className={propertyCardStyles.container} data-qa-id={dataQaId}>
         {/* Property Image & overlays */}
-        <div className={propertyCardStyles.imageContainer}>
+        <div className={propertyCardStyles.imageContainer} data-qa-id={`${dataQaId}-image-container`}>
           <img
             src={property.image || '/assets/images/properties/placeholder.png'}
             alt={property.title}
             className={propertyCardStyles.image}
             loading='lazy'
+            data-qa-id={`${dataQaId}-image`}
           />
-          <div className={propertyCardStyles.imageOverlay} />
+          <div className={propertyCardStyles.imageOverlay} data-qa-id={`${dataQaId}-image-overlay`} />
 
           {/* Featured Badge */}
           {property.featured && (
-            <FeaturedBadge text={t('common.featured') || 'Featured'} />
+            <FeaturedBadge text={t('common.featured') || 'Featured'} dataQaId={`${dataQaId}-featured-badge`} />
           )}
         </div>
 
@@ -132,49 +137,53 @@ export const PropertyCard = memo(
             background:
               'radial-gradient(73.04% 54.31% at 50% 0%, rgba(237, 230, 255, 0.60) 0%, rgba(255, 255, 255, 0.00) 100%)',
           }}
+          data-qa-id={`${dataQaId}-content`}
         >
           {/* Title */}
-          <div className={propertyCardStyles.titleContainer}>
-            <h3 className={propertyCardStyles.title}>{property.title}</h3>
+          <div className={propertyCardStyles.titleContainer} data-qa-id={`${dataQaId}-title-container`}>
+            <h3 className={propertyCardStyles.title} data-qa-id={`${dataQaId}-title`}>{property.title}</h3>
           </div>
 
           {/* Bottom Section: Area/Location + Metrics */}
-          <div className={propertyCardStyles.bottomSection}>
+          <div className={propertyCardStyles.bottomSection} data-qa-id={`${dataQaId}-bottom-section`}>
             {/* Area and Location */}
-            <div className={propertyCardStyles.areaLocationRow}>
-              <span className={propertyCardStyles.areaText}>
+            <div className={propertyCardStyles.areaLocationRow} data-qa-id={`${dataQaId}-area-location`}>
+              <span className={propertyCardStyles.areaText} data-qa-id={`${dataQaId}-area`}>
                 {formattedArea}
               </span>
-              <span className={propertyCardStyles.locationText}>
-                <MarkerPin02 className={propertyCardStyles.icons.small} />
-                <span>{property.city}</span>
+              <span className={propertyCardStyles.locationText} data-qa-id={`${dataQaId}-location`}>
+                <MarkerPin02 className={propertyCardStyles.icons.small} data-qa-id={`${dataQaId}-location-icon`} />
+                <span data-qa-id={`${dataQaId}-city`}>{property.city}</span>
               </span>
             </div>
 
             {/* Metrics */}
-            <div className={propertyCardStyles.metricsContainer}>
+            <div className={propertyCardStyles.metricsContainer} data-qa-id={`${dataQaId}-metrics`}>
               {formattedElectricity && (
                 <MetricRow
-                  icon={<Zap className={propertyCardStyles.icons.primary} />}
+                  icon={<Zap className={propertyCardStyles.icons.primary} data-qa-id={`${dataQaId}-electricity-icon`} />}
                   label={t('property.electricity') || 'Electricity'}
                   value={formattedElectricity}
+                  dataQaId={`${dataQaId}-electricity`}
                 />
               )}
 
               {formattedGas && (
                 <MetricRow
-                  icon={<Icon name="fire" size={20} color="#5547B5" />}
+                  icon={<Icon name="fire" size={20} color="#5547B5" data-qa-id={`${dataQaId}-gas-icon`} />}
                   label={t('property.gas') || 'Gas'}
                   value={formattedGas}
+                  dataQaId={`${dataQaId}-gas`}
                 />
               )}
 
               {formattedWater && (
                 <MetricRow
-                  icon={<Drop className={propertyCardStyles.icons.primary} />}
+                  icon={<Drop className={propertyCardStyles.icons.primary} data-qa-id={`${dataQaId}-water-icon`} />}
                   label={t('property.water') || 'Water'}
                   value={formattedWater}
                   showSeparator={false}
+                  dataQaId={`${dataQaId}-water`}
                 />
               )}
             </div>
@@ -182,30 +191,34 @@ export const PropertyCard = memo(
 
           {/* Distance Information */}
           {!hideDistance && (
-            <div className={propertyCardStyles.distanceGrid}>
+            <div className={propertyCardStyles.distanceGrid} data-qa-id={`${dataQaId}-distance-grid`}>
               <DistanceCard
-                icon={<Anchor className={propertyCardStyles.icons.shrink} />}
+                icon={<Anchor className={propertyCardStyles.icons.shrink} data-qa-id={`${dataQaId}-seaport-icon`} />}
                 distance='75 km'
+                dataQaId={`${dataQaId}-seaport-distance`}
               />
               <DistanceCard
-                icon={<Train className={propertyCardStyles.icons.shrink} />}
+                icon={<Train className={propertyCardStyles.icons.shrink} data-qa-id={`${dataQaId}-railway-icon`} />}
                 distance='102 km'
+                dataQaId={`${dataQaId}-railway-distance`}
               />
               <DistanceCard
-                icon={<Plane className={propertyCardStyles.icons.shrink} />}
+                icon={<Plane className={propertyCardStyles.icons.shrink} data-qa-id={`${dataQaId}-airport-icon`} />}
                 distance='62 km'
+                dataQaId={`${dataQaId}-airport-distance`}
               />
             </div>
           )}
 
           {/* Action Buttons */}
-          <div className={propertyCardStyles.buttonGrid}>
+          <div className={propertyCardStyles.buttonGrid} data-qa-id={`${dataQaId}-buttons`}>
             <Button
               size='lg'
               color='secondary'
               onClick={handleCompare}
               className='w-full h-12 rounded-xl px-[18px] border border-gray-200 bg-white text-[#171B23] font-semibold text-base leading-6 tracking-normal shadow-sm hover:bg-gray-50 active:bg-gray-100'
               aria-label={`Compare ${property.title}`}
+              data-qa-id={`${dataQaId}-compare-button`}
             >
               {t('common.compare') || 'Compare'}
             </Button>
@@ -216,6 +229,7 @@ export const PropertyCard = memo(
               onClick={handleView}
               className='w-full h-12 rounded-xl px-[18px] text-white font-semibold text-base leading-6 tracking-normal shadow-sm bg-[linear-gradient(90deg,#5547B5_0%,#695DC2_100%)] hover:brightness-105 active:brightness-95'
               aria-label={`View details for ${property.title}`}
+              data-qa-id={`${dataQaId}-view-button`}
             >
               {t('common.view') || 'View'}
             </Button>

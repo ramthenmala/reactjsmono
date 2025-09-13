@@ -77,7 +77,7 @@ export function SearchForm({
   React.useEffect(() => {
     if (isicOptions.length > 0) {
       const selectedItems = isicOptions.filter(item =>
-        filters.isic.includes(item.id),
+        (filters.isic || []).includes(item.id),
       );
       const currentSelectedIds = selectedIsic.items.map(item => item.id);
 
