@@ -54,6 +54,7 @@ Object.defineProperty(globalThis, 'import', {
         VITE_PROD_REGIONS_ENDPOINT: '/api/regions',
         VITE_PROD_AREA_ENDPOINT: '/api/areas',
         VITE_PROD_INDUSTRIAL_CITIES_ENDPOINT: '/api/cities',
+        VITE_MAPBOX_ACCESS_TOKEN: 'test-token',
       },
     },
   },

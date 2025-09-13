@@ -8,17 +8,19 @@ export function MapControls({
   onZoomOut,
   onStyleChange,
   activeMapStyle,
+  'data-qa-id': dataQaId = 'map-controls',
 }: MapControlsProps) {
   const [showLayerMenu, setShowLayerMenu] = useState(false);
 
   return (
-    <div className={mapStyles.controls.container}>
+    <div className={mapStyles.controls.container} data-qa-id={dataQaId}>
       {/* Layer/Style Selection - Independent Button */}
-      <div className='relative'>
+      <div className='relative' data-qa-id={`${dataQaId}-layer-section`}>
         <button
           onClick={() => setShowLayerMenu(!showLayerMenu)}
           className={mapStyles.controls.layerButton}
           aria-label='Map layers'
+          data-qa-id={`${dataQaId}-layer-button`}
         >
           <svg
             width={mapStyles.icons.layers.width}
@@ -58,7 +60,7 @@ export function MapControls({
 
         {/* Dropdown Menu */}
         {showLayerMenu && (
-          <div className={mapStyles.controls.layerDropdown.container}>
+          <div className={mapStyles.controls.layerDropdown.container} data-qa-id={`${dataQaId}-layer-dropdown`}>
             <button
               onClick={() => {
                 onStyleChange('streets');
@@ -67,6 +69,7 @@ export function MapControls({
               className={mapStyles.controls.layerDropdown.button(
                 activeMapStyle === 'streets',
               )}
+              data-qa-id={`${dataQaId}-streets-button`}
             >
               <svg
                 width={mapStyles.icons.streetView.width}
@@ -105,6 +108,7 @@ export function MapControls({
               className={mapStyles.controls.layerDropdown.button(
                 activeMapStyle === 'satellite',
               )}
+              data-qa-id={`${dataQaId}-satellite-button`}
             >
               <svg
                 width={mapStyles.icons.satelliteView.width}
@@ -137,14 +141,15 @@ export function MapControls({
       </div>
 
       {/* Zoom Controls - ButtonGroup */}
-      <ButtonGroup size='sm' className={mapStyles.controls.zoomGroup}>
-        <ButtonGroupItem id='zoom-in' onClick={onZoomIn}>
+      <ButtonGroup size='sm' className={mapStyles.controls.zoomGroup} data-qa-id={`${dataQaId}-zoom-group`}>
+        <ButtonGroupItem id='zoom-in' onClick={onZoomIn} data-qa-id={`${dataQaId}-zoom-in`}>
           <svg
             width={mapStyles.icons.zoom.width}
             height={mapStyles.icons.zoom.height}
             viewBox={mapStyles.icons.zoom.viewBox}
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
+            data-qa-id={`${dataQaId}-zoom-in-icon`}
           >
             <path
               d='M8 3V13M3 8H13'
@@ -154,13 +159,14 @@ export function MapControls({
             />
           </svg>
         </ButtonGroupItem>
-        <ButtonGroupItem id='zoom-out' onClick={onZoomOut}>
+        <ButtonGroupItem id='zoom-out' onClick={onZoomOut} data-qa-id={`${dataQaId}-zoom-out`}>
           <svg
             width={mapStyles.icons.zoom.width}
             height={mapStyles.icons.zoom.height}
             viewBox={mapStyles.icons.zoom.viewBox}
             fill='none'
             xmlns='http://www.w3.org/2000/svg'
+            data-qa-id={`${dataQaId}-zoom-out-icon`}
           >
             <path
               d='M3 8H13'

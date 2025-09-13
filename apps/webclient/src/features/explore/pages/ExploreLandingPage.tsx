@@ -30,10 +30,12 @@ export const ExploreLandingPage = memo(() => {
 
   return (
     <div
+      data-qa-id="explore-landing-page"
       className={`${EXPLORE_PAGE_CONFIGS.landing.layout.className} ${EXPLORE_PAGE_CONFIGS.landing.layout.background}`}
     >
       {/* Hero Section - Critical, no lazy loading */}
       <Hero
+        data-qa-id="explore-landing-hero"
         backgroundImage={exploreDetails?.bannerImage || ''}
         title={exploreDetails?.bannerTitle || ''}
         subtitle={exploreDetails?.bannerContent || ''}
@@ -47,16 +49,18 @@ export const ExploreLandingPage = memo(() => {
       />
 
       {/* Search Section - Above the fold, high priority */}
-      <SearchPanel />
+      <SearchPanel data-qa-id="explore-landing-search-panel" />
 
       {/* Featured Cities Section - Below the fold, can be lazy loaded */}
       <FeaturedIndustrialCities
+        data-qa-id="explore-landing-featured-cities"
         title={exploreDetails?.featuredIndustrialCitiesTitle || ''}
         subtitle={exploreDetails?.featuredIndustrialCitiesContent || ''}
       />
 
       {/* Investor Journey Section - Bottom section, lowest priority */}
       <InvestorJourney
+        data-qa-id="explore-landing-investor-journey"
         title={exploreDetails?.compassInvestorJourney.title || ''}
         content={exploreDetails?.compassInvestorJourney.content || ''}
         cards={exploreDetails?.compassInvestorJourney.cards || []}

@@ -3,4 +3,5 @@ export interface MapControlsProps {
   onZoomOut: () => void;
   onStyleChange: (style: string) => void;
   activeMapStyle: string;
+  'data-qa-id'?: string;
 }

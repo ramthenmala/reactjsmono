@@ -27,6 +27,7 @@ export function Map({
   points = [],
   className = 'w-full h-96',
   onMarkerClick,
+  'data-qa-id': dataQaId = 'map',
 }: IMapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<mapboxgl.Map | null>(null);
@@ -440,15 +441,15 @@ export function Map({
   // Conditional rendering after all hooks
   if (!hasToken) {
     return (
-      <div className={mapStyles.container.errorContainer(className)}>
-        <div className={mapStyles.container.errorContent}>
-          <p className={mapStyles.container.errorMessage}>
+      <div className={mapStyles.container.errorContainer(className)} data-qa-id={dataQaId}>
+        <div className={mapStyles.container.errorContent} data-qa-id={`${dataQaId}-error-content`}>
+          <p className={mapStyles.container.errorMessage} data-qa-id={`${dataQaId}-error-message`}>
             Mapbox configuration required
           </p>
-          <p className={mapStyles.container.errorDescription}>
+          <p className={mapStyles.container.errorDescription} data-qa-id={`${dataQaId}-error-description`}>
             Please set VITE_MAPBOX_ACCESS_TOKEN in .env file
           </p>
-          <p className={mapStyles.container.errorToken}>
+          <p className={mapStyles.container.errorToken} data-qa-id={`${dataQaId}-error-token`}>
             Token: {mapboxgl.accessToken ? 'Present' : 'Missing'}
           </p>
         </div>
@@ -457,8 +458,8 @@ export function Map({
   }
 
   return (
-    <div className={mapStyles.container.wrapper(className)}>
-      <div ref={mapContainer} className={mapStyles.container.mapbox} />
+    <div className={mapStyles.container.wrapper(className)} data-qa-id={dataQaId}>
+      <div ref={mapContainer} className={mapStyles.container.mapbox} data-qa-id={`${dataQaId}-container`} />
 
       {/* Map Controls Component */}
       <MapControls
@@ -466,16 +467,18 @@ export function Map({
         onZoomOut={handleZoomOut}
         onStyleChange={handleMapStyleChange}
         activeMapStyle={activeMapStyle}
+        data-qa-id={`${dataQaId}-controls`}
       />
 
       {/* Back Button Component */}
       <MapBackButton
         selectedCity={selectedCity}
         onBackToCities={handleBackToCities}
+        data-qa-id={`${dataQaId}-back-button`}
       />
 
       {/* Todo: Map Legend Component */}
-      {/* <MapLegend /> */}
+      {/* <MapLegend data-qa-id={`${dataQaId}-legend`} /> */}
 
       {/* Map Popup Component */}
       <MapPopup
@@ -483,6 +486,7 @@ export function Map({
         container={popupContainer}
         onClose={closePopup}
         onView={onMarkerClick}
+        data-qa-id={`${dataQaId}-popup`}
       />
     </div>
   );
